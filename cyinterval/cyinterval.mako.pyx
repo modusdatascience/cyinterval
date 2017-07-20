@@ -1,4 +1,6 @@
-
+from cpython.datetime cimport date
+from datetime import date
+from cpython cimport bool
 
 cdef class BaseInterval:
     cdef readonly bool lower_closed
@@ -33,11 +35,11 @@ type_tups = [('ObjectInterval', 'object', None, 'None', False),
 default_type_tup_index = 0
 %>
 
-% for IntervalType, c_type, default_value in type_tups:
+% for IntervalType, c_type, p_type, default_value, dispatchable in type_tups:
 cdef class ${IntervalType}(BaseInterval):
     cdef readonly ${c_type} lower_bound
     cdef readonly ${c_type} upper_bound
-    def __init__(BaseInterval self, c_type lower_bound, c_type upper_bound, bool lower_closed, 
+    def __init__(BaseInterval self, ${c_type} lower_bound, ${c_type} upper_bound, bool lower_closed, 
                  bool upper_closed, bool lower_bounded, bool upper_bounded):
         self.lower_closed = lower_closed
         self.upper_closed = upper_closed
