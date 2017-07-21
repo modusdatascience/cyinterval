@@ -19,8 +19,10 @@ cdef class BaseInterval:
         if other.__class__ is self.__class__:
             raise NotImplementedError('Only intervals of the same type can be intersected')
         return self.intersection(other)
+    
+    def __contains__(BaseInterval self, item):
+        return self.contains(item)
             
-
 <%!
 type_tups = [('ObjectInterval', 'object', None, 'None', False), 
               ('DateInterval', 'date', 'date', 'None', True),
@@ -41,7 +43,19 @@ cdef class ${IntervalType}(BaseInterval):
             self.lower_bound = lower_bound
         if upper_bounded:
             self.upper_bound = upper_bound
-            
+    
+    cpdef bool contains(${IntervalType} self, ${c_type} item):
+        if self.lower_closed and self.lower_bounded and item == self.lower_bound:
+            return True
+        if item > self.lower_bound and item < self.upper_bound:
+            return True
+        if not self.lower_bounded or item > self.lower_bound:
+            if not self.upper_bounded or item < self.upper_bound:
+                return True
+        if self.upper_closed and self.upper_bounded and item == self.upper_bound:
+            return True
+        return False
+    
     cpdef tuple init_args(${IntervalType} self):
         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed, 
                 self.lower_bounded, self.upper_bounded)
@@ -165,18 +179,20 @@ interval_default_value_dispatch = {}
 % for IntervalType, c_type, p_type, default_value, dispatchable in type_tups:
 % if dispatchable:
 interval_type_dispatch[${p_type}] = ${IntervalType}
-interval_default_value_dispatch[${IntervalType}] = ${default_value}
 % endif
+interval_default_value_dispatch[${IntervalType}] = ${default_value}
 % endfor
 inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
 def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True, 
              upper_closed=True, interval_type=None):
     if interval_type is None:
         assert lower_bound is not unbounded or upper_bound is not unbounded
-        if lower_bound is not unbounded:
+        if lower_bound is not unbounded and type(lower_bound) in interval_type_dispatch:
             cls = interval_type_dispatch[type(lower_bound)]
-        else:
+        elif type(upper_bound) in interval_type_dispatch:
             cls = interval_type_dispatch[type(upper_bound)]
+        else:
+            cls = ${type_tups[default_type_tup_index][0]}
     elif interval_type in inverse_interval_type_dispatch:
         cls = interval_type
     elif interval_type in interval_type_dispatch:

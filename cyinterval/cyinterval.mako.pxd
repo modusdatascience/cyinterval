@@ -19,6 +19,7 @@ default_type_tup_index = 0
 cdef class ${IntervalType}(BaseInterval):
     cdef readonly ${c_type} lower_bound
     cdef readonly ${c_type} upper_bound
+    cpdef bool contains(${IntervalType} self, ${c_type} item)
     cpdef tuple init_args(${IntervalType} self)
     cpdef ${IntervalType} intersection(${IntervalType} self, ${IntervalType} other)  
     cpdef bool empty(${IntervalType} self)  

@@ -12,6 +12,7 @@ cdef class BaseInterval:
 cdef class ObjectInterval(BaseInterval):
     cdef readonly object lower_bound
     cdef readonly object upper_bound
+    cpdef bool contains(ObjectInterval self, object item)
     cpdef tuple init_args(ObjectInterval self)
     cpdef ObjectInterval intersection(ObjectInterval self, ObjectInterval other)  
     cpdef bool empty(ObjectInterval self)  
@@ -22,6 +23,7 @@ cdef class ObjectInterval(BaseInterval):
 cdef class DateInterval(BaseInterval):
     cdef readonly date lower_bound
     cdef readonly date upper_bound
+    cpdef bool contains(DateInterval self, date item)
     cpdef tuple init_args(DateInterval self)
     cpdef DateInterval intersection(DateInterval self, DateInterval other)  
     cpdef bool empty(DateInterval self)  
@@ -32,6 +34,7 @@ cdef class DateInterval(BaseInterval):
 cdef class IntInterval(BaseInterval):
     cdef readonly int lower_bound
     cdef readonly int upper_bound
+    cpdef bool contains(IntInterval self, int item)
     cpdef tuple init_args(IntInterval self)
     cpdef IntInterval intersection(IntInterval self, IntInterval other)  
     cpdef bool empty(IntInterval self)  
@@ -42,6 +45,7 @@ cdef class IntInterval(BaseInterval):
 cdef class FloatInterval(BaseInterval):
     cdef readonly double lower_bound
     cdef readonly double upper_bound
+    cpdef bool contains(FloatInterval self, double item)
     cpdef tuple init_args(FloatInterval self)
     cpdef FloatInterval intersection(FloatInterval self, FloatInterval other)  
     cpdef bool empty(FloatInterval self)  

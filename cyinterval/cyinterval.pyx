@@ -19,8 +19,10 @@ cdef class BaseInterval:
         if other.__class__ is self.__class__:
             raise NotImplementedError('Only intervals of the same type can be intersected')
         return self.intersection(other)
+    
+    def __contains__(BaseInterval self, item):
+        return self.contains(item)
             
-
 
 
 cdef class ObjectInterval(BaseInterval):
@@ -34,7 +36,19 @@ cdef class ObjectInterval(BaseInterval):
             self.lower_bound = lower_bound
         if upper_bounded:
             self.upper_bound = upper_bound
-            
+    
+    cpdef bool contains(ObjectInterval self, object item):
+        if self.lower_closed and self.lower_bounded and item == self.lower_bound:
+            return True
+        if item > self.lower_bound and item < self.upper_bound:
+            return True
+        if not self.lower_bounded or item > self.lower_bound:
+            if not self.upper_bounded or item < self.upper_bound:
+                return True
+        if self.upper_closed and self.upper_bounded and item == self.upper_bound:
+            return True
+        return False
+    
     cpdef tuple init_args(ObjectInterval self):
         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed, 
                 self.lower_bounded, self.upper_bounded)
@@ -157,7 +171,19 @@ cdef class DateInterval(BaseInterval):
             self.lower_bound = lower_bound
         if upper_bounded:
             self.upper_bound = upper_bound
-            
+    
+    cpdef bool contains(DateInterval self, date item):
+        if self.lower_closed and self.lower_bounded and item == self.lower_bound:
+            return True
+        if item > self.lower_bound and item < self.upper_bound:
+            return True
+        if not self.lower_bounded or item > self.lower_bound:
+            if not self.upper_bounded or item < self.upper_bound:
+                return True
+        if self.upper_closed and self.upper_bounded and item == self.upper_bound:
+            return True
+        return False
+    
     cpdef tuple init_args(DateInterval self):
         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed, 
                 self.lower_bounded, self.upper_bounded)
@@ -280,7 +306,19 @@ cdef class IntInterval(BaseInterval):
             self.lower_bound = lower_bound
         if upper_bounded:
             self.upper_bound = upper_bound
-            
+    
+    cpdef bool contains(IntInterval self, int item):
+        if self.lower_closed and self.lower_bounded and item == self.lower_bound:
+            return True
+        if item > self.lower_bound and item < self.upper_bound:
+            return True
+        if not self.lower_bounded or item > self.lower_bound:
+            if not self.upper_bounded or item < self.upper_bound:
+                return True
+        if self.upper_closed and self.upper_bounded and item == self.upper_bound:
+            return True
+        return False
+    
     cpdef tuple init_args(IntInterval self):
         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed, 
                 self.lower_bounded, self.upper_bounded)
@@ -403,7 +441,19 @@ cdef class FloatInterval(BaseInterval):
             self.lower_bound = lower_bound
         if upper_bounded:
             self.upper_bound = upper_bound
-            
+    
+    cpdef bool contains(FloatInterval self, double item):
+        if self.lower_closed and self.lower_bounded and item == self.lower_bound:
+            return True
+        if item > self.lower_bound and item < self.upper_bound:
+            return True
+        if not self.lower_bounded or item > self.lower_bound:
+            if not self.upper_bounded or item < self.upper_bound:
+                return True
+        if self.upper_closed and self.upper_bounded and item == self.upper_bound:
+            return True
+        return False
+    
     cpdef tuple init_args(FloatInterval self):
         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed, 
                 self.lower_bounded, self.upper_bounded)
@@ -523,6 +573,7 @@ class unbounded:
 
 interval_type_dispatch = {}
 interval_default_value_dispatch = {}
+interval_default_value_dispatch[ObjectInterval] = None
 interval_type_dispatch[date] = DateInterval
 interval_default_value_dispatch[DateInterval] = None
 interval_type_dispatch[int] = IntInterval
@@ -534,10 +585,12 @@ def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
              upper_closed=True, interval_type=None):
     if interval_type is None:
         assert lower_bound is not unbounded or upper_bound is not unbounded
-        if lower_bound is not unbounded:
+        if lower_bound is not unbounded and type(lower_bound) in interval_type_dispatch:
             cls = interval_type_dispatch[type(lower_bound)]
-        else:
+        elif type(upper_bound) in interval_type_dispatch:
             cls = interval_type_dispatch[type(upper_bound)]
+        else:
+            cls = ObjectInterval
     elif interval_type in inverse_interval_type_dispatch:
         cls = interval_type
     elif interval_type in interval_type_dispatch:
