@@ -20,10 +20,13 @@ cdef class ${IntervalType}(BaseInterval):
     cdef readonly ${c_type} lower_bound
     cdef readonly ${c_type} upper_bound
     cpdef bool contains(${IntervalType} self, ${c_type} item)
+    cpdef int overlap_cmp(${IntervalType} self, ${IntervalType} other)
     cpdef tuple init_args(${IntervalType} self)
     cpdef ${IntervalType} intersection(${IntervalType} self, ${IntervalType} other)  
     cpdef bool empty(${IntervalType} self)  
     cpdef int richcmp(${IntervalType} self, ${IntervalType} other, int op)
+#     cpdef int lower_upper_cmp(${IntervalType} self, ${IntervalType} other)
+#     cpdef int upper_lower_cmp(${IntervalType} self, ${IntervalType} other)
     cpdef int lower_cmp(${IntervalType} self, ${IntervalType} other)
     cpdef int upper_cmp(${IntervalType} self, ${IntervalType} other)
 

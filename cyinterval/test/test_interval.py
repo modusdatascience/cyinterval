@@ -1,6 +1,6 @@
 from datetime import date
 from cyinterval.cyinterval import Interval, DateInterval, IntInterval, FloatInterval, unbounded, ObjectInterval
-from nose.tools import assert_equal, assert_in, assert_not_in
+from nose.tools import assert_equal, assert_in, assert_not_in, assert_raises
 
 def test_date_interval_factory():
     interval = Interval(date(2012,1,1), date(2012,4,15))
@@ -74,6 +74,32 @@ def test_object_interval_contains():
     assert_in(HeavyFloat(1.5), interval)
     assert_not_in(HeavyFloat(2.5), interval)
 
+def test_interval_type_argument():
+    interval = Interval(interval_type=1.)
+    assert isinstance(interval, FloatInterval)
+    interval = Interval(interval_type=float)
+    assert isinstance(interval, FloatInterval)
+    interval = Interval(interval_type=FloatInterval)
+    assert isinstance(interval, FloatInterval)
+    assert_raises(TypeError, lambda: Interval(lower_bound=date(2012,1,1), interval_type=FloatInterval))
+
+def test_overlap_cmp():
+    interval1 = Interval(0.,1.)
+    interval2 = Interval(-1.,0.,upper_closed=False)
+    assert_equal(interval2.overlap_cmp(interval1), -1)
+    assert_equal(interval1.overlap_cmp(interval2), 1)
+    interval3 = Interval(-1.,0.)
+    assert_equal(interval3.overlap_cmp(interval1), 0)
+    assert_equal(interval1.overlap_cmp(interval3), 0)
+    assert_equal(interval3.overlap_cmp(interval2), 0)
+    assert_equal(interval2.overlap_cmp(interval3), 0)
+    interval4 = Interval(.5,.6)
+    assert_equal(interval4.overlap_cmp(interval1), 0)
+    assert_equal(interval1.overlap_cmp(interval4), 0)
+    interval5 = Interval(5.5,22.)
+    assert_equal(interval5.overlap_cmp(interval1), 1)
+    assert_equal(interval1.overlap_cmp(interval5), -1)
+    
 if __name__ == '__main__':
     import sys
     import nose
