@@ -6,7 +6,11 @@ cdef class BaseInterval:
     cdef readonly bool upper_closed
     cdef readonly bool lower_bounded
     cdef readonly bool upper_bounded
-    
+
+cdef class BaseIntervalSet:
+    cdef readonly tuple intervals
+    cdef readonly int n_intervals
+
 <%!
 type_tups = [('ObjectInterval', 'object', None, 'None', False, 'ObjectIntervalSet'), 
               ('DateInterval', 'date', 'date', 'None', True, 'DateIntervalSet'),
@@ -30,5 +34,13 @@ cdef class ${IntervalType}(BaseInterval):
     cpdef int richcmp(${IntervalType} self, ${IntervalType} other, int op)
     cpdef int lower_cmp(${IntervalType} self, ${IntervalType} other)
     cpdef int upper_cmp(${IntervalType} self, ${IntervalType} other)
+
+cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals)
+
+cdef class ${IntervalSetType}(BaseIntervalSet):
+    cpdef ${IntervalSetType} intersection(${IntervalSetType} self, ${IntervalSetType} other)
+    cpdef ${IntervalSetType} union(${IntervalSetType} self, ${IntervalSetType} other)
+    cpdef ${IntervalSetType} complement(${IntervalSetType} self)
+    cpdef ${IntervalSetType} minus(${IntervalSetType} self, ${IntervalSetType} other)
 
 % endfor

@@ -6,7 +6,11 @@ cdef class BaseInterval:
     cdef readonly bool upper_closed
     cdef readonly bool lower_bounded
     cdef readonly bool upper_bounded
-    
+
+cdef class BaseIntervalSet:
+    cdef readonly tuple intervals
+    cdef readonly int n_intervals
+
 
 
 cdef class ObjectInterval(BaseInterval):
@@ -24,6 +28,14 @@ cdef class ObjectInterval(BaseInterval):
     cpdef int lower_cmp(ObjectInterval self, ObjectInterval other)
     cpdef int upper_cmp(ObjectInterval self, ObjectInterval other)
 
+cpdef tuple ObjectInterval_preprocess_intervals(tuple intervals)
+
+cdef class ObjectIntervalSet(BaseIntervalSet):
+    cpdef ObjectIntervalSet intersection(ObjectIntervalSet self, ObjectIntervalSet other)
+    cpdef ObjectIntervalSet union(ObjectIntervalSet self, ObjectIntervalSet other)
+    cpdef ObjectIntervalSet complement(ObjectIntervalSet self)
+    cpdef ObjectIntervalSet minus(ObjectIntervalSet self, ObjectIntervalSet other)
+
 cdef class DateInterval(BaseInterval):
     cdef readonly date lower_bound
     cdef readonly date upper_bound
@@ -38,6 +50,14 @@ cdef class DateInterval(BaseInterval):
     cpdef int richcmp(DateInterval self, DateInterval other, int op)
     cpdef int lower_cmp(DateInterval self, DateInterval other)
     cpdef int upper_cmp(DateInterval self, DateInterval other)
+
+cpdef tuple DateInterval_preprocess_intervals(tuple intervals)
+
+cdef class DateIntervalSet(BaseIntervalSet):
+    cpdef DateIntervalSet intersection(DateIntervalSet self, DateIntervalSet other)
+    cpdef DateIntervalSet union(DateIntervalSet self, DateIntervalSet other)
+    cpdef DateIntervalSet complement(DateIntervalSet self)
+    cpdef DateIntervalSet minus(DateIntervalSet self, DateIntervalSet other)
 
 cdef class IntInterval(BaseInterval):
     cdef readonly int lower_bound
@@ -54,6 +74,14 @@ cdef class IntInterval(BaseInterval):
     cpdef int lower_cmp(IntInterval self, IntInterval other)
     cpdef int upper_cmp(IntInterval self, IntInterval other)
 
+cpdef tuple IntInterval_preprocess_intervals(tuple intervals)
+
+cdef class IntIntervalSet(BaseIntervalSet):
+    cpdef IntIntervalSet intersection(IntIntervalSet self, IntIntervalSet other)
+    cpdef IntIntervalSet union(IntIntervalSet self, IntIntervalSet other)
+    cpdef IntIntervalSet complement(IntIntervalSet self)
+    cpdef IntIntervalSet minus(IntIntervalSet self, IntIntervalSet other)
+
 cdef class FloatInterval(BaseInterval):
     cdef readonly double lower_bound
     cdef readonly double upper_bound
@@ -68,4 +96,12 @@ cdef class FloatInterval(BaseInterval):
     cpdef int richcmp(FloatInterval self, FloatInterval other, int op)
     cpdef int lower_cmp(FloatInterval self, FloatInterval other)
     cpdef int upper_cmp(FloatInterval self, FloatInterval other)
+
+cpdef tuple FloatInterval_preprocess_intervals(tuple intervals)
+
+cdef class FloatIntervalSet(BaseIntervalSet):
+    cpdef FloatIntervalSet intersection(FloatIntervalSet self, FloatIntervalSet other)
+    cpdef FloatIntervalSet union(FloatIntervalSet self, FloatIntervalSet other)
+    cpdef FloatIntervalSet complement(FloatIntervalSet self)
+    cpdef FloatIntervalSet minus(FloatIntervalSet self, FloatIntervalSet other)
 

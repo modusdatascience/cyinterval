@@ -243,16 +243,47 @@ cdef class ObjectInterval(BaseInterval):
         else:
             return 1
 
+# This is because static cpdef methods are not supported.  Otherwise this
+# would be a static method of ObjectIntervalSet
+cpdef tuple ObjectInterval_preprocess_intervals(tuple intervals):
+    # Remove any empty intervals
+    cdef ObjectInterval interval
+    cdef list tmp = []
+    for interval in intervals:
+        if not interval.empty():
+            tmp.append(interval)
+            
+    # Sort
+    tmp.sort()
+    
+    # Fuse any overlapping intervals
+    cdef int n = len(tmp)
+    cdef int i
+    cdef list tmp2 = []
+    cdef ObjectInterval interval2
+    cdef bool fused_last
+    if n > 1:
+        for i in range(n-1):
+            interval = tmp[i]
+            interval2 = tmp[i+1]
+            if interval.overlap_cmp(interval2) == 0:
+                tmp2.append(interval.fusion(interval2))
+                fused_last = True
+            else:
+                tmp2.append(interval)
+                fused_last = False
+    if not fused_last:
+        tmp2.append(tmp[n-1])
+    return tuple(tmp2)
+
 cdef class ObjectIntervalSet(BaseIntervalSet):
-    cdef readonly tuple intervals
-    cdef readonly int n_intervals
     def __init__(ObjectIntervalSet self, tuple intervals):
         '''
         The intervals must already be sorted and non-overlapping.
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
     cpdef ObjectIntervalSet intersection(ObjectIntervalSet self, ObjectIntervalSet other):
         pass
     
@@ -480,16 +511,47 @@ cdef class DateInterval(BaseInterval):
         else:
             return 1
 
+# This is because static cpdef methods are not supported.  Otherwise this
+# would be a static method of DateIntervalSet
+cpdef tuple DateInterval_preprocess_intervals(tuple intervals):
+    # Remove any empty intervals
+    cdef DateInterval interval
+    cdef list tmp = []
+    for interval in intervals:
+        if not interval.empty():
+            tmp.append(interval)
+            
+    # Sort
+    tmp.sort()
+    
+    # Fuse any overlapping intervals
+    cdef int n = len(tmp)
+    cdef int i
+    cdef list tmp2 = []
+    cdef DateInterval interval2
+    cdef bool fused_last
+    if n > 1:
+        for i in range(n-1):
+            interval = tmp[i]
+            interval2 = tmp[i+1]
+            if interval.overlap_cmp(interval2) == 0:
+                tmp2.append(interval.fusion(interval2))
+                fused_last = True
+            else:
+                tmp2.append(interval)
+                fused_last = False
+    if not fused_last:
+        tmp2.append(tmp[n-1])
+    return tuple(tmp2)
+
 cdef class DateIntervalSet(BaseIntervalSet):
-    cdef readonly tuple intervals
-    cdef readonly int n_intervals
     def __init__(DateIntervalSet self, tuple intervals):
         '''
         The intervals must already be sorted and non-overlapping.
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
     cpdef DateIntervalSet intersection(DateIntervalSet self, DateIntervalSet other):
         pass
     
@@ -717,16 +779,47 @@ cdef class IntInterval(BaseInterval):
         else:
             return 1
 
+# This is because static cpdef methods are not supported.  Otherwise this
+# would be a static method of IntIntervalSet
+cpdef tuple IntInterval_preprocess_intervals(tuple intervals):
+    # Remove any empty intervals
+    cdef IntInterval interval
+    cdef list tmp = []
+    for interval in intervals:
+        if not interval.empty():
+            tmp.append(interval)
+            
+    # Sort
+    tmp.sort()
+    
+    # Fuse any overlapping intervals
+    cdef int n = len(tmp)
+    cdef int i
+    cdef list tmp2 = []
+    cdef IntInterval interval2
+    cdef bool fused_last
+    if n > 1:
+        for i in range(n-1):
+            interval = tmp[i]
+            interval2 = tmp[i+1]
+            if interval.overlap_cmp(interval2) == 0:
+                tmp2.append(interval.fusion(interval2))
+                fused_last = True
+            else:
+                tmp2.append(interval)
+                fused_last = False
+    if not fused_last:
+        tmp2.append(tmp[n-1])
+    return tuple(tmp2)
+
 cdef class IntIntervalSet(BaseIntervalSet):
-    cdef readonly tuple intervals
-    cdef readonly int n_intervals
     def __init__(IntIntervalSet self, tuple intervals):
         '''
         The intervals must already be sorted and non-overlapping.
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
     cpdef IntIntervalSet intersection(IntIntervalSet self, IntIntervalSet other):
         pass
     
@@ -954,16 +1047,47 @@ cdef class FloatInterval(BaseInterval):
         else:
             return 1
 
+# This is because static cpdef methods are not supported.  Otherwise this
+# would be a static method of FloatIntervalSet
+cpdef tuple FloatInterval_preprocess_intervals(tuple intervals):
+    # Remove any empty intervals
+    cdef FloatInterval interval
+    cdef list tmp = []
+    for interval in intervals:
+        if not interval.empty():
+            tmp.append(interval)
+            
+    # Sort
+    tmp.sort()
+    
+    # Fuse any overlapping intervals
+    cdef int n = len(tmp)
+    cdef int i
+    cdef list tmp2 = []
+    cdef FloatInterval interval2
+    cdef bool fused_last
+    if n > 1:
+        for i in range(n-1):
+            interval = tmp[i]
+            interval2 = tmp[i+1]
+            if interval.overlap_cmp(interval2) == 0:
+                tmp2.append(interval.fusion(interval2))
+                fused_last = True
+            else:
+                tmp2.append(interval)
+                fused_last = False
+    if not fused_last:
+        tmp2.append(tmp[n-1])
+    return tuple(tmp2)
+
 cdef class FloatIntervalSet(BaseIntervalSet):
-    cdef readonly tuple intervals
-    cdef readonly int n_intervals
     def __init__(FloatIntervalSet self, tuple intervals):
         '''
         The intervals must already be sorted and non-overlapping.
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
     cpdef FloatIntervalSet intersection(FloatIntervalSet self, FloatIntervalSet other):
         pass
     
@@ -986,15 +1110,25 @@ class unbounded:
     def __init__(self):
         raise NotImplementedError('unbounded should not be instantiated')
 
-interval_type_dispatch = {}
-interval_default_value_dispatch = {}
+cdef dict interval_type_dispatch = {}
+cdef dict interval_default_value_dispatch = {}
+cdef dict interval_set_type_dispatch = {}
+cdef dict interval_set_preprocessor_dispatch = {}
 interval_default_value_dispatch[ObjectInterval] = None
+interval_set_type_dispatch[ObjectInterval] = ObjectIntervalSet
+interval_set_preprocessor_dispatch[ObjectInterval] = ObjectInterval_preprocess_intervals
 interval_type_dispatch[date] = DateInterval
 interval_default_value_dispatch[DateInterval] = None
+interval_set_type_dispatch[DateInterval] = DateIntervalSet
+interval_set_preprocessor_dispatch[DateInterval] = DateInterval_preprocess_intervals
 interval_type_dispatch[int] = IntInterval
 interval_default_value_dispatch[IntInterval] = 0
+interval_set_type_dispatch[IntInterval] = IntIntervalSet
+interval_set_preprocessor_dispatch[IntInterval] = IntInterval_preprocess_intervals
 interval_type_dispatch[float] = FloatInterval
 interval_default_value_dispatch[FloatInterval] = 0.
+interval_set_type_dispatch[FloatInterval] = FloatIntervalSet
+interval_set_preprocessor_dispatch[FloatInterval] = FloatInterval_preprocess_intervals
 inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
 def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True, 
              upper_closed=True, interval_type=None):
@@ -1019,5 +1153,15 @@ def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
                upper_bound if upper_bound is not unbounded else default_value,
                lower_closed, upper_closed, lower_bound is not unbounded, 
                upper_bound is not unbounded)
-    
-    
+
+# Just a factory
+def IntervalSet(*intervals):
+    interval_type = type(intervals[0])
+    for interval in intervals[1:]:
+        assert interval_type is type(interval)
+    interval_set_type = interval_set_type_dispatch[interval_type]
+    interval_set_preprocessor = interval_set_preprocessor_dispatch[interval_type]
+    processed_intervals = interval_set_preprocessor(intervals)
+    return interval_set_type(processed_intervals)
+
+

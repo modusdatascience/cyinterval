@@ -255,16 +255,47 @@ cdef class ${IntervalType}(BaseInterval):
         else:
             return 1
 
+# This is because static cpdef methods are not supported.  Otherwise this
+# would be a static method of ${IntervalSetType}
+cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals):
+    # Remove any empty intervals
+    cdef ${IntervalType} interval
+    cdef list tmp = []
+    for interval in intervals:
+        if not interval.empty():
+            tmp.append(interval)
+            
+    # Sort
+    tmp.sort()
+    
+    # Fuse any overlapping intervals
+    cdef int n = len(tmp)
+    cdef int i
+    cdef list tmp2 = []
+    cdef ${IntervalType} interval2
+    cdef bool fused_last
+    if n > 1:
+        for i in range(n-1):
+            interval = tmp[i]
+            interval2 = tmp[i+1]
+            if interval.overlap_cmp(interval2) == 0:
+                tmp2.append(interval.fusion(interval2))
+                fused_last = True
+            else:
+                tmp2.append(interval)
+                fused_last = False
+    if not fused_last:
+        tmp2.append(tmp[n-1])
+    return tuple(tmp2)
+
 cdef class ${IntervalSetType}(BaseIntervalSet):
-    cdef readonly tuple intervals
-    cdef readonly int n_intervals
     def __init__(${IntervalSetType} self, tuple intervals):
         '''
         The intervals must already be sorted and non-overlapping.
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
     cpdef ${IntervalSetType} intersection(${IntervalSetType} self, ${IntervalSetType} other):
         pass
     
@@ -288,13 +319,17 @@ class unbounded:
     def __init__(self):
         raise NotImplementedError('unbounded should not be instantiated')
 
-interval_type_dispatch = {}
-interval_default_value_dispatch = {}
+cdef dict interval_type_dispatch = {}
+cdef dict interval_default_value_dispatch = {}
+cdef dict interval_set_type_dispatch = {}
+cdef dict interval_set_preprocessor_dispatch = {}
 % for IntervalType, c_type, p_type, default_value, dispatchable, IntervalSetType, has_adjacent, unit in type_tups:
 % if dispatchable:
 interval_type_dispatch[${p_type}] = ${IntervalType}
 % endif
 interval_default_value_dispatch[${IntervalType}] = ${default_value}
+interval_set_type_dispatch[${IntervalType}] = ${IntervalSetType}
+interval_set_preprocessor_dispatch[${IntervalType}] = ${IntervalType}_preprocess_intervals
 % endfor
 inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
 def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True, 
@@ -320,5 +355,15 @@ def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
                upper_bound if upper_bound is not unbounded else default_value,
                lower_closed, upper_closed, lower_bound is not unbounded, 
                upper_bound is not unbounded)
-    
-    
+
+# Just a factory
+def IntervalSet(*intervals):
+    interval_type = type(intervals[0])
+    for interval in intervals[1:]:
+        assert interval_type is type(interval)
+    interval_set_type = interval_set_type_dispatch[interval_type]
+    interval_set_preprocessor = interval_set_preprocessor_dispatch[interval_type]
+    processed_intervals = interval_set_preprocessor(intervals)
+    return interval_set_type(processed_intervals)
+
+
