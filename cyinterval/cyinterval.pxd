@@ -18,8 +18,6 @@ cdef class ObjectInterval(BaseInterval):
     cpdef ObjectInterval intersection(ObjectInterval self, ObjectInterval other)  
     cpdef bool empty(ObjectInterval self)  
     cpdef int richcmp(ObjectInterval self, ObjectInterval other, int op)
-#     cpdef int lower_upper_cmp(ObjectInterval self, ObjectInterval other)
-#     cpdef int upper_lower_cmp(ObjectInterval self, ObjectInterval other)
     cpdef int lower_cmp(ObjectInterval self, ObjectInterval other)
     cpdef int upper_cmp(ObjectInterval self, ObjectInterval other)
 
@@ -32,8 +30,6 @@ cdef class DateInterval(BaseInterval):
     cpdef DateInterval intersection(DateInterval self, DateInterval other)  
     cpdef bool empty(DateInterval self)  
     cpdef int richcmp(DateInterval self, DateInterval other, int op)
-#     cpdef int lower_upper_cmp(DateInterval self, DateInterval other)
-#     cpdef int upper_lower_cmp(DateInterval self, DateInterval other)
     cpdef int lower_cmp(DateInterval self, DateInterval other)
     cpdef int upper_cmp(DateInterval self, DateInterval other)
 
@@ -46,8 +42,6 @@ cdef class IntInterval(BaseInterval):
     cpdef IntInterval intersection(IntInterval self, IntInterval other)  
     cpdef bool empty(IntInterval self)  
     cpdef int richcmp(IntInterval self, IntInterval other, int op)
-#     cpdef int lower_upper_cmp(IntInterval self, IntInterval other)
-#     cpdef int upper_lower_cmp(IntInterval self, IntInterval other)
     cpdef int lower_cmp(IntInterval self, IntInterval other)
     cpdef int upper_cmp(IntInterval self, IntInterval other)
 
@@ -60,8 +54,6 @@ cdef class FloatInterval(BaseInterval):
     cpdef FloatInterval intersection(FloatInterval self, FloatInterval other)  
     cpdef bool empty(FloatInterval self)  
     cpdef int richcmp(FloatInterval self, FloatInterval other, int op)
-#     cpdef int lower_upper_cmp(FloatInterval self, FloatInterval other)
-#     cpdef int upper_lower_cmp(FloatInterval self, FloatInterval other)
     cpdef int lower_cmp(FloatInterval self, FloatInterval other)
     cpdef int upper_cmp(FloatInterval self, FloatInterval other)
 

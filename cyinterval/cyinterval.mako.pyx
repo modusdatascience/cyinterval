@@ -56,96 +56,6 @@ cdef class ${IntervalType}(BaseInterval):
             return True
         return False
     
-#     cpdef int right_cmp(${IntervalType} self, ${IntervalType} other):
-#         '''
-#         Assume neither is empty.
-#         Return -1 : self is always less than other
-#         Return 0 : self is eventually in other on the right
-#         Return 1 : self is eventually greater than other on the right
-#         '''
-#         if not self.upper_bounded and not other.upper_bounded:
-#             return 0
-#         elif self.upper_bounded:
-#             if other.upper_bounded:
-#                 if other.upper_bound > self.upper_bound:
-#                     if other.lower_bounded:
-#                         if self.upper_bound > other.lower_bound:
-#                             return 0
-#                         elif self.upper_bound == other.lower_bound:
-#                             if self.upper_closed and other.lower_closed:
-#                                 return 0
-#                             else:
-#                                 return -1
-#                         else:
-#                             return -1
-#                     else:
-#                         return 0
-#                 elif other.upper_bound == self.upper_bound:
-#                     if other.upper_closed or not self.upper_closed:
-#                         return 0
-#                     else:
-#                         return 1
-#                 else:
-#                     return 1
-#             else:
-#                 if other.lower_bounded:
-#                     if self.upper_bound > other.lower_bound:
-#                         return 0
-#                     elif self.upper_bound == other.lower_bound:
-#                         if self.upper_closed and other.lower_closed:
-#                             return 0
-#                         else:
-#                             return -1
-#                     else:
-#                         return -1
-#         else:
-#             return 1
-#     
-#     cpdef left_cmp(${IntervalType} self, ${IntervalType} other):
-#         '''
-#         Assume neither is empty.
-#         Return -1 : self is eventually less than other on the left
-#         Return 0 : self is eventually in other on the left
-#         Return 1 : self is always greater than other
-#         '''
-#         if not self.lower_bounded and not other.lower_bounded:
-#             return 0
-#         elif self.lower_bounded:
-#             if other.lower_bounded:
-#                 if other.lower_bound > self.lower_bound:
-#                     if other.upper_bounded:
-#                         if self.lower_bound < other.upper_bound:
-#                             return 0
-#                         elif self.lower_bound == other.upper_bound:
-#                             if self.lower_closed and other.upper_closed:
-#                                 return 0
-#                             else:
-#                                 return 1
-#                         else:
-#                             return 1
-#                     else:
-#                         return 0
-#                 elif other.lower_bound == self.lower_bound:
-#                     if other.lower_closed or not self.lower_closed:
-#                         return 0
-#                     else:
-#                         return -1
-#                 else:
-#                     return -1
-#             else:
-#                 if other.upper_bounded:
-#                     if self.lower_bound < other.upper_bound:
-#                         return 0
-#                     elif self.lower_bound == other.upper_bound:
-#                         if self.lower_closed and other.upper_closed:
-#                             return 0
-#                         else:
-#                             return 1
-#                     else:
-#                         return 1
-#         else:
-#             return -1
-        
     cpdef int overlap_cmp(${IntervalType} self, ${IntervalType} other):
         '''
         Assume both are nonempty.  Return -1 if every element of self is less than every 
@@ -244,23 +154,6 @@ cdef class ${IntervalType}(BaseInterval):
                     return True
                 else: # upper_cmp == 0
                     return op == 5
-    
-#     cpdef int lower_upper_cmp(${IntervalType} self, ${IntervalType} other):
-#         if not other.upper_bounded or not self.lower_bounded:
-#             return -1
-#         elif self.lower_bound < other.upper_bound:
-#             return -1
-#         elif self.lower_bound == other.upper_bound:
-#             if self.
-#             return 0
-#         else:
-#             return 1
-#     
-#     cpdef int upper_lower_cmp(${IntervalType} self, ${IntervalType} other):
-#         '''
-#         Is 
-#         '''
-#         return -1 * other.lower_upper_cmp(self)
     
     cpdef int lower_cmp(${IntervalType} self, ${IntervalType} other):
         if not self.lower_bounded:
