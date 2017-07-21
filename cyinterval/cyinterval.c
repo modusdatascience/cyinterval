@@ -638,6 +638,7 @@ static const char *__pyx_filename;
 
 static const char *__pyx_f[] = {
   "cyinterval/cyinterval.pyx",
+  "cyinterval/cyinterval.pxd",
   "datetime.pxd",
   "type.pxd",
   "bool.pxd",
@@ -649,8 +650,9 @@ struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval;
 struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval;
 struct __pyx_obj_10cyinterval_10cyinterval_DateInterval;
 struct __pyx_obj_10cyinterval_10cyinterval_IntInterval;
+struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval;
 
-/* "cyinterval/cyinterval.pyx":5
+/* "cyinterval/cyinterval.pxd":4
  * from cpython cimport bool
  * 
  * cdef class BaseInterval:             # <<<<<<<<<<<<<<
@@ -666,7 +668,7 @@ struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval {
 };
 
 
-/* "cyinterval/cyinterval.pyx":33
+/* "cyinterval/cyinterval.pxd":12
  * 
  * 
  * cdef class ObjectInterval(BaseInterval):             # <<<<<<<<<<<<<<
@@ -681,8 +683,8 @@ struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval {
 };
 
 
-/* "cyinterval/cyinterval.pyx":158
- *             return 1
+/* "cyinterval/cyinterval.pxd":22
+ *     cpdef int upper_cmp(ObjectInterval self, ObjectInterval other)
  * 
  * cdef class DateInterval(BaseInterval):             # <<<<<<<<<<<<<<
  *     cdef readonly date lower_bound
@@ -696,8 +698,8 @@ struct __pyx_obj_10cyinterval_10cyinterval_DateInterval {
 };
 
 
-/* "cyinterval/cyinterval.pyx":283
- *             return 1
+/* "cyinterval/cyinterval.pxd":32
+ *     cpdef int upper_cmp(DateInterval self, DateInterval other)
  * 
  * cdef class IntInterval(BaseInterval):             # <<<<<<<<<<<<<<
  *     cdef readonly int lower_bound
@@ -711,62 +713,96 @@ struct __pyx_obj_10cyinterval_10cyinterval_IntInterval {
 };
 
 
+/* "cyinterval/cyinterval.pxd":42
+ *     cpdef int upper_cmp(IntInterval self, IntInterval other)
+ * 
+ * cdef class FloatInterval(BaseInterval):             # <<<<<<<<<<<<<<
+ *     cdef readonly double lower_bound
+ *     cdef readonly double upper_bound
+ */
+struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval {
+  struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval __pyx_base;
+  struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *__pyx_vtab;
+  double lower_bound;
+  double upper_bound;
+};
 
-/* "cyinterval/cyinterval.pyx":33
+
+
+/* "cyinterval/cyinterval.pyx":26
  * 
  * 
  * cdef class ObjectInterval(BaseInterval):             # <<<<<<<<<<<<<<
- *     cdef readonly object lower_bound
- *     cdef readonly object upper_bound
+ *     def __init__(BaseInterval self, object lower_bound, object upper_bound, bool lower_closed,
+ *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  */
 
 struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval {
   PyObject *(*init_args)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch);
   struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *(*intersection)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch);
-  PyObject *(*empty)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch);
-  PyObject *(*richcmp)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int, int __pyx_skip_dispatch);
+  PyBoolObject *(*empty)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch);
+  int (*richcmp)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int, int __pyx_skip_dispatch);
   int (*lower_cmp)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch);
   int (*upper_cmp)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *__pyx_vtabptr_10cyinterval_10cyinterval_ObjectInterval;
 
 
-/* "cyinterval/cyinterval.pyx":158
+/* "cyinterval/cyinterval.pyx":149
  *             return 1
  * 
  * cdef class DateInterval(BaseInterval):             # <<<<<<<<<<<<<<
- *     cdef readonly date lower_bound
- *     cdef readonly date upper_bound
+ *     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed,
+ *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  */
 
 struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval {
   PyObject *(*init_args)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch);
   struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *(*intersection)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch);
-  PyObject *(*empty)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch);
-  PyObject *(*richcmp)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int, int __pyx_skip_dispatch);
+  PyBoolObject *(*empty)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch);
+  int (*richcmp)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int, int __pyx_skip_dispatch);
   int (*lower_cmp)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch);
   int (*upper_cmp)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *__pyx_vtabptr_10cyinterval_10cyinterval_DateInterval;
 
 
-/* "cyinterval/cyinterval.pyx":283
+/* "cyinterval/cyinterval.pyx":272
  *             return 1
  * 
  * cdef class IntInterval(BaseInterval):             # <<<<<<<<<<<<<<
- *     cdef readonly int lower_bound
- *     cdef readonly int upper_bound
+ *     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed,
+ *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  */
 
 struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval {
   PyObject *(*init_args)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch);
   struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *(*intersection)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch);
-  PyObject *(*empty)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch);
-  PyObject *(*richcmp)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int, int __pyx_skip_dispatch);
+  PyBoolObject *(*empty)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch);
+  int (*richcmp)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int, int __pyx_skip_dispatch);
   int (*lower_cmp)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch);
   int (*upper_cmp)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *__pyx_vtabptr_10cyinterval_10cyinterval_IntInterval;
+
+
+/* "cyinterval/cyinterval.pyx":395
+ *             return 1
+ * 
+ * cdef class FloatInterval(BaseInterval):             # <<<<<<<<<<<<<<
+ *     def __init__(BaseInterval self, double lower_bound, double upper_bound, bool lower_closed,
+ *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
+ */
+
+struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval {
+  PyObject *(*init_args)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch);
+  struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *(*intersection)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch);
+  PyBoolObject *(*empty)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch);
+  int (*richcmp)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int, int __pyx_skip_dispatch);
+  int (*lower_cmp)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch);
+  int (*upper_cmp)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch);
+};
+static struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *__pyx_vtabptr_10cyinterval_10cyinterval_FloatInterval;
 
 /* --- Runtime support code (head) --- */
 /* Refnanny.proto */
@@ -934,24 +970,6 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
     PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
     const char* function_name);
 
-/* PyObjectSetAttrStr.proto */
-#if CYTHON_USE_TYPE_SLOTS
-#define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o,n,NULL)
-static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
-    PyTypeObject* tp = Py_TYPE(obj);
-    if (likely(tp->tp_setattro))
-        return tp->tp_setattro(obj, attr_name, value);
-#if PY_MAJOR_VERSION < 3
-    if (likely(tp->tp_setattr))
-        return tp->tp_setattr(obj, PyString_AS_STRING(attr_name), value);
-#endif
-    return PyObject_SetAttr(obj, attr_name, value);
-}
-#else
-#define __Pyx_PyObject_DelAttrStr(o,n)   PyObject_DelAttr(o,n)
-#define __Pyx_PyObject_SetAttrStr(o,n,v) PyObject_SetAttr(o,n,v)
-#endif
-
 /* ExtTypeTest.proto */
 static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
 
@@ -1095,22 +1113,28 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_init_args(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_intersection(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch); /* proto*/
+static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch); /* proto*/
 static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_init_args(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinterval_10cyinterval_12DateInterval_intersection(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch); /* proto*/
+static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch); /* proto*/
 static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_init_args(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinterval_10cyinterval_11IntInterval_intersection(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch); /* proto*/
+static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch); /* proto*/
 static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
+static PyObject *__pyx_f_10cyinterval_10cyinterval_13FloatInterval_init_args(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_f_10cyinterval_10cyinterval_13FloatInterval_intersection(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
+static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_13FloatInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_10cyinterval_10cyinterval_13FloatInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_10cyinterval_10cyinterval_13FloatInterval_lower_cmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_10cyinterval_10cyinterval_13FloatInterval_upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 
 /* Module declarations from 'libc.string' */
 
@@ -1209,11 +1233,11 @@ static PyTypeObject *__pyx_ptype_10cyinterval_10cyinterval_BaseInterval = 0;
 static PyTypeObject *__pyx_ptype_10cyinterval_10cyinterval_ObjectInterval = 0;
 static PyTypeObject *__pyx_ptype_10cyinterval_10cyinterval_DateInterval = 0;
 static PyTypeObject *__pyx_ptype_10cyinterval_10cyinterval_IntInterval = 0;
+static PyTypeObject *__pyx_ptype_10cyinterval_10cyinterval_FloatInterval = 0;
 #define __Pyx_MODULE_NAME "cyinterval.cyinterval"
 int __pyx_module_is_main_cyinterval__cyinterval = 0;
 
 /* Implementation of 'cyinterval.cyinterval' */
-static PyObject *__pyx_builtin_zip;
 static PyObject *__pyx_builtin_map;
 static PyObject *__pyx_builtin_reversed;
 static PyObject *__pyx_builtin_NotImplemented;
@@ -1222,7 +1246,6 @@ static const char __pyx_k_op[] = "op";
 static const char __pyx_k_cls[] = "cls";
 static const char __pyx_k_doc[] = "__doc__";
 static const char __pyx_k_map[] = "map";
-static const char __pyx_k_zip[] = "zip";
 static const char __pyx_k_date[] = "date";
 static const char __pyx_k_init[] = "__init__";
 static const char __pyx_k_main[] = "__main__";
@@ -1251,7 +1274,6 @@ static const char __pyx_k_lower_bound[] = "lower_bound";
 static const char __pyx_k_upper_bound[] = "upper_bound";
 static const char __pyx_k_intersection[] = "intersection";
 static const char __pyx_k_lower_closed[] = "lower_closed";
-static const char __pyx_k_upper_bouned[] = "upper_bouned";
 static const char __pyx_k_upper_closed[] = "upper_closed";
 static const char __pyx_k_default_value[] = "default_value";
 static const char __pyx_k_interval_type[] = "interval_type";
@@ -1312,10 +1334,8 @@ static PyObject *__pyx_n_s_unbounded___init;
 static PyObject *__pyx_kp_s_unbounded_should_not_be_instanti;
 static PyObject *__pyx_n_s_upper_bound;
 static PyObject *__pyx_n_s_upper_bounded;
-static PyObject *__pyx_n_s_upper_bouned;
 static PyObject *__pyx_n_s_upper_closed;
 static PyObject *__pyx_n_s_upper_cmp;
-static PyObject *__pyx_n_s_zip;
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval___reduce__(struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval *__pyx_v_self); /* proto */
 static Py_hash_t __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_2__hash__(struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval *__pyx_v_self); /* proto */
 static int __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_4__nonzero__(struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval *__pyx_v_self); /* proto */
@@ -1325,7 +1345,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_12lower_close
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_12upper_closed___get__(struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_13lower_bounded___get__(struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_13upper_bounded___get__(struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval *__pyx_v_self); /* proto */
-static int __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, PyObject *__pyx_v_lower_bound, CYTHON_UNUSED PyObject *__pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded); /* proto */
+static int __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, PyObject *__pyx_v_lower_bound, PyObject *__pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_2init_args(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_4intersection(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_6empty(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self); /* proto */
@@ -1334,7 +1354,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_10lower_cmp
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_12upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_11lower_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_11upper_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self); /* proto */
-static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, PyDateTime_Date *__pyx_v_lower_bound, CYTHON_UNUSED PyDateTime_Date *__pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded); /* proto */
+static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, PyDateTime_Date *__pyx_v_lower_bound, PyDateTime_Date *__pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_2init_args(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_4intersection(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_6empty(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self); /* proto */
@@ -1343,7 +1363,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_10lower_cmp(s
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_12upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_11lower_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_11upper_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self); /* proto */
-static int __pyx_pf_10cyinterval_10cyinterval_11IntInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_v_lower_bound, CYTHON_UNUSED int __pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded); /* proto */
+static int __pyx_pf_10cyinterval_10cyinterval_11IntInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_v_lower_bound, int __pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_2init_args(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_4intersection(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_6empty(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self); /* proto */
@@ -1352,12 +1372,23 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_10lower_cmp(st
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_12upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_11lower_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_11upper_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self); /* proto */
+static int __pyx_pf_10cyinterval_10cyinterval_13FloatInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, double __pyx_v_lower_bound, double __pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_2init_args(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_4intersection(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_6empty(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_8richcmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_v_op); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_10lower_cmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_12upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_11lower_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_11upper_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_9unbounded___init__(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_lower_bound, PyObject *__pyx_v_upper_bound, PyObject *__pyx_v_lower_closed, PyObject *__pyx_v_upper_closed, PyObject *__pyx_v_interval_type); /* proto */
 static PyObject *__pyx_tp_new_10cyinterval_10cyinterval_BaseInterval(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_10cyinterval_10cyinterval_ObjectInterval(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_10cyinterval_10cyinterval_DateInterval(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_10cyinterval_10cyinterval_IntInterval(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_10cyinterval_10cyinterval_FloatInterval(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_float_0_;
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_k__3;
 static PyObject *__pyx_k__4;
@@ -1368,9 +1399,9 @@ static PyObject *__pyx_tuple__7;
 static PyObject *__pyx_codeobj__6;
 static PyObject *__pyx_codeobj__8;
 
-/* "cyinterval/cyinterval.pyx":11
- *     cdef readonly bool upper_bounded
+/* "cyinterval/cyinterval.pyx":4
  * 
+ * cdef class BaseInterval:
  *     def __reduce__(BaseInterval self):             # <<<<<<<<<<<<<<
  *         return (self.__class__, self.init_args())
  * 
@@ -1398,17 +1429,17 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval___reduce__(st
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "cyinterval/cyinterval.pyx":12
- * 
+  /* "cyinterval/cyinterval.pyx":5
+ * cdef class BaseInterval:
  *     def __reduce__(BaseInterval self):
  *         return (self.__class__, self.init_args())             # <<<<<<<<<<<<<<
  * 
  *     def __hash__(BaseInterval self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_init_args); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_init_args); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -1421,14 +1452,14 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval___reduce__(st
     }
   }
   if (__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -1440,9 +1471,9 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval___reduce__(st
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":11
- *     cdef readonly bool upper_bounded
+  /* "cyinterval/cyinterval.pyx":4
  * 
+ * cdef class BaseInterval:
  *     def __reduce__(BaseInterval self):             # <<<<<<<<<<<<<<
  *         return (self.__class__, self.init_args())
  * 
@@ -1462,7 +1493,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval___reduce__(st
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":14
+/* "cyinterval/cyinterval.pyx":7
  *         return (self.__class__, self.init_args())
  * 
  *     def __hash__(BaseInterval self):             # <<<<<<<<<<<<<<
@@ -1492,14 +1523,14 @@ static Py_hash_t __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_2__hash__(str
   Py_hash_t __pyx_t_4;
   __Pyx_RefNannySetupContext("__hash__", 0);
 
-  /* "cyinterval/cyinterval.pyx":15
+  /* "cyinterval/cyinterval.pyx":8
  * 
  *     def __hash__(BaseInterval self):
  *         return hash(self.__reduce__())             # <<<<<<<<<<<<<<
  * 
  *     def __nonzero__(BaseInterval self):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_reduce); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_reduce); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1512,19 +1543,19 @@ static Py_hash_t __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_2__hash__(str
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = PyObject_Hash(__pyx_t_1); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Hash(__pyx_t_1); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":14
+  /* "cyinterval/cyinterval.pyx":7
  *         return (self.__class__, self.init_args())
  * 
  *     def __hash__(BaseInterval self):             # <<<<<<<<<<<<<<
@@ -1545,7 +1576,7 @@ static Py_hash_t __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_2__hash__(str
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":17
+/* "cyinterval/cyinterval.pyx":10
  *         return hash(self.__reduce__())
  * 
  *     def __nonzero__(BaseInterval self):             # <<<<<<<<<<<<<<
@@ -1575,14 +1606,14 @@ static int __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_4__nonzero__(struct
   int __pyx_t_4;
   __Pyx_RefNannySetupContext("__nonzero__", 0);
 
-  /* "cyinterval/cyinterval.pyx":18
+  /* "cyinterval/cyinterval.pyx":11
  * 
  *     def __nonzero__(BaseInterval self):
  *         return not self.empty()             # <<<<<<<<<<<<<<
  * 
  *     def __richcmp__(BaseInterval self, other, int op):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1595,19 +1626,19 @@ static int __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_4__nonzero__(struct
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = (!__pyx_t_4);
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":17
+  /* "cyinterval/cyinterval.pyx":10
  *         return hash(self.__reduce__())
  * 
  *     def __nonzero__(BaseInterval self):             # <<<<<<<<<<<<<<
@@ -1627,7 +1658,7 @@ static int __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_4__nonzero__(struct
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":20
+/* "cyinterval/cyinterval.pyx":13
  *         return not self.empty()
  * 
  *     def __richcmp__(BaseInterval self, other, int op):             # <<<<<<<<<<<<<<
@@ -1641,7 +1672,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_12BaseInterval_7__richcmp__(
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__richcmp__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_self), __pyx_ptype_10cyinterval_10cyinterval_BaseInterval, 1, "self", 0))) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_self), __pyx_ptype_10cyinterval_10cyinterval_BaseInterval, 1, "self", 0))) __PYX_ERR(0, 13, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(((struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval *)__pyx_v_self), ((PyObject *)__pyx_v_other), ((int)__pyx_v_op));
 
   /* function exit code */
@@ -1666,16 +1697,16 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
   PyObject *__pyx_t_8 = NULL;
   __Pyx_RefNannySetupContext("__richcmp__", 0);
 
-  /* "cyinterval/cyinterval.pyx":21
+  /* "cyinterval/cyinterval.pyx":14
  * 
  *     def __richcmp__(BaseInterval self, other, int op):
  *         if other.__class__ is self.__class__:             # <<<<<<<<<<<<<<
  *             return NotImplemented
  *         return self.richcmp(other, op)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 14, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = (__pyx_t_1 == __pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1683,7 +1714,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
   __pyx_t_4 = (__pyx_t_3 != 0);
   if (__pyx_t_4) {
 
-    /* "cyinterval/cyinterval.pyx":22
+    /* "cyinterval/cyinterval.pyx":15
  *     def __richcmp__(BaseInterval self, other, int op):
  *         if other.__class__ is self.__class__:
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -1695,7 +1726,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":21
+    /* "cyinterval/cyinterval.pyx":14
  * 
  *     def __richcmp__(BaseInterval self, other, int op):
  *         if other.__class__ is self.__class__:             # <<<<<<<<<<<<<<
@@ -1704,7 +1735,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":23
+  /* "cyinterval/cyinterval.pyx":16
  *         if other.__class__ is self.__class__:
  *             return NotImplemented
  *         return self.richcmp(other, op)             # <<<<<<<<<<<<<<
@@ -1712,9 +1743,9 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
  *     def __and__(BaseInterval self, other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_richcmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_richcmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_op); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_op); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = NULL;
   __pyx_t_7 = 0;
@@ -1731,7 +1762,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_1)) {
     PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_other, __pyx_t_5};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -1740,14 +1771,14 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
     PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_other, __pyx_t_5};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 23, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 16, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -1758,7 +1789,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
@@ -1767,7 +1798,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":20
+  /* "cyinterval/cyinterval.pyx":13
  *         return not self.empty()
  * 
  *     def __richcmp__(BaseInterval self, other, int op):             # <<<<<<<<<<<<<<
@@ -1790,7 +1821,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_6__richcmp__(
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":25
+/* "cyinterval/cyinterval.pyx":18
  *         return self.richcmp(other, op)
  * 
  *     def __and__(BaseInterval self, other):             # <<<<<<<<<<<<<<
@@ -1804,7 +1835,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_12BaseInterval_9__and__(PyOb
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__and__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_self), __pyx_ptype_10cyinterval_10cyinterval_BaseInterval, 1, "self", 0))) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_self), __pyx_ptype_10cyinterval_10cyinterval_BaseInterval, 1, "self", 0))) __PYX_ERR(0, 18, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_12BaseInterval_8__and__(((struct __pyx_obj_10cyinterval_10cyinterval_BaseInterval *)__pyx_v_self), ((PyObject *)__pyx_v_other));
 
   /* function exit code */
@@ -1827,16 +1858,16 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_8__and__(stru
   PyObject *__pyx_t_6 = NULL;
   __Pyx_RefNannySetupContext("__and__", 0);
 
-  /* "cyinterval/cyinterval.pyx":26
+  /* "cyinterval/cyinterval.pyx":19
  * 
  *     def __and__(BaseInterval self, other):
  *         if other.__class__ is self.__class__:             # <<<<<<<<<<<<<<
  *             raise NotImplementedError('Only intervals of the same type can be intersected')
  *         return self.intersection(other)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = (__pyx_t_1 == __pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1844,20 +1875,20 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_8__and__(stru
   __pyx_t_4 = (__pyx_t_3 != 0);
   if (__pyx_t_4) {
 
-    /* "cyinterval/cyinterval.pyx":27
+    /* "cyinterval/cyinterval.pyx":20
  *     def __and__(BaseInterval self, other):
  *         if other.__class__ is self.__class__:
  *             raise NotImplementedError('Only intervals of the same type can be intersected')             # <<<<<<<<<<<<<<
  *         return self.intersection(other)
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 27, __pyx_L1_error)
+    __PYX_ERR(0, 20, __pyx_L1_error)
 
-    /* "cyinterval/cyinterval.pyx":26
+    /* "cyinterval/cyinterval.pyx":19
  * 
  *     def __and__(BaseInterval self, other):
  *         if other.__class__ is self.__class__:             # <<<<<<<<<<<<<<
@@ -1866,7 +1897,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_8__and__(stru
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":28
+  /* "cyinterval/cyinterval.pyx":21
  *         if other.__class__ is self.__class__:
  *             raise NotImplementedError('Only intervals of the same type can be intersected')
  *         return self.intersection(other)             # <<<<<<<<<<<<<<
@@ -1874,7 +1905,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_8__and__(stru
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersection); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersection); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -1887,13 +1918,13 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_8__and__(stru
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_other); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_other); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v_other};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
@@ -1901,19 +1932,19 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_8__and__(stru
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v_other};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     {
-      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 28, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 21, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5); __pyx_t_5 = NULL;
       __Pyx_INCREF(__pyx_v_other);
       __Pyx_GIVEREF(__pyx_v_other);
       PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_v_other);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
@@ -1923,7 +1954,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_8__and__(stru
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":25
+  /* "cyinterval/cyinterval.pyx":18
  *         return self.richcmp(other, op)
  * 
  *     def __and__(BaseInterval self, other):             # <<<<<<<<<<<<<<
@@ -1945,7 +1976,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_8__and__(stru
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":6
+/* "cyinterval/cyinterval.pxd":5
  * 
  * cdef class BaseInterval:
  *     cdef readonly bool lower_closed             # <<<<<<<<<<<<<<
@@ -1982,7 +2013,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_12lower_close
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":7
+/* "cyinterval/cyinterval.pxd":6
  * cdef class BaseInterval:
  *     cdef readonly bool lower_closed
  *     cdef readonly bool upper_closed             # <<<<<<<<<<<<<<
@@ -2019,7 +2050,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_12upper_close
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":8
+/* "cyinterval/cyinterval.pxd":7
  *     cdef readonly bool lower_closed
  *     cdef readonly bool upper_closed
  *     cdef readonly bool lower_bounded             # <<<<<<<<<<<<<<
@@ -2056,12 +2087,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_13lower_bound
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":9
+/* "cyinterval/cyinterval.pxd":8
  *     cdef readonly bool upper_closed
  *     cdef readonly bool lower_bounded
  *     cdef readonly bool upper_bounded             # <<<<<<<<<<<<<<
  * 
- *     def __reduce__(BaseInterval self):
+ * 
  */
 
 /* Python wrapper */
@@ -2093,9 +2124,9 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_13upper_bound
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":36
- *     cdef readonly object lower_bound
- *     cdef readonly object upper_bound
+/* "cyinterval/cyinterval.pyx":27
+ * 
+ * cdef class ObjectInterval(BaseInterval):
  *     def __init__(BaseInterval self, object lower_bound, object upper_bound, bool lower_closed,             # <<<<<<<<<<<<<<
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed
@@ -2105,7 +2136,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12BaseInterval_13upper_bound
 static int __pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static int __pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_lower_bound = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_upper_bound = 0;
+  PyObject *__pyx_v_upper_bound = 0;
   PyBoolObject *__pyx_v_lower_closed = 0;
   PyBoolObject *__pyx_v_upper_closed = 0;
   PyBoolObject *__pyx_v_lower_bounded = 0;
@@ -2137,31 +2168,31 @@ static int __pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_1__init__(PyObjec
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_bound)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 1); __PYX_ERR(0, 36, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 1); __PYX_ERR(0, 27, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lower_closed)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 2); __PYX_ERR(0, 36, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 2); __PYX_ERR(0, 27, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_closed)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 3); __PYX_ERR(0, 36, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 3); __PYX_ERR(0, 27, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lower_bounded)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 4); __PYX_ERR(0, 36, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 4); __PYX_ERR(0, 27, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_bounded)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 5); __PYX_ERR(0, 36, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 5); __PYX_ERR(0, 27, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 36, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 27, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -2182,16 +2213,16 @@ static int __pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_1__init__(PyObjec
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 36, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 27, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cyinterval.cyinterval.ObjectInterval.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_closed), __pyx_ptype_7cpython_4bool_bool, 1, "lower_closed", 0))) __PYX_ERR(0, 36, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_closed), __pyx_ptype_7cpython_4bool_bool, 1, "upper_closed", 0))) __PYX_ERR(0, 37, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "lower_bounded", 0))) __PYX_ERR(0, 37, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "upper_bounded", 0))) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_closed), __pyx_ptype_7cpython_4bool_bool, 1, "lower_closed", 0))) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_closed), __pyx_ptype_7cpython_4bool_bool, 1, "upper_closed", 0))) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "lower_bounded", 0))) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "upper_bounded", 0))) __PYX_ERR(0, 28, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self), __pyx_v_lower_bound, __pyx_v_upper_bound, __pyx_v_lower_closed, __pyx_v_upper_closed, __pyx_v_lower_bounded, __pyx_v_upper_bounded);
 
   /* function exit code */
@@ -2203,13 +2234,13 @@ static int __pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_1__init__(PyObjec
   return __pyx_r;
 }
 
-static int __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, PyObject *__pyx_v_lower_bound, CYTHON_UNUSED PyObject *__pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded) {
+static int __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, PyObject *__pyx_v_lower_bound, PyObject *__pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cyinterval/cyinterval.pyx":38
+  /* "cyinterval/cyinterval.pyx":29
  *     def __init__(BaseInterval self, object lower_bound, object upper_bound, bool lower_closed,
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed             # <<<<<<<<<<<<<<
@@ -2222,12 +2253,12 @@ static int __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(struct _
   __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.lower_closed));
   __pyx_v_self->__pyx_base.lower_closed = __pyx_v_lower_closed;
 
-  /* "cyinterval/cyinterval.pyx":39
+  /* "cyinterval/cyinterval.pyx":30
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed
  *         self.upper_closed = upper_closed             # <<<<<<<<<<<<<<
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_upper_closed));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_closed));
@@ -2235,11 +2266,11 @@ static int __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(struct _
   __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.upper_closed));
   __pyx_v_self->__pyx_base.upper_closed = __pyx_v_upper_closed;
 
-  /* "cyinterval/cyinterval.pyx":40
+  /* "cyinterval/cyinterval.pyx":31
  *         self.lower_closed = lower_closed
  *         self.upper_closed = upper_closed
  *         self.lower_bounded = lower_bounded             # <<<<<<<<<<<<<<
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_lower_bounded));
@@ -2248,31 +2279,35 @@ static int __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(struct _
   __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
   __pyx_v_self->__pyx_base.lower_bounded = __pyx_v_lower_bounded;
 
-  /* "cyinterval/cyinterval.pyx":41
+  /* "cyinterval/cyinterval.pyx":32
  *         self.upper_closed = upper_closed
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded             # <<<<<<<<<<<<<<
+ *         self.upper_bounded = upper_bounded             # <<<<<<<<<<<<<<
  *         if lower_bounded:
  *             self.lower_bound = lower_bound
  */
-  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_bouned, ((PyObject *)__pyx_v_upper_bounded)) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_INCREF(((PyObject *)__pyx_v_upper_bounded));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_bounded));
+  __Pyx_GOTREF(__pyx_v_self->__pyx_base.upper_bounded);
+  __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
+  __pyx_v_self->__pyx_base.upper_bounded = __pyx_v_upper_bounded;
 
-  /* "cyinterval/cyinterval.pyx":42
+  /* "cyinterval/cyinterval.pyx":33
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:             # <<<<<<<<<<<<<<
  *             self.lower_bound = lower_bound
  *         if upper_bounded:
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_lower_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_lower_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 33, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "cyinterval/cyinterval.pyx":43
- *         self.upper_bouned = upper_bounded
+    /* "cyinterval/cyinterval.pyx":34
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:
  *             self.lower_bound = lower_bound             # <<<<<<<<<<<<<<
  *         if upper_bounded:
- *             self.upper_bound = upper_bounded
+ *             self.upper_bound = upper_bound
  */
     __Pyx_INCREF(__pyx_v_lower_bound);
     __Pyx_GIVEREF(__pyx_v_lower_bound);
@@ -2280,50 +2315,50 @@ static int __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(struct _
     __Pyx_DECREF(__pyx_v_self->lower_bound);
     __pyx_v_self->lower_bound = __pyx_v_lower_bound;
 
-    /* "cyinterval/cyinterval.pyx":42
+    /* "cyinterval/cyinterval.pyx":33
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:             # <<<<<<<<<<<<<<
  *             self.lower_bound = lower_bound
  *         if upper_bounded:
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":44
+  /* "cyinterval/cyinterval.pyx":35
  *         if lower_bounded:
  *             self.lower_bound = lower_bound
  *         if upper_bounded:             # <<<<<<<<<<<<<<
- *             self.upper_bound = upper_bounded
+ *             self.upper_bound = upper_bound
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_upper_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_upper_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 35, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "cyinterval/cyinterval.pyx":45
+    /* "cyinterval/cyinterval.pyx":36
  *             self.lower_bound = lower_bound
  *         if upper_bounded:
- *             self.upper_bound = upper_bounded             # <<<<<<<<<<<<<<
+ *             self.upper_bound = upper_bound             # <<<<<<<<<<<<<<
  * 
  *     cpdef tuple init_args(ObjectInterval self):
  */
-    __Pyx_INCREF(((PyObject *)__pyx_v_upper_bounded));
-    __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_bounded));
+    __Pyx_INCREF(__pyx_v_upper_bound);
+    __Pyx_GIVEREF(__pyx_v_upper_bound);
     __Pyx_GOTREF(__pyx_v_self->upper_bound);
     __Pyx_DECREF(__pyx_v_self->upper_bound);
-    __pyx_v_self->upper_bound = ((PyObject *)__pyx_v_upper_bounded);
+    __pyx_v_self->upper_bound = __pyx_v_upper_bound;
 
-    /* "cyinterval/cyinterval.pyx":44
+    /* "cyinterval/cyinterval.pyx":35
  *         if lower_bounded:
  *             self.lower_bound = lower_bound
  *         if upper_bounded:             # <<<<<<<<<<<<<<
- *             self.upper_bound = upper_bounded
+ *             self.upper_bound = upper_bound
  * 
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":36
- *     cdef readonly object lower_bound
- *     cdef readonly object upper_bound
+  /* "cyinterval/cyinterval.pyx":27
+ * 
+ * cdef class ObjectInterval(BaseInterval):
  *     def __init__(BaseInterval self, object lower_bound, object upper_bound, bool lower_closed,             # <<<<<<<<<<<<<<
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed
@@ -2340,8 +2375,8 @@ static int __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval___init__(struct _
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":47
- *             self.upper_bound = upper_bounded
+/* "cyinterval/cyinterval.pyx":38
+ *             self.upper_bound = upper_bound
  * 
  *     cpdef tuple init_args(ObjectInterval self):             # <<<<<<<<<<<<<<
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
@@ -2361,7 +2396,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_init_args(st
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_init_args); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_init_args); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_3init_args)) {
       __Pyx_XDECREF(__pyx_r);
@@ -2377,14 +2412,14 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_init_args(st
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 47, __pyx_L1_error)
+      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 38, __pyx_L1_error)
       __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -2393,7 +2428,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_init_args(st
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":48
+  /* "cyinterval/cyinterval.pyx":39
  * 
  *     cpdef tuple init_args(ObjectInterval self):
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,             # <<<<<<<<<<<<<<
@@ -2402,14 +2437,14 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_init_args(st
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "cyinterval/cyinterval.pyx":49
+  /* "cyinterval/cyinterval.pyx":40
  *     cpdef tuple init_args(ObjectInterval self):
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
  *                 self.lower_bounded, self.upper_bounded)             # <<<<<<<<<<<<<<
  * 
  *     cpdef ObjectInterval intersection(ObjectInterval self, ObjectInterval other):
  */
-  __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_self->lower_bound);
   __Pyx_GIVEREF(__pyx_v_self->lower_bound);
@@ -2433,8 +2468,8 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_init_args(st
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":47
- *             self.upper_bound = upper_bounded
+  /* "cyinterval/cyinterval.pyx":38
+ *             self.upper_bound = upper_bound
  * 
  *     cpdef tuple init_args(ObjectInterval self):             # <<<<<<<<<<<<<<
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
@@ -2474,7 +2509,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_2init_args(
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("init_args", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_init_args(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_init_args(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2491,7 +2526,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_2init_args(
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":51
+/* "cyinterval/cyinterval.pyx":42
  *                 self.lower_bounded, self.upper_bounded)
  * 
  *     cpdef ObjectInterval intersection(ObjectInterval self, ObjectInterval other):             # <<<<<<<<<<<<<<
@@ -2522,7 +2557,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersection); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersection); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_5intersection)) {
       __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -2538,13 +2573,13 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -2552,25 +2587,25 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 51, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 42, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_other));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval))))) __PYX_ERR(0, 51, __pyx_L1_error)
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval))))) __PYX_ERR(0, 42, __pyx_L1_error)
       __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -2579,7 +2614,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":52
+  /* "cyinterval/cyinterval.pyx":43
  * 
  *     cpdef ObjectInterval intersection(ObjectInterval self, ObjectInterval other):
  *         cdef int lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
@@ -2588,7 +2623,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
  */
   __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-  /* "cyinterval/cyinterval.pyx":53
+  /* "cyinterval/cyinterval.pyx":44
  *     cpdef ObjectInterval intersection(ObjectInterval self, ObjectInterval other):
  *         cdef int lower_cmp = self.lower_cmp(other)
  *         cdef int upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
@@ -2597,7 +2632,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
  */
   __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-  /* "cyinterval/cyinterval.pyx":56
+  /* "cyinterval/cyinterval.pyx":47
  *         cdef object new_lower_bound, new_upper_bound
  *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
  *         if lower_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -2607,7 +2642,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
   __pyx_t_6 = ((__pyx_v_lower_cmp <= 0) != 0);
   if (__pyx_t_6) {
 
-    /* "cyinterval/cyinterval.pyx":57
+    /* "cyinterval/cyinterval.pyx":48
  *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
  *         if lower_cmp <= 0:
  *             new_lower_bound = other.lower_bound             # <<<<<<<<<<<<<<
@@ -2619,7 +2654,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_lower_bound = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":58
+    /* "cyinterval/cyinterval.pyx":49
  *         if lower_cmp <= 0:
  *             new_lower_bound = other.lower_bound
  *             new_lower_bounded = other.lower_bounded             # <<<<<<<<<<<<<<
@@ -2631,7 +2666,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_lower_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":59
+    /* "cyinterval/cyinterval.pyx":50
  *             new_lower_bound = other.lower_bound
  *             new_lower_bounded = other.lower_bounded
  *             new_lower_closed = other.lower_closed             # <<<<<<<<<<<<<<
@@ -2643,7 +2678,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_lower_closed = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":56
+    /* "cyinterval/cyinterval.pyx":47
  *         cdef object new_lower_bound, new_upper_bound
  *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
  *         if lower_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -2653,7 +2688,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     goto __pyx_L3;
   }
 
-  /* "cyinterval/cyinterval.pyx":61
+  /* "cyinterval/cyinterval.pyx":52
  *             new_lower_closed = other.lower_closed
  *         else:
  *             new_lower_bound = self.lower_bound             # <<<<<<<<<<<<<<
@@ -2666,7 +2701,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_lower_bound = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":62
+    /* "cyinterval/cyinterval.pyx":53
  *         else:
  *             new_lower_bound = self.lower_bound
  *             new_lower_bounded = self.lower_bounded             # <<<<<<<<<<<<<<
@@ -2678,7 +2713,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_lower_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":63
+    /* "cyinterval/cyinterval.pyx":54
  *             new_lower_bound = self.lower_bound
  *             new_lower_bounded = self.lower_bounded
  *             new_lower_closed = self.lower_closed             # <<<<<<<<<<<<<<
@@ -2692,7 +2727,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
   }
   __pyx_L3:;
 
-  /* "cyinterval/cyinterval.pyx":65
+  /* "cyinterval/cyinterval.pyx":56
  *             new_lower_closed = self.lower_closed
  * 
  *         if upper_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -2702,7 +2737,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
   __pyx_t_6 = ((__pyx_v_upper_cmp <= 0) != 0);
   if (__pyx_t_6) {
 
-    /* "cyinterval/cyinterval.pyx":66
+    /* "cyinterval/cyinterval.pyx":57
  * 
  *         if upper_cmp <= 0:
  *             new_upper_bound = self.upper_bound             # <<<<<<<<<<<<<<
@@ -2714,7 +2749,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_upper_bound = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":67
+    /* "cyinterval/cyinterval.pyx":58
  *         if upper_cmp <= 0:
  *             new_upper_bound = self.upper_bound
  *             new_upper_bounded = self.upper_bounded             # <<<<<<<<<<<<<<
@@ -2726,7 +2761,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_upper_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":68
+    /* "cyinterval/cyinterval.pyx":59
  *             new_upper_bound = self.upper_bound
  *             new_upper_bounded = self.upper_bounded
  *             new_upper_closed = self.upper_closed             # <<<<<<<<<<<<<<
@@ -2738,7 +2773,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_upper_closed = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":65
+    /* "cyinterval/cyinterval.pyx":56
  *             new_lower_closed = self.lower_closed
  * 
  *         if upper_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -2748,7 +2783,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     goto __pyx_L4;
   }
 
-  /* "cyinterval/cyinterval.pyx":70
+  /* "cyinterval/cyinterval.pyx":61
  *             new_upper_closed = self.upper_closed
  *         else:
  *             new_upper_bound = other.upper_bound             # <<<<<<<<<<<<<<
@@ -2761,7 +2796,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_upper_bound = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":71
+    /* "cyinterval/cyinterval.pyx":62
  *         else:
  *             new_upper_bound = other.upper_bound
  *             new_upper_bounded = other.upper_bounded             # <<<<<<<<<<<<<<
@@ -2773,7 +2808,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
     __pyx_v_new_upper_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":72
+    /* "cyinterval/cyinterval.pyx":63
  *             new_upper_bound = other.upper_bound
  *             new_upper_bounded = other.upper_bounded
  *             new_upper_closed = other.upper_closed             # <<<<<<<<<<<<<<
@@ -2787,7 +2822,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
   }
   __pyx_L4:;
 
-  /* "cyinterval/cyinterval.pyx":73
+  /* "cyinterval/cyinterval.pyx":64
  *             new_upper_bounded = other.upper_bounded
  *             new_upper_closed = other.upper_closed
  *         return ObjectInterval(new_lower_bound, new_upper_bound, new_lower_closed,             # <<<<<<<<<<<<<<
@@ -2796,14 +2831,14 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
 
-  /* "cyinterval/cyinterval.pyx":74
+  /* "cyinterval/cyinterval.pyx":65
  *             new_upper_closed = other.upper_closed
  *         return ObjectInterval(new_lower_bound, new_upper_bound, new_lower_closed,
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)             # <<<<<<<<<<<<<<
  * 
- *     cpdef empty(ObjectInterval self):
+ *     cpdef bool empty(ObjectInterval self):
  */
-  __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_new_lower_bound);
   __Pyx_GIVEREF(__pyx_v_new_lower_bound);
@@ -2824,21 +2859,21 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_f_10cyin
   __Pyx_GIVEREF(((PyObject *)__pyx_v_new_upper_bounded));
   PyTuple_SET_ITEM(__pyx_t_1, 5, ((PyObject *)__pyx_v_new_upper_bounded));
 
-  /* "cyinterval/cyinterval.pyx":73
+  /* "cyinterval/cyinterval.pyx":64
  *             new_upper_bounded = other.upper_bounded
  *             new_upper_closed = other.upper_closed
  *         return ObjectInterval(new_lower_bound, new_upper_bound, new_lower_closed,             # <<<<<<<<<<<<<<
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_ObjectInterval), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_ObjectInterval), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":51
+  /* "cyinterval/cyinterval.pyx":42
  *                 self.lower_bounded, self.upper_bounded)
  * 
  *     cpdef ObjectInterval intersection(ObjectInterval self, ObjectInterval other):             # <<<<<<<<<<<<<<
@@ -2873,7 +2908,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_5intersecti
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("intersection (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval, 1, "other", 0))) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval, 1, "other", 0))) __PYX_ERR(0, 42, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_4intersection(((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_other));
 
   /* function exit code */
@@ -2891,7 +2926,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_4intersecti
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("intersection", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_intersection(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_intersection(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2908,17 +2943,17 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_4intersecti
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":76
+/* "cyinterval/cyinterval.pyx":67
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
  * 
- *     cpdef empty(ObjectInterval self):             # <<<<<<<<<<<<<<
+ *     cpdef bool empty(ObjectInterval self):             # <<<<<<<<<<<<<<
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_7empty(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, int __pyx_skip_dispatch) {
-  PyObject *__pyx_r = NULL;
+static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, int __pyx_skip_dispatch) {
+  PyBoolObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -2931,10 +2966,10 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(struct
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_7empty)) {
-      __Pyx_XDECREF(__pyx_r);
+      __Pyx_XDECREF(((PyObject *)__pyx_r));
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
       if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -2947,14 +2982,15 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(struct
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool))))) __PYX_ERR(0, 67, __pyx_L1_error)
+      __pyx_r = ((PyBoolObject *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -2962,22 +2998,22 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(struct
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":77
+  /* "cyinterval/cyinterval.pyx":68
  * 
- *     cpdef empty(ObjectInterval self):
+ *     cpdef bool empty(ObjectInterval self):
  *         return ((self.lower_bounded and self.upper_bounded) and             # <<<<<<<<<<<<<<
  *                 (((self.lower_bound == self.upper_bound) and
  *                 (not (self.lower_closed or self.upper_closed))) or
  */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 68, __pyx_L1_error)
   if (__pyx_t_5) {
   } else {
     __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
     __pyx_t_1 = __pyx_v_self->__pyx_base.lower_bounded;
     goto __pyx_L3_bool_binop_done;
   }
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 68, __pyx_L1_error)
   if (__pyx_t_5) {
   } else {
     __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
@@ -2985,68 +3021,70 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(struct
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "cyinterval/cyinterval.pyx":78
- *     cpdef empty(ObjectInterval self):
+  /* "cyinterval/cyinterval.pyx":69
+ *     cpdef bool empty(ObjectInterval self):
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and             # <<<<<<<<<<<<<<
  *                 (not (self.lower_closed or self.upper_closed))) or
  *                 self.lower_bound > self.upper_bound))
  */
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_self->lower_bound, __pyx_v_self->upper_bound, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_self->lower_bound, __pyx_v_self->upper_bound, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (!__pyx_t_5) {
     goto __pyx_L6_next_or;
   } else {
   }
 
-  /* "cyinterval/cyinterval.pyx":79
+  /* "cyinterval/cyinterval.pyx":70
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and
  *                 (not (self.lower_closed or self.upper_closed))) or             # <<<<<<<<<<<<<<
  *                 self.lower_bound > self.upper_bound))
  * 
  */
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 70, __pyx_L1_error)
   if (!__pyx_t_6) {
   } else {
     __pyx_t_5 = __pyx_t_6;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 70, __pyx_L1_error)
   __pyx_t_5 = __pyx_t_6;
   __pyx_L8_bool_binop_done:;
   __pyx_t_6 = (!__pyx_t_5);
   if (!__pyx_t_6) {
   } else {
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
+    if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool)))) __PYX_ERR(0, 70, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L3_bool_binop_done;
   }
   __pyx_L6_next_or:;
 
-  /* "cyinterval/cyinterval.pyx":80
+  /* "cyinterval/cyinterval.pyx":71
  *                 (((self.lower_bound == self.upper_bound) and
  *                 (not (self.lower_closed or self.upper_closed))) or
  *                 self.lower_bound > self.upper_bound))             # <<<<<<<<<<<<<<
  * 
- *     cpdef richcmp(ObjectInterval self, ObjectInterval other, int op):
+ *     cpdef int richcmp(ObjectInterval self, ObjectInterval other, int op):
  */
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_self->lower_bound, __pyx_v_self->upper_bound, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_self->lower_bound, __pyx_v_self->upper_bound, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool))))) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_INCREF(__pyx_t_2);
   __pyx_t_1 = __pyx_t_2;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_L3_bool_binop_done:;
-  __pyx_r = __pyx_t_1;
+  __pyx_r = ((PyBoolObject *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":76
+  /* "cyinterval/cyinterval.pyx":67
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
  * 
- *     cpdef empty(ObjectInterval self):             # <<<<<<<<<<<<<<
+ *     cpdef bool empty(ObjectInterval self):             # <<<<<<<<<<<<<<
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and
  */
@@ -3060,7 +3098,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(struct
   __Pyx_AddTraceback("cyinterval.cyinterval.ObjectInterval.empty", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_XGIVEREF((PyObject *)__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -3084,7 +3122,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_6empty(stru
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("empty", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3101,19 +3139,19 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_6empty(stru
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":82
+/* "cyinterval/cyinterval.pyx":73
  *                 self.lower_bound > self.upper_bound))
  * 
- *     cpdef richcmp(ObjectInterval self, ObjectInterval other, int op):             # <<<<<<<<<<<<<<
+ *     cpdef int richcmp(ObjectInterval self, ObjectInterval other, int op):             # <<<<<<<<<<<<<<
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_9richcmp(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch) {
+static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch) {
   int __pyx_v_lower_cmp;
   int __pyx_v_upper_cmp;
-  PyObject *__pyx_r = NULL;
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -3128,11 +3166,10 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_richcmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_richcmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_9richcmp)) {
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_op); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_op); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -3150,7 +3187,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, ((PyObject *)__pyx_v_other), __pyx_t_3};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3159,14 +3196,14 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, ((PyObject *)__pyx_v_other), __pyx_t_3};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else
       #endif
       {
-        __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 82, __pyx_L1_error)
+        __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 73, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         if (__pyx_t_5) {
           __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -3177,20 +3214,21 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
         __Pyx_GIVEREF(__pyx_t_3);
         PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_t_3);
         __pyx_t_3 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":85
+  /* "cyinterval/cyinterval.pyx":76
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  *         if op == 0 or op == 1:             # <<<<<<<<<<<<<<
@@ -3201,7 +3239,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
     case 0:
     case 1:
 
-    /* "cyinterval/cyinterval.pyx":86
+    /* "cyinterval/cyinterval.pyx":77
  *         cdef int upper_cmp
  *         if op == 0 or op == 1:
  *             lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
@@ -3210,7 +3248,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-    /* "cyinterval/cyinterval.pyx":87
+    /* "cyinterval/cyinterval.pyx":78
  *         if op == 0 or op == 1:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -3220,19 +3258,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
     __pyx_t_8 = ((__pyx_v_lower_cmp == -1L) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":88
+      /* "cyinterval/cyinterval.pyx":79
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:
  *                 return True             # <<<<<<<<<<<<<<
  *             elif lower_cmp == 1:
  *                 return False
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_True);
-      __pyx_r = Py_True;
+      __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":87
+      /* "cyinterval/cyinterval.pyx":78
  *         if op == 0 or op == 1:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -3241,7 +3277,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":89
+    /* "cyinterval/cyinterval.pyx":80
  *             if lower_cmp == -1:
  *                 return True
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -3251,19 +3287,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
     __pyx_t_8 = ((__pyx_v_lower_cmp == 1) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":90
+      /* "cyinterval/cyinterval.pyx":81
  *                 return True
  *             elif lower_cmp == 1:
  *                 return False             # <<<<<<<<<<<<<<
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_False);
-      __pyx_r = Py_False;
+      __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":89
+      /* "cyinterval/cyinterval.pyx":80
  *             if lower_cmp == -1:
  *                 return True
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -3272,7 +3306,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":92
+    /* "cyinterval/cyinterval.pyx":83
  *                 return False
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
@@ -3282,7 +3316,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
     /*else*/ {
       __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-      /* "cyinterval/cyinterval.pyx":93
+      /* "cyinterval/cyinterval.pyx":84
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -3292,19 +3326,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
       __pyx_t_8 = ((__pyx_v_upper_cmp == -1L) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":94
+        /* "cyinterval/cyinterval.pyx":85
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:
  *                     return True             # <<<<<<<<<<<<<<
  *                 elif upper_cmp == 1:
  *                     return False
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_True);
-        __pyx_r = Py_True;
+        __pyx_r = 1;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":93
+        /* "cyinterval/cyinterval.pyx":84
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -3313,7 +3345,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":95
+      /* "cyinterval/cyinterval.pyx":86
  *                 if upper_cmp == -1:
  *                     return True
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -3323,19 +3355,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
       __pyx_t_8 = ((__pyx_v_upper_cmp == 1) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":96
+        /* "cyinterval/cyinterval.pyx":87
  *                     return True
  *                 elif upper_cmp == 1:
  *                     return False             # <<<<<<<<<<<<<<
  *                 else: # upper_cmp == 0
  *                     return op == 1
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_False);
-        __pyx_r = Py_False;
+        __pyx_r = 0;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":95
+        /* "cyinterval/cyinterval.pyx":86
  *                 if upper_cmp == -1:
  *                     return True
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -3344,7 +3374,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":98
+      /* "cyinterval/cyinterval.pyx":89
  *                     return False
  *                 else: # upper_cmp == 0
  *                     return op == 1             # <<<<<<<<<<<<<<
@@ -3352,16 +3382,12 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  */
       /*else*/ {
-        __Pyx_XDECREF(__pyx_r);
-        __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_op == 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_r = __pyx_t_1;
-        __pyx_t_1 = 0;
+        __pyx_r = (__pyx_v_op == 1);
         goto __pyx_L0;
       }
     }
 
-    /* "cyinterval/cyinterval.pyx":85
+    /* "cyinterval/cyinterval.pyx":76
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  *         if op == 0 or op == 1:             # <<<<<<<<<<<<<<
@@ -3370,7 +3396,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     break;
 
-    /* "cyinterval/cyinterval.pyx":99
+    /* "cyinterval/cyinterval.pyx":90
  *                 else: # upper_cmp == 0
  *                     return op == 1
  *         elif op == 2:             # <<<<<<<<<<<<<<
@@ -3379,34 +3405,26 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     case 2:
 
-    /* "cyinterval/cyinterval.pyx":100
+    /* "cyinterval/cyinterval.pyx":91
  *                     return op == 1
  *         elif op == 2:
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)             # <<<<<<<<<<<<<<
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  */
-    __Pyx_XDECREF(__pyx_r);
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0) == 0);
     if (__pyx_t_8) {
     } else {
-      __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_6 = __pyx_t_8;
       goto __pyx_L5_bool_binop_done;
     }
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0) == 0);
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __pyx_t_2;
-    __pyx_t_2 = 0;
+    __pyx_t_6 = __pyx_t_8;
     __pyx_L5_bool_binop_done:;
-    __pyx_r = __pyx_t_1;
-    __pyx_t_1 = 0;
+    __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":99
+    /* "cyinterval/cyinterval.pyx":90
  *                 else: # upper_cmp == 0
  *                     return op == 1
  *         elif op == 2:             # <<<<<<<<<<<<<<
@@ -3415,7 +3433,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     break;
 
-    /* "cyinterval/cyinterval.pyx":101
+    /* "cyinterval/cyinterval.pyx":92
  *         elif op == 2:
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  *         elif op == 3:             # <<<<<<<<<<<<<<
@@ -3424,34 +3442,26 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     case 3:
 
-    /* "cyinterval/cyinterval.pyx":102
+    /* "cyinterval/cyinterval.pyx":93
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)             # <<<<<<<<<<<<<<
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)
  */
-    __Pyx_XDECREF(__pyx_r);
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0) != 0);
     if (!__pyx_t_8) {
     } else {
-      __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_6 = __pyx_t_8;
       goto __pyx_L7_bool_binop_done;
     }
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0) != 0);
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __pyx_t_2;
-    __pyx_t_2 = 0;
+    __pyx_t_6 = __pyx_t_8;
     __pyx_L7_bool_binop_done:;
-    __pyx_r = __pyx_t_1;
-    __pyx_t_1 = 0;
+    __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":101
+    /* "cyinterval/cyinterval.pyx":92
  *         elif op == 2:
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  *         elif op == 3:             # <<<<<<<<<<<<<<
@@ -3460,7 +3470,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     break;
 
-    /* "cyinterval/cyinterval.pyx":103
+    /* "cyinterval/cyinterval.pyx":94
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  *         elif op == 4 or op == 5:             # <<<<<<<<<<<<<<
@@ -3470,7 +3480,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
     case 4:
     case 5:
 
-    /* "cyinterval/cyinterval.pyx":104
+    /* "cyinterval/cyinterval.pyx":95
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
@@ -3479,7 +3489,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-    /* "cyinterval/cyinterval.pyx":105
+    /* "cyinterval/cyinterval.pyx":96
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -3489,19 +3499,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
     __pyx_t_8 = ((__pyx_v_lower_cmp == -1L) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":106
+      /* "cyinterval/cyinterval.pyx":97
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:
  *                 return False             # <<<<<<<<<<<<<<
  *             elif lower_cmp == 1:
  *                 return True
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_False);
-      __pyx_r = Py_False;
+      __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":105
+      /* "cyinterval/cyinterval.pyx":96
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -3510,7 +3518,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":107
+    /* "cyinterval/cyinterval.pyx":98
  *             if lower_cmp == -1:
  *                 return False
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -3520,19 +3528,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
     __pyx_t_8 = ((__pyx_v_lower_cmp == 1) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":108
+      /* "cyinterval/cyinterval.pyx":99
  *                 return False
  *             elif lower_cmp == 1:
  *                 return True             # <<<<<<<<<<<<<<
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_True);
-      __pyx_r = Py_True;
+      __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":107
+      /* "cyinterval/cyinterval.pyx":98
  *             if lower_cmp == -1:
  *                 return False
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -3541,7 +3547,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":110
+    /* "cyinterval/cyinterval.pyx":101
  *                 return True
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
@@ -3551,7 +3557,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
     /*else*/ {
       __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-      /* "cyinterval/cyinterval.pyx":111
+      /* "cyinterval/cyinterval.pyx":102
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -3561,19 +3567,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
       __pyx_t_8 = ((__pyx_v_upper_cmp == -1L) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":112
+        /* "cyinterval/cyinterval.pyx":103
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:
  *                     return False             # <<<<<<<<<<<<<<
  *                 elif upper_cmp == 1:
  *                     return True
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_False);
-        __pyx_r = Py_False;
+        __pyx_r = 0;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":111
+        /* "cyinterval/cyinterval.pyx":102
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -3582,7 +3586,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":113
+      /* "cyinterval/cyinterval.pyx":104
  *                 if upper_cmp == -1:
  *                     return False
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -3592,19 +3596,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
       __pyx_t_8 = ((__pyx_v_upper_cmp == 1) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":114
+        /* "cyinterval/cyinterval.pyx":105
  *                     return False
  *                 elif upper_cmp == 1:
  *                     return True             # <<<<<<<<<<<<<<
  *                 else: # upper_cmp == 0
  *                     return op == 5
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_True);
-        __pyx_r = Py_True;
+        __pyx_r = 1;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":113
+        /* "cyinterval/cyinterval.pyx":104
  *                 if upper_cmp == -1:
  *                     return False
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -3613,7 +3615,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":116
+      /* "cyinterval/cyinterval.pyx":107
  *                     return True
  *                 else: # upper_cmp == 0
  *                     return op == 5             # <<<<<<<<<<<<<<
@@ -3621,16 +3623,12 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
  *     cpdef int lower_cmp(ObjectInterval self, ObjectInterval other):
  */
       /*else*/ {
-        __Pyx_XDECREF(__pyx_r);
-        __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_op == 5)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_r = __pyx_t_1;
-        __pyx_t_1 = 0;
+        __pyx_r = (__pyx_v_op == 5);
         goto __pyx_L0;
       }
     }
 
-    /* "cyinterval/cyinterval.pyx":103
+    /* "cyinterval/cyinterval.pyx":94
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  *         elif op == 4 or op == 5:             # <<<<<<<<<<<<<<
@@ -3641,16 +3639,16 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
     default: break;
   }
 
-  /* "cyinterval/cyinterval.pyx":82
+  /* "cyinterval/cyinterval.pyx":73
  *                 self.lower_bound > self.upper_bound))
  * 
- *     cpdef richcmp(ObjectInterval self, ObjectInterval other, int op):             # <<<<<<<<<<<<<<
+ *     cpdef int richcmp(ObjectInterval self, ObjectInterval other, int op):             # <<<<<<<<<<<<<<
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
@@ -3659,10 +3657,9 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(stru
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("cyinterval.cyinterval.ObjectInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_WriteUnraisable("cyinterval.cyinterval.ObjectInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -3695,11 +3692,11 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_9richcmp(Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_op)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, 1); __PYX_ERR(0, 82, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, 1); __PYX_ERR(0, 73, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "richcmp") < 0)) __PYX_ERR(0, 82, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "richcmp") < 0)) __PYX_ERR(0, 73, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3708,17 +3705,17 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_9richcmp(Py
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_other = ((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)values[0]);
-    __pyx_v_op = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_op == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 82, __pyx_L3_error)
+    __pyx_v_op = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_op == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 82, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 73, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cyinterval.cyinterval.ObjectInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval, 1, "other", 0))) __PYX_ERR(0, 82, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval, 1, "other", 0))) __PYX_ERR(0, 73, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_8richcmp(((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self), __pyx_v_other, __pyx_v_op);
 
   /* function exit code */
@@ -3736,7 +3733,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_8richcmp(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("richcmp", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(__pyx_v_self, __pyx_v_other, __pyx_v_op, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp(__pyx_v_self, __pyx_v_other, __pyx_v_op, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3753,7 +3750,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_8richcmp(st
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":118
+/* "cyinterval/cyinterval.pyx":109
  *                     return op == 5
  * 
  *     cpdef int lower_cmp(ObjectInterval self, ObjectInterval other):             # <<<<<<<<<<<<<<
@@ -3779,7 +3776,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lower_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lower_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_11lower_cmp)) {
       __Pyx_INCREF(__pyx_t_1);
@@ -3794,13 +3791,13 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -3808,25 +3805,25 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 118, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 109, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_other));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 118, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 109, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3835,29 +3832,29 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":119
+  /* "cyinterval/cyinterval.pyx":110
  * 
  *     cpdef int lower_cmp(ObjectInterval self, ObjectInterval other):
  *         if not self.lower_bounded:             # <<<<<<<<<<<<<<
  *             if not other.lower_bounded:
  *                 return 0
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 110, __pyx_L1_error)
   __pyx_t_8 = ((!__pyx_t_7) != 0);
   if (__pyx_t_8) {
 
-    /* "cyinterval/cyinterval.pyx":120
+    /* "cyinterval/cyinterval.pyx":111
  *     cpdef int lower_cmp(ObjectInterval self, ObjectInterval other):
  *         if not self.lower_bounded:
  *             if not other.lower_bounded:             # <<<<<<<<<<<<<<
  *                 return 0
  *             else:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 120, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 111, __pyx_L1_error)
     __pyx_t_7 = ((!__pyx_t_8) != 0);
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":121
+      /* "cyinterval/cyinterval.pyx":112
  *         if not self.lower_bounded:
  *             if not other.lower_bounded:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -3867,7 +3864,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":120
+      /* "cyinterval/cyinterval.pyx":111
  *     cpdef int lower_cmp(ObjectInterval self, ObjectInterval other):
  *         if not self.lower_bounded:
  *             if not other.lower_bounded:             # <<<<<<<<<<<<<<
@@ -3876,7 +3873,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":123
+    /* "cyinterval/cyinterval.pyx":114
  *                 return 0
  *             else:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -3888,7 +3885,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":119
+    /* "cyinterval/cyinterval.pyx":110
  * 
  *     cpdef int lower_cmp(ObjectInterval self, ObjectInterval other):
  *         if not self.lower_bounded:             # <<<<<<<<<<<<<<
@@ -3897,17 +3894,17 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":124
+  /* "cyinterval/cyinterval.pyx":115
  *             else:
  *                 return -1
  *         elif other.lower_bounded:             # <<<<<<<<<<<<<<
  *             return 1
  *         if self.lower_bound < other.lower_bound:
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 115, __pyx_L1_error)
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":125
+    /* "cyinterval/cyinterval.pyx":116
  *                 return -1
  *         elif other.lower_bounded:
  *             return 1             # <<<<<<<<<<<<<<
@@ -3917,7 +3914,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":124
+    /* "cyinterval/cyinterval.pyx":115
  *             else:
  *                 return -1
  *         elif other.lower_bounded:             # <<<<<<<<<<<<<<
@@ -3926,19 +3923,19 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":126
+  /* "cyinterval/cyinterval.pyx":117
  *         elif other.lower_bounded:
  *             return 1
  *         if self.lower_bound < other.lower_bound:             # <<<<<<<<<<<<<<
  *             return -1
  *         elif self.lower_bound == other.lower_bound:
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_self->lower_bound, __pyx_v_other->lower_bound, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_self->lower_bound, __pyx_v_other->lower_bound, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":127
+    /* "cyinterval/cyinterval.pyx":118
  *             return 1
  *         if self.lower_bound < other.lower_bound:
  *             return -1             # <<<<<<<<<<<<<<
@@ -3948,7 +3945,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
     __pyx_r = -1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":126
+    /* "cyinterval/cyinterval.pyx":117
  *         elif other.lower_bounded:
  *             return 1
  *         if self.lower_bound < other.lower_bound:             # <<<<<<<<<<<<<<
@@ -3957,38 +3954,38 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":128
+  /* "cyinterval/cyinterval.pyx":119
  *         if self.lower_bound < other.lower_bound:
  *             return -1
  *         elif self.lower_bound == other.lower_bound:             # <<<<<<<<<<<<<<
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_self->lower_bound, __pyx_v_other->lower_bound, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_self->lower_bound, __pyx_v_other->lower_bound, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":129
+    /* "cyinterval/cyinterval.pyx":120
  *             return -1
  *         elif self.lower_bound == other.lower_bound:
  *             if self.lower_closed and not other.lower_closed:             # <<<<<<<<<<<<<<
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 129, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 120, __pyx_L1_error)
     if (__pyx_t_8) {
     } else {
       __pyx_t_7 = __pyx_t_8;
       goto __pyx_L7_bool_binop_done;
     }
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 129, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 120, __pyx_L1_error)
     __pyx_t_9 = ((!__pyx_t_8) != 0);
     __pyx_t_7 = __pyx_t_9;
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":130
+      /* "cyinterval/cyinterval.pyx":121
  *         elif self.lower_bound == other.lower_bound:
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -3998,7 +3995,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
       __pyx_r = -1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":129
+      /* "cyinterval/cyinterval.pyx":120
  *             return -1
  *         elif self.lower_bound == other.lower_bound:
  *             if self.lower_closed and not other.lower_closed:             # <<<<<<<<<<<<<<
@@ -4007,26 +4004,26 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":131
+    /* "cyinterval/cyinterval.pyx":122
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:             # <<<<<<<<<<<<<<
  *                 return 1
  *             else:
  */
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 122, __pyx_L1_error)
     if (__pyx_t_9) {
     } else {
       __pyx_t_7 = __pyx_t_9;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 122, __pyx_L1_error)
     __pyx_t_8 = ((!__pyx_t_9) != 0);
     __pyx_t_7 = __pyx_t_8;
     __pyx_L9_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":132
+      /* "cyinterval/cyinterval.pyx":123
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:
  *                 return 1             # <<<<<<<<<<<<<<
@@ -4036,7 +4033,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":131
+      /* "cyinterval/cyinterval.pyx":122
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:             # <<<<<<<<<<<<<<
@@ -4045,7 +4042,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":134
+    /* "cyinterval/cyinterval.pyx":125
  *                 return 1
  *             else:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -4057,7 +4054,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":128
+    /* "cyinterval/cyinterval.pyx":119
  *         if self.lower_bound < other.lower_bound:
  *             return -1
  *         elif self.lower_bound == other.lower_bound:             # <<<<<<<<<<<<<<
@@ -4066,7 +4063,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":136
+  /* "cyinterval/cyinterval.pyx":127
  *                 return 0
  *         else:
  *             return 1             # <<<<<<<<<<<<<<
@@ -4078,7 +4075,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(struct _
     goto __pyx_L0;
   }
 
-  /* "cyinterval/cyinterval.pyx":118
+  /* "cyinterval/cyinterval.pyx":109
  *                     return op == 5
  * 
  *     cpdef int lower_cmp(ObjectInterval self, ObjectInterval other):             # <<<<<<<<<<<<<<
@@ -4106,7 +4103,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_11lower_cmp
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("lower_cmp (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval, 1, "other", 0))) __PYX_ERR(0, 118, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval, 1, "other", 0))) __PYX_ERR(0, 109, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_10lower_cmp(((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_other));
 
   /* function exit code */
@@ -4124,7 +4121,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_10lower_cmp
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("lower_cmp", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4141,7 +4138,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_10lower_cmp
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":138
+/* "cyinterval/cyinterval.pyx":129
  *             return 1
  * 
  *     cpdef int upper_cmp(ObjectInterval self, ObjectInterval other):             # <<<<<<<<<<<<<<
@@ -4167,7 +4164,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_13upper_cmp)) {
       __Pyx_INCREF(__pyx_t_1);
@@ -4182,13 +4179,13 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -4196,25 +4193,25 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 129, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_other));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 138, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4223,29 +4220,29 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":139
+  /* "cyinterval/cyinterval.pyx":130
  * 
  *     cpdef int upper_cmp(ObjectInterval self, ObjectInterval other):
  *         if not self.upper_bounded:             # <<<<<<<<<<<<<<
  *             if not other.upper_bounded:
  *                 return 0
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 130, __pyx_L1_error)
   __pyx_t_8 = ((!__pyx_t_7) != 0);
   if (__pyx_t_8) {
 
-    /* "cyinterval/cyinterval.pyx":140
+    /* "cyinterval/cyinterval.pyx":131
  *     cpdef int upper_cmp(ObjectInterval self, ObjectInterval other):
  *         if not self.upper_bounded:
  *             if not other.upper_bounded:             # <<<<<<<<<<<<<<
  *                 return 0
  *             else:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 140, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 131, __pyx_L1_error)
     __pyx_t_7 = ((!__pyx_t_8) != 0);
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":141
+      /* "cyinterval/cyinterval.pyx":132
  *         if not self.upper_bounded:
  *             if not other.upper_bounded:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -4255,7 +4252,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":140
+      /* "cyinterval/cyinterval.pyx":131
  *     cpdef int upper_cmp(ObjectInterval self, ObjectInterval other):
  *         if not self.upper_bounded:
  *             if not other.upper_bounded:             # <<<<<<<<<<<<<<
@@ -4264,7 +4261,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":143
+    /* "cyinterval/cyinterval.pyx":134
  *                 return 0
  *             else:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -4276,7 +4273,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":139
+    /* "cyinterval/cyinterval.pyx":130
  * 
  *     cpdef int upper_cmp(ObjectInterval self, ObjectInterval other):
  *         if not self.upper_bounded:             # <<<<<<<<<<<<<<
@@ -4285,17 +4282,17 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":144
+  /* "cyinterval/cyinterval.pyx":135
  *             else:
  *                 return -1
  *         elif other.upper_bounded:             # <<<<<<<<<<<<<<
  *             return 1
  *         if self.upper_bound < other.upper_bound:
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":145
+    /* "cyinterval/cyinterval.pyx":136
  *                 return -1
  *         elif other.upper_bounded:
  *             return 1             # <<<<<<<<<<<<<<
@@ -4305,7 +4302,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":144
+    /* "cyinterval/cyinterval.pyx":135
  *             else:
  *                 return -1
  *         elif other.upper_bounded:             # <<<<<<<<<<<<<<
@@ -4314,19 +4311,19 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":146
+  /* "cyinterval/cyinterval.pyx":137
  *         elif other.upper_bounded:
  *             return 1
  *         if self.upper_bound < other.upper_bound:             # <<<<<<<<<<<<<<
  *             return -1
  *         elif self.upper_bound == other.upper_bound:
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_self->upper_bound, __pyx_v_other->upper_bound, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_self->upper_bound, __pyx_v_other->upper_bound, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":147
+    /* "cyinterval/cyinterval.pyx":138
  *             return 1
  *         if self.upper_bound < other.upper_bound:
  *             return -1             # <<<<<<<<<<<<<<
@@ -4336,7 +4333,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
     __pyx_r = -1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":146
+    /* "cyinterval/cyinterval.pyx":137
  *         elif other.upper_bounded:
  *             return 1
  *         if self.upper_bound < other.upper_bound:             # <<<<<<<<<<<<<<
@@ -4345,38 +4342,38 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":148
+  /* "cyinterval/cyinterval.pyx":139
  *         if self.upper_bound < other.upper_bound:
  *             return -1
  *         elif self.upper_bound == other.upper_bound:             # <<<<<<<<<<<<<<
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_self->upper_bound, __pyx_v_other->upper_bound, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_self->upper_bound, __pyx_v_other->upper_bound, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":149
+    /* "cyinterval/cyinterval.pyx":140
  *             return -1
  *         elif self.upper_bound == other.upper_bound:
  *             if self.upper_closed and not other.upper_closed:             # <<<<<<<<<<<<<<
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 140, __pyx_L1_error)
     if (__pyx_t_8) {
     } else {
       __pyx_t_7 = __pyx_t_8;
       goto __pyx_L7_bool_binop_done;
     }
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 140, __pyx_L1_error)
     __pyx_t_9 = ((!__pyx_t_8) != 0);
     __pyx_t_7 = __pyx_t_9;
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":150
+      /* "cyinterval/cyinterval.pyx":141
  *         elif self.upper_bound == other.upper_bound:
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1             # <<<<<<<<<<<<<<
@@ -4386,7 +4383,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":149
+      /* "cyinterval/cyinterval.pyx":140
  *             return -1
  *         elif self.upper_bound == other.upper_bound:
  *             if self.upper_closed and not other.upper_closed:             # <<<<<<<<<<<<<<
@@ -4395,26 +4392,26 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":151
+    /* "cyinterval/cyinterval.pyx":142
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:             # <<<<<<<<<<<<<<
  *                 return -1
  *             else:
  */
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 151, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 142, __pyx_L1_error)
     if (__pyx_t_9) {
     } else {
       __pyx_t_7 = __pyx_t_9;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 151, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 142, __pyx_L1_error)
     __pyx_t_8 = ((!__pyx_t_9) != 0);
     __pyx_t_7 = __pyx_t_8;
     __pyx_L9_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":152
+      /* "cyinterval/cyinterval.pyx":143
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -4424,7 +4421,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
       __pyx_r = -1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":151
+      /* "cyinterval/cyinterval.pyx":142
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:             # <<<<<<<<<<<<<<
@@ -4433,7 +4430,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":154
+    /* "cyinterval/cyinterval.pyx":145
  *                 return -1
  *             else:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -4445,7 +4442,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":148
+    /* "cyinterval/cyinterval.pyx":139
  *         if self.upper_bound < other.upper_bound:
  *             return -1
  *         elif self.upper_bound == other.upper_bound:             # <<<<<<<<<<<<<<
@@ -4454,7 +4451,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":156
+  /* "cyinterval/cyinterval.pyx":147
  *                 return 0
  *         else:
  *             return 1             # <<<<<<<<<<<<<<
@@ -4466,7 +4463,7 @@ static int __pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(struct _
     goto __pyx_L0;
   }
 
-  /* "cyinterval/cyinterval.pyx":138
+  /* "cyinterval/cyinterval.pyx":129
  *             return 1
  * 
  *     cpdef int upper_cmp(ObjectInterval self, ObjectInterval other):             # <<<<<<<<<<<<<<
@@ -4494,7 +4491,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_14ObjectInterval_13upper_cmp
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("upper_cmp (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval, 1, "other", 0))) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval, 1, "other", 0))) __PYX_ERR(0, 129, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_12upper_cmp(((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *)__pyx_v_other));
 
   /* function exit code */
@@ -4512,7 +4509,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_12upper_cmp
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("upper_cmp", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4529,12 +4526,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_12upper_cmp
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":34
+/* "cyinterval/cyinterval.pxd":13
  * 
  * cdef class ObjectInterval(BaseInterval):
  *     cdef readonly object lower_bound             # <<<<<<<<<<<<<<
  *     cdef readonly object upper_bound
- *     def __init__(BaseInterval self, object lower_bound, object upper_bound, bool lower_closed,
+ *     cpdef tuple init_args(ObjectInterval self)
  */
 
 /* Python wrapper */
@@ -4566,12 +4563,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_11lower_bou
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":35
+/* "cyinterval/cyinterval.pxd":14
  * cdef class ObjectInterval(BaseInterval):
  *     cdef readonly object lower_bound
  *     cdef readonly object upper_bound             # <<<<<<<<<<<<<<
- *     def __init__(BaseInterval self, object lower_bound, object upper_bound, bool lower_closed,
- *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
+ *     cpdef tuple init_args(ObjectInterval self)
+ *     cpdef ObjectInterval intersection(ObjectInterval self, ObjectInterval other)
  */
 
 /* Python wrapper */
@@ -4603,9 +4600,9 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_11upper_bou
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":161
- *     cdef readonly date lower_bound
- *     cdef readonly date upper_bound
+/* "cyinterval/cyinterval.pyx":150
+ * 
+ * cdef class DateInterval(BaseInterval):
  *     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed,             # <<<<<<<<<<<<<<
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed
@@ -4615,7 +4612,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14ObjectInterval_11upper_bou
 static int __pyx_pw_10cyinterval_10cyinterval_12DateInterval_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static int __pyx_pw_10cyinterval_10cyinterval_12DateInterval_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyDateTime_Date *__pyx_v_lower_bound = 0;
-  CYTHON_UNUSED PyDateTime_Date *__pyx_v_upper_bound = 0;
+  PyDateTime_Date *__pyx_v_upper_bound = 0;
   PyBoolObject *__pyx_v_lower_closed = 0;
   PyBoolObject *__pyx_v_upper_closed = 0;
   PyBoolObject *__pyx_v_lower_bounded = 0;
@@ -4647,31 +4644,31 @@ static int __pyx_pw_10cyinterval_10cyinterval_12DateInterval_1__init__(PyObject 
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_bound)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 1); __PYX_ERR(0, 161, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 1); __PYX_ERR(0, 150, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lower_closed)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 2); __PYX_ERR(0, 161, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 2); __PYX_ERR(0, 150, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_closed)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 3); __PYX_ERR(0, 161, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 3); __PYX_ERR(0, 150, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lower_bounded)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 4); __PYX_ERR(0, 161, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 4); __PYX_ERR(0, 150, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_bounded)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 5); __PYX_ERR(0, 161, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 5); __PYX_ERR(0, 150, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 161, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 150, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -4692,18 +4689,18 @@ static int __pyx_pw_10cyinterval_10cyinterval_12DateInterval_1__init__(PyObject 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 161, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 150, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cyinterval.cyinterval.DateInterval.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_bound), __pyx_ptype_7cpython_8datetime_date, 1, "lower_bound", 0))) __PYX_ERR(0, 161, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_bound), __pyx_ptype_7cpython_8datetime_date, 1, "upper_bound", 0))) __PYX_ERR(0, 161, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_closed), __pyx_ptype_7cpython_4bool_bool, 1, "lower_closed", 0))) __PYX_ERR(0, 161, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_closed), __pyx_ptype_7cpython_4bool_bool, 1, "upper_closed", 0))) __PYX_ERR(0, 162, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "lower_bounded", 0))) __PYX_ERR(0, 162, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "upper_bounded", 0))) __PYX_ERR(0, 162, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_bound), __pyx_ptype_7cpython_8datetime_date, 1, "lower_bound", 0))) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_bound), __pyx_ptype_7cpython_8datetime_date, 1, "upper_bound", 0))) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_closed), __pyx_ptype_7cpython_4bool_bool, 1, "lower_closed", 0))) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_closed), __pyx_ptype_7cpython_4bool_bool, 1, "upper_closed", 0))) __PYX_ERR(0, 151, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "lower_bounded", 0))) __PYX_ERR(0, 151, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "upper_bounded", 0))) __PYX_ERR(0, 151, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self), __pyx_v_lower_bound, __pyx_v_upper_bound, __pyx_v_lower_closed, __pyx_v_upper_closed, __pyx_v_lower_bounded, __pyx_v_upper_bounded);
 
   /* function exit code */
@@ -4715,14 +4712,13 @@ static int __pyx_pw_10cyinterval_10cyinterval_12DateInterval_1__init__(PyObject 
   return __pyx_r;
 }
 
-static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, PyDateTime_Date *__pyx_v_lower_bound, CYTHON_UNUSED PyDateTime_Date *__pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded) {
+static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, PyDateTime_Date *__pyx_v_lower_bound, PyDateTime_Date *__pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cyinterval/cyinterval.pyx":163
+  /* "cyinterval/cyinterval.pyx":152
  *     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed,
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed             # <<<<<<<<<<<<<<
@@ -4735,12 +4731,12 @@ static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __p
   __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.lower_closed));
   __pyx_v_self->__pyx_base.lower_closed = __pyx_v_lower_closed;
 
-  /* "cyinterval/cyinterval.pyx":164
+  /* "cyinterval/cyinterval.pyx":153
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed
  *         self.upper_closed = upper_closed             # <<<<<<<<<<<<<<
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_upper_closed));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_closed));
@@ -4748,11 +4744,11 @@ static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __p
   __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.upper_closed));
   __pyx_v_self->__pyx_base.upper_closed = __pyx_v_upper_closed;
 
-  /* "cyinterval/cyinterval.pyx":165
+  /* "cyinterval/cyinterval.pyx":154
  *         self.lower_closed = lower_closed
  *         self.upper_closed = upper_closed
  *         self.lower_bounded = lower_bounded             # <<<<<<<<<<<<<<
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_lower_bounded));
@@ -4761,31 +4757,35 @@ static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __p
   __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
   __pyx_v_self->__pyx_base.lower_bounded = __pyx_v_lower_bounded;
 
-  /* "cyinterval/cyinterval.pyx":166
+  /* "cyinterval/cyinterval.pyx":155
  *         self.upper_closed = upper_closed
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded             # <<<<<<<<<<<<<<
+ *         self.upper_bounded = upper_bounded             # <<<<<<<<<<<<<<
  *         if lower_bounded:
  *             self.lower_bound = lower_bound
  */
-  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_bouned, ((PyObject *)__pyx_v_upper_bounded)) < 0) __PYX_ERR(0, 166, __pyx_L1_error)
+  __Pyx_INCREF(((PyObject *)__pyx_v_upper_bounded));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_bounded));
+  __Pyx_GOTREF(__pyx_v_self->__pyx_base.upper_bounded);
+  __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
+  __pyx_v_self->__pyx_base.upper_bounded = __pyx_v_upper_bounded;
 
-  /* "cyinterval/cyinterval.pyx":167
+  /* "cyinterval/cyinterval.pyx":156
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:             # <<<<<<<<<<<<<<
  *             self.lower_bound = lower_bound
  *         if upper_bounded:
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_lower_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_lower_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "cyinterval/cyinterval.pyx":168
- *         self.upper_bouned = upper_bounded
+    /* "cyinterval/cyinterval.pyx":157
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:
  *             self.lower_bound = lower_bound             # <<<<<<<<<<<<<<
  *         if upper_bounded:
- *             self.upper_bound = upper_bounded
+ *             self.upper_bound = upper_bound
  */
     __Pyx_INCREF(((PyObject *)__pyx_v_lower_bound));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_lower_bound));
@@ -4793,53 +4793,50 @@ static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __p
     __Pyx_DECREF(((PyObject *)__pyx_v_self->lower_bound));
     __pyx_v_self->lower_bound = __pyx_v_lower_bound;
 
-    /* "cyinterval/cyinterval.pyx":167
+    /* "cyinterval/cyinterval.pyx":156
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:             # <<<<<<<<<<<<<<
  *             self.lower_bound = lower_bound
  *         if upper_bounded:
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":169
+  /* "cyinterval/cyinterval.pyx":158
  *         if lower_bounded:
  *             self.lower_bound = lower_bound
  *         if upper_bounded:             # <<<<<<<<<<<<<<
- *             self.upper_bound = upper_bounded
+ *             self.upper_bound = upper_bound
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_upper_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 169, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_upper_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 158, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "cyinterval/cyinterval.pyx":170
+    /* "cyinterval/cyinterval.pyx":159
  *             self.lower_bound = lower_bound
  *         if upper_bounded:
- *             self.upper_bound = upper_bounded             # <<<<<<<<<<<<<<
+ *             self.upper_bound = upper_bound             # <<<<<<<<<<<<<<
  * 
  *     cpdef tuple init_args(DateInterval self):
  */
-    if (!(likely(((((PyObject *)__pyx_v_upper_bounded)) == Py_None) || likely(__Pyx_TypeTest(((PyObject *)__pyx_v_upper_bounded), __pyx_ptype_7cpython_8datetime_date))))) __PYX_ERR(0, 170, __pyx_L1_error)
-    __pyx_t_2 = ((PyObject *)__pyx_v_upper_bounded);
-    __Pyx_INCREF(__pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_2);
+    __Pyx_INCREF(((PyObject *)__pyx_v_upper_bound));
+    __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_bound));
     __Pyx_GOTREF(__pyx_v_self->upper_bound);
     __Pyx_DECREF(((PyObject *)__pyx_v_self->upper_bound));
-    __pyx_v_self->upper_bound = ((PyDateTime_Date *)__pyx_t_2);
-    __pyx_t_2 = 0;
+    __pyx_v_self->upper_bound = __pyx_v_upper_bound;
 
-    /* "cyinterval/cyinterval.pyx":169
+    /* "cyinterval/cyinterval.pyx":158
  *         if lower_bounded:
  *             self.lower_bound = lower_bound
  *         if upper_bounded:             # <<<<<<<<<<<<<<
- *             self.upper_bound = upper_bounded
+ *             self.upper_bound = upper_bound
  * 
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":161
- *     cdef readonly date lower_bound
- *     cdef readonly date upper_bound
+  /* "cyinterval/cyinterval.pyx":150
+ * 
+ * cdef class DateInterval(BaseInterval):
  *     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed,             # <<<<<<<<<<<<<<
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed
@@ -4849,7 +4846,6 @@ static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __p
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("cyinterval.cyinterval.DateInterval.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
@@ -4857,8 +4853,8 @@ static int __pyx_pf_10cyinterval_10cyinterval_12DateInterval___init__(struct __p
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":172
- *             self.upper_bound = upper_bounded
+/* "cyinterval/cyinterval.pyx":161
+ *             self.upper_bound = upper_bound
  * 
  *     cpdef tuple init_args(DateInterval self):             # <<<<<<<<<<<<<<
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
@@ -4878,7 +4874,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_init_args(stru
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_init_args); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_init_args); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_12DateInterval_3init_args)) {
       __Pyx_XDECREF(__pyx_r);
@@ -4894,14 +4890,14 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_init_args(stru
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 172, __pyx_L1_error)
+      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 161, __pyx_L1_error)
       __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4910,7 +4906,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_init_args(stru
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":173
+  /* "cyinterval/cyinterval.pyx":162
  * 
  *     cpdef tuple init_args(DateInterval self):
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,             # <<<<<<<<<<<<<<
@@ -4919,14 +4915,14 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_init_args(stru
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "cyinterval/cyinterval.pyx":174
+  /* "cyinterval/cyinterval.pyx":163
  *     cpdef tuple init_args(DateInterval self):
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
  *                 self.lower_bounded, self.upper_bounded)             # <<<<<<<<<<<<<<
  * 
  *     cpdef DateInterval intersection(DateInterval self, DateInterval other):
  */
-  __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)__pyx_v_self->lower_bound));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_self->lower_bound));
@@ -4950,8 +4946,8 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_init_args(stru
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":172
- *             self.upper_bound = upper_bounded
+  /* "cyinterval/cyinterval.pyx":161
+ *             self.upper_bound = upper_bound
  * 
  *     cpdef tuple init_args(DateInterval self):             # <<<<<<<<<<<<<<
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
@@ -4991,7 +4987,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_2init_args(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("init_args", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_12DateInterval_init_args(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_12DateInterval_init_args(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5008,7 +5004,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_2init_args(st
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":176
+/* "cyinterval/cyinterval.pyx":165
  *                 self.lower_bounded, self.upper_bounded)
  * 
  *     cpdef DateInterval intersection(DateInterval self, DateInterval other):             # <<<<<<<<<<<<<<
@@ -5039,7 +5035,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersection); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersection); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_12DateInterval_5intersection)) {
       __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -5055,13 +5051,13 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -5069,25 +5065,25 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 176, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 165, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_other));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_10cyinterval_10cyinterval_DateInterval))))) __PYX_ERR(0, 176, __pyx_L1_error)
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_10cyinterval_10cyinterval_DateInterval))))) __PYX_ERR(0, 165, __pyx_L1_error)
       __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5096,7 +5092,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":177
+  /* "cyinterval/cyinterval.pyx":166
  * 
  *     cpdef DateInterval intersection(DateInterval self, DateInterval other):
  *         cdef int lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
@@ -5105,7 +5101,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
  */
   __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-  /* "cyinterval/cyinterval.pyx":178
+  /* "cyinterval/cyinterval.pyx":167
  *     cpdef DateInterval intersection(DateInterval self, DateInterval other):
  *         cdef int lower_cmp = self.lower_cmp(other)
  *         cdef int upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
@@ -5114,7 +5110,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
  */
   __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-  /* "cyinterval/cyinterval.pyx":181
+  /* "cyinterval/cyinterval.pyx":170
  *         cdef date new_lower_bound, new_upper_bound
  *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
  *         if lower_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -5124,7 +5120,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
   __pyx_t_6 = ((__pyx_v_lower_cmp <= 0) != 0);
   if (__pyx_t_6) {
 
-    /* "cyinterval/cyinterval.pyx":182
+    /* "cyinterval/cyinterval.pyx":171
  *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
  *         if lower_cmp <= 0:
  *             new_lower_bound = other.lower_bound             # <<<<<<<<<<<<<<
@@ -5136,7 +5132,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_lower_bound = ((PyDateTime_Date *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":183
+    /* "cyinterval/cyinterval.pyx":172
  *         if lower_cmp <= 0:
  *             new_lower_bound = other.lower_bound
  *             new_lower_bounded = other.lower_bounded             # <<<<<<<<<<<<<<
@@ -5148,7 +5144,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_lower_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":184
+    /* "cyinterval/cyinterval.pyx":173
  *             new_lower_bound = other.lower_bound
  *             new_lower_bounded = other.lower_bounded
  *             new_lower_closed = other.lower_closed             # <<<<<<<<<<<<<<
@@ -5160,7 +5156,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_lower_closed = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":181
+    /* "cyinterval/cyinterval.pyx":170
  *         cdef date new_lower_bound, new_upper_bound
  *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
  *         if lower_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -5170,7 +5166,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     goto __pyx_L3;
   }
 
-  /* "cyinterval/cyinterval.pyx":186
+  /* "cyinterval/cyinterval.pyx":175
  *             new_lower_closed = other.lower_closed
  *         else:
  *             new_lower_bound = self.lower_bound             # <<<<<<<<<<<<<<
@@ -5183,7 +5179,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_lower_bound = ((PyDateTime_Date *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":187
+    /* "cyinterval/cyinterval.pyx":176
  *         else:
  *             new_lower_bound = self.lower_bound
  *             new_lower_bounded = self.lower_bounded             # <<<<<<<<<<<<<<
@@ -5195,7 +5191,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_lower_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":188
+    /* "cyinterval/cyinterval.pyx":177
  *             new_lower_bound = self.lower_bound
  *             new_lower_bounded = self.lower_bounded
  *             new_lower_closed = self.lower_closed             # <<<<<<<<<<<<<<
@@ -5209,7 +5205,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
   }
   __pyx_L3:;
 
-  /* "cyinterval/cyinterval.pyx":190
+  /* "cyinterval/cyinterval.pyx":179
  *             new_lower_closed = self.lower_closed
  * 
  *         if upper_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -5219,7 +5215,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
   __pyx_t_6 = ((__pyx_v_upper_cmp <= 0) != 0);
   if (__pyx_t_6) {
 
-    /* "cyinterval/cyinterval.pyx":191
+    /* "cyinterval/cyinterval.pyx":180
  * 
  *         if upper_cmp <= 0:
  *             new_upper_bound = self.upper_bound             # <<<<<<<<<<<<<<
@@ -5231,7 +5227,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_upper_bound = ((PyDateTime_Date *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":192
+    /* "cyinterval/cyinterval.pyx":181
  *         if upper_cmp <= 0:
  *             new_upper_bound = self.upper_bound
  *             new_upper_bounded = self.upper_bounded             # <<<<<<<<<<<<<<
@@ -5243,7 +5239,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_upper_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":193
+    /* "cyinterval/cyinterval.pyx":182
  *             new_upper_bound = self.upper_bound
  *             new_upper_bounded = self.upper_bounded
  *             new_upper_closed = self.upper_closed             # <<<<<<<<<<<<<<
@@ -5255,7 +5251,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_upper_closed = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":190
+    /* "cyinterval/cyinterval.pyx":179
  *             new_lower_closed = self.lower_closed
  * 
  *         if upper_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -5265,7 +5261,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     goto __pyx_L4;
   }
 
-  /* "cyinterval/cyinterval.pyx":195
+  /* "cyinterval/cyinterval.pyx":184
  *             new_upper_closed = self.upper_closed
  *         else:
  *             new_upper_bound = other.upper_bound             # <<<<<<<<<<<<<<
@@ -5278,7 +5274,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_upper_bound = ((PyDateTime_Date *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":196
+    /* "cyinterval/cyinterval.pyx":185
  *         else:
  *             new_upper_bound = other.upper_bound
  *             new_upper_bounded = other.upper_bounded             # <<<<<<<<<<<<<<
@@ -5290,7 +5286,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
     __pyx_v_new_upper_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":197
+    /* "cyinterval/cyinterval.pyx":186
  *             new_upper_bound = other.upper_bound
  *             new_upper_bounded = other.upper_bounded
  *             new_upper_closed = other.upper_closed             # <<<<<<<<<<<<<<
@@ -5304,7 +5300,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
   }
   __pyx_L4:;
 
-  /* "cyinterval/cyinterval.pyx":198
+  /* "cyinterval/cyinterval.pyx":187
  *             new_upper_bounded = other.upper_bounded
  *             new_upper_closed = other.upper_closed
  *         return DateInterval(new_lower_bound, new_upper_bound, new_lower_closed,             # <<<<<<<<<<<<<<
@@ -5313,14 +5309,14 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
 
-  /* "cyinterval/cyinterval.pyx":199
+  /* "cyinterval/cyinterval.pyx":188
  *             new_upper_closed = other.upper_closed
  *         return DateInterval(new_lower_bound, new_upper_bound, new_lower_closed,
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)             # <<<<<<<<<<<<<<
  * 
- *     cpdef empty(DateInterval self):
+ *     cpdef bool empty(DateInterval self):
  */
-  __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)__pyx_v_new_lower_bound));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_new_lower_bound));
@@ -5341,21 +5337,21 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_f_10cyinte
   __Pyx_GIVEREF(((PyObject *)__pyx_v_new_upper_bounded));
   PyTuple_SET_ITEM(__pyx_t_1, 5, ((PyObject *)__pyx_v_new_upper_bounded));
 
-  /* "cyinterval/cyinterval.pyx":198
+  /* "cyinterval/cyinterval.pyx":187
  *             new_upper_bounded = other.upper_bounded
  *             new_upper_closed = other.upper_closed
  *         return DateInterval(new_lower_bound, new_upper_bound, new_lower_closed,             # <<<<<<<<<<<<<<
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_DateInterval), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_DateInterval), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":176
+  /* "cyinterval/cyinterval.pyx":165
  *                 self.lower_bounded, self.upper_bounded)
  * 
  *     cpdef DateInterval intersection(DateInterval self, DateInterval other):             # <<<<<<<<<<<<<<
@@ -5390,7 +5386,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_12DateInterval_5intersection
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("intersection (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_DateInterval, 1, "other", 0))) __PYX_ERR(0, 176, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_DateInterval, 1, "other", 0))) __PYX_ERR(0, 165, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_12DateInterval_4intersection(((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_v_other));
 
   /* function exit code */
@@ -5408,7 +5404,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_4intersection
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("intersection", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_12DateInterval_intersection(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_12DateInterval_intersection(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5425,17 +5421,17 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_4intersection
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":201
+/* "cyinterval/cyinterval.pyx":190
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
  * 
- *     cpdef empty(DateInterval self):             # <<<<<<<<<<<<<<
+ *     cpdef bool empty(DateInterval self):             # <<<<<<<<<<<<<<
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_12DateInterval_7empty(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, int __pyx_skip_dispatch) {
-  PyObject *__pyx_r = NULL;
+static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, int __pyx_skip_dispatch) {
+  PyBoolObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -5448,10 +5444,10 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(struct _
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_12DateInterval_7empty)) {
-      __Pyx_XDECREF(__pyx_r);
+      __Pyx_XDECREF(((PyObject *)__pyx_r));
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
       if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -5464,14 +5460,15 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(struct _
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 201, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 201, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool))))) __PYX_ERR(0, 190, __pyx_L1_error)
+      __pyx_r = ((PyBoolObject *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -5479,22 +5476,22 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(struct _
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":202
+  /* "cyinterval/cyinterval.pyx":191
  * 
- *     cpdef empty(DateInterval self):
+ *     cpdef bool empty(DateInterval self):
  *         return ((self.lower_bounded and self.upper_bounded) and             # <<<<<<<<<<<<<<
  *                 (((self.lower_bound == self.upper_bound) and
  *                 (not (self.lower_closed or self.upper_closed))) or
  */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 191, __pyx_L1_error)
   if (__pyx_t_5) {
   } else {
     __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
     __pyx_t_1 = __pyx_v_self->__pyx_base.lower_bounded;
     goto __pyx_L3_bool_binop_done;
   }
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 191, __pyx_L1_error)
   if (__pyx_t_5) {
   } else {
     __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
@@ -5502,68 +5499,70 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(struct _
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "cyinterval/cyinterval.pyx":203
- *     cpdef empty(DateInterval self):
+  /* "cyinterval/cyinterval.pyx":192
+ *     cpdef bool empty(DateInterval self):
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and             # <<<<<<<<<<<<<<
  *                 (not (self.lower_closed or self.upper_closed))) or
  *                 self.lower_bound > self.upper_bound))
  */
-  __pyx_t_2 = PyObject_RichCompare(((PyObject *)__pyx_v_self->lower_bound), ((PyObject *)__pyx_v_self->upper_bound), Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 203, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(((PyObject *)__pyx_v_self->lower_bound), ((PyObject *)__pyx_v_self->upper_bound), Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 192, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (!__pyx_t_5) {
     goto __pyx_L6_next_or;
   } else {
   }
 
-  /* "cyinterval/cyinterval.pyx":204
+  /* "cyinterval/cyinterval.pyx":193
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and
  *                 (not (self.lower_closed or self.upper_closed))) or             # <<<<<<<<<<<<<<
  *                 self.lower_bound > self.upper_bound))
  * 
  */
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 193, __pyx_L1_error)
   if (!__pyx_t_6) {
   } else {
     __pyx_t_5 = __pyx_t_6;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 193, __pyx_L1_error)
   __pyx_t_5 = __pyx_t_6;
   __pyx_L8_bool_binop_done:;
   __pyx_t_6 = (!__pyx_t_5);
   if (!__pyx_t_6) {
   } else {
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
+    if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool)))) __PYX_ERR(0, 193, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L3_bool_binop_done;
   }
   __pyx_L6_next_or:;
 
-  /* "cyinterval/cyinterval.pyx":205
+  /* "cyinterval/cyinterval.pyx":194
  *                 (((self.lower_bound == self.upper_bound) and
  *                 (not (self.lower_closed or self.upper_closed))) or
  *                 self.lower_bound > self.upper_bound))             # <<<<<<<<<<<<<<
  * 
- *     cpdef richcmp(DateInterval self, DateInterval other, int op):
+ *     cpdef int richcmp(DateInterval self, DateInterval other, int op):
  */
-  __pyx_t_2 = PyObject_RichCompare(((PyObject *)__pyx_v_self->lower_bound), ((PyObject *)__pyx_v_self->upper_bound), Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(((PyObject *)__pyx_v_self->lower_bound), ((PyObject *)__pyx_v_self->upper_bound), Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool))))) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_INCREF(__pyx_t_2);
   __pyx_t_1 = __pyx_t_2;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_L3_bool_binop_done:;
-  __pyx_r = __pyx_t_1;
+  __pyx_r = ((PyBoolObject *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":201
+  /* "cyinterval/cyinterval.pyx":190
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
  * 
- *     cpdef empty(DateInterval self):             # <<<<<<<<<<<<<<
+ *     cpdef bool empty(DateInterval self):             # <<<<<<<<<<<<<<
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and
  */
@@ -5577,7 +5576,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(struct _
   __Pyx_AddTraceback("cyinterval.cyinterval.DateInterval.empty", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_XGIVEREF((PyObject *)__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -5601,7 +5600,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_6empty(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("empty", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5618,19 +5617,19 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_6empty(struct
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":207
+/* "cyinterval/cyinterval.pyx":196
  *                 self.lower_bound > self.upper_bound))
  * 
- *     cpdef richcmp(DateInterval self, DateInterval other, int op):             # <<<<<<<<<<<<<<
+ *     cpdef int richcmp(DateInterval self, DateInterval other, int op):             # <<<<<<<<<<<<<<
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_12DateInterval_9richcmp(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch) {
+static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch) {
   int __pyx_v_lower_cmp;
   int __pyx_v_upper_cmp;
-  PyObject *__pyx_r = NULL;
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -5645,11 +5644,10 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_richcmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_richcmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_12DateInterval_9richcmp)) {
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_op); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 207, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_op); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 196, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -5667,7 +5665,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, ((PyObject *)__pyx_v_other), __pyx_t_3};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5676,14 +5674,14 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, ((PyObject *)__pyx_v_other), __pyx_t_3};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else
       #endif
       {
-        __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 207, __pyx_L1_error)
+        __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 196, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         if (__pyx_t_5) {
           __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -5694,20 +5692,21 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
         __Pyx_GIVEREF(__pyx_t_3);
         PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_t_3);
         __pyx_t_3 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 196, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":210
+  /* "cyinterval/cyinterval.pyx":199
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  *         if op == 0 or op == 1:             # <<<<<<<<<<<<<<
@@ -5718,7 +5717,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
     case 0:
     case 1:
 
-    /* "cyinterval/cyinterval.pyx":211
+    /* "cyinterval/cyinterval.pyx":200
  *         cdef int upper_cmp
  *         if op == 0 or op == 1:
  *             lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
@@ -5727,7 +5726,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-    /* "cyinterval/cyinterval.pyx":212
+    /* "cyinterval/cyinterval.pyx":201
  *         if op == 0 or op == 1:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -5737,19 +5736,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
     __pyx_t_8 = ((__pyx_v_lower_cmp == -1L) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":213
+      /* "cyinterval/cyinterval.pyx":202
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:
  *                 return True             # <<<<<<<<<<<<<<
  *             elif lower_cmp == 1:
  *                 return False
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_True);
-      __pyx_r = Py_True;
+      __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":212
+      /* "cyinterval/cyinterval.pyx":201
  *         if op == 0 or op == 1:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -5758,7 +5755,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":214
+    /* "cyinterval/cyinterval.pyx":203
  *             if lower_cmp == -1:
  *                 return True
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -5768,19 +5765,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
     __pyx_t_8 = ((__pyx_v_lower_cmp == 1) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":215
+      /* "cyinterval/cyinterval.pyx":204
  *                 return True
  *             elif lower_cmp == 1:
  *                 return False             # <<<<<<<<<<<<<<
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_False);
-      __pyx_r = Py_False;
+      __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":214
+      /* "cyinterval/cyinterval.pyx":203
  *             if lower_cmp == -1:
  *                 return True
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -5789,7 +5784,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":217
+    /* "cyinterval/cyinterval.pyx":206
  *                 return False
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
@@ -5799,7 +5794,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
     /*else*/ {
       __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-      /* "cyinterval/cyinterval.pyx":218
+      /* "cyinterval/cyinterval.pyx":207
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -5809,19 +5804,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
       __pyx_t_8 = ((__pyx_v_upper_cmp == -1L) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":219
+        /* "cyinterval/cyinterval.pyx":208
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:
  *                     return True             # <<<<<<<<<<<<<<
  *                 elif upper_cmp == 1:
  *                     return False
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_True);
-        __pyx_r = Py_True;
+        __pyx_r = 1;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":218
+        /* "cyinterval/cyinterval.pyx":207
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -5830,7 +5823,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":220
+      /* "cyinterval/cyinterval.pyx":209
  *                 if upper_cmp == -1:
  *                     return True
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -5840,19 +5833,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
       __pyx_t_8 = ((__pyx_v_upper_cmp == 1) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":221
+        /* "cyinterval/cyinterval.pyx":210
  *                     return True
  *                 elif upper_cmp == 1:
  *                     return False             # <<<<<<<<<<<<<<
  *                 else: # upper_cmp == 0
  *                     return op == 1
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_False);
-        __pyx_r = Py_False;
+        __pyx_r = 0;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":220
+        /* "cyinterval/cyinterval.pyx":209
  *                 if upper_cmp == -1:
  *                     return True
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -5861,7 +5852,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":223
+      /* "cyinterval/cyinterval.pyx":212
  *                     return False
  *                 else: # upper_cmp == 0
  *                     return op == 1             # <<<<<<<<<<<<<<
@@ -5869,16 +5860,12 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  */
       /*else*/ {
-        __Pyx_XDECREF(__pyx_r);
-        __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_op == 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 223, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_r = __pyx_t_1;
-        __pyx_t_1 = 0;
+        __pyx_r = (__pyx_v_op == 1);
         goto __pyx_L0;
       }
     }
 
-    /* "cyinterval/cyinterval.pyx":210
+    /* "cyinterval/cyinterval.pyx":199
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  *         if op == 0 or op == 1:             # <<<<<<<<<<<<<<
@@ -5887,7 +5874,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     break;
 
-    /* "cyinterval/cyinterval.pyx":224
+    /* "cyinterval/cyinterval.pyx":213
  *                 else: # upper_cmp == 0
  *                     return op == 1
  *         elif op == 2:             # <<<<<<<<<<<<<<
@@ -5896,34 +5883,26 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     case 2:
 
-    /* "cyinterval/cyinterval.pyx":225
+    /* "cyinterval/cyinterval.pyx":214
  *                     return op == 1
  *         elif op == 2:
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)             # <<<<<<<<<<<<<<
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  */
-    __Pyx_XDECREF(__pyx_r);
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0) == 0);
     if (__pyx_t_8) {
     } else {
-      __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_6 = __pyx_t_8;
       goto __pyx_L5_bool_binop_done;
     }
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0) == 0);
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __pyx_t_2;
-    __pyx_t_2 = 0;
+    __pyx_t_6 = __pyx_t_8;
     __pyx_L5_bool_binop_done:;
-    __pyx_r = __pyx_t_1;
-    __pyx_t_1 = 0;
+    __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":224
+    /* "cyinterval/cyinterval.pyx":213
  *                 else: # upper_cmp == 0
  *                     return op == 1
  *         elif op == 2:             # <<<<<<<<<<<<<<
@@ -5932,7 +5911,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     break;
 
-    /* "cyinterval/cyinterval.pyx":226
+    /* "cyinterval/cyinterval.pyx":215
  *         elif op == 2:
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  *         elif op == 3:             # <<<<<<<<<<<<<<
@@ -5941,34 +5920,26 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     case 3:
 
-    /* "cyinterval/cyinterval.pyx":227
+    /* "cyinterval/cyinterval.pyx":216
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)             # <<<<<<<<<<<<<<
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)
  */
-    __Pyx_XDECREF(__pyx_r);
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0) != 0);
     if (!__pyx_t_8) {
     } else {
-      __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_6 = __pyx_t_8;
       goto __pyx_L7_bool_binop_done;
     }
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0) != 0);
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __pyx_t_2;
-    __pyx_t_2 = 0;
+    __pyx_t_6 = __pyx_t_8;
     __pyx_L7_bool_binop_done:;
-    __pyx_r = __pyx_t_1;
-    __pyx_t_1 = 0;
+    __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":226
+    /* "cyinterval/cyinterval.pyx":215
  *         elif op == 2:
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  *         elif op == 3:             # <<<<<<<<<<<<<<
@@ -5977,7 +5948,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     break;
 
-    /* "cyinterval/cyinterval.pyx":228
+    /* "cyinterval/cyinterval.pyx":217
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  *         elif op == 4 or op == 5:             # <<<<<<<<<<<<<<
@@ -5987,7 +5958,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
     case 4:
     case 5:
 
-    /* "cyinterval/cyinterval.pyx":229
+    /* "cyinterval/cyinterval.pyx":218
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
@@ -5996,7 +5967,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-    /* "cyinterval/cyinterval.pyx":230
+    /* "cyinterval/cyinterval.pyx":219
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -6006,19 +5977,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
     __pyx_t_8 = ((__pyx_v_lower_cmp == -1L) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":231
+      /* "cyinterval/cyinterval.pyx":220
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:
  *                 return False             # <<<<<<<<<<<<<<
  *             elif lower_cmp == 1:
  *                 return True
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_False);
-      __pyx_r = Py_False;
+      __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":230
+      /* "cyinterval/cyinterval.pyx":219
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -6027,7 +5996,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":232
+    /* "cyinterval/cyinterval.pyx":221
  *             if lower_cmp == -1:
  *                 return False
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -6037,19 +6006,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
     __pyx_t_8 = ((__pyx_v_lower_cmp == 1) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":233
+      /* "cyinterval/cyinterval.pyx":222
  *                 return False
  *             elif lower_cmp == 1:
  *                 return True             # <<<<<<<<<<<<<<
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_True);
-      __pyx_r = Py_True;
+      __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":232
+      /* "cyinterval/cyinterval.pyx":221
  *             if lower_cmp == -1:
  *                 return False
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -6058,7 +6025,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":235
+    /* "cyinterval/cyinterval.pyx":224
  *                 return True
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
@@ -6068,7 +6035,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
     /*else*/ {
       __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-      /* "cyinterval/cyinterval.pyx":236
+      /* "cyinterval/cyinterval.pyx":225
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -6078,19 +6045,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
       __pyx_t_8 = ((__pyx_v_upper_cmp == -1L) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":237
+        /* "cyinterval/cyinterval.pyx":226
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:
  *                     return False             # <<<<<<<<<<<<<<
  *                 elif upper_cmp == 1:
  *                     return True
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_False);
-        __pyx_r = Py_False;
+        __pyx_r = 0;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":236
+        /* "cyinterval/cyinterval.pyx":225
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -6099,7 +6064,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":238
+      /* "cyinterval/cyinterval.pyx":227
  *                 if upper_cmp == -1:
  *                     return False
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -6109,19 +6074,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
       __pyx_t_8 = ((__pyx_v_upper_cmp == 1) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":239
+        /* "cyinterval/cyinterval.pyx":228
  *                     return False
  *                 elif upper_cmp == 1:
  *                     return True             # <<<<<<<<<<<<<<
  *                 else: # upper_cmp == 0
  *                     return op == 5
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_True);
-        __pyx_r = Py_True;
+        __pyx_r = 1;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":238
+        /* "cyinterval/cyinterval.pyx":227
  *                 if upper_cmp == -1:
  *                     return False
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -6130,7 +6093,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":241
+      /* "cyinterval/cyinterval.pyx":230
  *                     return True
  *                 else: # upper_cmp == 0
  *                     return op == 5             # <<<<<<<<<<<<<<
@@ -6138,16 +6101,12 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
  *     cpdef int lower_cmp(DateInterval self, DateInterval other):
  */
       /*else*/ {
-        __Pyx_XDECREF(__pyx_r);
-        __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_op == 5)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_r = __pyx_t_1;
-        __pyx_t_1 = 0;
+        __pyx_r = (__pyx_v_op == 5);
         goto __pyx_L0;
       }
     }
 
-    /* "cyinterval/cyinterval.pyx":228
+    /* "cyinterval/cyinterval.pyx":217
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  *         elif op == 4 or op == 5:             # <<<<<<<<<<<<<<
@@ -6158,16 +6117,16 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
     default: break;
   }
 
-  /* "cyinterval/cyinterval.pyx":207
+  /* "cyinterval/cyinterval.pyx":196
  *                 self.lower_bound > self.upper_bound))
  * 
- *     cpdef richcmp(DateInterval self, DateInterval other, int op):             # <<<<<<<<<<<<<<
+ *     cpdef int richcmp(DateInterval self, DateInterval other, int op):             # <<<<<<<<<<<<<<
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
@@ -6176,10 +6135,9 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(struct
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("cyinterval.cyinterval.DateInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_WriteUnraisable("cyinterval.cyinterval.DateInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -6212,11 +6170,11 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_12DateInterval_9richcmp(PyOb
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_op)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, 1); __PYX_ERR(0, 207, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, 1); __PYX_ERR(0, 196, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "richcmp") < 0)) __PYX_ERR(0, 207, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "richcmp") < 0)) __PYX_ERR(0, 196, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6225,17 +6183,17 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_12DateInterval_9richcmp(PyOb
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_other = ((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)values[0]);
-    __pyx_v_op = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_op == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 207, __pyx_L3_error)
+    __pyx_v_op = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_op == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 196, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 207, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 196, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cyinterval.cyinterval.DateInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_DateInterval, 1, "other", 0))) __PYX_ERR(0, 207, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_DateInterval, 1, "other", 0))) __PYX_ERR(0, 196, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_12DateInterval_8richcmp(((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self), __pyx_v_other, __pyx_v_op);
 
   /* function exit code */
@@ -6253,7 +6211,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_8richcmp(stru
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("richcmp", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(__pyx_v_self, __pyx_v_other, __pyx_v_op, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp(__pyx_v_self, __pyx_v_other, __pyx_v_op, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6270,7 +6228,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_8richcmp(stru
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":243
+/* "cyinterval/cyinterval.pyx":232
  *                     return op == 5
  * 
  *     cpdef int lower_cmp(DateInterval self, DateInterval other):             # <<<<<<<<<<<<<<
@@ -6296,7 +6254,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lower_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lower_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_12DateInterval_11lower_cmp)) {
       __Pyx_INCREF(__pyx_t_1);
@@ -6311,13 +6269,13 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -6325,25 +6283,25 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 243, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 232, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_other));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 232, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6352,29 +6310,29 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":244
+  /* "cyinterval/cyinterval.pyx":233
  * 
  *     cpdef int lower_cmp(DateInterval self, DateInterval other):
  *         if not self.lower_bounded:             # <<<<<<<<<<<<<<
  *             if not other.lower_bounded:
  *                 return 0
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 244, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 233, __pyx_L1_error)
   __pyx_t_8 = ((!__pyx_t_7) != 0);
   if (__pyx_t_8) {
 
-    /* "cyinterval/cyinterval.pyx":245
+    /* "cyinterval/cyinterval.pyx":234
  *     cpdef int lower_cmp(DateInterval self, DateInterval other):
  *         if not self.lower_bounded:
  *             if not other.lower_bounded:             # <<<<<<<<<<<<<<
  *                 return 0
  *             else:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 245, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 234, __pyx_L1_error)
     __pyx_t_7 = ((!__pyx_t_8) != 0);
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":246
+      /* "cyinterval/cyinterval.pyx":235
  *         if not self.lower_bounded:
  *             if not other.lower_bounded:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -6384,7 +6342,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":245
+      /* "cyinterval/cyinterval.pyx":234
  *     cpdef int lower_cmp(DateInterval self, DateInterval other):
  *         if not self.lower_bounded:
  *             if not other.lower_bounded:             # <<<<<<<<<<<<<<
@@ -6393,7 +6351,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":248
+    /* "cyinterval/cyinterval.pyx":237
  *                 return 0
  *             else:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -6405,7 +6363,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":244
+    /* "cyinterval/cyinterval.pyx":233
  * 
  *     cpdef int lower_cmp(DateInterval self, DateInterval other):
  *         if not self.lower_bounded:             # <<<<<<<<<<<<<<
@@ -6414,17 +6372,17 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":249
+  /* "cyinterval/cyinterval.pyx":238
  *             else:
  *                 return -1
  *         elif other.lower_bounded:             # <<<<<<<<<<<<<<
  *             return 1
  *         if self.lower_bound < other.lower_bound:
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 238, __pyx_L1_error)
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":250
+    /* "cyinterval/cyinterval.pyx":239
  *                 return -1
  *         elif other.lower_bounded:
  *             return 1             # <<<<<<<<<<<<<<
@@ -6434,7 +6392,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":249
+    /* "cyinterval/cyinterval.pyx":238
  *             else:
  *                 return -1
  *         elif other.lower_bounded:             # <<<<<<<<<<<<<<
@@ -6443,19 +6401,19 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":251
+  /* "cyinterval/cyinterval.pyx":240
  *         elif other.lower_bounded:
  *             return 1
  *         if self.lower_bound < other.lower_bound:             # <<<<<<<<<<<<<<
  *             return -1
  *         elif self.lower_bound == other.lower_bound:
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->lower_bound), ((PyObject *)__pyx_v_other->lower_bound), Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->lower_bound), ((PyObject *)__pyx_v_other->lower_bound), Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 240, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":252
+    /* "cyinterval/cyinterval.pyx":241
  *             return 1
  *         if self.lower_bound < other.lower_bound:
  *             return -1             # <<<<<<<<<<<<<<
@@ -6465,7 +6423,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
     __pyx_r = -1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":251
+    /* "cyinterval/cyinterval.pyx":240
  *         elif other.lower_bounded:
  *             return 1
  *         if self.lower_bound < other.lower_bound:             # <<<<<<<<<<<<<<
@@ -6474,38 +6432,38 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":253
+  /* "cyinterval/cyinterval.pyx":242
  *         if self.lower_bound < other.lower_bound:
  *             return -1
  *         elif self.lower_bound == other.lower_bound:             # <<<<<<<<<<<<<<
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->lower_bound), ((PyObject *)__pyx_v_other->lower_bound), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 253, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->lower_bound), ((PyObject *)__pyx_v_other->lower_bound), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":254
+    /* "cyinterval/cyinterval.pyx":243
  *             return -1
  *         elif self.lower_bound == other.lower_bound:
  *             if self.lower_closed and not other.lower_closed:             # <<<<<<<<<<<<<<
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 254, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 243, __pyx_L1_error)
     if (__pyx_t_8) {
     } else {
       __pyx_t_7 = __pyx_t_8;
       goto __pyx_L7_bool_binop_done;
     }
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 254, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 243, __pyx_L1_error)
     __pyx_t_9 = ((!__pyx_t_8) != 0);
     __pyx_t_7 = __pyx_t_9;
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":255
+      /* "cyinterval/cyinterval.pyx":244
  *         elif self.lower_bound == other.lower_bound:
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -6515,7 +6473,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
       __pyx_r = -1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":254
+      /* "cyinterval/cyinterval.pyx":243
  *             return -1
  *         elif self.lower_bound == other.lower_bound:
  *             if self.lower_closed and not other.lower_closed:             # <<<<<<<<<<<<<<
@@ -6524,26 +6482,26 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":256
+    /* "cyinterval/cyinterval.pyx":245
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:             # <<<<<<<<<<<<<<
  *                 return 1
  *             else:
  */
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 245, __pyx_L1_error)
     if (__pyx_t_9) {
     } else {
       __pyx_t_7 = __pyx_t_9;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 245, __pyx_L1_error)
     __pyx_t_8 = ((!__pyx_t_9) != 0);
     __pyx_t_7 = __pyx_t_8;
     __pyx_L9_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":257
+      /* "cyinterval/cyinterval.pyx":246
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:
  *                 return 1             # <<<<<<<<<<<<<<
@@ -6553,7 +6511,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":256
+      /* "cyinterval/cyinterval.pyx":245
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:             # <<<<<<<<<<<<<<
@@ -6562,7 +6520,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":259
+    /* "cyinterval/cyinterval.pyx":248
  *                 return 1
  *             else:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -6574,7 +6532,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":253
+    /* "cyinterval/cyinterval.pyx":242
  *         if self.lower_bound < other.lower_bound:
  *             return -1
  *         elif self.lower_bound == other.lower_bound:             # <<<<<<<<<<<<<<
@@ -6583,7 +6541,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":261
+  /* "cyinterval/cyinterval.pyx":250
  *                 return 0
  *         else:
  *             return 1             # <<<<<<<<<<<<<<
@@ -6595,7 +6553,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(struct __p
     goto __pyx_L0;
   }
 
-  /* "cyinterval/cyinterval.pyx":243
+  /* "cyinterval/cyinterval.pyx":232
  *                     return op == 5
  * 
  *     cpdef int lower_cmp(DateInterval self, DateInterval other):             # <<<<<<<<<<<<<<
@@ -6623,7 +6581,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_12DateInterval_11lower_cmp(P
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("lower_cmp (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_DateInterval, 1, "other", 0))) __PYX_ERR(0, 243, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_DateInterval, 1, "other", 0))) __PYX_ERR(0, 232, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_12DateInterval_10lower_cmp(((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_v_other));
 
   /* function exit code */
@@ -6641,7 +6599,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_10lower_cmp(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("lower_cmp", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6658,7 +6616,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_10lower_cmp(s
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":263
+/* "cyinterval/cyinterval.pyx":252
  *             return 1
  * 
  *     cpdef int upper_cmp(DateInterval self, DateInterval other):             # <<<<<<<<<<<<<<
@@ -6684,7 +6642,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_12DateInterval_13upper_cmp)) {
       __Pyx_INCREF(__pyx_t_1);
@@ -6699,13 +6657,13 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -6713,25 +6671,25 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 263, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 252, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_other));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 263, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 252, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6740,29 +6698,29 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":264
+  /* "cyinterval/cyinterval.pyx":253
  * 
  *     cpdef int upper_cmp(DateInterval self, DateInterval other):
  *         if not self.upper_bounded:             # <<<<<<<<<<<<<<
  *             if not other.upper_bounded:
  *                 return 0
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 253, __pyx_L1_error)
   __pyx_t_8 = ((!__pyx_t_7) != 0);
   if (__pyx_t_8) {
 
-    /* "cyinterval/cyinterval.pyx":265
+    /* "cyinterval/cyinterval.pyx":254
  *     cpdef int upper_cmp(DateInterval self, DateInterval other):
  *         if not self.upper_bounded:
  *             if not other.upper_bounded:             # <<<<<<<<<<<<<<
  *                 return 0
  *             else:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 265, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 254, __pyx_L1_error)
     __pyx_t_7 = ((!__pyx_t_8) != 0);
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":266
+      /* "cyinterval/cyinterval.pyx":255
  *         if not self.upper_bounded:
  *             if not other.upper_bounded:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -6772,7 +6730,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":265
+      /* "cyinterval/cyinterval.pyx":254
  *     cpdef int upper_cmp(DateInterval self, DateInterval other):
  *         if not self.upper_bounded:
  *             if not other.upper_bounded:             # <<<<<<<<<<<<<<
@@ -6781,7 +6739,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":268
+    /* "cyinterval/cyinterval.pyx":257
  *                 return 0
  *             else:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -6793,7 +6751,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":264
+    /* "cyinterval/cyinterval.pyx":253
  * 
  *     cpdef int upper_cmp(DateInterval self, DateInterval other):
  *         if not self.upper_bounded:             # <<<<<<<<<<<<<<
@@ -6802,17 +6760,17 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":269
+  /* "cyinterval/cyinterval.pyx":258
  *             else:
  *                 return -1
  *         elif other.upper_bounded:             # <<<<<<<<<<<<<<
  *             return 1
  *         if self.upper_bound < other.upper_bound:
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 258, __pyx_L1_error)
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":270
+    /* "cyinterval/cyinterval.pyx":259
  *                 return -1
  *         elif other.upper_bounded:
  *             return 1             # <<<<<<<<<<<<<<
@@ -6822,7 +6780,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":269
+    /* "cyinterval/cyinterval.pyx":258
  *             else:
  *                 return -1
  *         elif other.upper_bounded:             # <<<<<<<<<<<<<<
@@ -6831,19 +6789,19 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":271
+  /* "cyinterval/cyinterval.pyx":260
  *         elif other.upper_bounded:
  *             return 1
  *         if self.upper_bound < other.upper_bound:             # <<<<<<<<<<<<<<
  *             return -1
  *         elif self.upper_bound == other.upper_bound:
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->upper_bound), ((PyObject *)__pyx_v_other->upper_bound), Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->upper_bound), ((PyObject *)__pyx_v_other->upper_bound), Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":272
+    /* "cyinterval/cyinterval.pyx":261
  *             return 1
  *         if self.upper_bound < other.upper_bound:
  *             return -1             # <<<<<<<<<<<<<<
@@ -6853,7 +6811,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
     __pyx_r = -1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":271
+    /* "cyinterval/cyinterval.pyx":260
  *         elif other.upper_bounded:
  *             return 1
  *         if self.upper_bound < other.upper_bound:             # <<<<<<<<<<<<<<
@@ -6862,38 +6820,38 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":273
+  /* "cyinterval/cyinterval.pyx":262
  *         if self.upper_bound < other.upper_bound:
  *             return -1
  *         elif self.upper_bound == other.upper_bound:             # <<<<<<<<<<<<<<
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->upper_bound), ((PyObject *)__pyx_v_other->upper_bound), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->upper_bound), ((PyObject *)__pyx_v_other->upper_bound), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":274
+    /* "cyinterval/cyinterval.pyx":263
  *             return -1
  *         elif self.upper_bound == other.upper_bound:
  *             if self.upper_closed and not other.upper_closed:             # <<<<<<<<<<<<<<
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 263, __pyx_L1_error)
     if (__pyx_t_8) {
     } else {
       __pyx_t_7 = __pyx_t_8;
       goto __pyx_L7_bool_binop_done;
     }
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 263, __pyx_L1_error)
     __pyx_t_9 = ((!__pyx_t_8) != 0);
     __pyx_t_7 = __pyx_t_9;
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":275
+      /* "cyinterval/cyinterval.pyx":264
  *         elif self.upper_bound == other.upper_bound:
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1             # <<<<<<<<<<<<<<
@@ -6903,7 +6861,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":274
+      /* "cyinterval/cyinterval.pyx":263
  *             return -1
  *         elif self.upper_bound == other.upper_bound:
  *             if self.upper_closed and not other.upper_closed:             # <<<<<<<<<<<<<<
@@ -6912,26 +6870,26 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":276
+    /* "cyinterval/cyinterval.pyx":265
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:             # <<<<<<<<<<<<<<
  *                 return -1
  *             else:
  */
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 276, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 265, __pyx_L1_error)
     if (__pyx_t_9) {
     } else {
       __pyx_t_7 = __pyx_t_9;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 276, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 265, __pyx_L1_error)
     __pyx_t_8 = ((!__pyx_t_9) != 0);
     __pyx_t_7 = __pyx_t_8;
     __pyx_L9_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":277
+      /* "cyinterval/cyinterval.pyx":266
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -6941,7 +6899,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
       __pyx_r = -1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":276
+      /* "cyinterval/cyinterval.pyx":265
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:             # <<<<<<<<<<<<<<
@@ -6950,7 +6908,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":279
+    /* "cyinterval/cyinterval.pyx":268
  *                 return -1
  *             else:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -6962,7 +6920,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":273
+    /* "cyinterval/cyinterval.pyx":262
  *         if self.upper_bound < other.upper_bound:
  *             return -1
  *         elif self.upper_bound == other.upper_bound:             # <<<<<<<<<<<<<<
@@ -6971,7 +6929,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":281
+  /* "cyinterval/cyinterval.pyx":270
  *                 return 0
  *         else:
  *             return 1             # <<<<<<<<<<<<<<
@@ -6983,7 +6941,7 @@ static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(struct __p
     goto __pyx_L0;
   }
 
-  /* "cyinterval/cyinterval.pyx":263
+  /* "cyinterval/cyinterval.pyx":252
  *             return 1
  * 
  *     cpdef int upper_cmp(DateInterval self, DateInterval other):             # <<<<<<<<<<<<<<
@@ -7011,7 +6969,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_12DateInterval_13upper_cmp(P
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("upper_cmp (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_DateInterval, 1, "other", 0))) __PYX_ERR(0, 263, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_DateInterval, 1, "other", 0))) __PYX_ERR(0, 252, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_12DateInterval_12upper_cmp(((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *)__pyx_v_other));
 
   /* function exit code */
@@ -7029,7 +6987,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_12upper_cmp(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("upper_cmp", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7046,12 +7004,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_12upper_cmp(s
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":159
+/* "cyinterval/cyinterval.pxd":23
  * 
  * cdef class DateInterval(BaseInterval):
  *     cdef readonly date lower_bound             # <<<<<<<<<<<<<<
  *     cdef readonly date upper_bound
- *     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed,
+ *     cpdef tuple init_args(DateInterval self)
  */
 
 /* Python wrapper */
@@ -7083,12 +7041,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_11lower_bound
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":160
+/* "cyinterval/cyinterval.pxd":24
  * cdef class DateInterval(BaseInterval):
  *     cdef readonly date lower_bound
  *     cdef readonly date upper_bound             # <<<<<<<<<<<<<<
- *     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed,
- *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
+ *     cpdef tuple init_args(DateInterval self)
+ *     cpdef DateInterval intersection(DateInterval self, DateInterval other)
  */
 
 /* Python wrapper */
@@ -7120,9 +7078,9 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_11upper_bound
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":286
- *     cdef readonly int lower_bound
- *     cdef readonly int upper_bound
+/* "cyinterval/cyinterval.pyx":273
+ * 
+ * cdef class IntInterval(BaseInterval):
  *     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed,             # <<<<<<<<<<<<<<
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed
@@ -7132,7 +7090,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_12DateInterval_11upper_bound
 static int __pyx_pw_10cyinterval_10cyinterval_11IntInterval_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static int __pyx_pw_10cyinterval_10cyinterval_11IntInterval_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   int __pyx_v_lower_bound;
-  CYTHON_UNUSED int __pyx_v_upper_bound;
+  int __pyx_v_upper_bound;
   PyBoolObject *__pyx_v_lower_closed = 0;
   PyBoolObject *__pyx_v_upper_closed = 0;
   PyBoolObject *__pyx_v_lower_bounded = 0;
@@ -7164,31 +7122,31 @@ static int __pyx_pw_10cyinterval_10cyinterval_11IntInterval_1__init__(PyObject *
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_bound)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 1); __PYX_ERR(0, 286, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 1); __PYX_ERR(0, 273, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lower_closed)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 2); __PYX_ERR(0, 286, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 2); __PYX_ERR(0, 273, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_closed)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 3); __PYX_ERR(0, 286, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 3); __PYX_ERR(0, 273, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lower_bounded)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 4); __PYX_ERR(0, 286, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 4); __PYX_ERR(0, 273, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_bounded)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 5); __PYX_ERR(0, 286, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 5); __PYX_ERR(0, 273, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 286, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 273, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -7200,8 +7158,8 @@ static int __pyx_pw_10cyinterval_10cyinterval_11IntInterval_1__init__(PyObject *
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
-    __pyx_v_lower_bound = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_lower_bound == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 286, __pyx_L3_error)
-    __pyx_v_upper_bound = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_upper_bound == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 286, __pyx_L3_error)
+    __pyx_v_lower_bound = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_lower_bound == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 273, __pyx_L3_error)
+    __pyx_v_upper_bound = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_upper_bound == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 273, __pyx_L3_error)
     __pyx_v_lower_closed = ((PyBoolObject *)values[2]);
     __pyx_v_upper_closed = ((PyBoolObject *)values[3]);
     __pyx_v_lower_bounded = ((PyBoolObject *)values[4]);
@@ -7209,16 +7167,16 @@ static int __pyx_pw_10cyinterval_10cyinterval_11IntInterval_1__init__(PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 286, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 273, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cyinterval.cyinterval.IntInterval.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_closed), __pyx_ptype_7cpython_4bool_bool, 1, "lower_closed", 0))) __PYX_ERR(0, 286, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_closed), __pyx_ptype_7cpython_4bool_bool, 1, "upper_closed", 0))) __PYX_ERR(0, 287, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "lower_bounded", 0))) __PYX_ERR(0, 287, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "upper_bounded", 0))) __PYX_ERR(0, 287, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_closed), __pyx_ptype_7cpython_4bool_bool, 1, "lower_closed", 0))) __PYX_ERR(0, 273, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_closed), __pyx_ptype_7cpython_4bool_bool, 1, "upper_closed", 0))) __PYX_ERR(0, 274, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "lower_bounded", 0))) __PYX_ERR(0, 274, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "upper_bounded", 0))) __PYX_ERR(0, 274, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_11IntInterval___init__(((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self), __pyx_v_lower_bound, __pyx_v_upper_bound, __pyx_v_lower_closed, __pyx_v_upper_closed, __pyx_v_lower_bounded, __pyx_v_upper_bounded);
 
   /* function exit code */
@@ -7230,14 +7188,13 @@ static int __pyx_pw_10cyinterval_10cyinterval_11IntInterval_1__init__(PyObject *
   return __pyx_r;
 }
 
-static int __pyx_pf_10cyinterval_10cyinterval_11IntInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_v_lower_bound, CYTHON_UNUSED int __pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded) {
+static int __pyx_pf_10cyinterval_10cyinterval_11IntInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_v_lower_bound, int __pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  int __pyx_t_2;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cyinterval/cyinterval.pyx":288
+  /* "cyinterval/cyinterval.pyx":275
  *     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed,
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed             # <<<<<<<<<<<<<<
@@ -7250,12 +7207,12 @@ static int __pyx_pf_10cyinterval_10cyinterval_11IntInterval___init__(struct __py
   __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.lower_closed));
   __pyx_v_self->__pyx_base.lower_closed = __pyx_v_lower_closed;
 
-  /* "cyinterval/cyinterval.pyx":289
+  /* "cyinterval/cyinterval.pyx":276
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed
  *         self.upper_closed = upper_closed             # <<<<<<<<<<<<<<
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_upper_closed));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_closed));
@@ -7263,11 +7220,11 @@ static int __pyx_pf_10cyinterval_10cyinterval_11IntInterval___init__(struct __py
   __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.upper_closed));
   __pyx_v_self->__pyx_base.upper_closed = __pyx_v_upper_closed;
 
-  /* "cyinterval/cyinterval.pyx":290
+  /* "cyinterval/cyinterval.pyx":277
  *         self.lower_closed = lower_closed
  *         self.upper_closed = upper_closed
  *         self.lower_bounded = lower_bounded             # <<<<<<<<<<<<<<
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_lower_bounded));
@@ -7276,75 +7233,78 @@ static int __pyx_pf_10cyinterval_10cyinterval_11IntInterval___init__(struct __py
   __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
   __pyx_v_self->__pyx_base.lower_bounded = __pyx_v_lower_bounded;
 
-  /* "cyinterval/cyinterval.pyx":291
+  /* "cyinterval/cyinterval.pyx":278
  *         self.upper_closed = upper_closed
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded             # <<<<<<<<<<<<<<
+ *         self.upper_bounded = upper_bounded             # <<<<<<<<<<<<<<
  *         if lower_bounded:
  *             self.lower_bound = lower_bound
  */
-  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_bouned, ((PyObject *)__pyx_v_upper_bounded)) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  __Pyx_INCREF(((PyObject *)__pyx_v_upper_bounded));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_bounded));
+  __Pyx_GOTREF(__pyx_v_self->__pyx_base.upper_bounded);
+  __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
+  __pyx_v_self->__pyx_base.upper_bounded = __pyx_v_upper_bounded;
 
-  /* "cyinterval/cyinterval.pyx":292
+  /* "cyinterval/cyinterval.pyx":279
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:             # <<<<<<<<<<<<<<
  *             self.lower_bound = lower_bound
  *         if upper_bounded:
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_lower_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_lower_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 279, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "cyinterval/cyinterval.pyx":293
- *         self.upper_bouned = upper_bounded
+    /* "cyinterval/cyinterval.pyx":280
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:
  *             self.lower_bound = lower_bound             # <<<<<<<<<<<<<<
  *         if upper_bounded:
- *             self.upper_bound = upper_bounded
+ *             self.upper_bound = upper_bound
  */
     __pyx_v_self->lower_bound = __pyx_v_lower_bound;
 
-    /* "cyinterval/cyinterval.pyx":292
+    /* "cyinterval/cyinterval.pyx":279
  *         self.lower_bounded = lower_bounded
- *         self.upper_bouned = upper_bounded
+ *         self.upper_bounded = upper_bounded
  *         if lower_bounded:             # <<<<<<<<<<<<<<
  *             self.lower_bound = lower_bound
  *         if upper_bounded:
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":294
+  /* "cyinterval/cyinterval.pyx":281
  *         if lower_bounded:
  *             self.lower_bound = lower_bound
  *         if upper_bounded:             # <<<<<<<<<<<<<<
- *             self.upper_bound = upper_bounded
+ *             self.upper_bound = upper_bound
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_upper_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_upper_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 281, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "cyinterval/cyinterval.pyx":295
+    /* "cyinterval/cyinterval.pyx":282
  *             self.lower_bound = lower_bound
  *         if upper_bounded:
- *             self.upper_bound = upper_bounded             # <<<<<<<<<<<<<<
+ *             self.upper_bound = upper_bound             # <<<<<<<<<<<<<<
  * 
  *     cpdef tuple init_args(IntInterval self):
  */
-    __pyx_t_2 = __Pyx_PyInt_As_int(((PyObject *)__pyx_v_upper_bounded)); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 295, __pyx_L1_error)
-    __pyx_v_self->upper_bound = __pyx_t_2;
+    __pyx_v_self->upper_bound = __pyx_v_upper_bound;
 
-    /* "cyinterval/cyinterval.pyx":294
+    /* "cyinterval/cyinterval.pyx":281
  *         if lower_bounded:
  *             self.lower_bound = lower_bound
  *         if upper_bounded:             # <<<<<<<<<<<<<<
- *             self.upper_bound = upper_bounded
+ *             self.upper_bound = upper_bound
  * 
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":286
- *     cdef readonly int lower_bound
- *     cdef readonly int upper_bound
+  /* "cyinterval/cyinterval.pyx":273
+ * 
+ * cdef class IntInterval(BaseInterval):
  *     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed,             # <<<<<<<<<<<<<<
  *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
  *         self.lower_closed = lower_closed
@@ -7361,8 +7321,8 @@ static int __pyx_pf_10cyinterval_10cyinterval_11IntInterval___init__(struct __py
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":297
- *             self.upper_bound = upper_bounded
+/* "cyinterval/cyinterval.pyx":284
+ *             self.upper_bound = upper_bound
  * 
  *     cpdef tuple init_args(IntInterval self):             # <<<<<<<<<<<<<<
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
@@ -7382,7 +7342,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_init_args(struc
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_init_args); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_init_args); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_11IntInterval_3init_args)) {
       __Pyx_XDECREF(__pyx_r);
@@ -7398,14 +7358,14 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_init_args(struc
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 297, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 284, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 297, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 284, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 297, __pyx_L1_error)
+      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 284, __pyx_L1_error)
       __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7414,7 +7374,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_init_args(struc
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":298
+  /* "cyinterval/cyinterval.pyx":285
  * 
  *     cpdef tuple init_args(IntInterval self):
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,             # <<<<<<<<<<<<<<
@@ -7422,19 +7382,19 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_init_args(struc
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->lower_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->lower_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->upper_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->upper_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "cyinterval/cyinterval.pyx":299
+  /* "cyinterval/cyinterval.pyx":286
  *     cpdef tuple init_args(IntInterval self):
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
  *                 self.lower_bounded, self.upper_bounded)             # <<<<<<<<<<<<<<
  * 
  *     cpdef IntInterval intersection(IntInterval self, IntInterval other):
  */
-  __pyx_t_3 = PyTuple_New(6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -7458,8 +7418,8 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_init_args(struc
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":297
- *             self.upper_bound = upper_bounded
+  /* "cyinterval/cyinterval.pyx":284
+ *             self.upper_bound = upper_bound
  * 
  *     cpdef tuple init_args(IntInterval self):             # <<<<<<<<<<<<<<
  *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
@@ -7499,7 +7459,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_2init_args(str
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("init_args", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_11IntInterval_init_args(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_11IntInterval_init_args(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7516,7 +7476,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_2init_args(str
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":301
+/* "cyinterval/cyinterval.pyx":288
  *                 self.lower_bounded, self.upper_bounded)
  * 
  *     cpdef IntInterval intersection(IntInterval self, IntInterval other):             # <<<<<<<<<<<<<<
@@ -7548,7 +7508,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersection); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersection); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_11IntInterval_5intersection)) {
       __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -7564,13 +7524,13 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -7578,25 +7538,25 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 301, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 288, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_other));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_10cyinterval_10cyinterval_IntInterval))))) __PYX_ERR(0, 301, __pyx_L1_error)
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_10cyinterval_10cyinterval_IntInterval))))) __PYX_ERR(0, 288, __pyx_L1_error)
       __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7605,7 +7565,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":302
+  /* "cyinterval/cyinterval.pyx":289
  * 
  *     cpdef IntInterval intersection(IntInterval self, IntInterval other):
  *         cdef int lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
@@ -7614,7 +7574,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
  */
   __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-  /* "cyinterval/cyinterval.pyx":303
+  /* "cyinterval/cyinterval.pyx":290
  *     cpdef IntInterval intersection(IntInterval self, IntInterval other):
  *         cdef int lower_cmp = self.lower_cmp(other)
  *         cdef int upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
@@ -7623,7 +7583,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
  */
   __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-  /* "cyinterval/cyinterval.pyx":306
+  /* "cyinterval/cyinterval.pyx":293
  *         cdef int new_lower_bound, new_upper_bound
  *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
  *         if lower_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -7633,7 +7593,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
   __pyx_t_6 = ((__pyx_v_lower_cmp <= 0) != 0);
   if (__pyx_t_6) {
 
-    /* "cyinterval/cyinterval.pyx":307
+    /* "cyinterval/cyinterval.pyx":294
  *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
  *         if lower_cmp <= 0:
  *             new_lower_bound = other.lower_bound             # <<<<<<<<<<<<<<
@@ -7643,7 +7603,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_t_7 = __pyx_v_other->lower_bound;
     __pyx_v_new_lower_bound = __pyx_t_7;
 
-    /* "cyinterval/cyinterval.pyx":308
+    /* "cyinterval/cyinterval.pyx":295
  *         if lower_cmp <= 0:
  *             new_lower_bound = other.lower_bound
  *             new_lower_bounded = other.lower_bounded             # <<<<<<<<<<<<<<
@@ -7655,7 +7615,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_v_new_lower_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":309
+    /* "cyinterval/cyinterval.pyx":296
  *             new_lower_bound = other.lower_bound
  *             new_lower_bounded = other.lower_bounded
  *             new_lower_closed = other.lower_closed             # <<<<<<<<<<<<<<
@@ -7667,7 +7627,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_v_new_lower_closed = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":306
+    /* "cyinterval/cyinterval.pyx":293
  *         cdef int new_lower_bound, new_upper_bound
  *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
  *         if lower_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -7677,7 +7637,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     goto __pyx_L3;
   }
 
-  /* "cyinterval/cyinterval.pyx":311
+  /* "cyinterval/cyinterval.pyx":298
  *             new_lower_closed = other.lower_closed
  *         else:
  *             new_lower_bound = self.lower_bound             # <<<<<<<<<<<<<<
@@ -7688,7 +7648,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_t_7 = __pyx_v_self->lower_bound;
     __pyx_v_new_lower_bound = __pyx_t_7;
 
-    /* "cyinterval/cyinterval.pyx":312
+    /* "cyinterval/cyinterval.pyx":299
  *         else:
  *             new_lower_bound = self.lower_bound
  *             new_lower_bounded = self.lower_bounded             # <<<<<<<<<<<<<<
@@ -7700,7 +7660,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_v_new_lower_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":313
+    /* "cyinterval/cyinterval.pyx":300
  *             new_lower_bound = self.lower_bound
  *             new_lower_bounded = self.lower_bounded
  *             new_lower_closed = self.lower_closed             # <<<<<<<<<<<<<<
@@ -7714,7 +7674,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
   }
   __pyx_L3:;
 
-  /* "cyinterval/cyinterval.pyx":315
+  /* "cyinterval/cyinterval.pyx":302
  *             new_lower_closed = self.lower_closed
  * 
  *         if upper_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -7724,7 +7684,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
   __pyx_t_6 = ((__pyx_v_upper_cmp <= 0) != 0);
   if (__pyx_t_6) {
 
-    /* "cyinterval/cyinterval.pyx":316
+    /* "cyinterval/cyinterval.pyx":303
  * 
  *         if upper_cmp <= 0:
  *             new_upper_bound = self.upper_bound             # <<<<<<<<<<<<<<
@@ -7734,7 +7694,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_t_7 = __pyx_v_self->upper_bound;
     __pyx_v_new_upper_bound = __pyx_t_7;
 
-    /* "cyinterval/cyinterval.pyx":317
+    /* "cyinterval/cyinterval.pyx":304
  *         if upper_cmp <= 0:
  *             new_upper_bound = self.upper_bound
  *             new_upper_bounded = self.upper_bounded             # <<<<<<<<<<<<<<
@@ -7746,7 +7706,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_v_new_upper_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":318
+    /* "cyinterval/cyinterval.pyx":305
  *             new_upper_bound = self.upper_bound
  *             new_upper_bounded = self.upper_bounded
  *             new_upper_closed = self.upper_closed             # <<<<<<<<<<<<<<
@@ -7758,7 +7718,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_v_new_upper_closed = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":315
+    /* "cyinterval/cyinterval.pyx":302
  *             new_lower_closed = self.lower_closed
  * 
  *         if upper_cmp <= 0:             # <<<<<<<<<<<<<<
@@ -7768,7 +7728,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     goto __pyx_L4;
   }
 
-  /* "cyinterval/cyinterval.pyx":320
+  /* "cyinterval/cyinterval.pyx":307
  *             new_upper_closed = self.upper_closed
  *         else:
  *             new_upper_bound = other.upper_bound             # <<<<<<<<<<<<<<
@@ -7779,7 +7739,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_t_7 = __pyx_v_other->upper_bound;
     __pyx_v_new_upper_bound = __pyx_t_7;
 
-    /* "cyinterval/cyinterval.pyx":321
+    /* "cyinterval/cyinterval.pyx":308
  *         else:
  *             new_upper_bound = other.upper_bound
  *             new_upper_bounded = other.upper_bounded             # <<<<<<<<<<<<<<
@@ -7791,7 +7751,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
     __pyx_v_new_upper_bounded = ((PyBoolObject *)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cyinterval/cyinterval.pyx":322
+    /* "cyinterval/cyinterval.pyx":309
  *             new_upper_bound = other.upper_bound
  *             new_upper_bounded = other.upper_bounded
  *             new_upper_closed = other.upper_closed             # <<<<<<<<<<<<<<
@@ -7805,7 +7765,7 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
   }
   __pyx_L4:;
 
-  /* "cyinterval/cyinterval.pyx":323
+  /* "cyinterval/cyinterval.pyx":310
  *             new_upper_bounded = other.upper_bounded
  *             new_upper_closed = other.upper_closed
  *         return IntInterval(new_lower_bound, new_upper_bound, new_lower_closed,             # <<<<<<<<<<<<<<
@@ -7813,19 +7773,19 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
  * 
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_new_lower_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_new_lower_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_new_upper_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_new_upper_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "cyinterval/cyinterval.pyx":324
+  /* "cyinterval/cyinterval.pyx":311
  *             new_upper_closed = other.upper_closed
  *         return IntInterval(new_lower_bound, new_upper_bound, new_lower_closed,
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)             # <<<<<<<<<<<<<<
  * 
- *     cpdef empty(IntInterval self):
+ *     cpdef bool empty(IntInterval self):
  */
-  __pyx_t_3 = PyTuple_New(6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -7846,21 +7806,21 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_f_10cyinter
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":323
+  /* "cyinterval/cyinterval.pyx":310
  *             new_upper_bounded = other.upper_bounded
  *             new_upper_closed = other.upper_closed
  *         return IntInterval(new_lower_bound, new_upper_bound, new_lower_closed,             # <<<<<<<<<<<<<<
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_IntInterval), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_IntInterval), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":301
+  /* "cyinterval/cyinterval.pyx":288
  *                 self.lower_bounded, self.upper_bounded)
  * 
  *     cpdef IntInterval intersection(IntInterval self, IntInterval other):             # <<<<<<<<<<<<<<
@@ -7893,7 +7853,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_11IntInterval_5intersection(
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("intersection (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_IntInterval, 1, "other", 0))) __PYX_ERR(0, 301, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_IntInterval, 1, "other", 0))) __PYX_ERR(0, 288, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_11IntInterval_4intersection(((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_v_other));
 
   /* function exit code */
@@ -7911,7 +7871,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_4intersection(
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("intersection", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_11IntInterval_intersection(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_11IntInterval_intersection(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7928,17 +7888,17 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_4intersection(
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":326
+/* "cyinterval/cyinterval.pyx":313
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
  * 
- *     cpdef empty(IntInterval self):             # <<<<<<<<<<<<<<
+ *     cpdef bool empty(IntInterval self):             # <<<<<<<<<<<<<<
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_11IntInterval_7empty(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_skip_dispatch) {
-  PyObject *__pyx_r = NULL;
+static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_skip_dispatch) {
+  PyBoolObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -7951,10 +7911,10 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_11IntInterval_7empty)) {
-      __Pyx_XDECREF(__pyx_r);
+      __Pyx_XDECREF(((PyObject *)__pyx_r));
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
       if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -7967,14 +7927,15 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 326, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 326, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool))))) __PYX_ERR(0, 313, __pyx_L1_error)
+      __pyx_r = ((PyBoolObject *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -7982,22 +7943,22 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":327
+  /* "cyinterval/cyinterval.pyx":314
  * 
- *     cpdef empty(IntInterval self):
+ *     cpdef bool empty(IntInterval self):
  *         return ((self.lower_bounded and self.upper_bounded) and             # <<<<<<<<<<<<<<
  *                 (((self.lower_bound == self.upper_bound) and
  *                 (not (self.lower_closed or self.upper_closed))) or
  */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 327, __pyx_L1_error)
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 314, __pyx_L1_error)
   if (__pyx_t_5) {
   } else {
     __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
     __pyx_t_1 = __pyx_v_self->__pyx_base.lower_bounded;
     goto __pyx_L3_bool_binop_done;
   }
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 327, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 314, __pyx_L1_error)
   if (__pyx_t_5) {
   } else {
     __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
@@ -8005,8 +7966,8 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "cyinterval/cyinterval.pyx":328
- *     cpdef empty(IntInterval self):
+  /* "cyinterval/cyinterval.pyx":315
+ *     cpdef bool empty(IntInterval self):
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and             # <<<<<<<<<<<<<<
  *                 (not (self.lower_closed or self.upper_closed))) or
@@ -8018,54 +7979,56 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __
   } else {
   }
 
-  /* "cyinterval/cyinterval.pyx":329
+  /* "cyinterval/cyinterval.pyx":316
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and
  *                 (not (self.lower_closed or self.upper_closed))) or             # <<<<<<<<<<<<<<
  *                 self.lower_bound > self.upper_bound))
  * 
  */
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 316, __pyx_L1_error)
   if (!__pyx_t_6) {
   } else {
     __pyx_t_5 = __pyx_t_6;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 316, __pyx_L1_error)
   __pyx_t_5 = __pyx_t_6;
   __pyx_L8_bool_binop_done:;
   __pyx_t_6 = (!__pyx_t_5);
   if (!__pyx_t_6) {
   } else {
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 316, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
+    if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool)))) __PYX_ERR(0, 316, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L3_bool_binop_done;
   }
   __pyx_L6_next_or:;
 
-  /* "cyinterval/cyinterval.pyx":330
+  /* "cyinterval/cyinterval.pyx":317
  *                 (((self.lower_bound == self.upper_bound) and
  *                 (not (self.lower_closed or self.upper_closed))) or
  *                 self.lower_bound > self.upper_bound))             # <<<<<<<<<<<<<<
  * 
- *     cpdef richcmp(IntInterval self, IntInterval other, int op):
+ *     cpdef int richcmp(IntInterval self, IntInterval other, int op):
  */
   __pyx_t_6 = (__pyx_v_self->lower_bound > __pyx_v_self->upper_bound);
-  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool)))) __PYX_ERR(0, 317, __pyx_L1_error)
   __pyx_t_1 = __pyx_t_2;
   __pyx_t_2 = 0;
   __pyx_L3_bool_binop_done:;
-  __pyx_r = __pyx_t_1;
+  __pyx_r = ((PyBoolObject *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":326
+  /* "cyinterval/cyinterval.pyx":313
  *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
  * 
- *     cpdef empty(IntInterval self):             # <<<<<<<<<<<<<<
+ *     cpdef bool empty(IntInterval self):             # <<<<<<<<<<<<<<
  *         return ((self.lower_bounded and self.upper_bounded) and
  *                 (((self.lower_bound == self.upper_bound) and
  */
@@ -8079,7 +8042,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(struct __
   __Pyx_AddTraceback("cyinterval.cyinterval.IntInterval.empty", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_XGIVEREF((PyObject *)__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -8103,7 +8066,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_6empty(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("empty", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8120,19 +8083,19 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_6empty(struct 
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":332
+/* "cyinterval/cyinterval.pyx":319
  *                 self.lower_bound > self.upper_bound))
  * 
- *     cpdef richcmp(IntInterval self, IntInterval other, int op):             # <<<<<<<<<<<<<<
+ *     cpdef int richcmp(IntInterval self, IntInterval other, int op):             # <<<<<<<<<<<<<<
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_11IntInterval_9richcmp(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch) {
+static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch) {
   int __pyx_v_lower_cmp;
   int __pyx_v_upper_cmp;
-  PyObject *__pyx_r = NULL;
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -8147,11 +8110,10 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_richcmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_richcmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_11IntInterval_9richcmp)) {
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_op); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 332, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_op); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -8169,7 +8131,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, ((PyObject *)__pyx_v_other), __pyx_t_3};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -8178,14 +8140,14 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, ((PyObject *)__pyx_v_other), __pyx_t_3};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else
       #endif
       {
-        __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 332, __pyx_L1_error)
+        __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 319, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         if (__pyx_t_5) {
           __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -8196,20 +8158,21 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
         __Pyx_GIVEREF(__pyx_t_3);
         PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_t_3);
         __pyx_t_3 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 319, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":335
+  /* "cyinterval/cyinterval.pyx":322
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  *         if op == 0 or op == 1:             # <<<<<<<<<<<<<<
@@ -8220,7 +8183,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
     case 0:
     case 1:
 
-    /* "cyinterval/cyinterval.pyx":336
+    /* "cyinterval/cyinterval.pyx":323
  *         cdef int upper_cmp
  *         if op == 0 or op == 1:
  *             lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
@@ -8229,7 +8192,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-    /* "cyinterval/cyinterval.pyx":337
+    /* "cyinterval/cyinterval.pyx":324
  *         if op == 0 or op == 1:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -8239,19 +8202,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
     __pyx_t_8 = ((__pyx_v_lower_cmp == -1L) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":338
+      /* "cyinterval/cyinterval.pyx":325
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:
  *                 return True             # <<<<<<<<<<<<<<
  *             elif lower_cmp == 1:
  *                 return False
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_True);
-      __pyx_r = Py_True;
+      __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":337
+      /* "cyinterval/cyinterval.pyx":324
  *         if op == 0 or op == 1:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -8260,7 +8221,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":339
+    /* "cyinterval/cyinterval.pyx":326
  *             if lower_cmp == -1:
  *                 return True
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -8270,19 +8231,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
     __pyx_t_8 = ((__pyx_v_lower_cmp == 1) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":340
+      /* "cyinterval/cyinterval.pyx":327
  *                 return True
  *             elif lower_cmp == 1:
  *                 return False             # <<<<<<<<<<<<<<
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_False);
-      __pyx_r = Py_False;
+      __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":339
+      /* "cyinterval/cyinterval.pyx":326
  *             if lower_cmp == -1:
  *                 return True
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -8291,7 +8250,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":342
+    /* "cyinterval/cyinterval.pyx":329
  *                 return False
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
@@ -8301,7 +8260,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
     /*else*/ {
       __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-      /* "cyinterval/cyinterval.pyx":343
+      /* "cyinterval/cyinterval.pyx":330
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -8311,19 +8270,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
       __pyx_t_8 = ((__pyx_v_upper_cmp == -1L) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":344
+        /* "cyinterval/cyinterval.pyx":331
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:
  *                     return True             # <<<<<<<<<<<<<<
  *                 elif upper_cmp == 1:
  *                     return False
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_True);
-        __pyx_r = Py_True;
+        __pyx_r = 1;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":343
+        /* "cyinterval/cyinterval.pyx":330
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -8332,7 +8289,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":345
+      /* "cyinterval/cyinterval.pyx":332
  *                 if upper_cmp == -1:
  *                     return True
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -8342,19 +8299,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
       __pyx_t_8 = ((__pyx_v_upper_cmp == 1) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":346
+        /* "cyinterval/cyinterval.pyx":333
  *                     return True
  *                 elif upper_cmp == 1:
  *                     return False             # <<<<<<<<<<<<<<
  *                 else: # upper_cmp == 0
  *                     return op == 1
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_False);
-        __pyx_r = Py_False;
+        __pyx_r = 0;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":345
+        /* "cyinterval/cyinterval.pyx":332
  *                 if upper_cmp == -1:
  *                     return True
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -8363,7 +8318,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":348
+      /* "cyinterval/cyinterval.pyx":335
  *                     return False
  *                 else: # upper_cmp == 0
  *                     return op == 1             # <<<<<<<<<<<<<<
@@ -8371,16 +8326,12 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  */
       /*else*/ {
-        __Pyx_XDECREF(__pyx_r);
-        __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_op == 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 348, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_r = __pyx_t_1;
-        __pyx_t_1 = 0;
+        __pyx_r = (__pyx_v_op == 1);
         goto __pyx_L0;
       }
     }
 
-    /* "cyinterval/cyinterval.pyx":335
+    /* "cyinterval/cyinterval.pyx":322
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  *         if op == 0 or op == 1:             # <<<<<<<<<<<<<<
@@ -8389,7 +8340,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     break;
 
-    /* "cyinterval/cyinterval.pyx":349
+    /* "cyinterval/cyinterval.pyx":336
  *                 else: # upper_cmp == 0
  *                     return op == 1
  *         elif op == 2:             # <<<<<<<<<<<<<<
@@ -8398,34 +8349,26 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     case 2:
 
-    /* "cyinterval/cyinterval.pyx":350
+    /* "cyinterval/cyinterval.pyx":337
  *                     return op == 1
  *         elif op == 2:
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)             # <<<<<<<<<<<<<<
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  */
-    __Pyx_XDECREF(__pyx_r);
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0) == 0);
     if (__pyx_t_8) {
     } else {
-      __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_6 = __pyx_t_8;
       goto __pyx_L5_bool_binop_done;
     }
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0) == 0);
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __pyx_t_2;
-    __pyx_t_2 = 0;
+    __pyx_t_6 = __pyx_t_8;
     __pyx_L5_bool_binop_done:;
-    __pyx_r = __pyx_t_1;
-    __pyx_t_1 = 0;
+    __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":349
+    /* "cyinterval/cyinterval.pyx":336
  *                 else: # upper_cmp == 0
  *                     return op == 1
  *         elif op == 2:             # <<<<<<<<<<<<<<
@@ -8434,7 +8377,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     break;
 
-    /* "cyinterval/cyinterval.pyx":351
+    /* "cyinterval/cyinterval.pyx":338
  *         elif op == 2:
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  *         elif op == 3:             # <<<<<<<<<<<<<<
@@ -8443,34 +8386,26 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     case 3:
 
-    /* "cyinterval/cyinterval.pyx":352
+    /* "cyinterval/cyinterval.pyx":339
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)             # <<<<<<<<<<<<<<
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)
  */
-    __Pyx_XDECREF(__pyx_r);
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0) != 0);
     if (!__pyx_t_8) {
     } else {
-      __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_6 = __pyx_t_8;
       goto __pyx_L7_bool_binop_done;
     }
     __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0) != 0);
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __pyx_t_2;
-    __pyx_t_2 = 0;
+    __pyx_t_6 = __pyx_t_8;
     __pyx_L7_bool_binop_done:;
-    __pyx_r = __pyx_t_1;
-    __pyx_t_1 = 0;
+    __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":351
+    /* "cyinterval/cyinterval.pyx":338
  *         elif op == 2:
  *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
  *         elif op == 3:             # <<<<<<<<<<<<<<
@@ -8479,7 +8414,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     break;
 
-    /* "cyinterval/cyinterval.pyx":353
+    /* "cyinterval/cyinterval.pyx":340
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  *         elif op == 4 or op == 5:             # <<<<<<<<<<<<<<
@@ -8489,7 +8424,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
     case 4:
     case 5:
 
-    /* "cyinterval/cyinterval.pyx":354
+    /* "cyinterval/cyinterval.pyx":341
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
@@ -8498,7 +8433,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-    /* "cyinterval/cyinterval.pyx":355
+    /* "cyinterval/cyinterval.pyx":342
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -8508,19 +8443,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
     __pyx_t_8 = ((__pyx_v_lower_cmp == -1L) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":356
+      /* "cyinterval/cyinterval.pyx":343
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:
  *                 return False             # <<<<<<<<<<<<<<
  *             elif lower_cmp == 1:
  *                 return True
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_False);
-      __pyx_r = Py_False;
+      __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":355
+      /* "cyinterval/cyinterval.pyx":342
  *         elif op == 4 or op == 5:
  *             lower_cmp = self.lower_cmp(other)
  *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
@@ -8529,7 +8462,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":357
+    /* "cyinterval/cyinterval.pyx":344
  *             if lower_cmp == -1:
  *                 return False
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -8539,19 +8472,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
     __pyx_t_8 = ((__pyx_v_lower_cmp == 1) != 0);
     if (__pyx_t_8) {
 
-      /* "cyinterval/cyinterval.pyx":358
+      /* "cyinterval/cyinterval.pyx":345
  *                 return False
  *             elif lower_cmp == 1:
  *                 return True             # <<<<<<<<<<<<<<
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  */
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_True);
-      __pyx_r = Py_True;
+      __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":357
+      /* "cyinterval/cyinterval.pyx":344
  *             if lower_cmp == -1:
  *                 return False
  *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
@@ -8560,7 +8491,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":360
+    /* "cyinterval/cyinterval.pyx":347
  *                 return True
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
@@ -8570,7 +8501,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
     /*else*/ {
       __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
 
-      /* "cyinterval/cyinterval.pyx":361
+      /* "cyinterval/cyinterval.pyx":348
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -8580,19 +8511,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
       __pyx_t_8 = ((__pyx_v_upper_cmp == -1L) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":362
+        /* "cyinterval/cyinterval.pyx":349
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:
  *                     return False             # <<<<<<<<<<<<<<
  *                 elif upper_cmp == 1:
  *                     return True
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_False);
-        __pyx_r = Py_False;
+        __pyx_r = 0;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":361
+        /* "cyinterval/cyinterval.pyx":348
  *             else: # lower_cmp == 0
  *                 upper_cmp = self.upper_cmp(other)
  *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
@@ -8601,7 +8530,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":363
+      /* "cyinterval/cyinterval.pyx":350
  *                 if upper_cmp == -1:
  *                     return False
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -8611,19 +8540,17 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
       __pyx_t_8 = ((__pyx_v_upper_cmp == 1) != 0);
       if (__pyx_t_8) {
 
-        /* "cyinterval/cyinterval.pyx":364
+        /* "cyinterval/cyinterval.pyx":351
  *                     return False
  *                 elif upper_cmp == 1:
  *                     return True             # <<<<<<<<<<<<<<
  *                 else: # upper_cmp == 0
  *                     return op == 5
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_True);
-        __pyx_r = Py_True;
+        __pyx_r = 1;
         goto __pyx_L0;
 
-        /* "cyinterval/cyinterval.pyx":363
+        /* "cyinterval/cyinterval.pyx":350
  *                 if upper_cmp == -1:
  *                     return False
  *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
@@ -8632,7 +8559,7 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  */
       }
 
-      /* "cyinterval/cyinterval.pyx":366
+      /* "cyinterval/cyinterval.pyx":353
  *                     return True
  *                 else: # upper_cmp == 0
  *                     return op == 5             # <<<<<<<<<<<<<<
@@ -8640,16 +8567,12 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
  *     cpdef int lower_cmp(IntInterval self, IntInterval other):
  */
       /*else*/ {
-        __Pyx_XDECREF(__pyx_r);
-        __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_op == 5)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 366, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_r = __pyx_t_1;
-        __pyx_t_1 = 0;
+        __pyx_r = (__pyx_v_op == 5);
         goto __pyx_L0;
       }
     }
 
-    /* "cyinterval/cyinterval.pyx":353
+    /* "cyinterval/cyinterval.pyx":340
  *         elif op == 3:
  *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
  *         elif op == 4 or op == 5:             # <<<<<<<<<<<<<<
@@ -8660,16 +8583,16 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
     default: break;
   }
 
-  /* "cyinterval/cyinterval.pyx":332
+  /* "cyinterval/cyinterval.pyx":319
  *                 self.lower_bound > self.upper_bound))
  * 
- *     cpdef richcmp(IntInterval self, IntInterval other, int op):             # <<<<<<<<<<<<<<
+ *     cpdef int richcmp(IntInterval self, IntInterval other, int op):             # <<<<<<<<<<<<<<
  *         cdef int lower_cmp
  *         cdef int upper_cmp
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
@@ -8678,10 +8601,9 @@ static PyObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(struct 
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("cyinterval.cyinterval.IntInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_WriteUnraisable("cyinterval.cyinterval.IntInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -8714,11 +8636,11 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_11IntInterval_9richcmp(PyObj
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_op)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, 1); __PYX_ERR(0, 332, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, 1); __PYX_ERR(0, 319, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "richcmp") < 0)) __PYX_ERR(0, 332, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "richcmp") < 0)) __PYX_ERR(0, 319, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -8727,17 +8649,17 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_11IntInterval_9richcmp(PyObj
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_other = ((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)values[0]);
-    __pyx_v_op = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_op == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 332, __pyx_L3_error)
+    __pyx_v_op = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_op == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 319, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 332, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 319, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cyinterval.cyinterval.IntInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_IntInterval, 1, "other", 0))) __PYX_ERR(0, 332, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_IntInterval, 1, "other", 0))) __PYX_ERR(0, 319, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_11IntInterval_8richcmp(((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self), __pyx_v_other, __pyx_v_op);
 
   /* function exit code */
@@ -8755,7 +8677,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_8richcmp(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("richcmp", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(__pyx_v_self, __pyx_v_other, __pyx_v_op, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp(__pyx_v_self, __pyx_v_other, __pyx_v_op, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8772,7 +8694,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_8richcmp(struc
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":368
+/* "cyinterval/cyinterval.pyx":355
  *                     return op == 5
  * 
  *     cpdef int lower_cmp(IntInterval self, IntInterval other):             # <<<<<<<<<<<<<<
@@ -8798,7 +8720,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lower_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 368, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lower_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 355, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_11IntInterval_11lower_cmp)) {
       __Pyx_INCREF(__pyx_t_1);
@@ -8813,13 +8735,13 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 368, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 368, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -8827,25 +8749,25 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 368, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 368, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 355, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_other));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 368, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 368, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 355, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -8854,29 +8776,29 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":369
+  /* "cyinterval/cyinterval.pyx":356
  * 
  *     cpdef int lower_cmp(IntInterval self, IntInterval other):
  *         if not self.lower_bounded:             # <<<<<<<<<<<<<<
  *             if not other.lower_bounded:
  *                 return 0
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 356, __pyx_L1_error)
   __pyx_t_8 = ((!__pyx_t_7) != 0);
   if (__pyx_t_8) {
 
-    /* "cyinterval/cyinterval.pyx":370
+    /* "cyinterval/cyinterval.pyx":357
  *     cpdef int lower_cmp(IntInterval self, IntInterval other):
  *         if not self.lower_bounded:
  *             if not other.lower_bounded:             # <<<<<<<<<<<<<<
  *                 return 0
  *             else:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 370, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     __pyx_t_7 = ((!__pyx_t_8) != 0);
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":371
+      /* "cyinterval/cyinterval.pyx":358
  *         if not self.lower_bounded:
  *             if not other.lower_bounded:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -8886,7 +8808,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":370
+      /* "cyinterval/cyinterval.pyx":357
  *     cpdef int lower_cmp(IntInterval self, IntInterval other):
  *         if not self.lower_bounded:
  *             if not other.lower_bounded:             # <<<<<<<<<<<<<<
@@ -8895,7 +8817,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":373
+    /* "cyinterval/cyinterval.pyx":360
  *                 return 0
  *             else:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -8907,7 +8829,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":369
+    /* "cyinterval/cyinterval.pyx":356
  * 
  *     cpdef int lower_cmp(IntInterval self, IntInterval other):
  *         if not self.lower_bounded:             # <<<<<<<<<<<<<<
@@ -8916,17 +8838,17 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":374
+  /* "cyinterval/cyinterval.pyx":361
  *             else:
  *                 return -1
  *         elif other.lower_bounded:             # <<<<<<<<<<<<<<
  *             return 1
  *         if self.lower_bound < other.lower_bound:
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":375
+    /* "cyinterval/cyinterval.pyx":362
  *                 return -1
  *         elif other.lower_bounded:
  *             return 1             # <<<<<<<<<<<<<<
@@ -8936,7 +8858,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":374
+    /* "cyinterval/cyinterval.pyx":361
  *             else:
  *                 return -1
  *         elif other.lower_bounded:             # <<<<<<<<<<<<<<
@@ -8945,7 +8867,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":376
+  /* "cyinterval/cyinterval.pyx":363
  *         elif other.lower_bounded:
  *             return 1
  *         if self.lower_bound < other.lower_bound:             # <<<<<<<<<<<<<<
@@ -8955,7 +8877,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
   __pyx_t_7 = ((__pyx_v_self->lower_bound < __pyx_v_other->lower_bound) != 0);
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":377
+    /* "cyinterval/cyinterval.pyx":364
  *             return 1
  *         if self.lower_bound < other.lower_bound:
  *             return -1             # <<<<<<<<<<<<<<
@@ -8965,7 +8887,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
     __pyx_r = -1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":376
+    /* "cyinterval/cyinterval.pyx":363
  *         elif other.lower_bounded:
  *             return 1
  *         if self.lower_bound < other.lower_bound:             # <<<<<<<<<<<<<<
@@ -8974,7 +8896,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":378
+  /* "cyinterval/cyinterval.pyx":365
  *         if self.lower_bound < other.lower_bound:
  *             return -1
  *         elif self.lower_bound == other.lower_bound:             # <<<<<<<<<<<<<<
@@ -8984,26 +8906,26 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
   __pyx_t_7 = ((__pyx_v_self->lower_bound == __pyx_v_other->lower_bound) != 0);
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":379
+    /* "cyinterval/cyinterval.pyx":366
  *             return -1
  *         elif self.lower_bound == other.lower_bound:
  *             if self.lower_closed and not other.lower_closed:             # <<<<<<<<<<<<<<
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 379, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 366, __pyx_L1_error)
     if (__pyx_t_8) {
     } else {
       __pyx_t_7 = __pyx_t_8;
       goto __pyx_L7_bool_binop_done;
     }
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 379, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 366, __pyx_L1_error)
     __pyx_t_9 = ((!__pyx_t_8) != 0);
     __pyx_t_7 = __pyx_t_9;
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":380
+      /* "cyinterval/cyinterval.pyx":367
  *         elif self.lower_bound == other.lower_bound:
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -9013,7 +8935,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
       __pyx_r = -1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":379
+      /* "cyinterval/cyinterval.pyx":366
  *             return -1
  *         elif self.lower_bound == other.lower_bound:
  *             if self.lower_closed and not other.lower_closed:             # <<<<<<<<<<<<<<
@@ -9022,26 +8944,26 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":381
+    /* "cyinterval/cyinterval.pyx":368
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:             # <<<<<<<<<<<<<<
  *                 return 1
  *             else:
  */
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 368, __pyx_L1_error)
     if (__pyx_t_9) {
     } else {
       __pyx_t_7 = __pyx_t_9;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 368, __pyx_L1_error)
     __pyx_t_8 = ((!__pyx_t_9) != 0);
     __pyx_t_7 = __pyx_t_8;
     __pyx_L9_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":382
+      /* "cyinterval/cyinterval.pyx":369
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:
  *                 return 1             # <<<<<<<<<<<<<<
@@ -9051,7 +8973,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":381
+      /* "cyinterval/cyinterval.pyx":368
  *             if self.lower_closed and not other.lower_closed:
  *                 return -1
  *             elif other.lower_closed and not self.lower_closed:             # <<<<<<<<<<<<<<
@@ -9060,7 +8982,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":384
+    /* "cyinterval/cyinterval.pyx":371
  *                 return 1
  *             else:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -9072,7 +8994,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":378
+    /* "cyinterval/cyinterval.pyx":365
  *         if self.lower_bound < other.lower_bound:
  *             return -1
  *         elif self.lower_bound == other.lower_bound:             # <<<<<<<<<<<<<<
@@ -9081,7 +9003,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":386
+  /* "cyinterval/cyinterval.pyx":373
  *                 return 0
  *         else:
  *             return 1             # <<<<<<<<<<<<<<
@@ -9093,7 +9015,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(struct __py
     goto __pyx_L0;
   }
 
-  /* "cyinterval/cyinterval.pyx":368
+  /* "cyinterval/cyinterval.pyx":355
  *                     return op == 5
  * 
  *     cpdef int lower_cmp(IntInterval self, IntInterval other):             # <<<<<<<<<<<<<<
@@ -9121,7 +9043,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_11IntInterval_11lower_cmp(Py
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("lower_cmp (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_IntInterval, 1, "other", 0))) __PYX_ERR(0, 368, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_IntInterval, 1, "other", 0))) __PYX_ERR(0, 355, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_11IntInterval_10lower_cmp(((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_v_other));
 
   /* function exit code */
@@ -9139,7 +9061,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_10lower_cmp(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("lower_cmp", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 368, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9156,7 +9078,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_10lower_cmp(st
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":388
+/* "cyinterval/cyinterval.pyx":375
  *             return 1
  * 
  *     cpdef int upper_cmp(IntInterval self, IntInterval other):             # <<<<<<<<<<<<<<
@@ -9182,7 +9104,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 388, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 375, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_11IntInterval_13upper_cmp)) {
       __Pyx_INCREF(__pyx_t_1);
@@ -9197,13 +9119,13 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 388, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 375, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 388, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 375, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -9211,25 +9133,25 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 388, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 375, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 388, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 375, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_other));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 388, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 375, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 388, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 375, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -9238,29 +9160,29 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cyinterval/cyinterval.pyx":389
+  /* "cyinterval/cyinterval.pyx":376
  * 
  *     cpdef int upper_cmp(IntInterval self, IntInterval other):
  *         if not self.upper_bounded:             # <<<<<<<<<<<<<<
  *             if not other.upper_bounded:
  *                 return 0
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 389, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 376, __pyx_L1_error)
   __pyx_t_8 = ((!__pyx_t_7) != 0);
   if (__pyx_t_8) {
 
-    /* "cyinterval/cyinterval.pyx":390
+    /* "cyinterval/cyinterval.pyx":377
  *     cpdef int upper_cmp(IntInterval self, IntInterval other):
  *         if not self.upper_bounded:
  *             if not other.upper_bounded:             # <<<<<<<<<<<<<<
  *                 return 0
  *             else:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 377, __pyx_L1_error)
     __pyx_t_7 = ((!__pyx_t_8) != 0);
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":391
+      /* "cyinterval/cyinterval.pyx":378
  *         if not self.upper_bounded:
  *             if not other.upper_bounded:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -9270,7 +9192,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":390
+      /* "cyinterval/cyinterval.pyx":377
  *     cpdef int upper_cmp(IntInterval self, IntInterval other):
  *         if not self.upper_bounded:
  *             if not other.upper_bounded:             # <<<<<<<<<<<<<<
@@ -9279,7 +9201,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":393
+    /* "cyinterval/cyinterval.pyx":380
  *                 return 0
  *             else:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -9291,7 +9213,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":389
+    /* "cyinterval/cyinterval.pyx":376
  * 
  *     cpdef int upper_cmp(IntInterval self, IntInterval other):
  *         if not self.upper_bounded:             # <<<<<<<<<<<<<<
@@ -9300,17 +9222,17 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":394
+  /* "cyinterval/cyinterval.pyx":381
  *             else:
  *                 return -1
  *         elif other.upper_bounded:             # <<<<<<<<<<<<<<
  *             return 1
  *         if self.upper_bound < other.upper_bound:
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 381, __pyx_L1_error)
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":395
+    /* "cyinterval/cyinterval.pyx":382
  *                 return -1
  *         elif other.upper_bounded:
  *             return 1             # <<<<<<<<<<<<<<
@@ -9320,7 +9242,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":394
+    /* "cyinterval/cyinterval.pyx":381
  *             else:
  *                 return -1
  *         elif other.upper_bounded:             # <<<<<<<<<<<<<<
@@ -9329,7 +9251,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":396
+  /* "cyinterval/cyinterval.pyx":383
  *         elif other.upper_bounded:
  *             return 1
  *         if self.upper_bound < other.upper_bound:             # <<<<<<<<<<<<<<
@@ -9339,7 +9261,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
   __pyx_t_7 = ((__pyx_v_self->upper_bound < __pyx_v_other->upper_bound) != 0);
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":397
+    /* "cyinterval/cyinterval.pyx":384
  *             return 1
  *         if self.upper_bound < other.upper_bound:
  *             return -1             # <<<<<<<<<<<<<<
@@ -9349,7 +9271,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
     __pyx_r = -1;
     goto __pyx_L0;
 
-    /* "cyinterval/cyinterval.pyx":396
+    /* "cyinterval/cyinterval.pyx":383
  *         elif other.upper_bounded:
  *             return 1
  *         if self.upper_bound < other.upper_bound:             # <<<<<<<<<<<<<<
@@ -9358,7 +9280,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":398
+  /* "cyinterval/cyinterval.pyx":385
  *         if self.upper_bound < other.upper_bound:
  *             return -1
  *         elif self.upper_bound == other.upper_bound:             # <<<<<<<<<<<<<<
@@ -9368,26 +9290,26 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
   __pyx_t_7 = ((__pyx_v_self->upper_bound == __pyx_v_other->upper_bound) != 0);
   if (__pyx_t_7) {
 
-    /* "cyinterval/cyinterval.pyx":399
+    /* "cyinterval/cyinterval.pyx":386
  *             return -1
  *         elif self.upper_bound == other.upper_bound:
  *             if self.upper_closed and not other.upper_closed:             # <<<<<<<<<<<<<<
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 399, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 386, __pyx_L1_error)
     if (__pyx_t_8) {
     } else {
       __pyx_t_7 = __pyx_t_8;
       goto __pyx_L7_bool_binop_done;
     }
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 399, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 386, __pyx_L1_error)
     __pyx_t_9 = ((!__pyx_t_8) != 0);
     __pyx_t_7 = __pyx_t_9;
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":400
+      /* "cyinterval/cyinterval.pyx":387
  *         elif self.upper_bound == other.upper_bound:
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1             # <<<<<<<<<<<<<<
@@ -9397,7 +9319,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
       __pyx_r = 1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":399
+      /* "cyinterval/cyinterval.pyx":386
  *             return -1
  *         elif self.upper_bound == other.upper_bound:
  *             if self.upper_closed and not other.upper_closed:             # <<<<<<<<<<<<<<
@@ -9406,26 +9328,26 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":401
+    /* "cyinterval/cyinterval.pyx":388
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:             # <<<<<<<<<<<<<<
  *                 return -1
  *             else:
  */
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 401, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 388, __pyx_L1_error)
     if (__pyx_t_9) {
     } else {
       __pyx_t_7 = __pyx_t_9;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 401, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 388, __pyx_L1_error)
     __pyx_t_8 = ((!__pyx_t_9) != 0);
     __pyx_t_7 = __pyx_t_8;
     __pyx_L9_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "cyinterval/cyinterval.pyx":402
+      /* "cyinterval/cyinterval.pyx":389
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:
  *                 return -1             # <<<<<<<<<<<<<<
@@ -9435,7 +9357,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
       __pyx_r = -1;
       goto __pyx_L0;
 
-      /* "cyinterval/cyinterval.pyx":401
+      /* "cyinterval/cyinterval.pyx":388
  *             if self.upper_closed and not other.upper_closed:
  *                 return 1
  *             elif other.upper_closed and not self.upper_closed:             # <<<<<<<<<<<<<<
@@ -9444,7 +9366,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
  */
     }
 
-    /* "cyinterval/cyinterval.pyx":404
+    /* "cyinterval/cyinterval.pyx":391
  *                 return -1
  *             else:
  *                 return 0             # <<<<<<<<<<<<<<
@@ -9456,7 +9378,7 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
       goto __pyx_L0;
     }
 
-    /* "cyinterval/cyinterval.pyx":398
+    /* "cyinterval/cyinterval.pyx":385
  *         if self.upper_bound < other.upper_bound:
  *             return -1
  *         elif self.upper_bound == other.upper_bound:             # <<<<<<<<<<<<<<
@@ -9465,19 +9387,19 @@ static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(struct __py
  */
   }
 
-  /* "cyinterval/cyinterval.pyx":406
+  /* "cyinterval/cyinterval.pyx":393
  *                 return 0
  *         else:
  *             return 1             # <<<<<<<<<<<<<<
  * 
- * 
+ * cdef class FloatInterval(BaseInterval):
  */
   /*else*/ {
     __pyx_r = 1;
     goto __pyx_L0;
   }
 
-  /* "cyinterval/cyinterval.pyx":388
+  /* "cyinterval/cyinterval.pyx":375
  *             return 1
  * 
  *     cpdef int upper_cmp(IntInterval self, IntInterval other):             # <<<<<<<<<<<<<<
@@ -9505,7 +9427,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_11IntInterval_13upper_cmp(Py
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("upper_cmp (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_IntInterval, 1, "other", 0))) __PYX_ERR(0, 388, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_IntInterval, 1, "other", 0))) __PYX_ERR(0, 375, __pyx_L1_error)
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_11IntInterval_12upper_cmp(((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *)__pyx_v_other));
 
   /* function exit code */
@@ -9523,7 +9445,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_12upper_cmp(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("upper_cmp", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 388, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 375, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9540,12 +9462,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_12upper_cmp(st
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":284
+/* "cyinterval/cyinterval.pxd":33
  * 
  * cdef class IntInterval(BaseInterval):
  *     cdef readonly int lower_bound             # <<<<<<<<<<<<<<
  *     cdef readonly int upper_bound
- *     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed,
+ *     cpdef tuple init_args(IntInterval self)
  */
 
 /* Python wrapper */
@@ -9567,7 +9489,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_11lower_bound_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->lower_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->lower_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9584,12 +9506,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_11lower_bound_
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":285
+/* "cyinterval/cyinterval.pxd":34
  * cdef class IntInterval(BaseInterval):
  *     cdef readonly int lower_bound
  *     cdef readonly int upper_bound             # <<<<<<<<<<<<<<
- *     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed,
- *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
+ *     cpdef tuple init_args(IntInterval self)
+ *     cpdef IntInterval intersection(IntInterval self, IntInterval other)
  */
 
 /* Python wrapper */
@@ -9611,7 +9533,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_11upper_bound_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->upper_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->upper_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9628,7 +9550,2479 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_11IntInterval_11upper_bound_
   return __pyx_r;
 }
 
+/* "cyinterval/cyinterval.pyx":396
+ * 
+ * cdef class FloatInterval(BaseInterval):
+ *     def __init__(BaseInterval self, double lower_bound, double upper_bound, bool lower_closed,             # <<<<<<<<<<<<<<
+ *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
+ *         self.lower_closed = lower_closed
+ */
+
+/* Python wrapper */
+static int __pyx_pw_10cyinterval_10cyinterval_13FloatInterval_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_10cyinterval_10cyinterval_13FloatInterval_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  double __pyx_v_lower_bound;
+  double __pyx_v_upper_bound;
+  PyBoolObject *__pyx_v_lower_closed = 0;
+  PyBoolObject *__pyx_v_upper_closed = 0;
+  PyBoolObject *__pyx_v_lower_bounded = 0;
+  PyBoolObject *__pyx_v_upper_bounded = 0;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__init__ (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_lower_bound,&__pyx_n_s_upper_bound,&__pyx_n_s_lower_closed,&__pyx_n_s_upper_closed,&__pyx_n_s_lower_bounded,&__pyx_n_s_upper_bounded,0};
+    PyObject* values[6] = {0,0,0,0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lower_bound)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        case  1:
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_bound)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 1); __PYX_ERR(0, 396, __pyx_L3_error)
+        }
+        case  2:
+        if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lower_closed)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 2); __PYX_ERR(0, 396, __pyx_L3_error)
+        }
+        case  3:
+        if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_closed)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 3); __PYX_ERR(0, 396, __pyx_L3_error)
+        }
+        case  4:
+        if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_lower_bounded)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 4); __PYX_ERR(0, 396, __pyx_L3_error)
+        }
+        case  5:
+        if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_upper_bounded)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, 5); __PYX_ERR(0, 396, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 396, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+    }
+    __pyx_v_lower_bound = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_lower_bound == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L3_error)
+    __pyx_v_upper_bound = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_upper_bound == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L3_error)
+    __pyx_v_lower_closed = ((PyBoolObject *)values[2]);
+    __pyx_v_upper_closed = ((PyBoolObject *)values[3]);
+    __pyx_v_lower_bounded = ((PyBoolObject *)values[4]);
+    __pyx_v_upper_bounded = ((PyBoolObject *)values[5]);
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 396, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return -1;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_closed), __pyx_ptype_7cpython_4bool_bool, 1, "lower_closed", 0))) __PYX_ERR(0, 396, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_closed), __pyx_ptype_7cpython_4bool_bool, 1, "upper_closed", 0))) __PYX_ERR(0, 397, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lower_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "lower_bounded", 0))) __PYX_ERR(0, 397, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_upper_bounded), __pyx_ptype_7cpython_4bool_bool, 1, "upper_bounded", 0))) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_13FloatInterval___init__(((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self), __pyx_v_lower_bound, __pyx_v_upper_bound, __pyx_v_lower_closed, __pyx_v_upper_closed, __pyx_v_lower_bounded, __pyx_v_upper_bounded);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_10cyinterval_10cyinterval_13FloatInterval___init__(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, double __pyx_v_lower_bound, double __pyx_v_upper_bound, PyBoolObject *__pyx_v_lower_closed, PyBoolObject *__pyx_v_upper_closed, PyBoolObject *__pyx_v_lower_bounded, PyBoolObject *__pyx_v_upper_bounded) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  __Pyx_RefNannySetupContext("__init__", 0);
+
+  /* "cyinterval/cyinterval.pyx":398
+ *     def __init__(BaseInterval self, double lower_bound, double upper_bound, bool lower_closed,
+ *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
+ *         self.lower_closed = lower_closed             # <<<<<<<<<<<<<<
+ *         self.upper_closed = upper_closed
+ *         self.lower_bounded = lower_bounded
+ */
+  __Pyx_INCREF(((PyObject *)__pyx_v_lower_closed));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_lower_closed));
+  __Pyx_GOTREF(__pyx_v_self->__pyx_base.lower_closed);
+  __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.lower_closed));
+  __pyx_v_self->__pyx_base.lower_closed = __pyx_v_lower_closed;
+
+  /* "cyinterval/cyinterval.pyx":399
+ *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
+ *         self.lower_closed = lower_closed
+ *         self.upper_closed = upper_closed             # <<<<<<<<<<<<<<
+ *         self.lower_bounded = lower_bounded
+ *         self.upper_bounded = upper_bounded
+ */
+  __Pyx_INCREF(((PyObject *)__pyx_v_upper_closed));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_closed));
+  __Pyx_GOTREF(__pyx_v_self->__pyx_base.upper_closed);
+  __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.upper_closed));
+  __pyx_v_self->__pyx_base.upper_closed = __pyx_v_upper_closed;
+
+  /* "cyinterval/cyinterval.pyx":400
+ *         self.lower_closed = lower_closed
+ *         self.upper_closed = upper_closed
+ *         self.lower_bounded = lower_bounded             # <<<<<<<<<<<<<<
+ *         self.upper_bounded = upper_bounded
+ *         if lower_bounded:
+ */
+  __Pyx_INCREF(((PyObject *)__pyx_v_lower_bounded));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_lower_bounded));
+  __Pyx_GOTREF(__pyx_v_self->__pyx_base.lower_bounded);
+  __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
+  __pyx_v_self->__pyx_base.lower_bounded = __pyx_v_lower_bounded;
+
+  /* "cyinterval/cyinterval.pyx":401
+ *         self.upper_closed = upper_closed
+ *         self.lower_bounded = lower_bounded
+ *         self.upper_bounded = upper_bounded             # <<<<<<<<<<<<<<
+ *         if lower_bounded:
+ *             self.lower_bound = lower_bound
+ */
+  __Pyx_INCREF(((PyObject *)__pyx_v_upper_bounded));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_upper_bounded));
+  __Pyx_GOTREF(__pyx_v_self->__pyx_base.upper_bounded);
+  __Pyx_DECREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
+  __pyx_v_self->__pyx_base.upper_bounded = __pyx_v_upper_bounded;
+
+  /* "cyinterval/cyinterval.pyx":402
+ *         self.lower_bounded = lower_bounded
+ *         self.upper_bounded = upper_bounded
+ *         if lower_bounded:             # <<<<<<<<<<<<<<
+ *             self.lower_bound = lower_bound
+ *         if upper_bounded:
+ */
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_lower_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 402, __pyx_L1_error)
+  if (__pyx_t_1) {
+
+    /* "cyinterval/cyinterval.pyx":403
+ *         self.upper_bounded = upper_bounded
+ *         if lower_bounded:
+ *             self.lower_bound = lower_bound             # <<<<<<<<<<<<<<
+ *         if upper_bounded:
+ *             self.upper_bound = upper_bound
+ */
+    __pyx_v_self->lower_bound = __pyx_v_lower_bound;
+
+    /* "cyinterval/cyinterval.pyx":402
+ *         self.lower_bounded = lower_bounded
+ *         self.upper_bounded = upper_bounded
+ *         if lower_bounded:             # <<<<<<<<<<<<<<
+ *             self.lower_bound = lower_bound
+ *         if upper_bounded:
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":404
+ *         if lower_bounded:
+ *             self.lower_bound = lower_bound
+ *         if upper_bounded:             # <<<<<<<<<<<<<<
+ *             self.upper_bound = upper_bound
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_upper_bounded)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 404, __pyx_L1_error)
+  if (__pyx_t_1) {
+
+    /* "cyinterval/cyinterval.pyx":405
+ *             self.lower_bound = lower_bound
+ *         if upper_bounded:
+ *             self.upper_bound = upper_bound             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef tuple init_args(FloatInterval self):
+ */
+    __pyx_v_self->upper_bound = __pyx_v_upper_bound;
+
+    /* "cyinterval/cyinterval.pyx":404
+ *         if lower_bounded:
+ *             self.lower_bound = lower_bound
+ *         if upper_bounded:             # <<<<<<<<<<<<<<
+ *             self.upper_bound = upper_bound
+ * 
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":396
+ * 
+ * cdef class FloatInterval(BaseInterval):
+ *     def __init__(BaseInterval self, double lower_bound, double upper_bound, bool lower_closed,             # <<<<<<<<<<<<<<
+ *                  bool upper_closed, bool lower_bounded, bool upper_bounded):
+ *         self.lower_closed = lower_closed
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cyinterval/cyinterval.pyx":407
+ *             self.upper_bound = upper_bound
+ * 
+ *     cpdef tuple init_args(FloatInterval self):             # <<<<<<<<<<<<<<
+ *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
+ *                 self.lower_bounded, self.upper_bounded)
+ */
+
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_3init_args(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_10cyinterval_10cyinterval_13FloatInterval_init_args(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, int __pyx_skip_dispatch) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  __Pyx_RefNannySetupContext("init_args", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_init_args); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_3init_args)) {
+      __Pyx_XDECREF(__pyx_r);
+      __Pyx_INCREF(__pyx_t_1);
+      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_4)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+          __Pyx_INCREF(__pyx_t_4);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_3, function);
+        }
+      }
+      if (__pyx_t_4) {
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 407, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      } else {
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 407, __pyx_L1_error)
+      }
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_r = ((PyObject*)__pyx_t_2);
+      __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "cyinterval/cyinterval.pyx":408
+ * 
+ *     cpdef tuple init_args(FloatInterval self):
+ *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,             # <<<<<<<<<<<<<<
+ *                 self.lower_bounded, self.upper_bounded)
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->lower_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->upper_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+
+  /* "cyinterval/cyinterval.pyx":409
+ *     cpdef tuple init_args(FloatInterval self):
+ *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
+ *                 self.lower_bounded, self.upper_bounded)             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef FloatInterval intersection(FloatInterval self, FloatInterval other):
+ */
+  __pyx_t_3 = PyTuple_New(6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
+  __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.lower_closed));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_self->__pyx_base.lower_closed));
+  PyTuple_SET_ITEM(__pyx_t_3, 2, ((PyObject *)__pyx_v_self->__pyx_base.lower_closed));
+  __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.upper_closed));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_self->__pyx_base.upper_closed));
+  PyTuple_SET_ITEM(__pyx_t_3, 3, ((PyObject *)__pyx_v_self->__pyx_base.upper_closed));
+  __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
+  PyTuple_SET_ITEM(__pyx_t_3, 4, ((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
+  __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
+  PyTuple_SET_ITEM(__pyx_t_3, 5, ((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_r = ((PyObject*)__pyx_t_3);
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "cyinterval/cyinterval.pyx":407
+ *             self.upper_bound = upper_bound
+ * 
+ *     cpdef tuple init_args(FloatInterval self):             # <<<<<<<<<<<<<<
+ *         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed,
+ *                 self.lower_bounded, self.upper_bounded)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.init_args", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_3init_args(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_3init_args(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("init_args (wrapper)", 0);
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_13FloatInterval_2init_args(((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_2init_args(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("init_args", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_10cyinterval_10cyinterval_13FloatInterval_init_args(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.init_args", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
 /* "cyinterval/cyinterval.pyx":411
+ *                 self.lower_bounded, self.upper_bounded)
+ * 
+ *     cpdef FloatInterval intersection(FloatInterval self, FloatInterval other):             # <<<<<<<<<<<<<<
+ *         cdef int lower_cmp = self.lower_cmp(other)
+ *         cdef int upper_cmp = self.upper_cmp(other)
+ */
+
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_5intersection(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_f_10cyinterval_10cyinterval_13FloatInterval_intersection(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_skip_dispatch) {
+  int __pyx_v_lower_cmp;
+  int __pyx_v_upper_cmp;
+  double __pyx_v_new_lower_bound;
+  double __pyx_v_new_upper_bound;
+  PyBoolObject *__pyx_v_new_lower_closed = 0;
+  PyBoolObject *__pyx_v_new_lower_bounded = 0;
+  PyBoolObject *__pyx_v_new_upper_closed = 0;
+  PyBoolObject *__pyx_v_new_upper_bounded = 0;
+  struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  double __pyx_t_7;
+  __Pyx_RefNannySetupContext("intersection", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersection); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_5intersection)) {
+      __Pyx_XDECREF(((PyObject *)__pyx_r));
+      __Pyx_INCREF(__pyx_t_1);
+      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_4)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+          __Pyx_INCREF(__pyx_t_4);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_3, function);
+        }
+      }
+      if (!__pyx_t_4) {
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 411, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+      } else {
+        #if CYTHON_FAST_PYCALL
+        if (PyFunction_Check(__pyx_t_3)) {
+          PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 411, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
+        } else
+        #endif
+        #if CYTHON_FAST_PYCCALL
+        if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+          PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 411, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
+        } else
+        #endif
+        {
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 411, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_5);
+          __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
+          __Pyx_INCREF(((PyObject *)__pyx_v_other));
+          __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
+          PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 411, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        }
+      }
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_10cyinterval_10cyinterval_FloatInterval))))) __PYX_ERR(0, 411, __pyx_L1_error)
+      __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_t_2);
+      __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "cyinterval/cyinterval.pyx":412
+ * 
+ *     cpdef FloatInterval intersection(FloatInterval self, FloatInterval other):
+ *         cdef int lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
+ *         cdef int upper_cmp = self.upper_cmp(other)
+ *         cdef double new_lower_bound, new_upper_bound
+ */
+  __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
+
+  /* "cyinterval/cyinterval.pyx":413
+ *     cpdef FloatInterval intersection(FloatInterval self, FloatInterval other):
+ *         cdef int lower_cmp = self.lower_cmp(other)
+ *         cdef int upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
+ *         cdef double new_lower_bound, new_upper_bound
+ *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
+ */
+  __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
+
+  /* "cyinterval/cyinterval.pyx":416
+ *         cdef double new_lower_bound, new_upper_bound
+ *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
+ *         if lower_cmp <= 0:             # <<<<<<<<<<<<<<
+ *             new_lower_bound = other.lower_bound
+ *             new_lower_bounded = other.lower_bounded
+ */
+  __pyx_t_6 = ((__pyx_v_lower_cmp <= 0) != 0);
+  if (__pyx_t_6) {
+
+    /* "cyinterval/cyinterval.pyx":417
+ *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
+ *         if lower_cmp <= 0:
+ *             new_lower_bound = other.lower_bound             # <<<<<<<<<<<<<<
+ *             new_lower_bounded = other.lower_bounded
+ *             new_lower_closed = other.lower_closed
+ */
+    __pyx_t_7 = __pyx_v_other->lower_bound;
+    __pyx_v_new_lower_bound = __pyx_t_7;
+
+    /* "cyinterval/cyinterval.pyx":418
+ *         if lower_cmp <= 0:
+ *             new_lower_bound = other.lower_bound
+ *             new_lower_bounded = other.lower_bounded             # <<<<<<<<<<<<<<
+ *             new_lower_closed = other.lower_closed
+ *         else:
+ */
+    __pyx_t_1 = ((PyObject *)__pyx_v_other->__pyx_base.lower_bounded);
+    __Pyx_INCREF(__pyx_t_1);
+    __pyx_v_new_lower_bounded = ((PyBoolObject *)__pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "cyinterval/cyinterval.pyx":419
+ *             new_lower_bound = other.lower_bound
+ *             new_lower_bounded = other.lower_bounded
+ *             new_lower_closed = other.lower_closed             # <<<<<<<<<<<<<<
+ *         else:
+ *             new_lower_bound = self.lower_bound
+ */
+    __pyx_t_1 = ((PyObject *)__pyx_v_other->__pyx_base.lower_closed);
+    __Pyx_INCREF(__pyx_t_1);
+    __pyx_v_new_lower_closed = ((PyBoolObject *)__pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "cyinterval/cyinterval.pyx":416
+ *         cdef double new_lower_bound, new_upper_bound
+ *         cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
+ *         if lower_cmp <= 0:             # <<<<<<<<<<<<<<
+ *             new_lower_bound = other.lower_bound
+ *             new_lower_bounded = other.lower_bounded
+ */
+    goto __pyx_L3;
+  }
+
+  /* "cyinterval/cyinterval.pyx":421
+ *             new_lower_closed = other.lower_closed
+ *         else:
+ *             new_lower_bound = self.lower_bound             # <<<<<<<<<<<<<<
+ *             new_lower_bounded = self.lower_bounded
+ *             new_lower_closed = self.lower_closed
+ */
+  /*else*/ {
+    __pyx_t_7 = __pyx_v_self->lower_bound;
+    __pyx_v_new_lower_bound = __pyx_t_7;
+
+    /* "cyinterval/cyinterval.pyx":422
+ *         else:
+ *             new_lower_bound = self.lower_bound
+ *             new_lower_bounded = self.lower_bounded             # <<<<<<<<<<<<<<
+ *             new_lower_closed = self.lower_closed
+ * 
+ */
+    __pyx_t_1 = ((PyObject *)__pyx_v_self->__pyx_base.lower_bounded);
+    __Pyx_INCREF(__pyx_t_1);
+    __pyx_v_new_lower_bounded = ((PyBoolObject *)__pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "cyinterval/cyinterval.pyx":423
+ *             new_lower_bound = self.lower_bound
+ *             new_lower_bounded = self.lower_bounded
+ *             new_lower_closed = self.lower_closed             # <<<<<<<<<<<<<<
+ * 
+ *         if upper_cmp <= 0:
+ */
+    __pyx_t_1 = ((PyObject *)__pyx_v_self->__pyx_base.lower_closed);
+    __Pyx_INCREF(__pyx_t_1);
+    __pyx_v_new_lower_closed = ((PyBoolObject *)__pyx_t_1);
+    __pyx_t_1 = 0;
+  }
+  __pyx_L3:;
+
+  /* "cyinterval/cyinterval.pyx":425
+ *             new_lower_closed = self.lower_closed
+ * 
+ *         if upper_cmp <= 0:             # <<<<<<<<<<<<<<
+ *             new_upper_bound = self.upper_bound
+ *             new_upper_bounded = self.upper_bounded
+ */
+  __pyx_t_6 = ((__pyx_v_upper_cmp <= 0) != 0);
+  if (__pyx_t_6) {
+
+    /* "cyinterval/cyinterval.pyx":426
+ * 
+ *         if upper_cmp <= 0:
+ *             new_upper_bound = self.upper_bound             # <<<<<<<<<<<<<<
+ *             new_upper_bounded = self.upper_bounded
+ *             new_upper_closed = self.upper_closed
+ */
+    __pyx_t_7 = __pyx_v_self->upper_bound;
+    __pyx_v_new_upper_bound = __pyx_t_7;
+
+    /* "cyinterval/cyinterval.pyx":427
+ *         if upper_cmp <= 0:
+ *             new_upper_bound = self.upper_bound
+ *             new_upper_bounded = self.upper_bounded             # <<<<<<<<<<<<<<
+ *             new_upper_closed = self.upper_closed
+ *         else:
+ */
+    __pyx_t_1 = ((PyObject *)__pyx_v_self->__pyx_base.upper_bounded);
+    __Pyx_INCREF(__pyx_t_1);
+    __pyx_v_new_upper_bounded = ((PyBoolObject *)__pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "cyinterval/cyinterval.pyx":428
+ *             new_upper_bound = self.upper_bound
+ *             new_upper_bounded = self.upper_bounded
+ *             new_upper_closed = self.upper_closed             # <<<<<<<<<<<<<<
+ *         else:
+ *             new_upper_bound = other.upper_bound
+ */
+    __pyx_t_1 = ((PyObject *)__pyx_v_self->__pyx_base.upper_closed);
+    __Pyx_INCREF(__pyx_t_1);
+    __pyx_v_new_upper_closed = ((PyBoolObject *)__pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "cyinterval/cyinterval.pyx":425
+ *             new_lower_closed = self.lower_closed
+ * 
+ *         if upper_cmp <= 0:             # <<<<<<<<<<<<<<
+ *             new_upper_bound = self.upper_bound
+ *             new_upper_bounded = self.upper_bounded
+ */
+    goto __pyx_L4;
+  }
+
+  /* "cyinterval/cyinterval.pyx":430
+ *             new_upper_closed = self.upper_closed
+ *         else:
+ *             new_upper_bound = other.upper_bound             # <<<<<<<<<<<<<<
+ *             new_upper_bounded = other.upper_bounded
+ *             new_upper_closed = other.upper_closed
+ */
+  /*else*/ {
+    __pyx_t_7 = __pyx_v_other->upper_bound;
+    __pyx_v_new_upper_bound = __pyx_t_7;
+
+    /* "cyinterval/cyinterval.pyx":431
+ *         else:
+ *             new_upper_bound = other.upper_bound
+ *             new_upper_bounded = other.upper_bounded             # <<<<<<<<<<<<<<
+ *             new_upper_closed = other.upper_closed
+ *         return FloatInterval(new_lower_bound, new_upper_bound, new_lower_closed,
+ */
+    __pyx_t_1 = ((PyObject *)__pyx_v_other->__pyx_base.upper_bounded);
+    __Pyx_INCREF(__pyx_t_1);
+    __pyx_v_new_upper_bounded = ((PyBoolObject *)__pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "cyinterval/cyinterval.pyx":432
+ *             new_upper_bound = other.upper_bound
+ *             new_upper_bounded = other.upper_bounded
+ *             new_upper_closed = other.upper_closed             # <<<<<<<<<<<<<<
+ *         return FloatInterval(new_lower_bound, new_upper_bound, new_lower_closed,
+ *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
+ */
+    __pyx_t_1 = ((PyObject *)__pyx_v_other->__pyx_base.upper_closed);
+    __Pyx_INCREF(__pyx_t_1);
+    __pyx_v_new_upper_closed = ((PyBoolObject *)__pyx_t_1);
+    __pyx_t_1 = 0;
+  }
+  __pyx_L4:;
+
+  /* "cyinterval/cyinterval.pyx":433
+ *             new_upper_bounded = other.upper_bounded
+ *             new_upper_closed = other.upper_closed
+ *         return FloatInterval(new_lower_bound, new_upper_bound, new_lower_closed,             # <<<<<<<<<<<<<<
+ *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
+ * 
+ */
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_new_lower_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_new_upper_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+
+  /* "cyinterval/cyinterval.pyx":434
+ *             new_upper_closed = other.upper_closed
+ *         return FloatInterval(new_lower_bound, new_upper_bound, new_lower_closed,
+ *                                new_upper_closed, new_lower_bounded, new_upper_bounded)             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef bool empty(FloatInterval self):
+ */
+  __pyx_t_3 = PyTuple_New(6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
+  __Pyx_INCREF(((PyObject *)__pyx_v_new_lower_closed));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_new_lower_closed));
+  PyTuple_SET_ITEM(__pyx_t_3, 2, ((PyObject *)__pyx_v_new_lower_closed));
+  __Pyx_INCREF(((PyObject *)__pyx_v_new_upper_closed));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_new_upper_closed));
+  PyTuple_SET_ITEM(__pyx_t_3, 3, ((PyObject *)__pyx_v_new_upper_closed));
+  __Pyx_INCREF(((PyObject *)__pyx_v_new_lower_bounded));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_new_lower_bounded));
+  PyTuple_SET_ITEM(__pyx_t_3, 4, ((PyObject *)__pyx_v_new_lower_bounded));
+  __Pyx_INCREF(((PyObject *)__pyx_v_new_upper_bounded));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_new_upper_bounded));
+  PyTuple_SET_ITEM(__pyx_t_3, 5, ((PyObject *)__pyx_v_new_upper_bounded));
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+
+  /* "cyinterval/cyinterval.pyx":433
+ *             new_upper_bounded = other.upper_bounded
+ *             new_upper_closed = other.upper_closed
+ *         return FloatInterval(new_lower_bound, new_upper_bound, new_lower_closed,             # <<<<<<<<<<<<<<
+ *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_FloatInterval), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_t_2);
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cyinterval/cyinterval.pyx":411
+ *                 self.lower_bounded, self.upper_bounded)
+ * 
+ *     cpdef FloatInterval intersection(FloatInterval self, FloatInterval other):             # <<<<<<<<<<<<<<
+ *         cdef int lower_cmp = self.lower_cmp(other)
+ *         cdef int upper_cmp = self.upper_cmp(other)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.intersection", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF((PyObject *)__pyx_v_new_lower_closed);
+  __Pyx_XDECREF((PyObject *)__pyx_v_new_lower_bounded);
+  __Pyx_XDECREF((PyObject *)__pyx_v_new_upper_closed);
+  __Pyx_XDECREF((PyObject *)__pyx_v_new_upper_bounded);
+  __Pyx_XGIVEREF((PyObject *)__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_5intersection(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_5intersection(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("intersection (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_FloatInterval, 1, "other", 0))) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_13FloatInterval_4intersection(((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_other));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_4intersection(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("intersection", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_13FloatInterval_intersection(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.intersection", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cyinterval/cyinterval.pyx":436
+ *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
+ * 
+ *     cpdef bool empty(FloatInterval self):             # <<<<<<<<<<<<<<
+ *         return ((self.lower_bounded and self.upper_bounded) and
+ *                 (((self.lower_bound == self.upper_bound) and
+ */
+
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_7empty(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_13FloatInterval_empty(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, int __pyx_skip_dispatch) {
+  PyBoolObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_t_5;
+  int __pyx_t_6;
+  __Pyx_RefNannySetupContext("empty", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_7empty)) {
+      __Pyx_XDECREF(((PyObject *)__pyx_r));
+      __Pyx_INCREF(__pyx_t_1);
+      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_4)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+          __Pyx_INCREF(__pyx_t_4);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_3, function);
+        }
+      }
+      if (__pyx_t_4) {
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 436, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      } else {
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 436, __pyx_L1_error)
+      }
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool))))) __PYX_ERR(0, 436, __pyx_L1_error)
+      __pyx_r = ((PyBoolObject *)__pyx_t_2);
+      __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "cyinterval/cyinterval.pyx":437
+ * 
+ *     cpdef bool empty(FloatInterval self):
+ *         return ((self.lower_bounded and self.upper_bounded) and             # <<<<<<<<<<<<<<
+ *                 (((self.lower_bound == self.upper_bound) and
+ *                 (not (self.lower_closed or self.upper_closed))) or
+ */
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 437, __pyx_L1_error)
+  if (__pyx_t_5) {
+  } else {
+    __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded));
+    __pyx_t_1 = __pyx_v_self->__pyx_base.lower_bounded;
+    goto __pyx_L3_bool_binop_done;
+  }
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 437, __pyx_L1_error)
+  if (__pyx_t_5) {
+  } else {
+    __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded));
+    __pyx_t_1 = __pyx_v_self->__pyx_base.upper_bounded;
+    goto __pyx_L3_bool_binop_done;
+  }
+
+  /* "cyinterval/cyinterval.pyx":438
+ *     cpdef bool empty(FloatInterval self):
+ *         return ((self.lower_bounded and self.upper_bounded) and
+ *                 (((self.lower_bound == self.upper_bound) and             # <<<<<<<<<<<<<<
+ *                 (not (self.lower_closed or self.upper_closed))) or
+ *                 self.lower_bound > self.upper_bound))
+ */
+  __pyx_t_5 = (__pyx_v_self->lower_bound == __pyx_v_self->upper_bound);
+  if (!__pyx_t_5) {
+    goto __pyx_L6_next_or;
+  } else {
+  }
+
+  /* "cyinterval/cyinterval.pyx":439
+ *         return ((self.lower_bounded and self.upper_bounded) and
+ *                 (((self.lower_bound == self.upper_bound) and
+ *                 (not (self.lower_closed or self.upper_closed))) or             # <<<<<<<<<<<<<<
+ *                 self.lower_bound > self.upper_bound))
+ * 
+ */
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 439, __pyx_L1_error)
+  if (!__pyx_t_6) {
+  } else {
+    __pyx_t_5 = __pyx_t_6;
+    goto __pyx_L8_bool_binop_done;
+  }
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 439, __pyx_L1_error)
+  __pyx_t_5 = __pyx_t_6;
+  __pyx_L8_bool_binop_done:;
+  __pyx_t_6 = (!__pyx_t_5);
+  if (!__pyx_t_6) {
+  } else {
+    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 439, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool)))) __PYX_ERR(0, 439, __pyx_L1_error)
+    __pyx_t_1 = __pyx_t_2;
+    __pyx_t_2 = 0;
+    goto __pyx_L3_bool_binop_done;
+  }
+  __pyx_L6_next_or:;
+
+  /* "cyinterval/cyinterval.pyx":440
+ *                 (((self.lower_bound == self.upper_bound) and
+ *                 (not (self.lower_closed or self.upper_closed))) or
+ *                 self.lower_bound > self.upper_bound))             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef int richcmp(FloatInterval self, FloatInterval other, int op):
+ */
+  __pyx_t_6 = (__pyx_v_self->lower_bound > __pyx_v_self->upper_bound);
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool)))) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_1 = __pyx_t_2;
+  __pyx_t_2 = 0;
+  __pyx_L3_bool_binop_done:;
+  __pyx_r = ((PyBoolObject *)__pyx_t_1);
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "cyinterval/cyinterval.pyx":436
+ *                                new_upper_closed, new_lower_bounded, new_upper_bounded)
+ * 
+ *     cpdef bool empty(FloatInterval self):             # <<<<<<<<<<<<<<
+ *         return ((self.lower_bounded and self.upper_bounded) and
+ *                 (((self.lower_bound == self.upper_bound) and
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.empty", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF((PyObject *)__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_7empty(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_7empty(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("empty (wrapper)", 0);
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_13FloatInterval_6empty(((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_6empty(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("empty", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = ((PyObject *)__pyx_f_10cyinterval_10cyinterval_13FloatInterval_empty(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.empty", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cyinterval/cyinterval.pyx":442
+ *                 self.lower_bound > self.upper_bound))
+ * 
+ *     cpdef int richcmp(FloatInterval self, FloatInterval other, int op):             # <<<<<<<<<<<<<<
+ *         cdef int lower_cmp
+ *         cdef int upper_cmp
+ */
+
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_9richcmp(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_f_10cyinterval_10cyinterval_13FloatInterval_richcmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_v_op, int __pyx_skip_dispatch) {
+  int __pyx_v_lower_cmp;
+  int __pyx_v_upper_cmp;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_t_8;
+  __Pyx_RefNannySetupContext("richcmp", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_richcmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 442, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_9richcmp)) {
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_op); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 442, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_1);
+      __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
+      __pyx_t_6 = 0;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+        if (likely(__pyx_t_5)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+          __Pyx_INCREF(__pyx_t_5);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_4, function);
+          __pyx_t_6 = 1;
+        }
+      }
+      #if CYTHON_FAST_PYCALL
+      if (PyFunction_Check(__pyx_t_4)) {
+        PyObject *__pyx_temp[3] = {__pyx_t_5, ((PyObject *)__pyx_v_other), __pyx_t_3};
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 442, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      } else
+      #endif
+      #if CYTHON_FAST_PYCCALL
+      if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
+        PyObject *__pyx_temp[3] = {__pyx_t_5, ((PyObject *)__pyx_v_other), __pyx_t_3};
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 442, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      } else
+      #endif
+      {
+        __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 442, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        if (__pyx_t_5) {
+          __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
+        }
+        __Pyx_INCREF(((PyObject *)__pyx_v_other));
+        __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
+        PyTuple_SET_ITEM(__pyx_t_7, 0+__pyx_t_6, ((PyObject *)__pyx_v_other));
+        __Pyx_GIVEREF(__pyx_t_3);
+        PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_t_3);
+        __pyx_t_3 = 0;
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 442, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 442, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_r = __pyx_t_6;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "cyinterval/cyinterval.pyx":445
+ *         cdef int lower_cmp
+ *         cdef int upper_cmp
+ *         if op == 0 or op == 1:             # <<<<<<<<<<<<<<
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:
+ */
+  switch (__pyx_v_op) {
+    case 0:
+    case 1:
+
+    /* "cyinterval/cyinterval.pyx":446
+ *         cdef int upper_cmp
+ *         if op == 0 or op == 1:
+ *             lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
+ *             if lower_cmp == -1:
+ *                 return True
+ */
+    __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
+
+    /* "cyinterval/cyinterval.pyx":447
+ *         if op == 0 or op == 1:
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
+ *                 return True
+ *             elif lower_cmp == 1:
+ */
+    __pyx_t_8 = ((__pyx_v_lower_cmp == -1L) != 0);
+    if (__pyx_t_8) {
+
+      /* "cyinterval/cyinterval.pyx":448
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:
+ *                 return True             # <<<<<<<<<<<<<<
+ *             elif lower_cmp == 1:
+ *                 return False
+ */
+      __pyx_r = 1;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":447
+ *         if op == 0 or op == 1:
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
+ *                 return True
+ *             elif lower_cmp == 1:
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":449
+ *             if lower_cmp == -1:
+ *                 return True
+ *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
+ *                 return False
+ *             else: # lower_cmp == 0
+ */
+    __pyx_t_8 = ((__pyx_v_lower_cmp == 1) != 0);
+    if (__pyx_t_8) {
+
+      /* "cyinterval/cyinterval.pyx":450
+ *                 return True
+ *             elif lower_cmp == 1:
+ *                 return False             # <<<<<<<<<<<<<<
+ *             else: # lower_cmp == 0
+ *                 upper_cmp = self.upper_cmp(other)
+ */
+      __pyx_r = 0;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":449
+ *             if lower_cmp == -1:
+ *                 return True
+ *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
+ *                 return False
+ *             else: # lower_cmp == 0
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":452
+ *                 return False
+ *             else: # lower_cmp == 0
+ *                 upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
+ *                 if upper_cmp == -1:
+ *                     return True
+ */
+    /*else*/ {
+      __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
+
+      /* "cyinterval/cyinterval.pyx":453
+ *             else: # lower_cmp == 0
+ *                 upper_cmp = self.upper_cmp(other)
+ *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
+ *                     return True
+ *                 elif upper_cmp == 1:
+ */
+      __pyx_t_8 = ((__pyx_v_upper_cmp == -1L) != 0);
+      if (__pyx_t_8) {
+
+        /* "cyinterval/cyinterval.pyx":454
+ *                 upper_cmp = self.upper_cmp(other)
+ *                 if upper_cmp == -1:
+ *                     return True             # <<<<<<<<<<<<<<
+ *                 elif upper_cmp == 1:
+ *                     return False
+ */
+        __pyx_r = 1;
+        goto __pyx_L0;
+
+        /* "cyinterval/cyinterval.pyx":453
+ *             else: # lower_cmp == 0
+ *                 upper_cmp = self.upper_cmp(other)
+ *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
+ *                     return True
+ *                 elif upper_cmp == 1:
+ */
+      }
+
+      /* "cyinterval/cyinterval.pyx":455
+ *                 if upper_cmp == -1:
+ *                     return True
+ *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
+ *                     return False
+ *                 else: # upper_cmp == 0
+ */
+      __pyx_t_8 = ((__pyx_v_upper_cmp == 1) != 0);
+      if (__pyx_t_8) {
+
+        /* "cyinterval/cyinterval.pyx":456
+ *                     return True
+ *                 elif upper_cmp == 1:
+ *                     return False             # <<<<<<<<<<<<<<
+ *                 else: # upper_cmp == 0
+ *                     return op == 1
+ */
+        __pyx_r = 0;
+        goto __pyx_L0;
+
+        /* "cyinterval/cyinterval.pyx":455
+ *                 if upper_cmp == -1:
+ *                     return True
+ *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
+ *                     return False
+ *                 else: # upper_cmp == 0
+ */
+      }
+
+      /* "cyinterval/cyinterval.pyx":458
+ *                     return False
+ *                 else: # upper_cmp == 0
+ *                     return op == 1             # <<<<<<<<<<<<<<
+ *         elif op == 2:
+ *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
+ */
+      /*else*/ {
+        __pyx_r = (__pyx_v_op == 1);
+        goto __pyx_L0;
+      }
+    }
+
+    /* "cyinterval/cyinterval.pyx":445
+ *         cdef int lower_cmp
+ *         cdef int upper_cmp
+ *         if op == 0 or op == 1:             # <<<<<<<<<<<<<<
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:
+ */
+    break;
+
+    /* "cyinterval/cyinterval.pyx":459
+ *                 else: # upper_cmp == 0
+ *                     return op == 1
+ *         elif op == 2:             # <<<<<<<<<<<<<<
+ *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
+ *         elif op == 3:
+ */
+    case 2:
+
+    /* "cyinterval/cyinterval.pyx":460
+ *                     return op == 1
+ *         elif op == 2:
+ *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)             # <<<<<<<<<<<<<<
+ *         elif op == 3:
+ *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
+ */
+    __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0) == 0);
+    if (__pyx_t_8) {
+    } else {
+      __pyx_t_6 = __pyx_t_8;
+      goto __pyx_L5_bool_binop_done;
+    }
+    __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0) == 0);
+    __pyx_t_6 = __pyx_t_8;
+    __pyx_L5_bool_binop_done:;
+    __pyx_r = __pyx_t_6;
+    goto __pyx_L0;
+
+    /* "cyinterval/cyinterval.pyx":459
+ *                 else: # upper_cmp == 0
+ *                     return op == 1
+ *         elif op == 2:             # <<<<<<<<<<<<<<
+ *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
+ *         elif op == 3:
+ */
+    break;
+
+    /* "cyinterval/cyinterval.pyx":461
+ *         elif op == 2:
+ *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
+ *         elif op == 3:             # <<<<<<<<<<<<<<
+ *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
+ *         elif op == 4 or op == 5:
+ */
+    case 3:
+
+    /* "cyinterval/cyinterval.pyx":462
+ *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
+ *         elif op == 3:
+ *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)             # <<<<<<<<<<<<<<
+ *         elif op == 4 or op == 5:
+ *             lower_cmp = self.lower_cmp(other)
+ */
+    __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0) != 0);
+    if (!__pyx_t_8) {
+    } else {
+      __pyx_t_6 = __pyx_t_8;
+      goto __pyx_L7_bool_binop_done;
+    }
+    __pyx_t_8 = (((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0) != 0);
+    __pyx_t_6 = __pyx_t_8;
+    __pyx_L7_bool_binop_done:;
+    __pyx_r = __pyx_t_6;
+    goto __pyx_L0;
+
+    /* "cyinterval/cyinterval.pyx":461
+ *         elif op == 2:
+ *             return (self.lower_cmp(other) == 0) and (self.upper_cmp(other) == 0)
+ *         elif op == 3:             # <<<<<<<<<<<<<<
+ *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
+ *         elif op == 4 or op == 5:
+ */
+    break;
+
+    /* "cyinterval/cyinterval.pyx":463
+ *         elif op == 3:
+ *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
+ *         elif op == 4 or op == 5:             # <<<<<<<<<<<<<<
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:
+ */
+    case 4:
+    case 5:
+
+    /* "cyinterval/cyinterval.pyx":464
+ *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
+ *         elif op == 4 or op == 5:
+ *             lower_cmp = self.lower_cmp(other)             # <<<<<<<<<<<<<<
+ *             if lower_cmp == -1:
+ *                 return False
+ */
+    __pyx_v_lower_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->lower_cmp(__pyx_v_self, __pyx_v_other, 0);
+
+    /* "cyinterval/cyinterval.pyx":465
+ *         elif op == 4 or op == 5:
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
+ *                 return False
+ *             elif lower_cmp == 1:
+ */
+    __pyx_t_8 = ((__pyx_v_lower_cmp == -1L) != 0);
+    if (__pyx_t_8) {
+
+      /* "cyinterval/cyinterval.pyx":466
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:
+ *                 return False             # <<<<<<<<<<<<<<
+ *             elif lower_cmp == 1:
+ *                 return True
+ */
+      __pyx_r = 0;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":465
+ *         elif op == 4 or op == 5:
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:             # <<<<<<<<<<<<<<
+ *                 return False
+ *             elif lower_cmp == 1:
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":467
+ *             if lower_cmp == -1:
+ *                 return False
+ *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
+ *                 return True
+ *             else: # lower_cmp == 0
+ */
+    __pyx_t_8 = ((__pyx_v_lower_cmp == 1) != 0);
+    if (__pyx_t_8) {
+
+      /* "cyinterval/cyinterval.pyx":468
+ *                 return False
+ *             elif lower_cmp == 1:
+ *                 return True             # <<<<<<<<<<<<<<
+ *             else: # lower_cmp == 0
+ *                 upper_cmp = self.upper_cmp(other)
+ */
+      __pyx_r = 1;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":467
+ *             if lower_cmp == -1:
+ *                 return False
+ *             elif lower_cmp == 1:             # <<<<<<<<<<<<<<
+ *                 return True
+ *             else: # lower_cmp == 0
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":470
+ *                 return True
+ *             else: # lower_cmp == 0
+ *                 upper_cmp = self.upper_cmp(other)             # <<<<<<<<<<<<<<
+ *                 if upper_cmp == -1:
+ *                     return False
+ */
+    /*else*/ {
+      __pyx_v_upper_cmp = ((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self->__pyx_vtab)->upper_cmp(__pyx_v_self, __pyx_v_other, 0);
+
+      /* "cyinterval/cyinterval.pyx":471
+ *             else: # lower_cmp == 0
+ *                 upper_cmp = self.upper_cmp(other)
+ *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
+ *                     return False
+ *                 elif upper_cmp == 1:
+ */
+      __pyx_t_8 = ((__pyx_v_upper_cmp == -1L) != 0);
+      if (__pyx_t_8) {
+
+        /* "cyinterval/cyinterval.pyx":472
+ *                 upper_cmp = self.upper_cmp(other)
+ *                 if upper_cmp == -1:
+ *                     return False             # <<<<<<<<<<<<<<
+ *                 elif upper_cmp == 1:
+ *                     return True
+ */
+        __pyx_r = 0;
+        goto __pyx_L0;
+
+        /* "cyinterval/cyinterval.pyx":471
+ *             else: # lower_cmp == 0
+ *                 upper_cmp = self.upper_cmp(other)
+ *                 if upper_cmp == -1:             # <<<<<<<<<<<<<<
+ *                     return False
+ *                 elif upper_cmp == 1:
+ */
+      }
+
+      /* "cyinterval/cyinterval.pyx":473
+ *                 if upper_cmp == -1:
+ *                     return False
+ *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
+ *                     return True
+ *                 else: # upper_cmp == 0
+ */
+      __pyx_t_8 = ((__pyx_v_upper_cmp == 1) != 0);
+      if (__pyx_t_8) {
+
+        /* "cyinterval/cyinterval.pyx":474
+ *                     return False
+ *                 elif upper_cmp == 1:
+ *                     return True             # <<<<<<<<<<<<<<
+ *                 else: # upper_cmp == 0
+ *                     return op == 5
+ */
+        __pyx_r = 1;
+        goto __pyx_L0;
+
+        /* "cyinterval/cyinterval.pyx":473
+ *                 if upper_cmp == -1:
+ *                     return False
+ *                 elif upper_cmp == 1:             # <<<<<<<<<<<<<<
+ *                     return True
+ *                 else: # upper_cmp == 0
+ */
+      }
+
+      /* "cyinterval/cyinterval.pyx":476
+ *                     return True
+ *                 else: # upper_cmp == 0
+ *                     return op == 5             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef int lower_cmp(FloatInterval self, FloatInterval other):
+ */
+      /*else*/ {
+        __pyx_r = (__pyx_v_op == 5);
+        goto __pyx_L0;
+      }
+    }
+
+    /* "cyinterval/cyinterval.pyx":463
+ *         elif op == 3:
+ *             return (self.lower_cmp(other) != 0) or (self.upper_cmp(other) != 0)
+ *         elif op == 4 or op == 5:             # <<<<<<<<<<<<<<
+ *             lower_cmp = self.lower_cmp(other)
+ *             if lower_cmp == -1:
+ */
+    break;
+    default: break;
+  }
+
+  /* "cyinterval/cyinterval.pyx":442
+ *                 self.lower_bound > self.upper_bound))
+ * 
+ *     cpdef int richcmp(FloatInterval self, FloatInterval other, int op):             # <<<<<<<<<<<<<<
+ *         cdef int lower_cmp
+ *         cdef int upper_cmp
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_WriteUnraisable("cyinterval.cyinterval.FloatInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_9richcmp(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_9richcmp(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other = 0;
+  int __pyx_v_op;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("richcmp (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_other,&__pyx_n_s_op,0};
+    PyObject* values[2] = {0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        case  1:
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_op)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, 1); __PYX_ERR(0, 442, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "richcmp") < 0)) __PYX_ERR(0, 442, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+    }
+    __pyx_v_other = ((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)values[0]);
+    __pyx_v_op = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_op == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 442, __pyx_L3_error)
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("richcmp", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 442, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_FloatInterval, 1, "other", 0))) __PYX_ERR(0, 442, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_13FloatInterval_8richcmp(((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self), __pyx_v_other, __pyx_v_op);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_8richcmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_v_op) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("richcmp", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_13FloatInterval_richcmp(__pyx_v_self, __pyx_v_other, __pyx_v_op, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 442, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.richcmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cyinterval/cyinterval.pyx":478
+ *                     return op == 5
+ * 
+ *     cpdef int lower_cmp(FloatInterval self, FloatInterval other):             # <<<<<<<<<<<<<<
+ *         if not self.lower_bounded:
+ *             if not other.lower_bounded:
+ */
+
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11lower_cmp(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static int __pyx_f_10cyinterval_10cyinterval_13FloatInterval_lower_cmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_skip_dispatch) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  int __pyx_t_7;
+  int __pyx_t_8;
+  int __pyx_t_9;
+  __Pyx_RefNannySetupContext("lower_cmp", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lower_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 478, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11lower_cmp)) {
+      __Pyx_INCREF(__pyx_t_1);
+      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_4)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+          __Pyx_INCREF(__pyx_t_4);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_3, function);
+        }
+      }
+      if (!__pyx_t_4) {
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+      } else {
+        #if CYTHON_FAST_PYCALL
+        if (PyFunction_Check(__pyx_t_3)) {
+          PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
+        } else
+        #endif
+        #if CYTHON_FAST_PYCCALL
+        if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+          PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
+        } else
+        #endif
+        {
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 478, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_5);
+          __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
+          __Pyx_INCREF(((PyObject *)__pyx_v_other));
+          __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
+          PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        }
+      }
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 478, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_r = __pyx_t_6;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "cyinterval/cyinterval.pyx":479
+ * 
+ *     cpdef int lower_cmp(FloatInterval self, FloatInterval other):
+ *         if not self.lower_bounded:             # <<<<<<<<<<<<<<
+ *             if not other.lower_bounded:
+ *                 return 0
+ */
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 479, __pyx_L1_error)
+  __pyx_t_8 = ((!__pyx_t_7) != 0);
+  if (__pyx_t_8) {
+
+    /* "cyinterval/cyinterval.pyx":480
+ *     cpdef int lower_cmp(FloatInterval self, FloatInterval other):
+ *         if not self.lower_bounded:
+ *             if not other.lower_bounded:             # <<<<<<<<<<<<<<
+ *                 return 0
+ *             else:
+ */
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 480, __pyx_L1_error)
+    __pyx_t_7 = ((!__pyx_t_8) != 0);
+    if (__pyx_t_7) {
+
+      /* "cyinterval/cyinterval.pyx":481
+ *         if not self.lower_bounded:
+ *             if not other.lower_bounded:
+ *                 return 0             # <<<<<<<<<<<<<<
+ *             else:
+ *                 return -1
+ */
+      __pyx_r = 0;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":480
+ *     cpdef int lower_cmp(FloatInterval self, FloatInterval other):
+ *         if not self.lower_bounded:
+ *             if not other.lower_bounded:             # <<<<<<<<<<<<<<
+ *                 return 0
+ *             else:
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":483
+ *                 return 0
+ *             else:
+ *                 return -1             # <<<<<<<<<<<<<<
+ *         elif other.lower_bounded:
+ *             return 1
+ */
+    /*else*/ {
+      __pyx_r = -1;
+      goto __pyx_L0;
+    }
+
+    /* "cyinterval/cyinterval.pyx":479
+ * 
+ *     cpdef int lower_cmp(FloatInterval self, FloatInterval other):
+ *         if not self.lower_bounded:             # <<<<<<<<<<<<<<
+ *             if not other.lower_bounded:
+ *                 return 0
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":484
+ *             else:
+ *                 return -1
+ *         elif other.lower_bounded:             # <<<<<<<<<<<<<<
+ *             return 1
+ *         if self.lower_bound < other.lower_bound:
+ */
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 484, __pyx_L1_error)
+  if (__pyx_t_7) {
+
+    /* "cyinterval/cyinterval.pyx":485
+ *                 return -1
+ *         elif other.lower_bounded:
+ *             return 1             # <<<<<<<<<<<<<<
+ *         if self.lower_bound < other.lower_bound:
+ *             return -1
+ */
+    __pyx_r = 1;
+    goto __pyx_L0;
+
+    /* "cyinterval/cyinterval.pyx":484
+ *             else:
+ *                 return -1
+ *         elif other.lower_bounded:             # <<<<<<<<<<<<<<
+ *             return 1
+ *         if self.lower_bound < other.lower_bound:
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":486
+ *         elif other.lower_bounded:
+ *             return 1
+ *         if self.lower_bound < other.lower_bound:             # <<<<<<<<<<<<<<
+ *             return -1
+ *         elif self.lower_bound == other.lower_bound:
+ */
+  __pyx_t_7 = ((__pyx_v_self->lower_bound < __pyx_v_other->lower_bound) != 0);
+  if (__pyx_t_7) {
+
+    /* "cyinterval/cyinterval.pyx":487
+ *             return 1
+ *         if self.lower_bound < other.lower_bound:
+ *             return -1             # <<<<<<<<<<<<<<
+ *         elif self.lower_bound == other.lower_bound:
+ *             if self.lower_closed and not other.lower_closed:
+ */
+    __pyx_r = -1;
+    goto __pyx_L0;
+
+    /* "cyinterval/cyinterval.pyx":486
+ *         elif other.lower_bounded:
+ *             return 1
+ *         if self.lower_bound < other.lower_bound:             # <<<<<<<<<<<<<<
+ *             return -1
+ *         elif self.lower_bound == other.lower_bound:
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":488
+ *         if self.lower_bound < other.lower_bound:
+ *             return -1
+ *         elif self.lower_bound == other.lower_bound:             # <<<<<<<<<<<<<<
+ *             if self.lower_closed and not other.lower_closed:
+ *                 return -1
+ */
+  __pyx_t_7 = ((__pyx_v_self->lower_bound == __pyx_v_other->lower_bound) != 0);
+  if (__pyx_t_7) {
+
+    /* "cyinterval/cyinterval.pyx":489
+ *             return -1
+ *         elif self.lower_bound == other.lower_bound:
+ *             if self.lower_closed and not other.lower_closed:             # <<<<<<<<<<<<<<
+ *                 return -1
+ *             elif other.lower_closed and not self.lower_closed:
+ */
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 489, __pyx_L1_error)
+    if (__pyx_t_8) {
+    } else {
+      __pyx_t_7 = __pyx_t_8;
+      goto __pyx_L7_bool_binop_done;
+    }
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 489, __pyx_L1_error)
+    __pyx_t_9 = ((!__pyx_t_8) != 0);
+    __pyx_t_7 = __pyx_t_9;
+    __pyx_L7_bool_binop_done:;
+    if (__pyx_t_7) {
+
+      /* "cyinterval/cyinterval.pyx":490
+ *         elif self.lower_bound == other.lower_bound:
+ *             if self.lower_closed and not other.lower_closed:
+ *                 return -1             # <<<<<<<<<<<<<<
+ *             elif other.lower_closed and not self.lower_closed:
+ *                 return 1
+ */
+      __pyx_r = -1;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":489
+ *             return -1
+ *         elif self.lower_bound == other.lower_bound:
+ *             if self.lower_closed and not other.lower_closed:             # <<<<<<<<<<<<<<
+ *                 return -1
+ *             elif other.lower_closed and not self.lower_closed:
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":491
+ *             if self.lower_closed and not other.lower_closed:
+ *                 return -1
+ *             elif other.lower_closed and not self.lower_closed:             # <<<<<<<<<<<<<<
+ *                 return 1
+ *             else:
+ */
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 491, __pyx_L1_error)
+    if (__pyx_t_9) {
+    } else {
+      __pyx_t_7 = __pyx_t_9;
+      goto __pyx_L9_bool_binop_done;
+    }
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.lower_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 491, __pyx_L1_error)
+    __pyx_t_8 = ((!__pyx_t_9) != 0);
+    __pyx_t_7 = __pyx_t_8;
+    __pyx_L9_bool_binop_done:;
+    if (__pyx_t_7) {
+
+      /* "cyinterval/cyinterval.pyx":492
+ *                 return -1
+ *             elif other.lower_closed and not self.lower_closed:
+ *                 return 1             # <<<<<<<<<<<<<<
+ *             else:
+ *                 return 0
+ */
+      __pyx_r = 1;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":491
+ *             if self.lower_closed and not other.lower_closed:
+ *                 return -1
+ *             elif other.lower_closed and not self.lower_closed:             # <<<<<<<<<<<<<<
+ *                 return 1
+ *             else:
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":494
+ *                 return 1
+ *             else:
+ *                 return 0             # <<<<<<<<<<<<<<
+ *         else:
+ *             return 1
+ */
+    /*else*/ {
+      __pyx_r = 0;
+      goto __pyx_L0;
+    }
+
+    /* "cyinterval/cyinterval.pyx":488
+ *         if self.lower_bound < other.lower_bound:
+ *             return -1
+ *         elif self.lower_bound == other.lower_bound:             # <<<<<<<<<<<<<<
+ *             if self.lower_closed and not other.lower_closed:
+ *                 return -1
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":496
+ *                 return 0
+ *         else:
+ *             return 1             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef int upper_cmp(FloatInterval self, FloatInterval other):
+ */
+  /*else*/ {
+    __pyx_r = 1;
+    goto __pyx_L0;
+  }
+
+  /* "cyinterval/cyinterval.pyx":478
+ *                     return op == 5
+ * 
+ *     cpdef int lower_cmp(FloatInterval self, FloatInterval other):             # <<<<<<<<<<<<<<
+ *         if not self.lower_bounded:
+ *             if not other.lower_bounded:
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_WriteUnraisable("cyinterval.cyinterval.FloatInterval.lower_cmp", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11lower_cmp(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11lower_cmp(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("lower_cmp (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_FloatInterval, 1, "other", 0))) __PYX_ERR(0, 478, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_13FloatInterval_10lower_cmp(((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_other));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_10lower_cmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("lower_cmp", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_13FloatInterval_lower_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 478, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.lower_cmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cyinterval/cyinterval.pyx":498
+ *             return 1
+ * 
+ *     cpdef int upper_cmp(FloatInterval self, FloatInterval other):             # <<<<<<<<<<<<<<
+ *         if not self.upper_bounded:
+ *             if not other.upper_bounded:
+ */
+
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_13upper_cmp(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static int __pyx_f_10cyinterval_10cyinterval_13FloatInterval_upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other, int __pyx_skip_dispatch) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  int __pyx_t_7;
+  int __pyx_t_8;
+  int __pyx_t_9;
+  __Pyx_RefNannySetupContext("upper_cmp", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_upper_cmp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_13upper_cmp)) {
+      __Pyx_INCREF(__pyx_t_1);
+      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_4)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+          __Pyx_INCREF(__pyx_t_4);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_3, function);
+        }
+      }
+      if (!__pyx_t_4) {
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 498, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+      } else {
+        #if CYTHON_FAST_PYCALL
+        if (PyFunction_Check(__pyx_t_3)) {
+          PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 498, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
+        } else
+        #endif
+        #if CYTHON_FAST_PYCCALL
+        if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+          PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 498, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
+        } else
+        #endif
+        {
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 498, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_5);
+          __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
+          __Pyx_INCREF(((PyObject *)__pyx_v_other));
+          __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
+          PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_other));
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 498, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        }
+      }
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 498, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_r = __pyx_t_6;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "cyinterval/cyinterval.pyx":499
+ * 
+ *     cpdef int upper_cmp(FloatInterval self, FloatInterval other):
+ *         if not self.upper_bounded:             # <<<<<<<<<<<<<<
+ *             if not other.upper_bounded:
+ *                 return 0
+ */
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __pyx_t_8 = ((!__pyx_t_7) != 0);
+  if (__pyx_t_8) {
+
+    /* "cyinterval/cyinterval.pyx":500
+ *     cpdef int upper_cmp(FloatInterval self, FloatInterval other):
+ *         if not self.upper_bounded:
+ *             if not other.upper_bounded:             # <<<<<<<<<<<<<<
+ *                 return 0
+ *             else:
+ */
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 500, __pyx_L1_error)
+    __pyx_t_7 = ((!__pyx_t_8) != 0);
+    if (__pyx_t_7) {
+
+      /* "cyinterval/cyinterval.pyx":501
+ *         if not self.upper_bounded:
+ *             if not other.upper_bounded:
+ *                 return 0             # <<<<<<<<<<<<<<
+ *             else:
+ *                 return -1
+ */
+      __pyx_r = 0;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":500
+ *     cpdef int upper_cmp(FloatInterval self, FloatInterval other):
+ *         if not self.upper_bounded:
+ *             if not other.upper_bounded:             # <<<<<<<<<<<<<<
+ *                 return 0
+ *             else:
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":503
+ *                 return 0
+ *             else:
+ *                 return -1             # <<<<<<<<<<<<<<
+ *         elif other.upper_bounded:
+ *             return 1
+ */
+    /*else*/ {
+      __pyx_r = -1;
+      goto __pyx_L0;
+    }
+
+    /* "cyinterval/cyinterval.pyx":499
+ * 
+ *     cpdef int upper_cmp(FloatInterval self, FloatInterval other):
+ *         if not self.upper_bounded:             # <<<<<<<<<<<<<<
+ *             if not other.upper_bounded:
+ *                 return 0
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":504
+ *             else:
+ *                 return -1
+ *         elif other.upper_bounded:             # <<<<<<<<<<<<<<
+ *             return 1
+ *         if self.upper_bound < other.upper_bound:
+ */
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_bounded)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 504, __pyx_L1_error)
+  if (__pyx_t_7) {
+
+    /* "cyinterval/cyinterval.pyx":505
+ *                 return -1
+ *         elif other.upper_bounded:
+ *             return 1             # <<<<<<<<<<<<<<
+ *         if self.upper_bound < other.upper_bound:
+ *             return -1
+ */
+    __pyx_r = 1;
+    goto __pyx_L0;
+
+    /* "cyinterval/cyinterval.pyx":504
+ *             else:
+ *                 return -1
+ *         elif other.upper_bounded:             # <<<<<<<<<<<<<<
+ *             return 1
+ *         if self.upper_bound < other.upper_bound:
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":506
+ *         elif other.upper_bounded:
+ *             return 1
+ *         if self.upper_bound < other.upper_bound:             # <<<<<<<<<<<<<<
+ *             return -1
+ *         elif self.upper_bound == other.upper_bound:
+ */
+  __pyx_t_7 = ((__pyx_v_self->upper_bound < __pyx_v_other->upper_bound) != 0);
+  if (__pyx_t_7) {
+
+    /* "cyinterval/cyinterval.pyx":507
+ *             return 1
+ *         if self.upper_bound < other.upper_bound:
+ *             return -1             # <<<<<<<<<<<<<<
+ *         elif self.upper_bound == other.upper_bound:
+ *             if self.upper_closed and not other.upper_closed:
+ */
+    __pyx_r = -1;
+    goto __pyx_L0;
+
+    /* "cyinterval/cyinterval.pyx":506
+ *         elif other.upper_bounded:
+ *             return 1
+ *         if self.upper_bound < other.upper_bound:             # <<<<<<<<<<<<<<
+ *             return -1
+ *         elif self.upper_bound == other.upper_bound:
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":508
+ *         if self.upper_bound < other.upper_bound:
+ *             return -1
+ *         elif self.upper_bound == other.upper_bound:             # <<<<<<<<<<<<<<
+ *             if self.upper_closed and not other.upper_closed:
+ *                 return 1
+ */
+  __pyx_t_7 = ((__pyx_v_self->upper_bound == __pyx_v_other->upper_bound) != 0);
+  if (__pyx_t_7) {
+
+    /* "cyinterval/cyinterval.pyx":509
+ *             return -1
+ *         elif self.upper_bound == other.upper_bound:
+ *             if self.upper_closed and not other.upper_closed:             # <<<<<<<<<<<<<<
+ *                 return 1
+ *             elif other.upper_closed and not self.upper_closed:
+ */
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 509, __pyx_L1_error)
+    if (__pyx_t_8) {
+    } else {
+      __pyx_t_7 = __pyx_t_8;
+      goto __pyx_L7_bool_binop_done;
+    }
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 509, __pyx_L1_error)
+    __pyx_t_9 = ((!__pyx_t_8) != 0);
+    __pyx_t_7 = __pyx_t_9;
+    __pyx_L7_bool_binop_done:;
+    if (__pyx_t_7) {
+
+      /* "cyinterval/cyinterval.pyx":510
+ *         elif self.upper_bound == other.upper_bound:
+ *             if self.upper_closed and not other.upper_closed:
+ *                 return 1             # <<<<<<<<<<<<<<
+ *             elif other.upper_closed and not self.upper_closed:
+ *                 return -1
+ */
+      __pyx_r = 1;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":509
+ *             return -1
+ *         elif self.upper_bound == other.upper_bound:
+ *             if self.upper_closed and not other.upper_closed:             # <<<<<<<<<<<<<<
+ *                 return 1
+ *             elif other.upper_closed and not self.upper_closed:
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":511
+ *             if self.upper_closed and not other.upper_closed:
+ *                 return 1
+ *             elif other.upper_closed and not self.upper_closed:             # <<<<<<<<<<<<<<
+ *                 return -1
+ *             else:
+ */
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_other->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 511, __pyx_L1_error)
+    if (__pyx_t_9) {
+    } else {
+      __pyx_t_7 = __pyx_t_9;
+      goto __pyx_L9_bool_binop_done;
+    }
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_self->__pyx_base.upper_closed)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 511, __pyx_L1_error)
+    __pyx_t_8 = ((!__pyx_t_9) != 0);
+    __pyx_t_7 = __pyx_t_8;
+    __pyx_L9_bool_binop_done:;
+    if (__pyx_t_7) {
+
+      /* "cyinterval/cyinterval.pyx":512
+ *                 return 1
+ *             elif other.upper_closed and not self.upper_closed:
+ *                 return -1             # <<<<<<<<<<<<<<
+ *             else:
+ *                 return 0
+ */
+      __pyx_r = -1;
+      goto __pyx_L0;
+
+      /* "cyinterval/cyinterval.pyx":511
+ *             if self.upper_closed and not other.upper_closed:
+ *                 return 1
+ *             elif other.upper_closed and not self.upper_closed:             # <<<<<<<<<<<<<<
+ *                 return -1
+ *             else:
+ */
+    }
+
+    /* "cyinterval/cyinterval.pyx":514
+ *                 return -1
+ *             else:
+ *                 return 0             # <<<<<<<<<<<<<<
+ *         else:
+ *             return 1
+ */
+    /*else*/ {
+      __pyx_r = 0;
+      goto __pyx_L0;
+    }
+
+    /* "cyinterval/cyinterval.pyx":508
+ *         if self.upper_bound < other.upper_bound:
+ *             return -1
+ *         elif self.upper_bound == other.upper_bound:             # <<<<<<<<<<<<<<
+ *             if self.upper_closed and not other.upper_closed:
+ *                 return 1
+ */
+  }
+
+  /* "cyinterval/cyinterval.pyx":516
+ *                 return 0
+ *         else:
+ *             return 1             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  /*else*/ {
+    __pyx_r = 1;
+    goto __pyx_L0;
+  }
+
+  /* "cyinterval/cyinterval.pyx":498
+ *             return 1
+ * 
+ *     cpdef int upper_cmp(FloatInterval self, FloatInterval other):             # <<<<<<<<<<<<<<
+ *         if not self.upper_bounded:
+ *             if not other.upper_bounded:
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_WriteUnraisable("cyinterval.cyinterval.FloatInterval.upper_cmp", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_13upper_cmp(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_13upper_cmp(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("upper_cmp (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10cyinterval_10cyinterval_FloatInterval, 1, "other", 0))) __PYX_ERR(0, 498, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_13FloatInterval_12upper_cmp(((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self), ((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_other));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_12upper_cmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_other) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("upper_cmp", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_10cyinterval_10cyinterval_13FloatInterval_upper_cmp(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.upper_cmp", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cyinterval/cyinterval.pxd":43
+ * 
+ * cdef class FloatInterval(BaseInterval):
+ *     cdef readonly double lower_bound             # <<<<<<<<<<<<<<
+ *     cdef readonly double upper_bound
+ *     cpdef tuple init_args(FloatInterval self)
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11lower_bound_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11lower_bound_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_13FloatInterval_11lower_bound___get__(((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_11lower_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("__get__", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->lower_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.lower_bound.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cyinterval/cyinterval.pxd":44
+ * cdef class FloatInterval(BaseInterval):
+ *     cdef readonly double lower_bound
+ *     cdef readonly double upper_bound             # <<<<<<<<<<<<<<
+ *     cpdef tuple init_args(FloatInterval self)
+ *     cpdef FloatInterval intersection(FloatInterval self, FloatInterval other)
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11upper_bound_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11upper_bound_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_13FloatInterval_11upper_bound___get__(((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_13FloatInterval_11upper_bound___get__(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("__get__", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->upper_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 44, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cyinterval.cyinterval.FloatInterval.upper_bound.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cyinterval/cyinterval.pyx":521
  * # This is just a singleton
  * class unbounded:
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -9656,20 +12050,20 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_9unbounded___init__(CYTHON_U
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cyinterval/cyinterval.pyx":412
+  /* "cyinterval/cyinterval.pyx":522
  * class unbounded:
  *     def __init__(self):
  *         raise NotImplementedError('unbounded should not be instantiated')             # <<<<<<<<<<<<<<
  * 
  * interval_type_dispatch = {}
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 412, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 522, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __PYX_ERR(0, 412, __pyx_L1_error)
+  __PYX_ERR(0, 522, __pyx_L1_error)
 
-  /* "cyinterval/cyinterval.pyx":411
+  /* "cyinterval/cyinterval.pyx":521
  * # This is just a singleton
  * class unbounded:
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -9687,9 +12081,9 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_9unbounded___init__(CYTHON_U
   return __pyx_r;
 }
 
-/* "cyinterval/cyinterval.pyx":421
- * interval_default_value_dispatch[IntInterval] = 0
- * inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))
+/* "cyinterval/cyinterval.pyx":533
+ * interval_default_value_dispatch[FloatInterval] = 0.
+ * inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
  * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,             # <<<<<<<<<<<<<<
  *              upper_closed=True, interval_type=None):
  *     if interval_type is None:
@@ -9714,8 +12108,8 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_1Interval(PyObject *__pyx_se
     values[1] = __pyx_k__4;
     values[2] = ((PyObject *)Py_True);
 
-    /* "cyinterval/cyinterval.pyx":422
- * inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))
+    /* "cyinterval/cyinterval.pyx":534
+ * inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
  * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
  *              upper_closed=True, interval_type=None):             # <<<<<<<<<<<<<<
  *     if interval_type is None:
@@ -9764,7 +12158,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_1Interval(PyObject *__pyx_se
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "Interval") < 0)) __PYX_ERR(0, 421, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "Interval") < 0)) __PYX_ERR(0, 533, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -9785,7 +12179,7 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_1Interval(PyObject *__pyx_se
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("Interval", 0, 0, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 421, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("Interval", 0, 0, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 533, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cyinterval.cyinterval.Interval", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9793,9 +12187,9 @@ static PyObject *__pyx_pw_10cyinterval_10cyinterval_1Interval(PyObject *__pyx_se
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_10cyinterval_10cyinterval_Interval(__pyx_self, __pyx_v_lower_bound, __pyx_v_upper_bound, __pyx_v_lower_closed, __pyx_v_upper_closed, __pyx_v_interval_type);
 
-  /* "cyinterval/cyinterval.pyx":421
- * interval_default_value_dispatch[IntInterval] = 0
- * inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))
+  /* "cyinterval/cyinterval.pyx":533
+ * interval_default_value_dispatch[FloatInterval] = 0.
+ * inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
  * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,             # <<<<<<<<<<<<<<
  *              upper_closed=True, interval_type=None):
  *     if interval_type is None:
@@ -9825,7 +12219,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
   PyObject *__pyx_t_12 = NULL;
   __Pyx_RefNannySetupContext("Interval", 0);
 
-  /* "cyinterval/cyinterval.pyx":423
+  /* "cyinterval/cyinterval.pyx":535
  * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
  *              upper_closed=True, interval_type=None):
  *     if interval_type is None:             # <<<<<<<<<<<<<<
@@ -9836,7 +12230,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "cyinterval/cyinterval.pyx":424
+    /* "cyinterval/cyinterval.pyx":536
  *              upper_closed=True, interval_type=None):
  *     if interval_type is None:
  *         assert lower_bound is not unbounded or upper_bound is not unbounded             # <<<<<<<<<<<<<<
@@ -9845,7 +12239,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
  */
     #ifndef CYTHON_WITHOUT_ASSERTIONS
     if (unlikely(!Py_OptimizeFlag)) {
-      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 424, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 536, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_1 = (__pyx_v_lower_bound != __pyx_t_3);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9855,7 +12249,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
         __pyx_t_2 = __pyx_t_4;
         goto __pyx_L4_bool_binop_done;
       }
-      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 424, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 536, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_4 = (__pyx_v_upper_bound != __pyx_t_3);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9864,41 +12258,41 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
       __pyx_L4_bool_binop_done:;
       if (unlikely(!__pyx_t_2)) {
         PyErr_SetNone(PyExc_AssertionError);
-        __PYX_ERR(0, 424, __pyx_L1_error)
+        __PYX_ERR(0, 536, __pyx_L1_error)
       }
     }
     #endif
 
-    /* "cyinterval/cyinterval.pyx":425
+    /* "cyinterval/cyinterval.pyx":537
  *     if interval_type is None:
  *         assert lower_bound is not unbounded or upper_bound is not unbounded
  *         if lower_bound is not unbounded:             # <<<<<<<<<<<<<<
  *             cls = interval_type_dispatch[type(lower_bound)]
  *         else:
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 425, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 537, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_2 = (__pyx_v_lower_bound != __pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_1 = (__pyx_t_2 != 0);
     if (__pyx_t_1) {
 
-      /* "cyinterval/cyinterval.pyx":426
+      /* "cyinterval/cyinterval.pyx":538
  *         assert lower_bound is not unbounded or upper_bound is not unbounded
  *         if lower_bound is not unbounded:
  *             cls = interval_type_dispatch[type(lower_bound)]             # <<<<<<<<<<<<<<
  *         else:
  *             cls = interval_type_dispatch[type(upper_bound)]
  */
-      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 426, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 538, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = PyObject_GetItem(__pyx_t_3, ((PyObject *)Py_TYPE(__pyx_v_lower_bound))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 426, __pyx_L1_error)
+      __pyx_t_5 = PyObject_GetItem(__pyx_t_3, ((PyObject *)Py_TYPE(__pyx_v_lower_bound))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 538, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_v_cls = __pyx_t_5;
       __pyx_t_5 = 0;
 
-      /* "cyinterval/cyinterval.pyx":425
+      /* "cyinterval/cyinterval.pyx":537
  *     if interval_type is None:
  *         assert lower_bound is not unbounded or upper_bound is not unbounded
  *         if lower_bound is not unbounded:             # <<<<<<<<<<<<<<
@@ -9908,7 +12302,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
       goto __pyx_L6;
     }
 
-    /* "cyinterval/cyinterval.pyx":428
+    /* "cyinterval/cyinterval.pyx":540
  *             cls = interval_type_dispatch[type(lower_bound)]
  *         else:
  *             cls = interval_type_dispatch[type(upper_bound)]             # <<<<<<<<<<<<<<
@@ -9916,9 +12310,9 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
  *         cls = interval_type
  */
     /*else*/ {
-      __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 428, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 540, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_3 = PyObject_GetItem(__pyx_t_5, ((PyObject *)Py_TYPE(__pyx_v_upper_bound))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 428, __pyx_L1_error)
+      __pyx_t_3 = PyObject_GetItem(__pyx_t_5, ((PyObject *)Py_TYPE(__pyx_v_upper_bound))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 540, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v_cls = __pyx_t_3;
@@ -9926,7 +12320,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
     }
     __pyx_L6:;
 
-    /* "cyinterval/cyinterval.pyx":423
+    /* "cyinterval/cyinterval.pyx":535
  * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
  *              upper_closed=True, interval_type=None):
  *     if interval_type is None:             # <<<<<<<<<<<<<<
@@ -9936,21 +12330,21 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
     goto __pyx_L3;
   }
 
-  /* "cyinterval/cyinterval.pyx":429
+  /* "cyinterval/cyinterval.pyx":541
  *         else:
  *             cls = interval_type_dispatch[type(upper_bound)]
  *     elif interval_type in inverse_interval_type_dispatch:             # <<<<<<<<<<<<<<
  *         cls = interval_type
  *     elif interval_type in interval_type_dispatch:
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_inverse_interval_type_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 429, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_inverse_interval_type_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 541, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = (__Pyx_PySequence_ContainsTF(__pyx_v_interval_type, __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PySequence_ContainsTF(__pyx_v_interval_type, __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 541, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "cyinterval/cyinterval.pyx":430
+    /* "cyinterval/cyinterval.pyx":542
  *             cls = interval_type_dispatch[type(upper_bound)]
  *     elif interval_type in inverse_interval_type_dispatch:
  *         cls = interval_type             # <<<<<<<<<<<<<<
@@ -9960,7 +12354,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
     __Pyx_INCREF(__pyx_v_interval_type);
     __pyx_v_cls = __pyx_v_interval_type;
 
-    /* "cyinterval/cyinterval.pyx":429
+    /* "cyinterval/cyinterval.pyx":541
  *         else:
  *             cls = interval_type_dispatch[type(upper_bound)]
  *     elif interval_type in inverse_interval_type_dispatch:             # <<<<<<<<<<<<<<
@@ -9970,36 +12364,36 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
     goto __pyx_L3;
   }
 
-  /* "cyinterval/cyinterval.pyx":431
+  /* "cyinterval/cyinterval.pyx":543
  *     elif interval_type in inverse_interval_type_dispatch:
  *         cls = interval_type
  *     elif interval_type in interval_type_dispatch:             # <<<<<<<<<<<<<<
  *         cls = interval_type_dispatch[interval_type]
  *     elif type(interval_type) in interval_type_dispatch:
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 431, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 543, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_interval_type, __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 431, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_interval_type, __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 543, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
-    /* "cyinterval/cyinterval.pyx":432
+    /* "cyinterval/cyinterval.pyx":544
  *         cls = interval_type
  *     elif interval_type in interval_type_dispatch:
  *         cls = interval_type_dispatch[interval_type]             # <<<<<<<<<<<<<<
  *     elif type(interval_type) in interval_type_dispatch:
  *         cls = interval_type_dispatch[type(interval_type)]
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 432, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 544, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = PyObject_GetItem(__pyx_t_3, __pyx_v_interval_type); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 432, __pyx_L1_error)
+    __pyx_t_5 = PyObject_GetItem(__pyx_t_3, __pyx_v_interval_type); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 544, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_cls = __pyx_t_5;
     __pyx_t_5 = 0;
 
-    /* "cyinterval/cyinterval.pyx":431
+    /* "cyinterval/cyinterval.pyx":543
  *     elif interval_type in inverse_interval_type_dispatch:
  *         cls = interval_type
  *     elif interval_type in interval_type_dispatch:             # <<<<<<<<<<<<<<
@@ -10009,36 +12403,36 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
     goto __pyx_L3;
   }
 
-  /* "cyinterval/cyinterval.pyx":433
+  /* "cyinterval/cyinterval.pyx":545
  *     elif interval_type in interval_type_dispatch:
  *         cls = interval_type_dispatch[interval_type]
  *     elif type(interval_type) in interval_type_dispatch:             # <<<<<<<<<<<<<<
  *         cls = interval_type_dispatch[type(interval_type)]
  *     else:
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 545, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = (__Pyx_PySequence_ContainsTF(((PyObject *)Py_TYPE(__pyx_v_interval_type)), __pyx_t_5, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PySequence_ContainsTF(((PyObject *)Py_TYPE(__pyx_v_interval_type)), __pyx_t_5, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 545, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "cyinterval/cyinterval.pyx":434
+    /* "cyinterval/cyinterval.pyx":546
  *         cls = interval_type_dispatch[interval_type]
  *     elif type(interval_type) in interval_type_dispatch:
  *         cls = interval_type_dispatch[type(interval_type)]             # <<<<<<<<<<<<<<
  *     else:
  *         cls = ObjectInterval
  */
-    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 434, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 546, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = PyObject_GetItem(__pyx_t_5, ((PyObject *)Py_TYPE(__pyx_v_interval_type))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetItem(__pyx_t_5, ((PyObject *)Py_TYPE(__pyx_v_interval_type))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_cls = __pyx_t_3;
     __pyx_t_3 = 0;
 
-    /* "cyinterval/cyinterval.pyx":433
+    /* "cyinterval/cyinterval.pyx":545
  *     elif interval_type in interval_type_dispatch:
  *         cls = interval_type_dispatch[interval_type]
  *     elif type(interval_type) in interval_type_dispatch:             # <<<<<<<<<<<<<<
@@ -10048,7 +12442,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
     goto __pyx_L3;
   }
 
-  /* "cyinterval/cyinterval.pyx":436
+  /* "cyinterval/cyinterval.pyx":548
  *         cls = interval_type_dispatch[type(interval_type)]
  *     else:
  *         cls = ObjectInterval             # <<<<<<<<<<<<<<
@@ -10061,22 +12455,22 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
   }
   __pyx_L3:;
 
-  /* "cyinterval/cyinterval.pyx":437
+  /* "cyinterval/cyinterval.pyx":549
  *     else:
  *         cls = ObjectInterval
  *     default_value = interval_default_value_dispatch[cls]             # <<<<<<<<<<<<<<
  *     return cls(lower_bound if lower_bound is not unbounded else default_value,
  *                upper_bound if upper_bound is not unbounded else default_value,
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_default_value_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 437, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_default_value_dispatch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 549, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyObject_GetItem(__pyx_t_3, __pyx_v_cls); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 437, __pyx_L1_error)
+  __pyx_t_5 = PyObject_GetItem(__pyx_t_3, __pyx_v_cls); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 549, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_default_value = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "cyinterval/cyinterval.pyx":438
+  /* "cyinterval/cyinterval.pyx":550
  *         cls = ObjectInterval
  *     default_value = interval_default_value_dispatch[cls]
  *     return cls(lower_bound if lower_bound is not unbounded else default_value,             # <<<<<<<<<<<<<<
@@ -10084,7 +12478,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
  *                lower_closed, upper_closed, lower_bound is not unbounded,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 550, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_2 = (__pyx_v_lower_bound != __pyx_t_6);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -10096,14 +12490,14 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
     __pyx_t_3 = __pyx_v_default_value;
   }
 
-  /* "cyinterval/cyinterval.pyx":439
+  /* "cyinterval/cyinterval.pyx":551
  *     default_value = interval_default_value_dispatch[cls]
  *     return cls(lower_bound if lower_bound is not unbounded else default_value,
  *                upper_bound if upper_bound is not unbounded else default_value,             # <<<<<<<<<<<<<<
  *                lower_closed, upper_closed, lower_bound is not unbounded,
  *                upper_bound is not unbounded)
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 439, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 551, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_2 = (__pyx_v_upper_bound != __pyx_t_7);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -10115,32 +12509,32 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
     __pyx_t_6 = __pyx_v_default_value;
   }
 
-  /* "cyinterval/cyinterval.pyx":440
+  /* "cyinterval/cyinterval.pyx":552
  *     return cls(lower_bound if lower_bound is not unbounded else default_value,
  *                upper_bound if upper_bound is not unbounded else default_value,
  *                lower_closed, upper_closed, lower_bound is not unbounded,             # <<<<<<<<<<<<<<
  *                upper_bound is not unbounded)
  * 
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_2 = (__pyx_v_lower_bound != __pyx_t_7);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
 
-  /* "cyinterval/cyinterval.pyx":441
+  /* "cyinterval/cyinterval.pyx":553
  *                upper_bound if upper_bound is not unbounded else default_value,
  *                lower_closed, upper_closed, lower_bound is not unbounded,
  *                upper_bound is not unbounded)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 553, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_2 = (__pyx_v_upper_bound != __pyx_t_8);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 553, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_INCREF(__pyx_v_cls);
   __pyx_t_9 = __pyx_v_cls; __pyx_t_10 = NULL;
@@ -10158,7 +12552,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_9)) {
     PyObject *__pyx_temp[7] = {__pyx_t_10, __pyx_t_3, __pyx_t_6, __pyx_v_lower_closed, __pyx_v_upper_closed, __pyx_t_7, __pyx_t_8};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_11, 6+__pyx_t_11); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 438, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_11, 6+__pyx_t_11); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 550, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -10170,7 +12564,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_9)) {
     PyObject *__pyx_temp[7] = {__pyx_t_10, __pyx_t_3, __pyx_t_6, __pyx_v_lower_closed, __pyx_v_upper_closed, __pyx_t_7, __pyx_t_8};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_11, 6+__pyx_t_11); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 438, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_11, 6+__pyx_t_11); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 550, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -10180,7 +12574,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
   } else
   #endif
   {
-    __pyx_t_12 = PyTuple_New(6+__pyx_t_11); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 438, __pyx_L1_error)
+    __pyx_t_12 = PyTuple_New(6+__pyx_t_11); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 550, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     if (__pyx_t_10) {
       __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_10); __pyx_t_10 = NULL;
@@ -10203,7 +12597,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
     __pyx_t_6 = 0;
     __pyx_t_7 = 0;
     __pyx_t_8 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_12, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 438, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_12, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 550, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   }
@@ -10212,9 +12606,9 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_Interval(CYTHON_UNUSED PyObj
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "cyinterval/cyinterval.pyx":421
- * interval_default_value_dispatch[IntInterval] = 0
- * inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))
+  /* "cyinterval/cyinterval.pyx":533
+ * interval_default_value_dispatch[FloatInterval] = 0.
+ * inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
  * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,             # <<<<<<<<<<<<<<
  *              upper_closed=True, interval_type=None):
  *     if interval_type is None:
@@ -10295,7 +12689,7 @@ static CYTHON_INLINE PyObject *__pyx_f_7cpython_8datetime_date_new(int __pyx_v_y
  * # Create time object using DateTime CAPI factory function
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDateTimeAPI->Date_FromDate(__pyx_v_year, __pyx_v_month, __pyx_v_day, PyDateTimeAPI->DateType); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 110, __pyx_L1_error)
+  __pyx_t_1 = PyDateTimeAPI->Date_FromDate(__pyx_v_year, __pyx_v_month, __pyx_v_day, PyDateTimeAPI->DateType); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10342,7 +12736,7 @@ static CYTHON_INLINE PyObject *__pyx_f_7cpython_8datetime_time_new(int __pyx_v_h
  * # Create datetime object using DateTime CAPI factory function.
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDateTimeAPI->Time_FromTime(__pyx_v_hour, __pyx_v_minute, __pyx_v_second, __pyx_v_microsecond, __pyx_v_tz, PyDateTimeAPI->TimeType); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 115, __pyx_L1_error)
+  __pyx_t_1 = PyDateTimeAPI->Time_FromTime(__pyx_v_hour, __pyx_v_minute, __pyx_v_second, __pyx_v_microsecond, __pyx_v_tz, PyDateTimeAPI->TimeType); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10389,7 +12783,7 @@ static CYTHON_INLINE PyObject *__pyx_f_7cpython_8datetime_datetime_new(int __pyx
  * # Create timedelta object using DateTime CAPI factory function.
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDateTimeAPI->DateTime_FromDateAndTime(__pyx_v_year, __pyx_v_month, __pyx_v_day, __pyx_v_hour, __pyx_v_minute, __pyx_v_second, __pyx_v_microsecond, __pyx_v_tz, PyDateTimeAPI->DateTimeType); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 120, __pyx_L1_error)
+  __pyx_t_1 = PyDateTimeAPI->DateTime_FromDateAndTime(__pyx_v_year, __pyx_v_month, __pyx_v_day, __pyx_v_hour, __pyx_v_minute, __pyx_v_second, __pyx_v_microsecond, __pyx_v_tz, PyDateTimeAPI->DateTimeType); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10436,7 +12830,7 @@ static CYTHON_INLINE PyObject *__pyx_f_7cpython_8datetime_timedelta_new(int __py
  * # More recognizable getters for date/time/datetime/timedelta.
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDateTimeAPI->Delta_FromDelta(__pyx_v_days, __pyx_v_seconds, __pyx_v_useconds, 1, PyDateTimeAPI->DeltaType); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 125, __pyx_L1_error)
+  __pyx_t_1 = PyDateTimeAPI->Delta_FromDelta(__pyx_v_days, __pyx_v_seconds, __pyx_v_useconds, 1, PyDateTimeAPI->DeltaType); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11810,6 +14204,98 @@ static PyTypeObject __pyx_type_10cyinterval_10cyinterval_IntInterval = {
   0, /*tp_finalize*/
   #endif
 };
+static struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatInterval __pyx_vtable_10cyinterval_10cyinterval_FloatInterval;
+
+static PyObject *__pyx_tp_new_10cyinterval_10cyinterval_FloatInterval(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *p;
+  PyObject *o = __pyx_tp_new_10cyinterval_10cyinterval_BaseInterval(t, a, k);
+  if (unlikely(!o)) return 0;
+  p = ((struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *)o);
+  p->__pyx_vtab = __pyx_vtabptr_10cyinterval_10cyinterval_FloatInterval;
+  return o;
+}
+
+static PyObject *__pyx_getprop_10cyinterval_10cyinterval_13FloatInterval_lower_bound(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11lower_bound_1__get__(o);
+}
+
+static PyObject *__pyx_getprop_10cyinterval_10cyinterval_13FloatInterval_upper_bound(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11upper_bound_1__get__(o);
+}
+
+static PyMethodDef __pyx_methods_10cyinterval_10cyinterval_FloatInterval[] = {
+  {"init_args", (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_3init_args, METH_NOARGS, 0},
+  {"intersection", (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_5intersection, METH_O, 0},
+  {"empty", (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_7empty, METH_NOARGS, 0},
+  {"richcmp", (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_9richcmp, METH_VARARGS|METH_KEYWORDS, 0},
+  {"lower_cmp", (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_11lower_cmp, METH_O, 0},
+  {"upper_cmp", (PyCFunction)__pyx_pw_10cyinterval_10cyinterval_13FloatInterval_13upper_cmp, METH_O, 0},
+  {0, 0, 0, 0}
+};
+
+static struct PyGetSetDef __pyx_getsets_10cyinterval_10cyinterval_FloatInterval[] = {
+  {(char *)"lower_bound", __pyx_getprop_10cyinterval_10cyinterval_13FloatInterval_lower_bound, 0, (char *)0, 0},
+  {(char *)"upper_bound", __pyx_getprop_10cyinterval_10cyinterval_13FloatInterval_upper_bound, 0, (char *)0, 0},
+  {0, 0, 0, 0, 0}
+};
+
+static PyTypeObject __pyx_type_10cyinterval_10cyinterval_FloatInterval = {
+  PyVarObject_HEAD_INIT(0, 0)
+  "cyinterval.cyinterval.FloatInterval", /*tp_name*/
+  sizeof(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval), /*tp_basicsize*/
+  0, /*tp_itemsize*/
+  __pyx_tp_dealloc_10cyinterval_10cyinterval_BaseInterval, /*tp_dealloc*/
+  0, /*tp_print*/
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*tp_compare*/
+  #endif
+  #if PY_MAJOR_VERSION >= 3
+  0, /*tp_as_async*/
+  #endif
+  0, /*tp_repr*/
+  0, /*tp_as_number*/
+  0, /*tp_as_sequence*/
+  0, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  0, /*tp_str*/
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
+  0, /*tp_doc*/
+  __pyx_tp_traverse_10cyinterval_10cyinterval_BaseInterval, /*tp_traverse*/
+  __pyx_tp_clear_10cyinterval_10cyinterval_BaseInterval, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  0, /*tp_iter*/
+  0, /*tp_iternext*/
+  __pyx_methods_10cyinterval_10cyinterval_FloatInterval, /*tp_methods*/
+  0, /*tp_members*/
+  __pyx_getsets_10cyinterval_10cyinterval_FloatInterval, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  0, /*tp_dictoffset*/
+  __pyx_pw_10cyinterval_10cyinterval_13FloatInterval_1__init__, /*tp_init*/
+  0, /*tp_alloc*/
+  __pyx_tp_new_10cyinterval_10cyinterval_FloatInterval, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if PY_VERSION_HEX >= 0x030400a1
+  0, /*tp_finalize*/
+  #endif
+};
 
 static PyMethodDef __pyx_methods[] = {
   {0, 0, 0, 0}
@@ -11879,18 +14365,15 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_unbounded_should_not_be_instanti, __pyx_k_unbounded_should_not_be_instanti, sizeof(__pyx_k_unbounded_should_not_be_instanti), 0, 0, 1, 0},
   {&__pyx_n_s_upper_bound, __pyx_k_upper_bound, sizeof(__pyx_k_upper_bound), 0, 0, 1, 1},
   {&__pyx_n_s_upper_bounded, __pyx_k_upper_bounded, sizeof(__pyx_k_upper_bounded), 0, 0, 1, 1},
-  {&__pyx_n_s_upper_bouned, __pyx_k_upper_bouned, sizeof(__pyx_k_upper_bouned), 0, 0, 1, 1},
   {&__pyx_n_s_upper_closed, __pyx_k_upper_closed, sizeof(__pyx_k_upper_closed), 0, 0, 1, 1},
   {&__pyx_n_s_upper_cmp, __pyx_k_upper_cmp, sizeof(__pyx_k_upper_cmp), 0, 0, 1, 1},
-  {&__pyx_n_s_zip, __pyx_k_zip, sizeof(__pyx_k_zip), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 420, __pyx_L1_error)
-  __pyx_builtin_map = __Pyx_GetBuiltinName(__pyx_n_s_map); if (!__pyx_builtin_map) __PYX_ERR(0, 420, __pyx_L1_error)
-  __pyx_builtin_reversed = __Pyx_GetBuiltinName(__pyx_n_s_reversed); if (!__pyx_builtin_reversed) __PYX_ERR(0, 420, __pyx_L1_error)
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_n_s_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 22, __pyx_L1_error)
-  __pyx_builtin_NotImplementedError = __Pyx_GetBuiltinName(__pyx_n_s_NotImplementedError); if (!__pyx_builtin_NotImplementedError) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_builtin_map = __Pyx_GetBuiltinName(__pyx_n_s_map); if (!__pyx_builtin_map) __PYX_ERR(0, 532, __pyx_L1_error)
+  __pyx_builtin_reversed = __Pyx_GetBuiltinName(__pyx_n_s_reversed); if (!__pyx_builtin_reversed) __PYX_ERR(0, 532, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_n_s_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 15, __pyx_L1_error)
+  __pyx_builtin_NotImplementedError = __Pyx_GetBuiltinName(__pyx_n_s_NotImplementedError); if (!__pyx_builtin_NotImplementedError) __PYX_ERR(0, 20, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -11900,51 +14383,51 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cyinterval/cyinterval.pyx":27
+  /* "cyinterval/cyinterval.pyx":20
  *     def __and__(BaseInterval self, other):
  *         if other.__class__ is self.__class__:
  *             raise NotImplementedError('Only intervals of the same type can be intersected')             # <<<<<<<<<<<<<<
  *         return self.intersection(other)
  * 
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_Only_intervals_of_the_same_type); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_Only_intervals_of_the_same_type); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "cyinterval/cyinterval.pyx":412
+  /* "cyinterval/cyinterval.pyx":522
  * class unbounded:
  *     def __init__(self):
  *         raise NotImplementedError('unbounded should not be instantiated')             # <<<<<<<<<<<<<<
  * 
  * interval_type_dispatch = {}
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_unbounded_should_not_be_instanti); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 412, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_unbounded_should_not_be_instanti); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 522, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "cyinterval/cyinterval.pyx":411
+  /* "cyinterval/cyinterval.pyx":521
  * # This is just a singleton
  * class unbounded:
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         raise NotImplementedError('unbounded should not be instantiated')
  * 
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_jason_projects_cyinterval, __pyx_n_s_init, 411, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_jason_projects_cyinterval, __pyx_n_s_init, 521, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 521, __pyx_L1_error)
 
-  /* "cyinterval/cyinterval.pyx":421
- * interval_default_value_dispatch[IntInterval] = 0
- * inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))
+  /* "cyinterval/cyinterval.pyx":533
+ * interval_default_value_dispatch[FloatInterval] = 0.
+ * inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
  * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,             # <<<<<<<<<<<<<<
  *              upper_closed=True, interval_type=None):
  *     if interval_type is None:
  */
-  __pyx_tuple__7 = PyTuple_Pack(7, __pyx_n_s_lower_bound, __pyx_n_s_upper_bound, __pyx_n_s_lower_closed, __pyx_n_s_upper_closed, __pyx_n_s_interval_type, __pyx_n_s_cls, __pyx_n_s_default_value); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(7, __pyx_n_s_lower_bound, __pyx_n_s_upper_bound, __pyx_n_s_lower_closed, __pyx_n_s_upper_closed, __pyx_n_s_interval_type, __pyx_n_s_cls, __pyx_n_s_default_value); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 533, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(5, 0, 7, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_jason_projects_cyinterval, __pyx_n_s_Interval, 421, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(5, 0, 7, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_jason_projects_cyinterval, __pyx_n_s_Interval, 533, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 533, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -11954,6 +14437,7 @@ static int __Pyx_InitCachedConstants(void) {
 
 static int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  __pyx_float_0_ = PyFloat_FromDouble(0.); if (unlikely(!__pyx_float_0_)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -12046,49 +14530,62 @@ PyMODINIT_FUNC PyInit_cyinterval(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_10cyinterval_10cyinterval_BaseInterval) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_10cyinterval_10cyinterval_BaseInterval) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __pyx_type_10cyinterval_10cyinterval_BaseInterval.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "BaseInterval", (PyObject *)&__pyx_type_10cyinterval_10cyinterval_BaseInterval) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "BaseInterval", (PyObject *)&__pyx_type_10cyinterval_10cyinterval_BaseInterval) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __pyx_ptype_10cyinterval_10cyinterval_BaseInterval = &__pyx_type_10cyinterval_10cyinterval_BaseInterval;
   __pyx_vtabptr_10cyinterval_10cyinterval_ObjectInterval = &__pyx_vtable_10cyinterval_10cyinterval_ObjectInterval;
   __pyx_vtable_10cyinterval_10cyinterval_ObjectInterval.init_args = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_init_args;
   __pyx_vtable_10cyinterval_10cyinterval_ObjectInterval.intersection = (struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *(*)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_intersection;
-  __pyx_vtable_10cyinterval_10cyinterval_ObjectInterval.empty = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty;
-  __pyx_vtable_10cyinterval_10cyinterval_ObjectInterval.richcmp = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp;
+  __pyx_vtable_10cyinterval_10cyinterval_ObjectInterval.empty = (PyBoolObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_empty;
+  __pyx_vtable_10cyinterval_10cyinterval_ObjectInterval.richcmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_richcmp;
   __pyx_vtable_10cyinterval_10cyinterval_ObjectInterval.lower_cmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_lower_cmp;
   __pyx_vtable_10cyinterval_10cyinterval_ObjectInterval.upper_cmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, struct __pyx_obj_10cyinterval_10cyinterval_ObjectInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_14ObjectInterval_upper_cmp;
   __pyx_type_10cyinterval_10cyinterval_ObjectInterval.tp_base = __pyx_ptype_10cyinterval_10cyinterval_BaseInterval;
-  if (PyType_Ready(&__pyx_type_10cyinterval_10cyinterval_ObjectInterval) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_10cyinterval_10cyinterval_ObjectInterval) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   __pyx_type_10cyinterval_10cyinterval_ObjectInterval.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_10cyinterval_10cyinterval_ObjectInterval.tp_dict, __pyx_vtabptr_10cyinterval_10cyinterval_ObjectInterval) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
-  if (PyObject_SetAttrString(__pyx_m, "ObjectInterval", (PyObject *)&__pyx_type_10cyinterval_10cyinterval_ObjectInterval) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_10cyinterval_10cyinterval_ObjectInterval.tp_dict, __pyx_vtabptr_10cyinterval_10cyinterval_ObjectInterval) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "ObjectInterval", (PyObject *)&__pyx_type_10cyinterval_10cyinterval_ObjectInterval) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   __pyx_ptype_10cyinterval_10cyinterval_ObjectInterval = &__pyx_type_10cyinterval_10cyinterval_ObjectInterval;
   __pyx_vtabptr_10cyinterval_10cyinterval_DateInterval = &__pyx_vtable_10cyinterval_10cyinterval_DateInterval;
   __pyx_vtable_10cyinterval_10cyinterval_DateInterval.init_args = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_12DateInterval_init_args;
   __pyx_vtable_10cyinterval_10cyinterval_DateInterval.intersection = (struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *(*)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_12DateInterval_intersection;
-  __pyx_vtable_10cyinterval_10cyinterval_DateInterval.empty = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty;
-  __pyx_vtable_10cyinterval_10cyinterval_DateInterval.richcmp = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp;
+  __pyx_vtable_10cyinterval_10cyinterval_DateInterval.empty = (PyBoolObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_12DateInterval_empty;
+  __pyx_vtable_10cyinterval_10cyinterval_DateInterval.richcmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_12DateInterval_richcmp;
   __pyx_vtable_10cyinterval_10cyinterval_DateInterval.lower_cmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_12DateInterval_lower_cmp;
   __pyx_vtable_10cyinterval_10cyinterval_DateInterval.upper_cmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_12DateInterval_upper_cmp;
   __pyx_type_10cyinterval_10cyinterval_DateInterval.tp_base = __pyx_ptype_10cyinterval_10cyinterval_BaseInterval;
-  if (PyType_Ready(&__pyx_type_10cyinterval_10cyinterval_DateInterval) < 0) __PYX_ERR(0, 158, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_10cyinterval_10cyinterval_DateInterval) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
   __pyx_type_10cyinterval_10cyinterval_DateInterval.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_10cyinterval_10cyinterval_DateInterval.tp_dict, __pyx_vtabptr_10cyinterval_10cyinterval_DateInterval) < 0) __PYX_ERR(0, 158, __pyx_L1_error)
-  if (PyObject_SetAttrString(__pyx_m, "DateInterval", (PyObject *)&__pyx_type_10cyinterval_10cyinterval_DateInterval) < 0) __PYX_ERR(0, 158, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_10cyinterval_10cyinterval_DateInterval.tp_dict, __pyx_vtabptr_10cyinterval_10cyinterval_DateInterval) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "DateInterval", (PyObject *)&__pyx_type_10cyinterval_10cyinterval_DateInterval) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
   __pyx_ptype_10cyinterval_10cyinterval_DateInterval = &__pyx_type_10cyinterval_10cyinterval_DateInterval;
   __pyx_vtabptr_10cyinterval_10cyinterval_IntInterval = &__pyx_vtable_10cyinterval_10cyinterval_IntInterval;
   __pyx_vtable_10cyinterval_10cyinterval_IntInterval.init_args = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_11IntInterval_init_args;
   __pyx_vtable_10cyinterval_10cyinterval_IntInterval.intersection = (struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *(*)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_11IntInterval_intersection;
-  __pyx_vtable_10cyinterval_10cyinterval_IntInterval.empty = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty;
-  __pyx_vtable_10cyinterval_10cyinterval_IntInterval.richcmp = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp;
+  __pyx_vtable_10cyinterval_10cyinterval_IntInterval.empty = (PyBoolObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_11IntInterval_empty;
+  __pyx_vtable_10cyinterval_10cyinterval_IntInterval.richcmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_11IntInterval_richcmp;
   __pyx_vtable_10cyinterval_10cyinterval_IntInterval.lower_cmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_11IntInterval_lower_cmp;
   __pyx_vtable_10cyinterval_10cyinterval_IntInterval.upper_cmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_11IntInterval_upper_cmp;
   __pyx_type_10cyinterval_10cyinterval_IntInterval.tp_base = __pyx_ptype_10cyinterval_10cyinterval_BaseInterval;
-  if (PyType_Ready(&__pyx_type_10cyinterval_10cyinterval_IntInterval) < 0) __PYX_ERR(0, 283, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_10cyinterval_10cyinterval_IntInterval) < 0) __PYX_ERR(0, 272, __pyx_L1_error)
   __pyx_type_10cyinterval_10cyinterval_IntInterval.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_10cyinterval_10cyinterval_IntInterval.tp_dict, __pyx_vtabptr_10cyinterval_10cyinterval_IntInterval) < 0) __PYX_ERR(0, 283, __pyx_L1_error)
-  if (PyObject_SetAttrString(__pyx_m, "IntInterval", (PyObject *)&__pyx_type_10cyinterval_10cyinterval_IntInterval) < 0) __PYX_ERR(0, 283, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_10cyinterval_10cyinterval_IntInterval.tp_dict, __pyx_vtabptr_10cyinterval_10cyinterval_IntInterval) < 0) __PYX_ERR(0, 272, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "IntInterval", (PyObject *)&__pyx_type_10cyinterval_10cyinterval_IntInterval) < 0) __PYX_ERR(0, 272, __pyx_L1_error)
   __pyx_ptype_10cyinterval_10cyinterval_IntInterval = &__pyx_type_10cyinterval_10cyinterval_IntInterval;
+  __pyx_vtabptr_10cyinterval_10cyinterval_FloatInterval = &__pyx_vtable_10cyinterval_10cyinterval_FloatInterval;
+  __pyx_vtable_10cyinterval_10cyinterval_FloatInterval.init_args = (PyObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_13FloatInterval_init_args;
+  __pyx_vtable_10cyinterval_10cyinterval_FloatInterval.intersection = (struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *(*)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_13FloatInterval_intersection;
+  __pyx_vtable_10cyinterval_10cyinterval_FloatInterval.empty = (PyBoolObject *(*)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_13FloatInterval_empty;
+  __pyx_vtable_10cyinterval_10cyinterval_FloatInterval.richcmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_13FloatInterval_richcmp;
+  __pyx_vtable_10cyinterval_10cyinterval_FloatInterval.lower_cmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_13FloatInterval_lower_cmp;
+  __pyx_vtable_10cyinterval_10cyinterval_FloatInterval.upper_cmp = (int (*)(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *, int __pyx_skip_dispatch))__pyx_f_10cyinterval_10cyinterval_13FloatInterval_upper_cmp;
+  __pyx_type_10cyinterval_10cyinterval_FloatInterval.tp_base = __pyx_ptype_10cyinterval_10cyinterval_BaseInterval;
+  if (PyType_Ready(&__pyx_type_10cyinterval_10cyinterval_FloatInterval) < 0) __PYX_ERR(0, 395, __pyx_L1_error)
+  __pyx_type_10cyinterval_10cyinterval_FloatInterval.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_10cyinterval_10cyinterval_FloatInterval.tp_dict, __pyx_vtabptr_10cyinterval_10cyinterval_FloatInterval) < 0) __PYX_ERR(0, 395, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "FloatInterval", (PyObject *)&__pyx_type_10cyinterval_10cyinterval_FloatInterval) < 0) __PYX_ERR(0, 395, __pyx_L1_error)
+  __pyx_ptype_10cyinterval_10cyinterval_FloatInterval = &__pyx_type_10cyinterval_10cyinterval_FloatInterval;
   /*--- Type import code ---*/
   __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "type", 
   #if CYTHON_COMPILING_IN_PYPY
@@ -12096,14 +14593,14 @@ PyMODINIT_FUNC PyInit_cyinterval(void)
   #else
   sizeof(PyHeapTypeObject),
   #endif
-  0); if (unlikely(!__pyx_ptype_7cpython_4type_type)) __PYX_ERR(2, 9, __pyx_L1_error)
-  __pyx_ptype_7cpython_4bool_bool = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "bool", sizeof(PyBoolObject), 0); if (unlikely(!__pyx_ptype_7cpython_4bool_bool)) __PYX_ERR(3, 8, __pyx_L1_error)
-  __pyx_ptype_7cpython_7complex_complex = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "complex", sizeof(PyComplexObject), 0); if (unlikely(!__pyx_ptype_7cpython_7complex_complex)) __PYX_ERR(4, 15, __pyx_L1_error)
-  __pyx_ptype_7cpython_8datetime_date = __Pyx_ImportType("datetime", "date", sizeof(PyDateTime_Date), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_date)) __PYX_ERR(1, 9, __pyx_L1_error)
-  __pyx_ptype_7cpython_8datetime_time = __Pyx_ImportType("datetime", "time", sizeof(PyDateTime_Time), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_time)) __PYX_ERR(1, 12, __pyx_L1_error)
-  __pyx_ptype_7cpython_8datetime_datetime = __Pyx_ImportType("datetime", "datetime", sizeof(PyDateTime_DateTime), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_datetime)) __PYX_ERR(1, 15, __pyx_L1_error)
-  __pyx_ptype_7cpython_8datetime_timedelta = __Pyx_ImportType("datetime", "timedelta", sizeof(PyDateTime_Delta), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_timedelta)) __PYX_ERR(1, 18, __pyx_L1_error)
-  __pyx_ptype_7cpython_8datetime_tzinfo = __Pyx_ImportType("datetime", "tzinfo", sizeof(PyDateTime_TZInfo), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_tzinfo)) __PYX_ERR(1, 21, __pyx_L1_error)
+  0); if (unlikely(!__pyx_ptype_7cpython_4type_type)) __PYX_ERR(3, 9, __pyx_L1_error)
+  __pyx_ptype_7cpython_4bool_bool = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "bool", sizeof(PyBoolObject), 0); if (unlikely(!__pyx_ptype_7cpython_4bool_bool)) __PYX_ERR(4, 8, __pyx_L1_error)
+  __pyx_ptype_7cpython_7complex_complex = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "complex", sizeof(PyComplexObject), 0); if (unlikely(!__pyx_ptype_7cpython_7complex_complex)) __PYX_ERR(5, 15, __pyx_L1_error)
+  __pyx_ptype_7cpython_8datetime_date = __Pyx_ImportType("datetime", "date", sizeof(PyDateTime_Date), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_date)) __PYX_ERR(2, 9, __pyx_L1_error)
+  __pyx_ptype_7cpython_8datetime_time = __Pyx_ImportType("datetime", "time", sizeof(PyDateTime_Time), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_time)) __PYX_ERR(2, 12, __pyx_L1_error)
+  __pyx_ptype_7cpython_8datetime_datetime = __Pyx_ImportType("datetime", "datetime", sizeof(PyDateTime_DateTime), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_datetime)) __PYX_ERR(2, 15, __pyx_L1_error)
+  __pyx_ptype_7cpython_8datetime_timedelta = __Pyx_ImportType("datetime", "timedelta", sizeof(PyDateTime_Delta), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_timedelta)) __PYX_ERR(2, 18, __pyx_L1_error)
+  __pyx_ptype_7cpython_8datetime_tzinfo = __Pyx_ImportType("datetime", "tzinfo", sizeof(PyDateTime_TZInfo), 0); if (unlikely(!__pyx_ptype_7cpython_8datetime_tzinfo)) __PYX_ERR(2, 21, __pyx_L1_error)
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   /*--- Execution code ---*/
@@ -12111,139 +14608,162 @@ PyMODINIT_FUNC PyInit_cyinterval(void)
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "cyinterval/cyinterval.pyx":2
- * from cpython.datetime cimport date
+  /* "cyinterval/cyinterval.pyx":1
  * from datetime import date             # <<<<<<<<<<<<<<
- * from cpython cimport bool
  * 
+ * cdef class BaseInterval:
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_date);
   __Pyx_GIVEREF(__pyx_n_s_date);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_date);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_datetime, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_datetime, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":410
+  /* "cyinterval/cyinterval.pyx":520
  * 
  * # This is just a singleton
  * class unbounded:             # <<<<<<<<<<<<<<
  *     def __init__(self):
  *         raise NotImplementedError('unbounded should not be instantiated')
  */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_unbounded, __pyx_n_s_unbounded, (PyObject *) NULL, __pyx_n_s_cyinterval_cyinterval, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_unbounded, __pyx_n_s_unbounded, (PyObject *) NULL, __pyx_n_s_cyinterval_cyinterval, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 520, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "cyinterval/cyinterval.pyx":411
+  /* "cyinterval/cyinterval.pyx":521
  * # This is just a singleton
  * class unbounded:
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         raise NotImplementedError('unbounded should not be instantiated')
  * 
  */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_10cyinterval_10cyinterval_9unbounded_1__init__, 0, __pyx_n_s_unbounded___init, NULL, __pyx_n_s_cyinterval_cyinterval, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_10cyinterval_10cyinterval_9unbounded_1__init__, 0, __pyx_n_s_unbounded___init, NULL, __pyx_n_s_cyinterval_cyinterval, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_1) < 0) __PYX_ERR(0, 411, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_1) < 0) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cyinterval/cyinterval.pyx":410
+  /* "cyinterval/cyinterval.pyx":520
  * 
  * # This is just a singleton
  * class unbounded:             # <<<<<<<<<<<<<<
  *     def __init__(self):
  *         raise NotImplementedError('unbounded should not be instantiated')
  */
-  __pyx_t_1 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_unbounded, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_unbounded, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 520, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_unbounded, __pyx_t_1) < 0) __PYX_ERR(0, 410, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_unbounded, __pyx_t_1) < 0) __PYX_ERR(0, 520, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":414
+  /* "cyinterval/cyinterval.pyx":524
  *         raise NotImplementedError('unbounded should not be instantiated')
  * 
  * interval_type_dispatch = {}             # <<<<<<<<<<<<<<
  * interval_default_value_dispatch = {}
  * interval_type_dispatch[date] = DateInterval
  */
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 524, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_interval_type_dispatch, __pyx_t_2) < 0) __PYX_ERR(0, 414, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_interval_type_dispatch, __pyx_t_2) < 0) __PYX_ERR(0, 524, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":415
+  /* "cyinterval/cyinterval.pyx":525
  * 
  * interval_type_dispatch = {}
  * interval_default_value_dispatch = {}             # <<<<<<<<<<<<<<
  * interval_type_dispatch[date] = DateInterval
  * interval_default_value_dispatch[DateInterval] = None
  */
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 525, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_interval_default_value_dispatch, __pyx_t_2) < 0) __PYX_ERR(0, 415, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_interval_default_value_dispatch, __pyx_t_2) < 0) __PYX_ERR(0, 525, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":416
+  /* "cyinterval/cyinterval.pyx":526
  * interval_type_dispatch = {}
  * interval_default_value_dispatch = {}
  * interval_type_dispatch[date] = DateInterval             # <<<<<<<<<<<<<<
  * interval_default_value_dispatch[DateInterval] = None
  * interval_type_dispatch[int] = IntInterval
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 526, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)__pyx_ptype_7cpython_8datetime_date), ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_DateInterval)) < 0)) __PYX_ERR(0, 416, __pyx_L1_error)
+  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)__pyx_ptype_7cpython_8datetime_date), ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_DateInterval)) < 0)) __PYX_ERR(0, 526, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":417
+  /* "cyinterval/cyinterval.pyx":527
  * interval_default_value_dispatch = {}
  * interval_type_dispatch[date] = DateInterval
  * interval_default_value_dispatch[DateInterval] = None             # <<<<<<<<<<<<<<
  * interval_type_dispatch[int] = IntInterval
  * interval_default_value_dispatch[IntInterval] = 0
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_default_value_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 417, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_default_value_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 527, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_DateInterval), Py_None) < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_DateInterval), Py_None) < 0)) __PYX_ERR(0, 527, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":418
+  /* "cyinterval/cyinterval.pyx":528
  * interval_type_dispatch[date] = DateInterval
  * interval_default_value_dispatch[DateInterval] = None
  * interval_type_dispatch[int] = IntInterval             # <<<<<<<<<<<<<<
  * interval_default_value_dispatch[IntInterval] = 0
- * inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))
+ * interval_type_dispatch[float] = FloatInterval
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 528, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)(&PyInt_Type)), ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_IntInterval)) < 0)) __PYX_ERR(0, 418, __pyx_L1_error)
+  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)(&PyInt_Type)), ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_IntInterval)) < 0)) __PYX_ERR(0, 528, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":419
+  /* "cyinterval/cyinterval.pyx":529
  * interval_default_value_dispatch[DateInterval] = None
  * interval_type_dispatch[int] = IntInterval
  * interval_default_value_dispatch[IntInterval] = 0             # <<<<<<<<<<<<<<
- * inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))
- * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
+ * interval_type_dispatch[float] = FloatInterval
+ * interval_default_value_dispatch[FloatInterval] = 0.
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_default_value_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_default_value_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 529, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_IntInterval), __pyx_int_0) < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_IntInterval), __pyx_int_0) < 0)) __PYX_ERR(0, 529, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":420
+  /* "cyinterval/cyinterval.pyx":530
  * interval_type_dispatch[int] = IntInterval
  * interval_default_value_dispatch[IntInterval] = 0
- * inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))             # <<<<<<<<<<<<<<
+ * interval_type_dispatch[float] = FloatInterval             # <<<<<<<<<<<<<<
+ * interval_default_value_dispatch[FloatInterval] = 0.
+ * inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 530, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)(&PyFloat_Type)), ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_FloatInterval)) < 0)) __PYX_ERR(0, 530, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "cyinterval/cyinterval.pyx":531
+ * interval_default_value_dispatch[IntInterval] = 0
+ * interval_type_dispatch[float] = FloatInterval
+ * interval_default_value_dispatch[FloatInterval] = 0.             # <<<<<<<<<<<<<<
+ * inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
+ * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_default_value_dispatch); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (unlikely(PyObject_SetItem(__pyx_t_2, ((PyObject *)__pyx_ptype_10cyinterval_10cyinterval_FloatInterval), __pyx_float_0_) < 0)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "cyinterval/cyinterval.pyx":532
+ * interval_type_dispatch[float] = FloatInterval
+ * interval_default_value_dispatch[FloatInterval] = 0.
+ * inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))             # <<<<<<<<<<<<<<
  * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
  *              upper_closed=True, interval_type=None):
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_interval_type_dispatch); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -12257,14 +14777,14 @@ PyMODINIT_FUNC PyInit_cyinterval(void)
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 420, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 532, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 420, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 532, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_builtin_reversed);
   __Pyx_GIVEREF(__pyx_builtin_reversed);
@@ -12272,54 +14792,57 @@ PyMODINIT_FUNC PyInit_cyinterval(void)
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_map, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_map, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 532, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_INCREF(((PyObject *)(&PyTuple_Type)));
+  __Pyx_GIVEREF(((PyObject *)(&PyTuple_Type)));
+  PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)(&PyTuple_Type)));
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_map, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 532, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyDict_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyDict_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 420, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_inverse_interval_type_dispatch, __pyx_t_2) < 0) __PYX_ERR(0, 420, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_inverse_interval_type_dispatch, __pyx_t_2) < 0) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cyinterval/cyinterval.pyx":421
- * interval_default_value_dispatch[IntInterval] = 0
- * inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))
+  /* "cyinterval/cyinterval.pyx":533
+ * interval_default_value_dispatch[FloatInterval] = 0.
+ * inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
  * def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,             # <<<<<<<<<<<<<<
  *              upper_closed=True, interval_type=None):
  *     if interval_type is None:
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 533, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_k__3 = __pyx_t_2;
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_unbounded); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 533, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_k__4 = __pyx_t_2;
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_10cyinterval_10cyinterval_1Interval, NULL, __pyx_n_s_cyinterval_cyinterval); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_10cyinterval_10cyinterval_1Interval, NULL, __pyx_n_s_cyinterval_cyinterval); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 533, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Interval, __pyx_t_2) < 0) __PYX_ERR(0, 421, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Interval, __pyx_t_2) < 0) __PYX_ERR(0, 533, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "cyinterval/cyinterval.pyx":1
- * from cpython.datetime cimport date             # <<<<<<<<<<<<<<
- * from datetime import date
- * from cpython cimport bool
+ * from datetime import date             # <<<<<<<<<<<<<<
+ * 
+ * cdef class BaseInterval:
  */
   __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);

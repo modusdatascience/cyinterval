@@ -1,13 +1,6 @@
-from cpython.datetime cimport date
 from datetime import date
-from cpython cimport bool
 
 cdef class BaseInterval:
-    cdef readonly bool lower_closed
-    cdef readonly bool upper_closed
-    cdef readonly bool lower_bounded
-    cdef readonly bool upper_bounded
-        
     def __reduce__(BaseInterval self):
         return (self.__class__, self.init_args())
         
@@ -31,24 +24,23 @@ cdef class BaseInterval:
 <%!
 type_tups = [('ObjectInterval', 'object', None, 'None', False), 
               ('DateInterval', 'date', 'date', 'None', True),
-              ('IntInterval', 'int', 'int', '0', True)]
+              ('IntInterval', 'int', 'int', '0', True),
+              ('FloatInterval', 'double', 'float', '0.', True)]
 default_type_tup_index = 0
 %>
 
 % for IntervalType, c_type, p_type, default_value, dispatchable in type_tups:
 cdef class ${IntervalType}(BaseInterval):
-    cdef readonly ${c_type} lower_bound
-    cdef readonly ${c_type} upper_bound
     def __init__(BaseInterval self, ${c_type} lower_bound, ${c_type} upper_bound, bool lower_closed, 
                  bool upper_closed, bool lower_bounded, bool upper_bounded):
         self.lower_closed = lower_closed
         self.upper_closed = upper_closed
         self.lower_bounded = lower_bounded
-        self.upper_bouned = upper_bounded
+        self.upper_bounded = upper_bounded
         if lower_bounded:
             self.lower_bound = lower_bound
         if upper_bounded:
-            self.upper_bound = upper_bounded
+            self.upper_bound = upper_bound
             
     cpdef tuple init_args(${IntervalType} self):
         return (self.lower_bound, self.upper_bound, self.lower_closed, self.upper_closed, 
@@ -79,13 +71,13 @@ cdef class ${IntervalType}(BaseInterval):
         return ${IntervalType}(new_lower_bound, new_upper_bound, new_lower_closed, 
                                new_upper_closed, new_lower_bounded, new_upper_bounded)
                 
-    cpdef empty(${IntervalType} self):
+    cpdef bool empty(${IntervalType} self):
         return ((self.lower_bounded and self.upper_bounded) and 
                 (((self.lower_bound == self.upper_bound) and 
                 (not (self.lower_closed or self.upper_closed))) or
                 self.lower_bound > self.upper_bound))
     
-    cpdef richcmp(${IntervalType} self, ${IntervalType} other, int op):
+    cpdef int richcmp(${IntervalType} self, ${IntervalType} other, int op):
         cdef int lower_cmp
         cdef int upper_cmp
         if op == 0 or op == 1:
@@ -176,7 +168,7 @@ interval_type_dispatch[${p_type}] = ${IntervalType}
 interval_default_value_dispatch[${IntervalType}] = ${default_value}
 % endif
 % endfor
-inverse_interval_type_dispatch = dict(zip(map(reversed, interval_type_dispatch.items())))
+inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dispatch.items())))
 def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True, 
              upper_closed=True, interval_type=None):
     if interval_type is None:
