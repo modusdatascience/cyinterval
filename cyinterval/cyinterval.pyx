@@ -1,6 +1,9 @@
 from datetime import date
 
 cdef class BaseInterval:
+    '''
+    Interpreted as the conjunction of two inequalities.
+    '''
     def __reduce__(BaseInterval self):
         return (self.__class__, self.init_args())
         
@@ -11,7 +14,7 @@ cdef class BaseInterval:
         return not self.empty()
     
     def __richcmp__(BaseInterval self, other, int op):
-        if other.__class__ is self.__class__:
+        if other.__class__ is not self.__class__:
             return NotImplemented
         return self.richcmp(other, op)
         
@@ -22,7 +25,11 @@ cdef class BaseInterval:
     
     def __contains__(BaseInterval self, item):
         return self.contains(item)
-            
+
+cdef class BaseIntervalSet:
+    pass
+
+cdef timedelta day = timedelta(days=1)
 
 
 cdef class ObjectInterval(BaseInterval):
@@ -37,17 +44,33 @@ cdef class ObjectInterval(BaseInterval):
         if upper_bounded:
             self.upper_bound = upper_bound
     
-    cpdef bool contains(ObjectInterval self, object item):
-        if self.lower_closed and self.lower_bounded and item == self.lower_bound:
-            return True
-        if item > self.lower_bound and item < self.upper_bound:
-            return True
-        if not self.lower_bounded or item > self.lower_bound:
-            if not self.upper_bounded or item < self.upper_bound:
-                return True
-        if self.upper_closed and self.upper_bounded and item == self.upper_bound:
-            return True
+    # For some types, there is a concept of adjacent elements.  For example, 
+    # there are no integers between 1 and 2 (although there are several real numbers).
+    # If there is such a concept, it's possible for an interval to be empty even when 
+    # the lower bound is strictly less than the upper bound, provided the bounds are strict 
+    # (not closed).  The adjacent method is used to help determine such cases.
+    cpdef bool adjacent(ObjectInterval self, object lower, object upper):
         return False
+    
+    cpdef int containment_cmp(ObjectInterval self, object item):
+        if self.lower_bounded:
+            if item < self.lower_bound:
+                return -1
+            elif item == self.lower_bound:
+                if not self.lower_closed:
+                    return -1
+        # If we get here, the item satisfies the lower bound constraint
+        if self.upper_bounded:
+            if item > self.upper_bound:
+                return 1
+            elif item == self.upper_bound:
+                if not self.upper_closed:
+                    return 1
+        # If we get here, the item also satisfies the upper bound constraint
+        return 0
+    
+    cpdef bool contains(ObjectInterval self, object item):
+        return self.containment_cmp(item) == 0
     
     cpdef int overlap_cmp(ObjectInterval self, ObjectInterval other):
         '''
@@ -105,12 +128,44 @@ cdef class ObjectInterval(BaseInterval):
             new_upper_closed = other.upper_closed
         return ObjectInterval(new_lower_bound, new_upper_bound, new_lower_closed, 
                                new_upper_closed, new_lower_bounded, new_upper_bounded)
-                
+    
+    cpdef ObjectInterval fusion(ObjectInterval self, ObjectInterval other):
+        '''
+        Assume intervals overlap.  Return their union.  Results not correct
+        for non-overlapping intervals
+        '''
+        cdef int lower_cmp = self.lower_cmp(other)
+        cdef int upper_cmp = self.upper_cmp(other)
+        cdef object new_lower_bound, new_upper_bound
+        cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
+        if lower_cmp <= 0:
+            new_lower_bound = self.lower_bound
+            new_lower_bounded = self.lower_bounded
+            new_lower_closed = self.lower_closed
+        else:
+            new_lower_bound = other.lower_bound
+            new_lower_bounded = other.lower_bounded
+            new_lower_closed = other.lower_closed
+        
+        if upper_cmp <= 0:
+            new_upper_bound = other.upper_bound
+            new_upper_bounded = other.upper_bounded
+            new_upper_closed = other.upper_closed
+        else:
+            new_upper_bound = self.upper_bound
+            new_upper_bounded = self.upper_bounded
+            new_upper_closed = self.upper_closed
+        return ObjectInterval(new_lower_bound, new_upper_bound, new_lower_closed, 
+                               new_upper_closed, new_lower_bounded, new_upper_bounded)
+    
     cpdef bool empty(ObjectInterval self):
         return ((self.lower_bounded and self.upper_bounded) and 
-                (((self.lower_bound == self.upper_bound) and 
-                (not (self.lower_closed or self.upper_closed))) or
-                self.lower_bound > self.upper_bound))
+                ((((self.lower_bound == self.upper_bound) and 
+                (not (self.lower_closed and self.upper_closed))) or
+                self.lower_bound > self.upper_bound) or 
+                 (self.lower_bound < self.upper_bound and 
+                  (not (self.lower_closed or self.upper_closed)) and
+                  self.adjacent(self.lower_bound, self.upper_bound))))
     
     cpdef int richcmp(ObjectInterval self, ObjectInterval other, int op):
         cdef int lower_cmp
@@ -154,7 +209,7 @@ cdef class ObjectInterval(BaseInterval):
                 return 0
             else:
                 return -1
-        elif other.lower_bounded:
+        elif not other.lower_bounded:
             return 1
         if self.lower_bound < other.lower_bound:
             return -1
@@ -173,9 +228,9 @@ cdef class ObjectInterval(BaseInterval):
             if not other.upper_bounded:
                 return 0
             else:
-                return -1
-        elif other.upper_bounded:
-            return 1
+                return 1
+        elif not other.upper_bounded:
+            return -1
         if self.upper_bound < other.upper_bound:
             return -1
         elif self.upper_bound == other.upper_bound:
@@ -187,6 +242,32 @@ cdef class ObjectInterval(BaseInterval):
                 return 0
         else:
             return 1
+
+cdef class ObjectIntervalSet(BaseIntervalSet):
+    cdef readonly tuple intervals
+    cdef readonly int n_intervals
+    def __init__(ObjectIntervalSet self, tuple intervals):
+        '''
+        The intervals must already be sorted and non-overlapping.
+        '''
+        self.intervals = intervals
+        self.n_intervals = len(intervals)
+        
+    cpdef ObjectIntervalSet intersection(ObjectIntervalSet self, ObjectIntervalSet other):
+        pass
+    
+    cpdef ObjectIntervalSet union(ObjectIntervalSet self, ObjectIntervalSet other):
+        pass
+    
+    cpdef ObjectIntervalSet complement(ObjectIntervalSet self):
+        pass
+    
+    cpdef ObjectIntervalSet minus(ObjectIntervalSet self, ObjectIntervalSet other):
+        pass
+    
+    
+    
+    
 
 cdef class DateInterval(BaseInterval):
     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed, 
@@ -200,17 +281,33 @@ cdef class DateInterval(BaseInterval):
         if upper_bounded:
             self.upper_bound = upper_bound
     
+    # For some types, there is a concept of adjacent elements.  For example, 
+    # there are no integers between 1 and 2 (although there are several real numbers).
+    # If there is such a concept, it's possible for an interval to be empty even when 
+    # the lower bound is strictly less than the upper bound, provided the bounds are strict 
+    # (not closed).  The adjacent method is used to help determine such cases.
+    cpdef bool adjacent(DateInterval self, date lower, date upper):
+        return lower + day == upper
+    
+    cpdef int containment_cmp(DateInterval self, date item):
+        if self.lower_bounded:
+            if item < self.lower_bound:
+                return -1
+            elif item == self.lower_bound:
+                if not self.lower_closed:
+                    return -1
+        # If we get here, the item satisfies the lower bound constraint
+        if self.upper_bounded:
+            if item > self.upper_bound:
+                return 1
+            elif item == self.upper_bound:
+                if not self.upper_closed:
+                    return 1
+        # If we get here, the item also satisfies the upper bound constraint
+        return 0
+    
     cpdef bool contains(DateInterval self, date item):
-        if self.lower_closed and self.lower_bounded and item == self.lower_bound:
-            return True
-        if item > self.lower_bound and item < self.upper_bound:
-            return True
-        if not self.lower_bounded or item > self.lower_bound:
-            if not self.upper_bounded or item < self.upper_bound:
-                return True
-        if self.upper_closed and self.upper_bounded and item == self.upper_bound:
-            return True
-        return False
+        return self.containment_cmp(item) == 0
     
     cpdef int overlap_cmp(DateInterval self, DateInterval other):
         '''
@@ -268,12 +365,44 @@ cdef class DateInterval(BaseInterval):
             new_upper_closed = other.upper_closed
         return DateInterval(new_lower_bound, new_upper_bound, new_lower_closed, 
                                new_upper_closed, new_lower_bounded, new_upper_bounded)
-                
+    
+    cpdef DateInterval fusion(DateInterval self, DateInterval other):
+        '''
+        Assume intervals overlap.  Return their union.  Results not correct
+        for non-overlapping intervals
+        '''
+        cdef int lower_cmp = self.lower_cmp(other)
+        cdef int upper_cmp = self.upper_cmp(other)
+        cdef date new_lower_bound, new_upper_bound
+        cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
+        if lower_cmp <= 0:
+            new_lower_bound = self.lower_bound
+            new_lower_bounded = self.lower_bounded
+            new_lower_closed = self.lower_closed
+        else:
+            new_lower_bound = other.lower_bound
+            new_lower_bounded = other.lower_bounded
+            new_lower_closed = other.lower_closed
+        
+        if upper_cmp <= 0:
+            new_upper_bound = other.upper_bound
+            new_upper_bounded = other.upper_bounded
+            new_upper_closed = other.upper_closed
+        else:
+            new_upper_bound = self.upper_bound
+            new_upper_bounded = self.upper_bounded
+            new_upper_closed = self.upper_closed
+        return DateInterval(new_lower_bound, new_upper_bound, new_lower_closed, 
+                               new_upper_closed, new_lower_bounded, new_upper_bounded)
+    
     cpdef bool empty(DateInterval self):
         return ((self.lower_bounded and self.upper_bounded) and 
-                (((self.lower_bound == self.upper_bound) and 
-                (not (self.lower_closed or self.upper_closed))) or
-                self.lower_bound > self.upper_bound))
+                ((((self.lower_bound == self.upper_bound) and 
+                (not (self.lower_closed and self.upper_closed))) or
+                self.lower_bound > self.upper_bound) or 
+                 (self.lower_bound < self.upper_bound and 
+                  (not (self.lower_closed or self.upper_closed)) and
+                  self.adjacent(self.lower_bound, self.upper_bound))))
     
     cpdef int richcmp(DateInterval self, DateInterval other, int op):
         cdef int lower_cmp
@@ -317,7 +446,7 @@ cdef class DateInterval(BaseInterval):
                 return 0
             else:
                 return -1
-        elif other.lower_bounded:
+        elif not other.lower_bounded:
             return 1
         if self.lower_bound < other.lower_bound:
             return -1
@@ -336,9 +465,9 @@ cdef class DateInterval(BaseInterval):
             if not other.upper_bounded:
                 return 0
             else:
-                return -1
-        elif other.upper_bounded:
-            return 1
+                return 1
+        elif not other.upper_bounded:
+            return -1
         if self.upper_bound < other.upper_bound:
             return -1
         elif self.upper_bound == other.upper_bound:
@@ -350,6 +479,32 @@ cdef class DateInterval(BaseInterval):
                 return 0
         else:
             return 1
+
+cdef class DateIntervalSet(BaseIntervalSet):
+    cdef readonly tuple intervals
+    cdef readonly int n_intervals
+    def __init__(DateIntervalSet self, tuple intervals):
+        '''
+        The intervals must already be sorted and non-overlapping.
+        '''
+        self.intervals = intervals
+        self.n_intervals = len(intervals)
+        
+    cpdef DateIntervalSet intersection(DateIntervalSet self, DateIntervalSet other):
+        pass
+    
+    cpdef DateIntervalSet union(DateIntervalSet self, DateIntervalSet other):
+        pass
+    
+    cpdef DateIntervalSet complement(DateIntervalSet self):
+        pass
+    
+    cpdef DateIntervalSet minus(DateIntervalSet self, DateIntervalSet other):
+        pass
+    
+    
+    
+    
 
 cdef class IntInterval(BaseInterval):
     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed, 
@@ -363,17 +518,33 @@ cdef class IntInterval(BaseInterval):
         if upper_bounded:
             self.upper_bound = upper_bound
     
+    # For some types, there is a concept of adjacent elements.  For example, 
+    # there are no integers between 1 and 2 (although there are several real numbers).
+    # If there is such a concept, it's possible for an interval to be empty even when 
+    # the lower bound is strictly less than the upper bound, provided the bounds are strict 
+    # (not closed).  The adjacent method is used to help determine such cases.
+    cpdef bool adjacent(IntInterval self, int lower, int upper):
+        return lower + 1 == upper
+    
+    cpdef int containment_cmp(IntInterval self, int item):
+        if self.lower_bounded:
+            if item < self.lower_bound:
+                return -1
+            elif item == self.lower_bound:
+                if not self.lower_closed:
+                    return -1
+        # If we get here, the item satisfies the lower bound constraint
+        if self.upper_bounded:
+            if item > self.upper_bound:
+                return 1
+            elif item == self.upper_bound:
+                if not self.upper_closed:
+                    return 1
+        # If we get here, the item also satisfies the upper bound constraint
+        return 0
+    
     cpdef bool contains(IntInterval self, int item):
-        if self.lower_closed and self.lower_bounded and item == self.lower_bound:
-            return True
-        if item > self.lower_bound and item < self.upper_bound:
-            return True
-        if not self.lower_bounded or item > self.lower_bound:
-            if not self.upper_bounded or item < self.upper_bound:
-                return True
-        if self.upper_closed and self.upper_bounded and item == self.upper_bound:
-            return True
-        return False
+        return self.containment_cmp(item) == 0
     
     cpdef int overlap_cmp(IntInterval self, IntInterval other):
         '''
@@ -431,12 +602,44 @@ cdef class IntInterval(BaseInterval):
             new_upper_closed = other.upper_closed
         return IntInterval(new_lower_bound, new_upper_bound, new_lower_closed, 
                                new_upper_closed, new_lower_bounded, new_upper_bounded)
-                
+    
+    cpdef IntInterval fusion(IntInterval self, IntInterval other):
+        '''
+        Assume intervals overlap.  Return their union.  Results not correct
+        for non-overlapping intervals
+        '''
+        cdef int lower_cmp = self.lower_cmp(other)
+        cdef int upper_cmp = self.upper_cmp(other)
+        cdef int new_lower_bound, new_upper_bound
+        cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
+        if lower_cmp <= 0:
+            new_lower_bound = self.lower_bound
+            new_lower_bounded = self.lower_bounded
+            new_lower_closed = self.lower_closed
+        else:
+            new_lower_bound = other.lower_bound
+            new_lower_bounded = other.lower_bounded
+            new_lower_closed = other.lower_closed
+        
+        if upper_cmp <= 0:
+            new_upper_bound = other.upper_bound
+            new_upper_bounded = other.upper_bounded
+            new_upper_closed = other.upper_closed
+        else:
+            new_upper_bound = self.upper_bound
+            new_upper_bounded = self.upper_bounded
+            new_upper_closed = self.upper_closed
+        return IntInterval(new_lower_bound, new_upper_bound, new_lower_closed, 
+                               new_upper_closed, new_lower_bounded, new_upper_bounded)
+    
     cpdef bool empty(IntInterval self):
         return ((self.lower_bounded and self.upper_bounded) and 
-                (((self.lower_bound == self.upper_bound) and 
-                (not (self.lower_closed or self.upper_closed))) or
-                self.lower_bound > self.upper_bound))
+                ((((self.lower_bound == self.upper_bound) and 
+                (not (self.lower_closed and self.upper_closed))) or
+                self.lower_bound > self.upper_bound) or 
+                 (self.lower_bound < self.upper_bound and 
+                  (not (self.lower_closed or self.upper_closed)) and
+                  self.adjacent(self.lower_bound, self.upper_bound))))
     
     cpdef int richcmp(IntInterval self, IntInterval other, int op):
         cdef int lower_cmp
@@ -480,7 +683,7 @@ cdef class IntInterval(BaseInterval):
                 return 0
             else:
                 return -1
-        elif other.lower_bounded:
+        elif not other.lower_bounded:
             return 1
         if self.lower_bound < other.lower_bound:
             return -1
@@ -499,9 +702,9 @@ cdef class IntInterval(BaseInterval):
             if not other.upper_bounded:
                 return 0
             else:
-                return -1
-        elif other.upper_bounded:
-            return 1
+                return 1
+        elif not other.upper_bounded:
+            return -1
         if self.upper_bound < other.upper_bound:
             return -1
         elif self.upper_bound == other.upper_bound:
@@ -513,6 +716,32 @@ cdef class IntInterval(BaseInterval):
                 return 0
         else:
             return 1
+
+cdef class IntIntervalSet(BaseIntervalSet):
+    cdef readonly tuple intervals
+    cdef readonly int n_intervals
+    def __init__(IntIntervalSet self, tuple intervals):
+        '''
+        The intervals must already be sorted and non-overlapping.
+        '''
+        self.intervals = intervals
+        self.n_intervals = len(intervals)
+        
+    cpdef IntIntervalSet intersection(IntIntervalSet self, IntIntervalSet other):
+        pass
+    
+    cpdef IntIntervalSet union(IntIntervalSet self, IntIntervalSet other):
+        pass
+    
+    cpdef IntIntervalSet complement(IntIntervalSet self):
+        pass
+    
+    cpdef IntIntervalSet minus(IntIntervalSet self, IntIntervalSet other):
+        pass
+    
+    
+    
+    
 
 cdef class FloatInterval(BaseInterval):
     def __init__(BaseInterval self, double lower_bound, double upper_bound, bool lower_closed, 
@@ -526,17 +755,33 @@ cdef class FloatInterval(BaseInterval):
         if upper_bounded:
             self.upper_bound = upper_bound
     
-    cpdef bool contains(FloatInterval self, double item):
-        if self.lower_closed and self.lower_bounded and item == self.lower_bound:
-            return True
-        if item > self.lower_bound and item < self.upper_bound:
-            return True
-        if not self.lower_bounded or item > self.lower_bound:
-            if not self.upper_bounded or item < self.upper_bound:
-                return True
-        if self.upper_closed and self.upper_bounded and item == self.upper_bound:
-            return True
+    # For some types, there is a concept of adjacent elements.  For example, 
+    # there are no integers between 1 and 2 (although there are several real numbers).
+    # If there is such a concept, it's possible for an interval to be empty even when 
+    # the lower bound is strictly less than the upper bound, provided the bounds are strict 
+    # (not closed).  The adjacent method is used to help determine such cases.
+    cpdef bool adjacent(FloatInterval self, double lower, double upper):
         return False
+    
+    cpdef int containment_cmp(FloatInterval self, double item):
+        if self.lower_bounded:
+            if item < self.lower_bound:
+                return -1
+            elif item == self.lower_bound:
+                if not self.lower_closed:
+                    return -1
+        # If we get here, the item satisfies the lower bound constraint
+        if self.upper_bounded:
+            if item > self.upper_bound:
+                return 1
+            elif item == self.upper_bound:
+                if not self.upper_closed:
+                    return 1
+        # If we get here, the item also satisfies the upper bound constraint
+        return 0
+    
+    cpdef bool contains(FloatInterval self, double item):
+        return self.containment_cmp(item) == 0
     
     cpdef int overlap_cmp(FloatInterval self, FloatInterval other):
         '''
@@ -594,12 +839,44 @@ cdef class FloatInterval(BaseInterval):
             new_upper_closed = other.upper_closed
         return FloatInterval(new_lower_bound, new_upper_bound, new_lower_closed, 
                                new_upper_closed, new_lower_bounded, new_upper_bounded)
-                
+    
+    cpdef FloatInterval fusion(FloatInterval self, FloatInterval other):
+        '''
+        Assume intervals overlap.  Return their union.  Results not correct
+        for non-overlapping intervals
+        '''
+        cdef int lower_cmp = self.lower_cmp(other)
+        cdef int upper_cmp = self.upper_cmp(other)
+        cdef double new_lower_bound, new_upper_bound
+        cdef bool new_lower_closed, new_lower_bounded, new_upper_closed, new_upper_bounded
+        if lower_cmp <= 0:
+            new_lower_bound = self.lower_bound
+            new_lower_bounded = self.lower_bounded
+            new_lower_closed = self.lower_closed
+        else:
+            new_lower_bound = other.lower_bound
+            new_lower_bounded = other.lower_bounded
+            new_lower_closed = other.lower_closed
+        
+        if upper_cmp <= 0:
+            new_upper_bound = other.upper_bound
+            new_upper_bounded = other.upper_bounded
+            new_upper_closed = other.upper_closed
+        else:
+            new_upper_bound = self.upper_bound
+            new_upper_bounded = self.upper_bounded
+            new_upper_closed = self.upper_closed
+        return FloatInterval(new_lower_bound, new_upper_bound, new_lower_closed, 
+                               new_upper_closed, new_lower_bounded, new_upper_bounded)
+    
     cpdef bool empty(FloatInterval self):
         return ((self.lower_bounded and self.upper_bounded) and 
-                (((self.lower_bound == self.upper_bound) and 
-                (not (self.lower_closed or self.upper_closed))) or
-                self.lower_bound > self.upper_bound))
+                ((((self.lower_bound == self.upper_bound) and 
+                (not (self.lower_closed and self.upper_closed))) or
+                self.lower_bound > self.upper_bound) or 
+                 (self.lower_bound < self.upper_bound and 
+                  (not (self.lower_closed or self.upper_closed)) and
+                  self.adjacent(self.lower_bound, self.upper_bound))))
     
     cpdef int richcmp(FloatInterval self, FloatInterval other, int op):
         cdef int lower_cmp
@@ -643,7 +920,7 @@ cdef class FloatInterval(BaseInterval):
                 return 0
             else:
                 return -1
-        elif other.lower_bounded:
+        elif not other.lower_bounded:
             return 1
         if self.lower_bound < other.lower_bound:
             return -1
@@ -662,9 +939,9 @@ cdef class FloatInterval(BaseInterval):
             if not other.upper_bounded:
                 return 0
             else:
-                return -1
-        elif other.upper_bounded:
-            return 1
+                return 1
+        elif not other.upper_bounded:
+            return -1
         if self.upper_bound < other.upper_bound:
             return -1
         elif self.upper_bound == other.upper_bound:
@@ -676,6 +953,32 @@ cdef class FloatInterval(BaseInterval):
                 return 0
         else:
             return 1
+
+cdef class FloatIntervalSet(BaseIntervalSet):
+    cdef readonly tuple intervals
+    cdef readonly int n_intervals
+    def __init__(FloatIntervalSet self, tuple intervals):
+        '''
+        The intervals must already be sorted and non-overlapping.
+        '''
+        self.intervals = intervals
+        self.n_intervals = len(intervals)
+        
+    cpdef FloatIntervalSet intersection(FloatIntervalSet self, FloatIntervalSet other):
+        pass
+    
+    cpdef FloatIntervalSet union(FloatIntervalSet self, FloatIntervalSet other):
+        pass
+    
+    cpdef FloatIntervalSet complement(FloatIntervalSet self):
+        pass
+    
+    cpdef FloatIntervalSet minus(FloatIntervalSet self, FloatIntervalSet other):
+        pass
+    
+    
+    
+    
 
 
 # This is just a singleton

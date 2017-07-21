@@ -1,6 +1,7 @@
 from datetime import date
 from cyinterval.cyinterval import Interval, DateInterval, IntInterval, FloatInterval, unbounded, ObjectInterval
-from nose.tools import assert_equal, assert_in, assert_not_in, assert_raises
+from nose.tools import assert_equal, assert_in, assert_not_in, assert_raises,\
+    assert_false, assert_true
 
 def test_date_interval_factory():
     interval = Interval(date(2012,1,1), date(2012,4,15))
@@ -99,7 +100,104 @@ def test_overlap_cmp():
     interval5 = Interval(5.5,22.)
     assert_equal(interval5.overlap_cmp(interval1), 1)
     assert_equal(interval1.overlap_cmp(interval5), -1)
+
+def test_empty():
+    interval = Interval(1., 1.1)
+    assert_false(interval.empty())
+    interval = Interval(1., 1.1, lower_closed=False)
+    assert_false(interval.empty())
+    interval = Interval(1., 1.1, lower_closed=False, upper_closed=False)
+    assert_false(interval.empty())
+    interval = Interval(1., 1.)
+    assert_false(interval.empty())
+    interval = Interval(1., 1., lower_closed=False)
+    assert_true(interval.empty())
+    interval = Interval(1., 1., upper_closed=False)
+    assert_true(interval.empty())
+    interval = Interval(1., 1., lower_closed=False, upper_closed=False)
+    assert_true(interval.empty())
+    interval = Interval(1.0000001, 1.)
+    assert_true(interval.empty())
     
+    # There are no integers between 1 and 2
+    interval = Interval(1,2,lower_closed=False, upper_closed=False)
+    assert_true(interval.empty())
+    interval = Interval(1,2,lower_closed=False, upper_closed=True)
+    assert_false(interval.empty())
+    interval = Interval(1,2,lower_closed=True, upper_closed=False)
+    assert_false(interval.empty())
+    
+    # There are no days between December 31 and January 1 of consecutive years
+    interval = Interval(date(2011,12,31), date(2012,1,1), lower_closed=False, upper_closed=False)
+    assert_true(interval.empty())
+    interval = Interval(date(2011,12,31), date(2012,1,1), lower_closed=False, upper_closed=True)
+    assert_false(interval.empty())
+    interval = Interval(date(2011,12,31), date(2012,1,1), lower_closed=True, upper_closed=False)
+    assert_false(interval.empty())
+    # Happy New Year!
+
+def test_lower_cmp():
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(1., 4.)
+    assert_equal(interval1.lower_cmp(interval2), 0)
+    interval1 = Interval(unbounded,2.)
+    interval2 = Interval(1., 4.)
+    assert_equal(interval1.lower_cmp(interval2), -1)
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(unbounded, 4.)
+    assert_equal(interval1.lower_cmp(interval2), 1)
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(0., 4.)
+    assert_equal(interval1.lower_cmp(interval2), 1)
+    interval1 = Interval(0.,2.)
+    interval2 = Interval(1., 4.)
+    assert_equal(interval1.lower_cmp(interval2), -1)
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(1., 4.,lower_closed=False)
+    assert_equal(interval1.lower_cmp(interval2), -1)
+    interval1 = Interval(1.,2.,lower_closed=False)
+    interval2 = Interval(1., 4.)
+    assert_equal(interval1.lower_cmp(interval2), 1)
+
+def test_upper_cmp():
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(1., 2.)
+    assert_equal(interval1.upper_cmp(interval2), 0)
+    interval1 = Interval(1.,unbounded)
+    interval2 = Interval(1.,2.)
+    assert_equal(interval1.upper_cmp(interval2), 1)
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(1., unbounded)
+    assert_equal(interval1.upper_cmp(interval2), -1)
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(1., 1.5)
+    assert_equal(interval1.upper_cmp(interval2), 1)
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(1., 4.)
+    assert_equal(interval1.upper_cmp(interval2), -1)
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(1., 2.,upper_closed=False)
+    assert_equal(interval1.upper_cmp(interval2), 1)
+    interval1 = Interval(1.,2.,upper_closed=False)
+    interval2 = Interval(1., 2.)
+    assert_equal(interval1.upper_cmp(interval2), -1)
+
+def test_fusion():
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(2.,3., upper_closed=False)
+    fused = interval1.fusion(interval2)
+    assert_equal(fused.lower_bound, 1.)
+    assert_equal(fused.lower_closed, True)
+    assert_equal(fused.lower_bounded, True)
+    assert_equal(fused.upper_bound, 3.)
+    assert_equal(fused.upper_closed, False)
+    assert_equal(fused.upper_bounded, True)
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(unbounded, 3. , upper_closed=False)
+    fused = interval1.fusion(interval2)
+    assert_equal(interval2, fused)
+    
+
 if __name__ == '__main__':
     import sys
     import nose
