@@ -167,7 +167,7 @@ cdef class ObjectInterval(BaseInterval):
                   (not (self.lower_closed or self.upper_closed)) and
                   self.adjacent(self.lower_bound, self.upper_bound))))
     
-    cpdef int richcmp(ObjectInterval self, ObjectInterval other, int op):
+    cpdef bool richcmp(ObjectInterval self, ObjectInterval other, int op):
         cdef int lower_cmp
         cdef int upper_cmp
         if op == 0 or op == 1:
@@ -261,7 +261,7 @@ cpdef tuple ObjectInterval_preprocess_intervals(tuple intervals):
     cdef int i
     cdef list tmp2 = []
     cdef ObjectInterval interval2
-    cdef bool fused_last
+    cdef bool fused_last = False
     if n > 1:
         for i in range(n-1):
             interval = tmp[i]
@@ -435,7 +435,7 @@ cdef class DateInterval(BaseInterval):
                   (not (self.lower_closed or self.upper_closed)) and
                   self.adjacent(self.lower_bound, self.upper_bound))))
     
-    cpdef int richcmp(DateInterval self, DateInterval other, int op):
+    cpdef bool richcmp(DateInterval self, DateInterval other, int op):
         cdef int lower_cmp
         cdef int upper_cmp
         if op == 0 or op == 1:
@@ -529,7 +529,7 @@ cpdef tuple DateInterval_preprocess_intervals(tuple intervals):
     cdef int i
     cdef list tmp2 = []
     cdef DateInterval interval2
-    cdef bool fused_last
+    cdef bool fused_last = False
     if n > 1:
         for i in range(n-1):
             interval = tmp[i]
@@ -703,7 +703,7 @@ cdef class IntInterval(BaseInterval):
                   (not (self.lower_closed or self.upper_closed)) and
                   self.adjacent(self.lower_bound, self.upper_bound))))
     
-    cpdef int richcmp(IntInterval self, IntInterval other, int op):
+    cpdef bool richcmp(IntInterval self, IntInterval other, int op):
         cdef int lower_cmp
         cdef int upper_cmp
         if op == 0 or op == 1:
@@ -797,7 +797,7 @@ cpdef tuple IntInterval_preprocess_intervals(tuple intervals):
     cdef int i
     cdef list tmp2 = []
     cdef IntInterval interval2
-    cdef bool fused_last
+    cdef bool fused_last = False
     if n > 1:
         for i in range(n-1):
             interval = tmp[i]
@@ -971,7 +971,7 @@ cdef class FloatInterval(BaseInterval):
                   (not (self.lower_closed or self.upper_closed)) and
                   self.adjacent(self.lower_bound, self.upper_bound))))
     
-    cpdef int richcmp(FloatInterval self, FloatInterval other, int op):
+    cpdef bool richcmp(FloatInterval self, FloatInterval other, int op):
         cdef int lower_cmp
         cdef int upper_cmp
         if op == 0 or op == 1:
@@ -1065,7 +1065,7 @@ cpdef tuple FloatInterval_preprocess_intervals(tuple intervals):
     cdef int i
     cdef list tmp2 = []
     cdef FloatInterval interval2
-    cdef bool fused_last
+    cdef bool fused_last = False
     if n > 1:
         for i in range(n-1):
             interval = tmp[i]

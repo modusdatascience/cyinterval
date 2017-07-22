@@ -197,7 +197,23 @@ def test_fusion():
     fused = interval1.fusion(interval2)
     assert_equal(interval2, fused)
     
-
+def test_richcmp():
+    interval1 = Interval(1.,2.)
+    interval2 = Interval(2.,3.)
+    assert_true(interval1.richcmp(interval2, 0))
+    assert_false(interval2.richcmp(interval1, 0))
+    assert_true(interval1.richcmp(interval2, 1))
+    assert_false(interval2.richcmp(interval1, 1))
+    assert_false(interval1.richcmp(interval2, 2))
+    assert_false(interval2.richcmp(interval1, 2))
+    assert_true(interval1.richcmp(interval2, 3))
+    assert_true(interval2.richcmp(interval1, 3))
+    assert_false(interval1.richcmp(interval2, 4))
+    assert_true(interval2.richcmp(interval1, 4))
+    assert_false(interval1.richcmp(interval2, 5))
+    assert_true(interval2.richcmp(interval1, 5))
+    
+    
 if __name__ == '__main__':
     import sys
     import nose

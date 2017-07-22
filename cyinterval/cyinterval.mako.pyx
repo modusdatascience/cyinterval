@@ -179,7 +179,7 @@ cdef class ${IntervalType}(BaseInterval):
                   (not (self.lower_closed or self.upper_closed)) and
                   self.adjacent(self.lower_bound, self.upper_bound))))
     
-    cpdef int richcmp(${IntervalType} self, ${IntervalType} other, int op):
+    cpdef bool richcmp(${IntervalType} self, ${IntervalType} other, int op):
         cdef int lower_cmp
         cdef int upper_cmp
         if op == 0 or op == 1:
@@ -273,7 +273,7 @@ cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals):
     cdef int i
     cdef list tmp2 = []
     cdef ${IntervalType} interval2
-    cdef bool fused_last
+    cdef bool fused_last = False
     if n > 1:
         for i in range(n-1):
             interval = tmp[i]

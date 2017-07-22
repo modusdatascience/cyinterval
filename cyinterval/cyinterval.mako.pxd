@@ -31,7 +31,7 @@ cdef class ${IntervalType}(BaseInterval):
     cpdef ${IntervalType} intersection(${IntervalType} self, ${IntervalType} other)
     cpdef ${IntervalType} fusion(${IntervalType} self, ${IntervalType} other)
     cpdef bool empty(${IntervalType} self)  
-    cpdef int richcmp(${IntervalType} self, ${IntervalType} other, int op)
+    cpdef bool richcmp(${IntervalType} self, ${IntervalType} other, int op)
     cpdef int lower_cmp(${IntervalType} self, ${IntervalType} other)
     cpdef int upper_cmp(${IntervalType} self, ${IntervalType} other)
 
