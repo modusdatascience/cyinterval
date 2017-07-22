@@ -55,7 +55,10 @@ def test_intersection():
     assert_equal(interval_set1.intersection(interval_set2).intervals,
                  IntervalSet(Interval(.5,1.,upper_closed=False), Interval(1.,1.5,lower_closed=False)).intervals)
     
-    
+def test_union():
+    interval_set1 = IntervalSet(Interval(0.,1.,upper_closed=False), Interval(1.,3.,lower_closed=False))
+    interval_set2 = IntervalSet(Interval(.5,1.5))
+    assert_equal(interval_set1.union(interval_set2).intervals, (Interval(0., 3.),))
 
 if __name__ == '__main__':
     import sys

@@ -303,7 +303,7 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
         self.n_intervals = len(intervals)
     
     cpdef bool empty(${IntervalSetType} self):
-        return self.n_intervals == 0
+        return self.n_intervals == 0 
     
     cpdef ${IntervalSetType} intersection(${IntervalSetType} self, ${IntervalSetType} other):
         if self.empty() or other.empty():
@@ -350,7 +350,102 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
             
     
     cpdef ${IntervalSetType} union(${IntervalSetType} self, ${IntervalSetType} other):
-        pass
+        cdef ${IntervalType} new_interval, interval1, interval2, next_interval
+        if self.empty():
+            return other
+        if other.empty():
+            return self
+#         old_interval = self.intervals[0]
+#         new_interval = other.intervals[0]
+        interval1 = self.intervals[0]
+        interval2 = other.intervals[0]
+        
+        cdef int i, j, m, n, cmp
+        cdef bool richcmp, first = True
+        i = 0
+        j = 0
+        m = self.n_intervals
+        n = other.n_intervals
+        cdef list new_intervals = []
+        while i < m or j < n:
+            if i == m:
+                richcmp = False
+            elif j == n:
+                richcmp = True
+            else:
+                richcmp = interval1.richcmp(interval2, 1)
+            if richcmp:
+                next_interval = interval1 
+                i += 1
+                if i < m:
+                    interval1 = self.intervals[i]
+            else:
+                next_interval = interval2
+                j += 1
+                if j < n:
+                    interval2 = other.intervals[j]
+            if first:
+                first = False
+                new_interval = next_interval
+            else:
+                cmp = new_interval.overlap_cmp(next_interval)
+                if cmp == 0:
+                    new_interval = new_interval.fusion(next_interval)
+                else:
+                    new_intervals.append(new_interval)
+                    new_interval = next_interval
+        new_intervals.append(new_interval)
+        return ${IntervalSetType}(tuple(new_intervals))
+    
+        
+                
+                
+            
+#             
+#             
+#             
+#             if first:
+#                 first = False
+#                 if cmp == -1:
+#                     new_interval = interval1
+#                     i += 1
+#                     if i < m:
+#                         interval1 = self.intervals[i]
+#                 elif cmp == 1:
+#                     new_interval = interval2
+#                     j += 1
+#                     if j < n:
+#                         interval2 = other.intervals[j]
+#                 else:
+#                     if interval1.upper_cmp(interval2) <= 0:
+#                         
+#                         
+#                     new_interval = interval2
+#                     new_interval = interval1
+#                     first = False
+#             if cmp == -1:
+#                 if first:
+#                     new_interval = interval1
+#                     first = False
+#                 else:
+#                     new_interval = new_interval.fusion(interval1)
+#             
+#             if i:
+#                 new_interval = o
+#             
+#             
+#             
+#             while j < n:
+#                 cmp = interval1.overlap_cmp(interval2)
+#                 if cmp == 1:
+#                     new_intervals.append(interval2)
+#                     j += 1
+#                     if j < n:
+#                         interval2 = other.intervals[j]
+#             if cmp == -1:
+                
+            
+            
     
     cpdef ${IntervalSetType} complement(${IntervalSetType} self):
         pass
