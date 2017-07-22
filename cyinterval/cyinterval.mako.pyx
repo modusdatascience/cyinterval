@@ -25,7 +25,14 @@ cdef class BaseInterval:
     
     def __contains__(BaseInterval self, item):
         return self.contains(item)
-
+    
+    def __str__(BaseInterval self):
+        return (('[' if self.lower_closed else '(') + (str(self.lower_bound) if self.lower_bounded else '-infty') + ',' + 
+                (str(self.upper_bound) if self.upper_bounded else 'infty') + (']' if self.upper_closed else ')'))
+    
+    def __repr__(BaseInterval self):
+        return str(self)
+        
 cdef class BaseIntervalSet:
     pass
 
@@ -269,23 +276,22 @@ cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals):
     tmp.sort()
     
     # Fuse any overlapping intervals
-    cdef int n = len(tmp)
-    cdef int i
     cdef list tmp2 = []
     cdef ${IntervalType} interval2
-    cdef bool fused_last = False
-    if n > 1:
-        for i in range(n-1):
-            interval = tmp[i]
-            interval2 = tmp[i+1]
-            if interval.overlap_cmp(interval2) == 0:
-                tmp2.append(interval.fusion(interval2))
-                fused_last = True
-            else:
-                tmp2.append(interval)
-                fused_last = False
-    if not fused_last:
-        tmp2.append(tmp[n-1])
+    cdef int overlap_cmp
+    interval = tmp[0]
+    for interval2 in tmp[1:]:
+        overlap_cmp = interval.overlap_cmp(interval2)
+        if (
+            (overlap_cmp == 0) or 
+            (overlap_cmp == -1 and interval.upper_bound == interval2.lower_bound and (interval.upper_closed or interval2.lower_closed)) or
+            (overlap_cmp == 1 and interval2.upper_bound == interval.lower_bound and (interval2.upper_closed or interval.lower_closed))
+            ):
+            interval = interval.fusion(interval2)
+        else:
+            tmp2.append(interval)
+            interval = interval2
+    tmp2.append(interval)
     return tuple(tmp2)
 
 cdef class ${IntervalSetType}(BaseIntervalSet):
@@ -296,8 +302,52 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
         self.intervals = intervals
         self.n_intervals = len(intervals)
     
+    cpdef bool empty(${IntervalSetType} self):
+        return self.n_intervals == 0
+    
     cpdef ${IntervalSetType} intersection(${IntervalSetType} self, ${IntervalSetType} other):
-        pass
+        if self.empty() or other.empty():
+            return self
+        cdef int i, j, m, n, cmp, upper_cmp
+        i = 0
+        j = 0
+        m = self.n_intervals
+        n = other.n_intervals
+        cdef ${IntervalType} interval1, interval2
+        interval1 = self.intervals[i]
+        interval2 = other.intervals[j]
+        cdef list new_intervals = []
+        while True:
+            cmp = interval1.overlap_cmp(interval2)
+            if cmp == -1:
+                i += 1
+                if i <= m-1:
+                    interval1 = self.intervals[i]
+                else:
+                    break
+            elif cmp == 1:
+                j += 1
+                if j <= n-1:
+                    interval2 = other.intervals[j]
+                else:
+                    break
+            else:
+                new_intervals.append(interval1.intersection(interval2))
+                upper_cmp = interval1.upper_cmp(interval2)
+                if upper_cmp <= 0:
+                    i += 1
+                    if i <= m-1:
+                        interval1 = self.intervals[i]
+                    else:
+                        break
+                if upper_cmp >= 0:
+                    j += 1
+                    if j <= n-1:
+                        interval2 = other.intervals[j]
+                    else:
+                        break
+        return ${IntervalSetType}(tuple(new_intervals))
+            
     
     cpdef ${IntervalSetType} union(${IntervalSetType} self, ${IntervalSetType} other):
         pass

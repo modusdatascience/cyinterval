@@ -31,6 +31,7 @@ cdef class ObjectInterval(BaseInterval):
 cpdef tuple ObjectInterval_preprocess_intervals(tuple intervals)
 
 cdef class ObjectIntervalSet(BaseIntervalSet):
+    cpdef bool empty(ObjectIntervalSet self)
     cpdef ObjectIntervalSet intersection(ObjectIntervalSet self, ObjectIntervalSet other)
     cpdef ObjectIntervalSet union(ObjectIntervalSet self, ObjectIntervalSet other)
     cpdef ObjectIntervalSet complement(ObjectIntervalSet self)
@@ -54,6 +55,7 @@ cdef class DateInterval(BaseInterval):
 cpdef tuple DateInterval_preprocess_intervals(tuple intervals)
 
 cdef class DateIntervalSet(BaseIntervalSet):
+    cpdef bool empty(DateIntervalSet self)
     cpdef DateIntervalSet intersection(DateIntervalSet self, DateIntervalSet other)
     cpdef DateIntervalSet union(DateIntervalSet self, DateIntervalSet other)
     cpdef DateIntervalSet complement(DateIntervalSet self)
@@ -77,6 +79,7 @@ cdef class IntInterval(BaseInterval):
 cpdef tuple IntInterval_preprocess_intervals(tuple intervals)
 
 cdef class IntIntervalSet(BaseIntervalSet):
+    cpdef bool empty(IntIntervalSet self)
     cpdef IntIntervalSet intersection(IntIntervalSet self, IntIntervalSet other)
     cpdef IntIntervalSet union(IntIntervalSet self, IntIntervalSet other)
     cpdef IntIntervalSet complement(IntIntervalSet self)
@@ -100,6 +103,7 @@ cdef class FloatInterval(BaseInterval):
 cpdef tuple FloatInterval_preprocess_intervals(tuple intervals)
 
 cdef class FloatIntervalSet(BaseIntervalSet):
+    cpdef bool empty(FloatIntervalSet self)
     cpdef FloatIntervalSet intersection(FloatIntervalSet self, FloatIntervalSet other)
     cpdef FloatIntervalSet union(FloatIntervalSet self, FloatIntervalSet other)
     cpdef FloatIntervalSet complement(FloatIntervalSet self)

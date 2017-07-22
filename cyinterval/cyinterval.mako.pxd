@@ -38,6 +38,7 @@ cdef class ${IntervalType}(BaseInterval):
 cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals)
 
 cdef class ${IntervalSetType}(BaseIntervalSet):
+    cpdef bool empty(${IntervalSetType} self)
     cpdef ${IntervalSetType} intersection(${IntervalSetType} self, ${IntervalSetType} other)
     cpdef ${IntervalSetType} union(${IntervalSetType} self, ${IntervalSetType} other)
     cpdef ${IntervalSetType} complement(${IntervalSetType} self)
