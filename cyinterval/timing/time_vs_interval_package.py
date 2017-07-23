@@ -6,7 +6,7 @@ def compare_intersection():
     cyinterval_set2 = CyIntervalSet(CyInterval(.5,1.5))
     orinterval_set1 = OrigIntervalSet([CyInterval(0.,1.,upper_closed=False), OrigInterval(1.,3.,lower_closed=False)])
     orinterval_set2 = OrigIntervalSet([OrigInterval(.5,1.5)])
-    n = 10000
+    n = 100000
     t0 = time.time()
     for _ in range(n):
         cyinterval_set1.intersection(cyinterval_set2)

@@ -383,8 +383,28 @@ cdef class ObjectIntervalSet(BaseIntervalSet):
         return ObjectIntervalSet(tuple(new_intervals))
     
     cpdef ObjectIntervalSet complement(ObjectIntervalSet self):
-        pass
-    
+        if self.empty():
+            return ObjectIntervalSet((ObjectInterval(None, None, True, True, False, False),))
+        cdef ObjectInterval interval, previous
+        cdef int i
+        cdef n = self.n_intervals
+        interval = self.intervals[0]
+        cdef list new_intervals = []
+        if interval.lower_bounded:
+            new_intervals.append(ObjectInterval(None, interval.lower_bound, 
+                                                 True, not interval.lower_closed, False, True))
+        previous = interval
+        for i in range(1,n):
+            interval = self.intervals[i]
+            new_intervals.append(ObjectInterval(previous.upper_bound, interval.lower_bound, not previous.upper_closed, 
+                                                 not interval.lower_closed, True, True))
+            previous = interval
+        interval = self.intervals[n-1]
+        if interval.upper_bounded:
+            new_intervals.append(ObjectInterval(interval.upper_bound, None, not interval.upper_closed, True, 
+                                                 True, False))
+        return ObjectIntervalSet(tuple(new_intervals))
+            
     cpdef ObjectIntervalSet minus(ObjectIntervalSet self, ObjectIntervalSet other):
         pass
 
@@ -732,8 +752,28 @@ cdef class DateIntervalSet(BaseIntervalSet):
         return DateIntervalSet(tuple(new_intervals))
     
     cpdef DateIntervalSet complement(DateIntervalSet self):
-        pass
-    
+        if self.empty():
+            return DateIntervalSet((DateInterval(None, None, True, True, False, False),))
+        cdef DateInterval interval, previous
+        cdef int i
+        cdef n = self.n_intervals
+        interval = self.intervals[0]
+        cdef list new_intervals = []
+        if interval.lower_bounded:
+            new_intervals.append(DateInterval(None, interval.lower_bound, 
+                                                 True, not interval.lower_closed, False, True))
+        previous = interval
+        for i in range(1,n):
+            interval = self.intervals[i]
+            new_intervals.append(DateInterval(previous.upper_bound, interval.lower_bound, not previous.upper_closed, 
+                                                 not interval.lower_closed, True, True))
+            previous = interval
+        interval = self.intervals[n-1]
+        if interval.upper_bounded:
+            new_intervals.append(DateInterval(interval.upper_bound, None, not interval.upper_closed, True, 
+                                                 True, False))
+        return DateIntervalSet(tuple(new_intervals))
+            
     cpdef DateIntervalSet minus(DateIntervalSet self, DateIntervalSet other):
         pass
 
@@ -1081,8 +1121,28 @@ cdef class IntIntervalSet(BaseIntervalSet):
         return IntIntervalSet(tuple(new_intervals))
     
     cpdef IntIntervalSet complement(IntIntervalSet self):
-        pass
-    
+        if self.empty():
+            return IntIntervalSet((IntInterval(0, 0, True, True, False, False),))
+        cdef IntInterval interval, previous
+        cdef int i
+        cdef n = self.n_intervals
+        interval = self.intervals[0]
+        cdef list new_intervals = []
+        if interval.lower_bounded:
+            new_intervals.append(IntInterval(0, interval.lower_bound, 
+                                                 True, not interval.lower_closed, False, True))
+        previous = interval
+        for i in range(1,n):
+            interval = self.intervals[i]
+            new_intervals.append(IntInterval(previous.upper_bound, interval.lower_bound, not previous.upper_closed, 
+                                                 not interval.lower_closed, True, True))
+            previous = interval
+        interval = self.intervals[n-1]
+        if interval.upper_bounded:
+            new_intervals.append(IntInterval(interval.upper_bound, 0, not interval.upper_closed, True, 
+                                                 True, False))
+        return IntIntervalSet(tuple(new_intervals))
+            
     cpdef IntIntervalSet minus(IntIntervalSet self, IntIntervalSet other):
         pass
 
@@ -1430,8 +1490,28 @@ cdef class FloatIntervalSet(BaseIntervalSet):
         return FloatIntervalSet(tuple(new_intervals))
     
     cpdef FloatIntervalSet complement(FloatIntervalSet self):
-        pass
-    
+        if self.empty():
+            return FloatIntervalSet((FloatInterval(0., 0., True, True, False, False),))
+        cdef FloatInterval interval, previous
+        cdef int i
+        cdef n = self.n_intervals
+        interval = self.intervals[0]
+        cdef list new_intervals = []
+        if interval.lower_bounded:
+            new_intervals.append(FloatInterval(0., interval.lower_bound, 
+                                                 True, not interval.lower_closed, False, True))
+        previous = interval
+        for i in range(1,n):
+            interval = self.intervals[i]
+            new_intervals.append(FloatInterval(previous.upper_bound, interval.lower_bound, not previous.upper_closed, 
+                                                 not interval.lower_closed, True, True))
+            previous = interval
+        interval = self.intervals[n-1]
+        if interval.upper_bounded:
+            new_intervals.append(FloatInterval(interval.upper_bound, 0., not interval.upper_closed, True, 
+                                                 True, False))
+        return FloatIntervalSet(tuple(new_intervals))
+            
     cpdef FloatIntervalSet minus(FloatIntervalSet self, FloatIntervalSet other):
         pass
 
@@ -1486,13 +1566,28 @@ def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
                upper_bound is not unbounded)
 
 # Just a factory
-def IntervalSet(*intervals):
-    interval_type = type(intervals[0])
-    for interval in intervals[1:]:
-        assert interval_type is type(interval)
-    interval_set_type = interval_set_type_dispatch[interval_type]
-    interval_set_preprocessor = interval_set_preprocessor_dispatch[interval_type]
-    processed_intervals = interval_set_preprocessor(intervals)
+def IntervalSet(*intervals, interval_type=None):
+    if interval_type is None:
+        if intervals:
+            interval_cls = type(intervals[0])
+            for interval in intervals[1:]:
+                assert interval_cls is type(interval)
+        else:
+            interval_cls = ObjectInterval
+    elif interval_type in inverse_interval_type_dispatch:
+        interval_cls = interval_type
+    elif interval_type in interval_type_dispatch:
+        interval_cls = interval_type_dispatch[interval_type]
+    elif type(interval_type) in interval_type_dispatch:
+        interval_cls = interval_type_dispatch[type(interval_type)]
+    else:
+        interval_cls = ObjectInterval
+    interval_set_type = interval_set_type_dispatch[interval_cls]
+    interval_set_preprocessor = interval_set_preprocessor_dispatch[interval_cls]
+    if intervals:
+        processed_intervals = interval_set_preprocessor(intervals)
+    else:
+        processed_intervals = tuple()
     return interval_set_type(processed_intervals)
 
 

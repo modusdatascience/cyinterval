@@ -395,8 +395,28 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
         return ${IntervalSetType}(tuple(new_intervals))
     
     cpdef ${IntervalSetType} complement(${IntervalSetType} self):
-        pass
-    
+        if self.empty():
+            return ${IntervalSetType}((${IntervalType}(${default_value}, ${default_value}, True, True, False, False),))
+        cdef ${IntervalType} interval, previous
+        cdef int i
+        cdef n = self.n_intervals
+        interval = self.intervals[0]
+        cdef list new_intervals = []
+        if interval.lower_bounded:
+            new_intervals.append(${IntervalType}(${default_value}, interval.lower_bound, 
+                                                 True, not interval.lower_closed, False, True))
+        previous = interval
+        for i in range(1,n):
+            interval = self.intervals[i]
+            new_intervals.append(${IntervalType}(previous.upper_bound, interval.lower_bound, not previous.upper_closed, 
+                                                 not interval.lower_closed, True, True))
+            previous = interval
+        interval = self.intervals[n-1]
+        if interval.upper_bounded:
+            new_intervals.append(${IntervalType}(interval.upper_bound, ${default_value}, not interval.upper_closed, True, 
+                                                 True, False))
+        return ${IntervalSetType}(tuple(new_intervals))
+            
     cpdef ${IntervalSetType} minus(${IntervalSetType} self, ${IntervalSetType} other):
         pass
 
@@ -445,13 +465,28 @@ def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True,
                upper_bound is not unbounded)
 
 # Just a factory
-def IntervalSet(*intervals):
-    interval_type = type(intervals[0])
-    for interval in intervals[1:]:
-        assert interval_type is type(interval)
-    interval_set_type = interval_set_type_dispatch[interval_type]
-    interval_set_preprocessor = interval_set_preprocessor_dispatch[interval_type]
-    processed_intervals = interval_set_preprocessor(intervals)
+def IntervalSet(*intervals, interval_type=None):
+    if interval_type is None:
+        if intervals:
+            interval_cls = type(intervals[0])
+            for interval in intervals[1:]:
+                assert interval_cls is type(interval)
+        else:
+            interval_cls = ${type_tups[default_type_tup_index][0]}
+    elif interval_type in inverse_interval_type_dispatch:
+        interval_cls = interval_type
+    elif interval_type in interval_type_dispatch:
+        interval_cls = interval_type_dispatch[interval_type]
+    elif type(interval_type) in interval_type_dispatch:
+        interval_cls = interval_type_dispatch[type(interval_type)]
+    else:
+        interval_cls = ${type_tups[default_type_tup_index][0]}
+    interval_set_type = interval_set_type_dispatch[interval_cls]
+    interval_set_preprocessor = interval_set_preprocessor_dispatch[interval_cls]
+    if intervals:
+        processed_intervals = interval_set_preprocessor(intervals)
+    else:
+        processed_intervals = tuple()
     return interval_set_type(processed_intervals)
 
 

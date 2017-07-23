@@ -1,4 +1,5 @@
-from cyinterval.cyinterval import Interval, IntervalSet, FloatIntervalSet, DateIntervalSet
+from cyinterval.cyinterval import Interval, IntervalSet, FloatIntervalSet, DateIntervalSet,\
+    unbounded
 from nose.tools import assert_equal, assert_is
 from datetime import date
 
@@ -65,7 +66,15 @@ def test_union():
     assert_equal(interval_set1.union(interval_set2).intervals, (Interval(0., 3.),))
     interval_set1 = IntervalSet(Interval(0.,1.,upper_closed=False))
     interval_set2 = IntervalSet(Interval(1.,3.,lower_closed=False))
-    assert_equal(interval_set1.union(interval_set2).intervals, (Interval(0., 1., upper_closed=False), Interval(1.,3.,lower_closed=False)))
+    assert_equal(interval_set1.union(interval_set2).intervals, (Interval(0., 1., upper_closed=False), 
+                                                                Interval(1.,3.,lower_closed=False)))
+
+def test_complement():
+    interval_set1 = IntervalSet(Interval(0.,1.,upper_closed=False), Interval(1.,3.,lower_closed=False))
+    assert_equal(interval_set1.complement().intervals, (Interval(unbounded, 0., upper_closed=False), 
+                                                        Interval(1.,1.), Interval(3.,unbounded, lower_closed=False)))
+    assert_equal(IntervalSet(interval_type=float).complement().intervals, 
+                 IntervalSet(Interval(unbounded, unbounded, interval_type=float)).intervals)
 
 if __name__ == '__main__':
     import sys
