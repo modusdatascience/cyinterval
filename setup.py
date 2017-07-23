@@ -45,6 +45,7 @@ setup(name='cyinterval',
       author_email='jcrudy@gmail.com',
       url='https://github.com/jcrudy/cyinterval',
       packages=find_packages(),
+      package_data={'cyinterval': ['cyinterval.pxd', 'cyinterval.pyx']},
       ext_modules = cythonize(ext_modules, compiler_directives=directives) if cythonize_switch else ext_modules,
       install_requires=[]
      )
