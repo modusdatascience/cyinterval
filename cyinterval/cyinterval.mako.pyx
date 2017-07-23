@@ -347,7 +347,6 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
                     else:
                         break
         return ${IntervalSetType}(tuple(new_intervals))
-            
     
     cpdef ${IntervalSetType} union(${IntervalSetType} self, ${IntervalSetType} other):
         cdef ${IntervalType} new_interval, interval1, interval2, next_interval
@@ -355,8 +354,6 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
             return other
         if other.empty():
             return self
-#         old_interval = self.intervals[0]
-#         new_interval = other.intervals[0]
         interval1 = self.intervals[0]
         interval2 = other.intervals[0]
         
@@ -397,65 +394,11 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
         new_intervals.append(new_interval)
         return ${IntervalSetType}(tuple(new_intervals))
     
-        
-                
-                
-            
-#             
-#             
-#             
-#             if first:
-#                 first = False
-#                 if cmp == -1:
-#                     new_interval = interval1
-#                     i += 1
-#                     if i < m:
-#                         interval1 = self.intervals[i]
-#                 elif cmp == 1:
-#                     new_interval = interval2
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#                 else:
-#                     if interval1.upper_cmp(interval2) <= 0:
-#                         
-#                         
-#                     new_interval = interval2
-#                     new_interval = interval1
-#                     first = False
-#             if cmp == -1:
-#                 if first:
-#                     new_interval = interval1
-#                     first = False
-#                 else:
-#                     new_interval = new_interval.fusion(interval1)
-#             
-#             if i:
-#                 new_interval = o
-#             
-#             
-#             
-#             while j < n:
-#                 cmp = interval1.overlap_cmp(interval2)
-#                 if cmp == 1:
-#                     new_intervals.append(interval2)
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#             if cmp == -1:
-                
-            
-            
-    
     cpdef ${IntervalSetType} complement(${IntervalSetType} self):
         pass
     
     cpdef ${IntervalSetType} minus(${IntervalSetType} self, ${IntervalSetType} other):
         pass
-    
-    
-    
-    
 
 % endfor
 

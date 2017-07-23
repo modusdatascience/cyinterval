@@ -335,7 +335,6 @@ cdef class ObjectIntervalSet(BaseIntervalSet):
                     else:
                         break
         return ObjectIntervalSet(tuple(new_intervals))
-            
     
     cpdef ObjectIntervalSet union(ObjectIntervalSet self, ObjectIntervalSet other):
         cdef ObjectInterval new_interval, interval1, interval2, next_interval
@@ -343,8 +342,6 @@ cdef class ObjectIntervalSet(BaseIntervalSet):
             return other
         if other.empty():
             return self
-#         old_interval = self.intervals[0]
-#         new_interval = other.intervals[0]
         interval1 = self.intervals[0]
         interval2 = other.intervals[0]
         
@@ -385,65 +382,11 @@ cdef class ObjectIntervalSet(BaseIntervalSet):
         new_intervals.append(new_interval)
         return ObjectIntervalSet(tuple(new_intervals))
     
-        
-                
-                
-            
-#             
-#             
-#             
-#             if first:
-#                 first = False
-#                 if cmp == -1:
-#                     new_interval = interval1
-#                     i += 1
-#                     if i < m:
-#                         interval1 = self.intervals[i]
-#                 elif cmp == 1:
-#                     new_interval = interval2
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#                 else:
-#                     if interval1.upper_cmp(interval2) <= 0:
-#                         
-#                         
-#                     new_interval = interval2
-#                     new_interval = interval1
-#                     first = False
-#             if cmp == -1:
-#                 if first:
-#                     new_interval = interval1
-#                     first = False
-#                 else:
-#                     new_interval = new_interval.fusion(interval1)
-#             
-#             if i:
-#                 new_interval = o
-#             
-#             
-#             
-#             while j < n:
-#                 cmp = interval1.overlap_cmp(interval2)
-#                 if cmp == 1:
-#                     new_intervals.append(interval2)
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#             if cmp == -1:
-                
-            
-            
-    
     cpdef ObjectIntervalSet complement(ObjectIntervalSet self):
         pass
     
     cpdef ObjectIntervalSet minus(ObjectIntervalSet self, ObjectIntervalSet other):
         pass
-    
-    
-    
-    
 
 cdef class DateInterval(BaseInterval):
     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed, 
@@ -741,7 +684,6 @@ cdef class DateIntervalSet(BaseIntervalSet):
                     else:
                         break
         return DateIntervalSet(tuple(new_intervals))
-            
     
     cpdef DateIntervalSet union(DateIntervalSet self, DateIntervalSet other):
         cdef DateInterval new_interval, interval1, interval2, next_interval
@@ -749,8 +691,6 @@ cdef class DateIntervalSet(BaseIntervalSet):
             return other
         if other.empty():
             return self
-#         old_interval = self.intervals[0]
-#         new_interval = other.intervals[0]
         interval1 = self.intervals[0]
         interval2 = other.intervals[0]
         
@@ -791,65 +731,11 @@ cdef class DateIntervalSet(BaseIntervalSet):
         new_intervals.append(new_interval)
         return DateIntervalSet(tuple(new_intervals))
     
-        
-                
-                
-            
-#             
-#             
-#             
-#             if first:
-#                 first = False
-#                 if cmp == -1:
-#                     new_interval = interval1
-#                     i += 1
-#                     if i < m:
-#                         interval1 = self.intervals[i]
-#                 elif cmp == 1:
-#                     new_interval = interval2
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#                 else:
-#                     if interval1.upper_cmp(interval2) <= 0:
-#                         
-#                         
-#                     new_interval = interval2
-#                     new_interval = interval1
-#                     first = False
-#             if cmp == -1:
-#                 if first:
-#                     new_interval = interval1
-#                     first = False
-#                 else:
-#                     new_interval = new_interval.fusion(interval1)
-#             
-#             if i:
-#                 new_interval = o
-#             
-#             
-#             
-#             while j < n:
-#                 cmp = interval1.overlap_cmp(interval2)
-#                 if cmp == 1:
-#                     new_intervals.append(interval2)
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#             if cmp == -1:
-                
-            
-            
-    
     cpdef DateIntervalSet complement(DateIntervalSet self):
         pass
     
     cpdef DateIntervalSet minus(DateIntervalSet self, DateIntervalSet other):
         pass
-    
-    
-    
-    
 
 cdef class IntInterval(BaseInterval):
     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed, 
@@ -1147,7 +1033,6 @@ cdef class IntIntervalSet(BaseIntervalSet):
                     else:
                         break
         return IntIntervalSet(tuple(new_intervals))
-            
     
     cpdef IntIntervalSet union(IntIntervalSet self, IntIntervalSet other):
         cdef IntInterval new_interval, interval1, interval2, next_interval
@@ -1155,8 +1040,6 @@ cdef class IntIntervalSet(BaseIntervalSet):
             return other
         if other.empty():
             return self
-#         old_interval = self.intervals[0]
-#         new_interval = other.intervals[0]
         interval1 = self.intervals[0]
         interval2 = other.intervals[0]
         
@@ -1197,65 +1080,11 @@ cdef class IntIntervalSet(BaseIntervalSet):
         new_intervals.append(new_interval)
         return IntIntervalSet(tuple(new_intervals))
     
-        
-                
-                
-            
-#             
-#             
-#             
-#             if first:
-#                 first = False
-#                 if cmp == -1:
-#                     new_interval = interval1
-#                     i += 1
-#                     if i < m:
-#                         interval1 = self.intervals[i]
-#                 elif cmp == 1:
-#                     new_interval = interval2
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#                 else:
-#                     if interval1.upper_cmp(interval2) <= 0:
-#                         
-#                         
-#                     new_interval = interval2
-#                     new_interval = interval1
-#                     first = False
-#             if cmp == -1:
-#                 if first:
-#                     new_interval = interval1
-#                     first = False
-#                 else:
-#                     new_interval = new_interval.fusion(interval1)
-#             
-#             if i:
-#                 new_interval = o
-#             
-#             
-#             
-#             while j < n:
-#                 cmp = interval1.overlap_cmp(interval2)
-#                 if cmp == 1:
-#                     new_intervals.append(interval2)
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#             if cmp == -1:
-                
-            
-            
-    
     cpdef IntIntervalSet complement(IntIntervalSet self):
         pass
     
     cpdef IntIntervalSet minus(IntIntervalSet self, IntIntervalSet other):
         pass
-    
-    
-    
-    
 
 cdef class FloatInterval(BaseInterval):
     def __init__(BaseInterval self, double lower_bound, double upper_bound, bool lower_closed, 
@@ -1553,7 +1382,6 @@ cdef class FloatIntervalSet(BaseIntervalSet):
                     else:
                         break
         return FloatIntervalSet(tuple(new_intervals))
-            
     
     cpdef FloatIntervalSet union(FloatIntervalSet self, FloatIntervalSet other):
         cdef FloatInterval new_interval, interval1, interval2, next_interval
@@ -1561,8 +1389,6 @@ cdef class FloatIntervalSet(BaseIntervalSet):
             return other
         if other.empty():
             return self
-#         old_interval = self.intervals[0]
-#         new_interval = other.intervals[0]
         interval1 = self.intervals[0]
         interval2 = other.intervals[0]
         
@@ -1603,65 +1429,11 @@ cdef class FloatIntervalSet(BaseIntervalSet):
         new_intervals.append(new_interval)
         return FloatIntervalSet(tuple(new_intervals))
     
-        
-                
-                
-            
-#             
-#             
-#             
-#             if first:
-#                 first = False
-#                 if cmp == -1:
-#                     new_interval = interval1
-#                     i += 1
-#                     if i < m:
-#                         interval1 = self.intervals[i]
-#                 elif cmp == 1:
-#                     new_interval = interval2
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#                 else:
-#                     if interval1.upper_cmp(interval2) <= 0:
-#                         
-#                         
-#                     new_interval = interval2
-#                     new_interval = interval1
-#                     first = False
-#             if cmp == -1:
-#                 if first:
-#                     new_interval = interval1
-#                     first = False
-#                 else:
-#                     new_interval = new_interval.fusion(interval1)
-#             
-#             if i:
-#                 new_interval = o
-#             
-#             
-#             
-#             while j < n:
-#                 cmp = interval1.overlap_cmp(interval2)
-#                 if cmp == 1:
-#                     new_intervals.append(interval2)
-#                     j += 1
-#                     if j < n:
-#                         interval2 = other.intervals[j]
-#             if cmp == -1:
-                
-            
-            
-    
     cpdef FloatIntervalSet complement(FloatIntervalSet self):
         pass
     
     cpdef FloatIntervalSet minus(FloatIntervalSet self, FloatIntervalSet other):
         pass
-    
-    
-    
-    
 
 
 # This is just a singleton
