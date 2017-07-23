@@ -843,7 +843,7 @@ static struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectIntervalSet *__py
 
 
 /* "cyinterval/cyinterval.pyx":411
- *         pass
+ *         return self.intersection(other.complement())
  * 
  * cdef class DateInterval(BaseInterval):             # <<<<<<<<<<<<<<
  *     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed,
@@ -885,7 +885,7 @@ static struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateIntervalSet *__pyx_
 
 
 /* "cyinterval/cyinterval.pyx":780
- *         pass
+ *         return self.intersection(other.complement())
  * 
  * cdef class IntInterval(BaseInterval):             # <<<<<<<<<<<<<<
  *     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed,
@@ -927,7 +927,7 @@ static struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v
 
 
 /* "cyinterval/cyinterval.pyx":1149
- *         pass
+ *         return self.intersection(other.complement())
  * 
  * cdef class FloatInterval(BaseInterval):             # <<<<<<<<<<<<<<
  *     def __init__(BaseInterval self, double lower_bound, double upper_bound, bool lower_closed,
@@ -1405,7 +1405,7 @@ static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_17ObjectIntervalSet_empty
 static struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_f_10cyinterval_10cyinterval_17ObjectIntervalSet_intersection(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_f_10cyinterval_10cyinterval_17ObjectIntervalSet_union(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_f_10cyinterval_10cyinterval_17ObjectIntervalSet_complement(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_f_10cyinterval_10cyinterval_17ObjectIntervalSet_minus(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
+static struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_f_10cyinterval_10cyinterval_17ObjectIntervalSet_minus(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_adjacent(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, PyDateTime_Date *__pyx_v_lower, PyDateTime_Date *__pyx_v_upper, int __pyx_skip_dispatch); /* proto*/
 static int __pyx_f_10cyinterval_10cyinterval_12DateInterval_containment_cmp(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, PyDateTime_Date *__pyx_v_item, int __pyx_skip_dispatch); /* proto*/
 static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_12DateInterval_contains(struct __pyx_obj_10cyinterval_10cyinterval_DateInterval *__pyx_v_self, PyDateTime_Date *__pyx_v_item, int __pyx_skip_dispatch); /* proto*/
@@ -1421,7 +1421,7 @@ static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_15DateIntervalSet_empty(s
 static struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_f_10cyinterval_10cyinterval_15DateIntervalSet_intersection(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_f_10cyinterval_10cyinterval_15DateIntervalSet_union(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_f_10cyinterval_10cyinterval_15DateIntervalSet_complement(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_f_10cyinterval_10cyinterval_15DateIntervalSet_minus(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
+static struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_f_10cyinterval_10cyinterval_15DateIntervalSet_minus(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_adjacent(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_v_lower, int __pyx_v_upper, int __pyx_skip_dispatch); /* proto*/
 static int __pyx_f_10cyinterval_10cyinterval_11IntInterval_containment_cmp(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_v_item, int __pyx_skip_dispatch); /* proto*/
 static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_11IntInterval_contains(struct __pyx_obj_10cyinterval_10cyinterval_IntInterval *__pyx_v_self, int __pyx_v_item, int __pyx_skip_dispatch); /* proto*/
@@ -1437,7 +1437,7 @@ static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_14IntIntervalSet_empty(st
 static struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_f_10cyinterval_10cyinterval_14IntIntervalSet_intersection(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_f_10cyinterval_10cyinterval_14IntIntervalSet_union(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_f_10cyinterval_10cyinterval_14IntIntervalSet_complement(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_f_10cyinterval_10cyinterval_14IntIntervalSet_minus(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
+static struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_f_10cyinterval_10cyinterval_14IntIntervalSet_minus(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_13FloatInterval_adjacent(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, CYTHON_UNUSED double __pyx_v_lower, CYTHON_UNUSED double __pyx_v_upper, int __pyx_skip_dispatch); /* proto*/
 static int __pyx_f_10cyinterval_10cyinterval_13FloatInterval_containment_cmp(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, double __pyx_v_item, int __pyx_skip_dispatch); /* proto*/
 static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_13FloatInterval_contains(struct __pyx_obj_10cyinterval_10cyinterval_FloatInterval *__pyx_v_self, double __pyx_v_item, int __pyx_skip_dispatch); /* proto*/
@@ -1453,7 +1453,7 @@ static PyBoolObject *__pyx_f_10cyinterval_10cyinterval_16FloatIntervalSet_empty(
 static struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_f_10cyinterval_10cyinterval_16FloatIntervalSet_intersection(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_f_10cyinterval_10cyinterval_16FloatIntervalSet_union(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 static struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_f_10cyinterval_10cyinterval_16FloatIntervalSet_complement(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_f_10cyinterval_10cyinterval_16FloatIntervalSet_minus(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
+static struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_f_10cyinterval_10cyinterval_16FloatIntervalSet_minus(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_other, int __pyx_skip_dispatch); /* proto*/
 
 /* Module declarations from 'libc.string' */
 
@@ -9641,12 +9641,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_8complem
  *         return ObjectIntervalSet(tuple(new_intervals))
  * 
  *     cpdef ObjectIntervalSet minus(ObjectIntervalSet self, ObjectIntervalSet other):             # <<<<<<<<<<<<<<
- *         pass
+ *         return self.intersection(other.complement())
  * 
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_17ObjectIntervalSet_11minus(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
-static struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_f_10cyinterval_10cyinterval_17ObjectIntervalSet_minus(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_other, int __pyx_skip_dispatch) {
+static struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_f_10cyinterval_10cyinterval_17ObjectIntervalSet_minus(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_other, int __pyx_skip_dispatch) {
   struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -9719,14 +9719,29 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_f_10c
   /* "cyinterval/cyinterval.pyx":409
  * 
  *     cpdef ObjectIntervalSet minus(ObjectIntervalSet self, ObjectIntervalSet other):
- *         pass             # <<<<<<<<<<<<<<
+ *         return self.intersection(other.complement())             # <<<<<<<<<<<<<<
  * 
  * cdef class DateInterval(BaseInterval):
  */
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectIntervalSet *)__pyx_v_other->__pyx_vtab)->complement(__pyx_v_other, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_10cyinterval_10cyinterval_ObjectIntervalSet *)__pyx_v_self->__pyx_vtab)->intersection(__pyx_v_self, ((struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *)__pyx_t_2);
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cyinterval/cyinterval.pyx":408
+ *         return ObjectIntervalSet(tuple(new_intervals))
+ * 
+ *     cpdef ObjectIntervalSet minus(ObjectIntervalSet self, ObjectIntervalSet other):             # <<<<<<<<<<<<<<
+ *         return self.intersection(other.complement())
+ * 
+ */
 
   /* function exit code */
-  __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *)Py_None); __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
@@ -9740,14 +9755,6 @@ static struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_f_10c
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-
-/* "cyinterval/cyinterval.pyx":408
- *         return ObjectIntervalSet(tuple(new_intervals))
- * 
- *     cpdef ObjectIntervalSet minus(ObjectIntervalSet self, ObjectIntervalSet other):             # <<<<<<<<<<<<<<
- *         pass
- * 
- */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_17ObjectIntervalSet_11minus(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
@@ -16459,12 +16466,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_8complemen
  *         return DateIntervalSet(tuple(new_intervals))
  * 
  *     cpdef DateIntervalSet minus(DateIntervalSet self, DateIntervalSet other):             # <<<<<<<<<<<<<<
- *         pass
+ *         return self.intersection(other.complement())
  * 
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_15DateIntervalSet_11minus(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
-static struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_f_10cyinterval_10cyinterval_15DateIntervalSet_minus(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_other, int __pyx_skip_dispatch) {
+static struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_f_10cyinterval_10cyinterval_15DateIntervalSet_minus(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_other, int __pyx_skip_dispatch) {
   struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -16537,14 +16544,29 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_f_10cyi
   /* "cyinterval/cyinterval.pyx":778
  * 
  *     cpdef DateIntervalSet minus(DateIntervalSet self, DateIntervalSet other):
- *         pass             # <<<<<<<<<<<<<<
+ *         return self.intersection(other.complement())             # <<<<<<<<<<<<<<
  * 
  * cdef class IntInterval(BaseInterval):
  */
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateIntervalSet *)__pyx_v_other->__pyx_vtab)->complement(__pyx_v_other, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 778, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_10cyinterval_10cyinterval_DateIntervalSet *)__pyx_v_self->__pyx_vtab)->intersection(__pyx_v_self, ((struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 778, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *)__pyx_t_2);
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cyinterval/cyinterval.pyx":777
+ *         return DateIntervalSet(tuple(new_intervals))
+ * 
+ *     cpdef DateIntervalSet minus(DateIntervalSet self, DateIntervalSet other):             # <<<<<<<<<<<<<<
+ *         return self.intersection(other.complement())
+ * 
+ */
 
   /* function exit code */
-  __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *)Py_None); __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
@@ -16558,14 +16580,6 @@ static struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_f_10cyi
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-
-/* "cyinterval/cyinterval.pyx":777
- *         return DateIntervalSet(tuple(new_intervals))
- * 
- *     cpdef DateIntervalSet minus(DateIntervalSet self, DateIntervalSet other):             # <<<<<<<<<<<<<<
- *         pass
- * 
- */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_15DateIntervalSet_11minus(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
@@ -23283,12 +23297,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_8complement
  *         return IntIntervalSet(tuple(new_intervals))
  * 
  *     cpdef IntIntervalSet minus(IntIntervalSet self, IntIntervalSet other):             # <<<<<<<<<<<<<<
- *         pass
+ *         return self.intersection(other.complement())
  * 
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_14IntIntervalSet_11minus(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
-static struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_f_10cyinterval_10cyinterval_14IntIntervalSet_minus(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_other, int __pyx_skip_dispatch) {
+static struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_f_10cyinterval_10cyinterval_14IntIntervalSet_minus(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_other, int __pyx_skip_dispatch) {
   struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -23361,14 +23375,29 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_f_10cyin
   /* "cyinterval/cyinterval.pyx":1147
  * 
  *     cpdef IntIntervalSet minus(IntIntervalSet self, IntIntervalSet other):
- *         pass             # <<<<<<<<<<<<<<
+ *         return self.intersection(other.complement())             # <<<<<<<<<<<<<<
  * 
  * cdef class FloatInterval(BaseInterval):
  */
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntIntervalSet *)__pyx_v_other->__pyx_vtab)->complement(__pyx_v_other, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_10cyinterval_10cyinterval_IntIntervalSet *)__pyx_v_self->__pyx_vtab)->intersection(__pyx_v_self, ((struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *)__pyx_t_2);
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cyinterval/cyinterval.pyx":1146
+ *         return IntIntervalSet(tuple(new_intervals))
+ * 
+ *     cpdef IntIntervalSet minus(IntIntervalSet self, IntIntervalSet other):             # <<<<<<<<<<<<<<
+ *         return self.intersection(other.complement())
+ * 
+ */
 
   /* function exit code */
-  __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *)Py_None); __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
@@ -23382,14 +23411,6 @@ static struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_f_10cyin
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-
-/* "cyinterval/cyinterval.pyx":1146
- *         return IntIntervalSet(tuple(new_intervals))
- * 
- *     cpdef IntIntervalSet minus(IntIntervalSet self, IntIntervalSet other):             # <<<<<<<<<<<<<<
- *         pass
- * 
- */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_14IntIntervalSet_11minus(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
@@ -30104,12 +30125,12 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_8compleme
  *         return FloatIntervalSet(tuple(new_intervals))
  * 
  *     cpdef FloatIntervalSet minus(FloatIntervalSet self, FloatIntervalSet other):             # <<<<<<<<<<<<<<
- *         pass
+ *         return self.intersection(other.complement())
  * 
  */
 
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_16FloatIntervalSet_11minus(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
-static struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_f_10cyinterval_10cyinterval_16FloatIntervalSet_minus(CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_other, int __pyx_skip_dispatch) {
+static struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_f_10cyinterval_10cyinterval_16FloatIntervalSet_minus(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_other, int __pyx_skip_dispatch) {
   struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -30182,14 +30203,29 @@ static struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_f_10cy
   /* "cyinterval/cyinterval.pyx":1516
  * 
  *     cpdef FloatIntervalSet minus(FloatIntervalSet self, FloatIntervalSet other):
- *         pass             # <<<<<<<<<<<<<<
+ *         return self.intersection(other.complement())             # <<<<<<<<<<<<<<
  * 
+ * 
+ */
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatIntervalSet *)__pyx_v_other->__pyx_vtab)->complement(__pyx_v_other, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1516, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_10cyinterval_10cyinterval_FloatIntervalSet *)__pyx_v_self->__pyx_vtab)->intersection(__pyx_v_self, ((struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1516, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *)__pyx_t_2);
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cyinterval/cyinterval.pyx":1515
+ *         return FloatIntervalSet(tuple(new_intervals))
+ * 
+ *     cpdef FloatIntervalSet minus(FloatIntervalSet self, FloatIntervalSet other):             # <<<<<<<<<<<<<<
+ *         return self.intersection(other.complement())
  * 
  */
 
   /* function exit code */
-  __pyx_r = ((struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *)Py_None); __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
@@ -30203,14 +30239,6 @@ static struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_f_10cy
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-
-/* "cyinterval/cyinterval.pyx":1515
- *         return FloatIntervalSet(tuple(new_intervals))
- * 
- *     cpdef FloatIntervalSet minus(FloatIntervalSet self, FloatIntervalSet other):             # <<<<<<<<<<<<<<
- *         pass
- * 
- */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_10cyinterval_10cyinterval_16FloatIntervalSet_11minus(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/

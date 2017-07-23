@@ -406,7 +406,7 @@ cdef class ObjectIntervalSet(BaseIntervalSet):
         return ObjectIntervalSet(tuple(new_intervals))
             
     cpdef ObjectIntervalSet minus(ObjectIntervalSet self, ObjectIntervalSet other):
-        pass
+        return self.intersection(other.complement())
 
 cdef class DateInterval(BaseInterval):
     def __init__(BaseInterval self, date lower_bound, date upper_bound, bool lower_closed, 
@@ -775,7 +775,7 @@ cdef class DateIntervalSet(BaseIntervalSet):
         return DateIntervalSet(tuple(new_intervals))
             
     cpdef DateIntervalSet minus(DateIntervalSet self, DateIntervalSet other):
-        pass
+        return self.intersection(other.complement())
 
 cdef class IntInterval(BaseInterval):
     def __init__(BaseInterval self, int lower_bound, int upper_bound, bool lower_closed, 
@@ -1144,7 +1144,7 @@ cdef class IntIntervalSet(BaseIntervalSet):
         return IntIntervalSet(tuple(new_intervals))
             
     cpdef IntIntervalSet minus(IntIntervalSet self, IntIntervalSet other):
-        pass
+        return self.intersection(other.complement())
 
 cdef class FloatInterval(BaseInterval):
     def __init__(BaseInterval self, double lower_bound, double upper_bound, bool lower_closed, 
@@ -1513,7 +1513,7 @@ cdef class FloatIntervalSet(BaseIntervalSet):
         return FloatIntervalSet(tuple(new_intervals))
             
     cpdef FloatIntervalSet minus(FloatIntervalSet self, FloatIntervalSet other):
-        pass
+        return self.intersection(other.complement())
 
 
 # This is just a singleton

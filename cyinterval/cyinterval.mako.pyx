@@ -418,7 +418,7 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
         return ${IntervalSetType}(tuple(new_intervals))
             
     cpdef ${IntervalSetType} minus(${IntervalSetType} self, ${IntervalSetType} other):
-        pass
+        return self.intersection(other.complement())
 
 % endfor
 

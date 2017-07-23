@@ -76,6 +76,14 @@ def test_complement():
     assert_equal(IntervalSet(interval_type=float).complement().intervals, 
                  IntervalSet(Interval(unbounded, unbounded, interval_type=float)).intervals)
 
+def test_minus():
+    interval_set1 = IntervalSet(Interval(0.,1.,upper_closed=False), Interval(1.,3.,lower_closed=False))
+    interval_set2 = IntervalSet(Interval(.5,1.5))
+    assert_equal(interval_set1.minus(interval_set2).intervals, (Interval(0.,.5,upper_closed=False), 
+                                                                Interval(1.5,3., lower_closed=False)))
+    assert_equal(interval_set2.minus(interval_set1).intervals,
+                 (Interval(1.,1.),))
+
 if __name__ == '__main__':
     import sys
     import nose
