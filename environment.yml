@@ -4,3 +4,5 @@ dependencies:
     - nose
     - cython
     - mako
+    - pip:
+        - interval
