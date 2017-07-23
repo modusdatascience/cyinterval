@@ -1,6 +1,7 @@
 from cyinterval.cyinterval import Interval, IntervalSet, FloatIntervalSet, DateIntervalSet,\
-    unbounded
-from nose.tools import assert_equal, assert_is
+    unbounded, ObjectIntervalSet
+from nose.tools import assert_equal, assert_is, assert_not_equal, assert_less,\
+    assert_less_equal, assert_greater_equal
 from datetime import date
 
 def test_float_interval_set_construction():
@@ -75,6 +76,9 @@ def test_complement():
                                                         Interval(1.,1.), Interval(3.,unbounded, lower_closed=False)))
     assert_equal(IntervalSet(interval_type=float).complement().intervals, 
                  IntervalSet(Interval(unbounded, unbounded, interval_type=float)).intervals)
+    assert_equal(interval_set1.complement().complement(),
+                 interval_set1)
+    
 
 def test_minus():
     interval_set1 = IntervalSet(Interval(0.,1.,upper_closed=False), Interval(1.,3.,lower_closed=False))
@@ -83,6 +87,27 @@ def test_minus():
                                                                 Interval(1.5,3., lower_closed=False)))
     assert_equal(interval_set2.minus(interval_set1).intervals,
                  (Interval(1.,1.),))
+
+def test_operators():
+    interval_set1 = IntervalSet(Interval(0.,1.,upper_closed=False), Interval(1.,3.,lower_closed=False))
+    interval_set2 = IntervalSet(Interval(.5,1.5))
+    assert_not_equal(interval_set1, interval_set2)
+    assert_less_equal(interval_set1, interval_set1)
+    assert_greater_equal(interval_set1, interval_set1)
+    assert_equal(interval_set2, IntervalSet(Interval(.5,1.5)))
+    assert_less(interval_set1 & interval_set2, interval_set2)
+    assert_less(interval_set1 & interval_set2, interval_set1)
+    assert_less(interval_set1, interval_set1 | interval_set2)
+    assert_less(interval_set2, interval_set1 | interval_set2)
+    assert_equal(~~interval_set2, interval_set2)
+    assert_equal((~interval_set2) & interval_set2, IntervalSet(interval_type=float))
+    assert_equal((~interval_set2) | interval_set2, IntervalSet(Interval(unbounded, unbounded, interval_type=float)))
+
+def test_default_type():
+    interval_set = IntervalSet(Interval(unbounded, unbounded))
+    assert_is(type(interval_set), ObjectIntervalSet)
+    interval_set = IntervalSet()
+    assert_is(type(interval_set), ObjectIntervalSet)
 
 if __name__ == '__main__':
     import sys

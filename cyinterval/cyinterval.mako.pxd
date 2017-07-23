@@ -26,6 +26,7 @@ cdef class ${IntervalType}(BaseInterval):
     cpdef bool adjacent(${IntervalType} self, ${c_type} lower, ${c_type} upper)
     cpdef int containment_cmp(${IntervalType} self, ${c_type} item)
     cpdef bool contains(${IntervalType} self, ${c_type} item)
+    cpdef bool subset(${IntervalType} self, ${IntervalType} other)
     cpdef int overlap_cmp(${IntervalType} self, ${IntervalType} other)
     cpdef tuple init_args(${IntervalType} self)
     cpdef ${IntervalType} intersection(${IntervalType} self, ${IntervalType} other)
@@ -38,7 +39,11 @@ cdef class ${IntervalType}(BaseInterval):
 cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals)
 
 cdef class ${IntervalSetType}(BaseIntervalSet):
+    cpdef tuple init_args(${IntervalSetType} self)
     cpdef bool empty(${IntervalSetType} self)
+    cpdef bool subset(${IntervalSetType} self, ${IntervalSetType} other)
+    cpdef bool equal(${IntervalSetType} self, ${IntervalSetType} other)
+    cpdef bool richcmp(${IntervalSetType} self, ${IntervalSetType} other, int op)
     cpdef ${IntervalSetType} intersection(${IntervalSetType} self, ${IntervalSetType} other)
     cpdef ${IntervalSetType} union(${IntervalSetType} self, ${IntervalSetType} other)
     cpdef ${IntervalSetType} complement(${IntervalSetType} self)

@@ -23,6 +23,11 @@ cdef class BaseInterval:
             raise NotImplementedError('Only intervals of the same type can be intersected')
         return self.intersection(other)
     
+    def __rand__(BaseInterval self, other):
+        if self.__class__ is not other.__class__:
+            return NotImplemented
+        return other.__and__(other)
+    
     def __contains__(BaseInterval self, item):
         return self.contains(item)
     
@@ -34,8 +39,49 @@ cdef class BaseInterval:
         return str(self)
         
 cdef class BaseIntervalSet:
-    pass
-
+    def __str__(BaseIntervalSet self):
+        return 'U'.join(map(str, self.intervals)) if self.intervals else '{}'
+    
+    def __repr__(BaseIntervalSet self):
+        return str(self)
+    
+    def __richcmp__(BaseIntervalSet self, other, int op):
+        if self.__class__ is not other.__class__:
+            return NotImplemented
+        return self.richcmp(other, op)
+    
+    def __and__(BaseIntervalSet self, other):
+        if self.__class__ is not other.__class__:
+            return NotImplemented
+        return self.intersection(other)
+    
+    def __or__(BaseIntervalSet self, other):
+        if self.__class__ is not other.__class__:
+            return NotImplemented
+        return self.union(other)
+    
+    def __ror__(BaseIntervalSet self, other):
+        if self.__class__ is not other.__class__:
+            return NotImplemented
+        return other.__or__(self)
+    
+    def __rand__(BaseIntervalSet self, other):
+        if self.__class__ is not other.__class__:
+            return NotImplemented
+        return other.__and__(other)
+    
+    def __invert__(BaseIntervalSet self):
+        return self.complement()
+    
+    def __bool__(BaseIntervalSet self):
+        return not self.empty()
+    
+    def __reduce__(BaseIntervalSet self):
+        return (self.__class__, self.init_args())
+    
+    def __hash__(BaseIntervalSet self):
+        return hash(self.__reduce__())
+    
 cdef timedelta day = timedelta(days=1)
 <%!
 type_tups = [('ObjectInterval', 'object', None, 'None', False, 'ObjectIntervalSet', False, None), 
@@ -91,6 +137,15 @@ cdef class ${IntervalType}(BaseInterval):
     cpdef bool contains(${IntervalType} self, ${c_type} item):
         return self.containment_cmp(item) == 0
     
+    cpdef bool subset(${IntervalType} self, ${IntervalType} other):
+        '''
+        Return True if and only if self is a subset of other.
+        '''
+        cdef int lower_cmp, upper_cmp
+        lower_cmp = self.lower_cmp(other)
+        upper_cmp = self.upper_cmp(other)
+        return lower_cmp >= 0 and upper_cmp <= 0
+        
     cpdef int overlap_cmp(${IntervalType} self, ${IntervalType} other):
         '''
         Assume both are nonempty.  Return -1 if every element of self is less than every 
@@ -150,8 +205,8 @@ cdef class ${IntervalType}(BaseInterval):
     
     cpdef ${IntervalType} fusion(${IntervalType} self, ${IntervalType} other):
         '''
-        Assume intervals overlap.  Return their union.  Results not correct
-        for non-overlapping intervals
+        Assume union of intervals is a single interval.  Return their union.  Results not correct
+        if above assumption is violated.
         '''
         cdef int lower_cmp = self.lower_cmp(other)
         cdef int upper_cmp = self.upper_cmp(other)
@@ -301,6 +356,67 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
+        
+    cpdef tuple init_args(${IntervalSetType} self):
+        return (self.intervals,)
+    
+    cpdef bool subset(${IntervalSetType} self, ${IntervalSetType} other):
+        '''
+        Return True if and only if self is a subset of other.
+        '''
+        cdef ${IntervalType} self_interval, other_interval
+        cdef int i, j, m, n
+        cdef int overlap_cmp, cmp
+        if self.empty():
+            return True
+        elif other.empty():
+            return False
+        m = self.n_intervals
+        n = other.n_intervals
+        j = 0
+        other_interval = other.intervals[j]
+        for i in range(m):
+            self_interval = self.intervals[i]
+            overlap_cmp = self_interval.overlap_cmp(other_interval)
+            if overlap_cmp == -1:
+                return False
+            elif overlap_cmp == 0:
+                if not self_interval.subset(other_interval):
+                    return False
+            elif overlap_cmp == 1:
+                if j < n-1:
+                    j += 1
+                    other_interval = other.intervals[j]
+                else:
+                    return False
+        return True
+    
+    cpdef bool equal(${IntervalSetType} self, ${IntervalSetType} other):
+        cdef ${IntervalType} self_interval, other_interval
+        cdef int i, n
+        n = self.n_intervals
+        if n != other.n_intervals:
+            return False
+        for i in range(n):
+            self_interval = self.intervals[i]
+            other_interval = other.intervals[i]
+            if not self_interval.richcmp(other_interval, 2):
+                return False
+        return True
+    
+    cpdef bool richcmp(${IntervalSetType} self, ${IntervalSetType} other, int op):
+        if op == 0:
+            return self.subset(other) and not self.equal(other)
+        elif op == 1:
+            return self.subset(other)
+        elif op == 2:
+            return self.equal(other)
+        elif op == 3:
+            return not self.equal(other)
+        elif op == 4:
+            return other.subset(self) and not other.equal(self)
+        elif op == 5:
+            return other.subset(self)
     
     cpdef bool empty(${IntervalSetType} self):
         return self.n_intervals == 0 
@@ -386,7 +502,11 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
                 new_interval = next_interval
             else:
                 cmp = new_interval.overlap_cmp(next_interval)
-                if cmp == 0:
+                if (cmp == 0 or 
+                (cmp==-1 and new_interval.upper_bound == next_interval.lower_bound and 
+                 (new_interval.upper_closed or next_interval.lower_closed)) or 
+                 (cmp==1 and new_interval.lower_bound == next_interval.upper_bound and 
+                 (new_interval.lower_closed or next_interval.upper_closed))):
                     new_interval = new_interval.fusion(next_interval)
                 else:
                     new_intervals.append(new_interval)
@@ -443,10 +563,9 @@ inverse_interval_type_dispatch = dict(map(tuple, map(reversed, interval_type_dis
 def Interval(lower_bound=unbounded, upper_bound=unbounded, lower_closed=True, 
              upper_closed=True, interval_type=None):
     if interval_type is None:
-        assert lower_bound is not unbounded or upper_bound is not unbounded
         if lower_bound is not unbounded and type(lower_bound) in interval_type_dispatch:
             cls = interval_type_dispatch[type(lower_bound)]
-        elif type(upper_bound) in interval_type_dispatch:
+        elif upper_bound is not unbounded and type(upper_bound) in interval_type_dispatch:
             cls = interval_type_dispatch[type(upper_bound)]
         else:
             cls = ${type_tups[default_type_tup_index][0]}
