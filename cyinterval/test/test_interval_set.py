@@ -102,6 +102,7 @@ def test_operators():
     assert_equal(~~interval_set2, interval_set2)
     assert_equal((~interval_set2) & interval_set2, IntervalSet(interval_type=float))
     assert_equal((~interval_set2) | interval_set2, IntervalSet(Interval(unbounded, unbounded, interval_type=float)))
+    assert_equal(interval_set1 - interval_set2, IntervalSet(Interval(0.,.5,upper_closed=False), Interval(1.5,3.,lower_closed=False)))
 
 def test_default_type():
     interval_set = IntervalSet(Interval(unbounded, unbounded))

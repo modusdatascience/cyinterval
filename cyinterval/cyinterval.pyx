@@ -70,6 +70,16 @@ cdef class BaseIntervalSet:
             return NotImplemented
         return other.__and__(other)
     
+    def __sub__(BaseIntervalSet self, other):
+        if self.__class__ is not other.__class__:
+            return NotImplemented
+        return self.minus(other)
+    
+    def __rsub__(BaseIntervalSet self, other):
+        if self.__class__ is not other.__class__:
+            return NotImplemented
+        return other.__sub__(self)
+    
     def __invert__(BaseIntervalSet self):
         return self.complement()
     
