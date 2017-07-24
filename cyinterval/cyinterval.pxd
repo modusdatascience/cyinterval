@@ -33,6 +33,7 @@ cpdef tuple ObjectInterval_preprocess_intervals(tuple intervals)
 
 cdef class ObjectIntervalSet(BaseIntervalSet):
     cpdef tuple init_args(ObjectIntervalSet self)
+    cpdef bool contains(ObjectIntervalSet self, object item)
     cpdef bool empty(ObjectIntervalSet self)
     cpdef bool subset(ObjectIntervalSet self, ObjectIntervalSet other)
     cpdef bool equal(ObjectIntervalSet self, ObjectIntervalSet other)
@@ -62,6 +63,7 @@ cpdef tuple DateInterval_preprocess_intervals(tuple intervals)
 
 cdef class DateIntervalSet(BaseIntervalSet):
     cpdef tuple init_args(DateIntervalSet self)
+    cpdef bool contains(DateIntervalSet self, date item)
     cpdef bool empty(DateIntervalSet self)
     cpdef bool subset(DateIntervalSet self, DateIntervalSet other)
     cpdef bool equal(DateIntervalSet self, DateIntervalSet other)
@@ -91,6 +93,7 @@ cpdef tuple IntInterval_preprocess_intervals(tuple intervals)
 
 cdef class IntIntervalSet(BaseIntervalSet):
     cpdef tuple init_args(IntIntervalSet self)
+    cpdef bool contains(IntIntervalSet self, int item)
     cpdef bool empty(IntIntervalSet self)
     cpdef bool subset(IntIntervalSet self, IntIntervalSet other)
     cpdef bool equal(IntIntervalSet self, IntIntervalSet other)
@@ -120,6 +123,7 @@ cpdef tuple FloatInterval_preprocess_intervals(tuple intervals)
 
 cdef class FloatIntervalSet(BaseIntervalSet):
     cpdef tuple init_args(FloatIntervalSet self)
+    cpdef bool contains(FloatIntervalSet self, double item)
     cpdef bool empty(FloatIntervalSet self)
     cpdef bool subset(FloatIntervalSet self, FloatIntervalSet other)
     cpdef bool equal(FloatIntervalSet self, FloatIntervalSet other)

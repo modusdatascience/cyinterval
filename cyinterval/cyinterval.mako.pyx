@@ -42,6 +42,9 @@ cdef class BaseIntervalSet:
     def __str__(BaseIntervalSet self):
         return 'U'.join(map(str, self.intervals)) if self.intervals else '{}'
     
+    def __contains__(BaseIntervalSet self, item):
+        return self.contains(item)
+    
     def __repr__(BaseIntervalSet self):
         return str(self)
     
@@ -370,6 +373,29 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
     cpdef tuple init_args(${IntervalSetType} self):
         return (self.intervals,)
     
+    cpdef bool contains(${IntervalSetType} self, ${c_type} item):
+        '''
+        Use binary search to determine whether item is in self.
+        '''
+        cdef int i, n
+        cdef int low, high
+        cdef int cmp
+        cdef ${IntervalType} interval 
+        n = self.n_intervals
+        low = 0
+        high = n-1
+        while high >= low:
+            i = (high + low) / 2
+            interval = self.intervals[i]
+            cmp = interval.containment_cmp(item)
+            if cmp == -1:
+                high = i - 1
+            elif cmp == 1:
+                low = i + 1
+            else: #if cmp == 0:
+                return True
+        return False
+
     cpdef bool subset(${IntervalSetType} self, ${IntervalSetType} other):
         '''
         Return True if and only if self is a subset of other.

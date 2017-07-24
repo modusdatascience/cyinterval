@@ -40,6 +40,7 @@ cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals)
 
 cdef class ${IntervalSetType}(BaseIntervalSet):
     cpdef tuple init_args(${IntervalSetType} self)
+    cpdef bool contains(${IntervalSetType} self, ${c_type} item)
     cpdef bool empty(${IntervalSetType} self)
     cpdef bool subset(${IntervalSetType} self, ${IntervalSetType} other)
     cpdef bool equal(${IntervalSetType} self, ${IntervalSetType} other)

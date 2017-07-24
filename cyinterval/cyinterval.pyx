@@ -42,6 +42,9 @@ cdef class BaseIntervalSet:
     def __str__(BaseIntervalSet self):
         return 'U'.join(map(str, self.intervals)) if self.intervals else '{}'
     
+    def __contains__(BaseIntervalSet self, item):
+        return self.contains(item)
+    
     def __repr__(BaseIntervalSet self):
         return str(self)
     
@@ -358,6 +361,29 @@ cdef class ObjectIntervalSet(BaseIntervalSet):
     cpdef tuple init_args(ObjectIntervalSet self):
         return (self.intervals,)
     
+    cpdef bool contains(ObjectIntervalSet self, object item):
+        '''
+        Use binary search to determine whether item is in self.
+        '''
+        cdef int i, n
+        cdef int low, high
+        cdef int cmp
+        cdef ObjectInterval interval 
+        n = self.n_intervals
+        low = 0
+        high = n-1
+        while high >= low:
+            i = (high + low) / 2
+            interval = self.intervals[i]
+            cmp = interval.containment_cmp(item)
+            if cmp == -1:
+                high = i - 1
+            elif cmp == 1:
+                low = i + 1
+            else: #if cmp == 0:
+                return True
+        return False
+
     cpdef bool subset(ObjectIntervalSet self, ObjectIntervalSet other):
         '''
         Return True if and only if self is a subset of other.
@@ -801,6 +827,29 @@ cdef class DateIntervalSet(BaseIntervalSet):
     cpdef tuple init_args(DateIntervalSet self):
         return (self.intervals,)
     
+    cpdef bool contains(DateIntervalSet self, date item):
+        '''
+        Use binary search to determine whether item is in self.
+        '''
+        cdef int i, n
+        cdef int low, high
+        cdef int cmp
+        cdef DateInterval interval 
+        n = self.n_intervals
+        low = 0
+        high = n-1
+        while high >= low:
+            i = (high + low) / 2
+            interval = self.intervals[i]
+            cmp = interval.containment_cmp(item)
+            if cmp == -1:
+                high = i - 1
+            elif cmp == 1:
+                low = i + 1
+            else: #if cmp == 0:
+                return True
+        return False
+
     cpdef bool subset(DateIntervalSet self, DateIntervalSet other):
         '''
         Return True if and only if self is a subset of other.
@@ -1244,6 +1293,29 @@ cdef class IntIntervalSet(BaseIntervalSet):
     cpdef tuple init_args(IntIntervalSet self):
         return (self.intervals,)
     
+    cpdef bool contains(IntIntervalSet self, int item):
+        '''
+        Use binary search to determine whether item is in self.
+        '''
+        cdef int i, n
+        cdef int low, high
+        cdef int cmp
+        cdef IntInterval interval 
+        n = self.n_intervals
+        low = 0
+        high = n-1
+        while high >= low:
+            i = (high + low) / 2
+            interval = self.intervals[i]
+            cmp = interval.containment_cmp(item)
+            if cmp == -1:
+                high = i - 1
+            elif cmp == 1:
+                low = i + 1
+            else: #if cmp == 0:
+                return True
+        return False
+
     cpdef bool subset(IntIntervalSet self, IntIntervalSet other):
         '''
         Return True if and only if self is a subset of other.
@@ -1687,6 +1759,29 @@ cdef class FloatIntervalSet(BaseIntervalSet):
     cpdef tuple init_args(FloatIntervalSet self):
         return (self.intervals,)
     
+    cpdef bool contains(FloatIntervalSet self, double item):
+        '''
+        Use binary search to determine whether item is in self.
+        '''
+        cdef int i, n
+        cdef int low, high
+        cdef int cmp
+        cdef FloatInterval interval 
+        n = self.n_intervals
+        low = 0
+        high = n-1
+        while high >= low:
+            i = (high + low) / 2
+            interval = self.intervals[i]
+            cmp = interval.containment_cmp(item)
+            if cmp == -1:
+                high = i - 1
+            elif cmp == 1:
+                low = i + 1
+            else: #if cmp == 0:
+                return True
+        return False
+
     cpdef bool subset(FloatIntervalSet self, FloatIntervalSet other):
         '''
         Return True if and only if self is a subset of other.

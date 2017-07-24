@@ -1,7 +1,8 @@
 from cyinterval.cyinterval import Interval, IntervalSet, FloatIntervalSet, DateIntervalSet,\
     unbounded, ObjectIntervalSet
 from nose.tools import assert_equal, assert_is, assert_not_equal, assert_less,\
-    assert_less_equal, assert_greater_equal
+    assert_less_equal, assert_greater_equal, assert_in, assert_not_in,\
+    assert_raises
 from datetime import date
 
 def test_float_interval_set_construction():
@@ -109,6 +110,16 @@ def test_default_type():
     assert_is(type(interval_set), ObjectIntervalSet)
     interval_set = IntervalSet()
     assert_is(type(interval_set), ObjectIntervalSet)
+    
+def test_contains():
+    interval_set1 = IntervalSet(Interval(0.,1.,upper_closed=False), Interval(1.,3.,lower_closed=False))
+    assert_in(.3, interval_set1)
+    assert_not_in(1., interval_set1)
+    assert_not_in(-0.00001, interval_set1)
+    assert_not_in(3.000001, interval_set1)
+    assert_in(2., interval_set1)
+    assert_in(2, interval_set1) # int automatically cast as double
+    assert_raises(TypeError, lambda: 'x' in interval_set1)
 
 if __name__ == '__main__':
     import sys
