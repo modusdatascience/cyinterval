@@ -378,6 +378,9 @@ cdef class ObjectIntervalSet(BaseIntervalSet):
     def __iter__(ObjectIntervalSet self):
         return ObjectIntervalSetIterator(self)
     
+    def __getitem__(ObjectIntervalSet self, int index):
+        return self.intervals[index]
+    
     cpdef bool lower_bounded(ObjectIntervalSet self):
         cdef ObjectInterval interval
         if self.n_intervals > 0:
@@ -876,6 +879,9 @@ cdef class DateIntervalSet(BaseIntervalSet):
     
     def __iter__(DateIntervalSet self):
         return DateIntervalSetIterator(self)
+    
+    def __getitem__(DateIntervalSet self, int index):
+        return self.intervals[index]
     
     cpdef bool lower_bounded(DateIntervalSet self):
         cdef DateInterval interval
@@ -1376,6 +1382,9 @@ cdef class IntIntervalSet(BaseIntervalSet):
     def __iter__(IntIntervalSet self):
         return IntIntervalSetIterator(self)
     
+    def __getitem__(IntIntervalSet self, int index):
+        return self.intervals[index]
+    
     cpdef bool lower_bounded(IntIntervalSet self):
         cdef IntInterval interval
         if self.n_intervals > 0:
@@ -1874,6 +1883,9 @@ cdef class FloatIntervalSet(BaseIntervalSet):
     
     def __iter__(FloatIntervalSet self):
         return FloatIntervalSetIterator(self)
+    
+    def __getitem__(FloatIntervalSet self, int index):
+        return self.intervals[index]
     
     cpdef bool lower_bounded(FloatIntervalSet self):
         cdef FloatInterval interval
