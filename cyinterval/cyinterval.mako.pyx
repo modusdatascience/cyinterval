@@ -95,6 +95,9 @@ cdef class BaseIntervalSet:
     def __hash__(BaseIntervalSet self):
         return hash(self.__reduce__())
     
+cdef class BaseIntervalSetIterator:
+    pass
+
 cdef timedelta day = timedelta(days=1)
 <%!
 type_tups = [('ObjectInterval', 'object', None, 'None', False, 'ObjectIntervalSet', False, None), 
@@ -362,6 +365,20 @@ cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals):
     tmp2.append(interval)
     return tuple(tmp2)
 
+cdef class ${IntervalSetType}Iterator(BaseIntervalSetIterator):
+    def __init__(${IntervalSetType}Iterator self, ${IntervalSetType} interval_set):
+        self.index = 0
+        self.interval_set = interval_set
+    
+    def __iter__(${IntervalSetType}Iterator self):
+        return self
+    
+    def __next__(${IntervalSetType}Iterator self):
+        self.index += 1
+        if self.index <= self.interval_set.n_intervals:
+            return self.interval_set.intervals[self.index-1]
+        raise StopIteration
+
 cdef class ${IntervalSetType}(BaseIntervalSet):
     def __init__(${IntervalSetType} self, tuple intervals):
         '''
@@ -369,7 +386,26 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
+    def __iter__(${IntervalSetType} self):
+        return ${IntervalSetType}Iterator(self)
+    
+    cpdef bool lower_bounded(${IntervalSetType} self):
+        cdef ${IntervalType} interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bounded
+        else:
+            return True
+    
+    cpdef bool upper_bounded(${IntervalSetType} self):
+        cdef ${IntervalType} interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bounded
+        else:
+            return True
+    
     cpdef tuple init_args(${IntervalSetType} self):
         return (self.intervals,)
     

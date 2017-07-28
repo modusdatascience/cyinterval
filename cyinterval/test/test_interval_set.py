@@ -2,7 +2,7 @@ from cyinterval.cyinterval import Interval, IntervalSet, FloatIntervalSet, DateI
     unbounded, ObjectIntervalSet
 from nose.tools import assert_equal, assert_is, assert_not_equal, assert_less,\
     assert_less_equal, assert_greater_equal, assert_in, assert_not_in,\
-    assert_raises
+    assert_raises, assert_list_equal
 from datetime import date
 
 def test_float_interval_set_construction():
@@ -120,6 +120,10 @@ def test_contains():
     assert_in(2., interval_set1)
     assert_in(2, interval_set1) # int automatically cast as double
     assert_raises(TypeError, lambda: 'x' in interval_set1)
+
+def test_iteration():
+    interval_set1 = IntervalSet(Interval(0.,1.,upper_closed=False), Interval(1.,3.,lower_closed=False))
+    assert_list_equal(list(interval_set1), [Interval(0.,1.,upper_closed=False), Interval(1.,3.,lower_closed=False)])
 
 if __name__ == '__main__':
     import sys

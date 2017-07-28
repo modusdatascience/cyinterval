@@ -11,6 +11,9 @@ cdef class BaseIntervalSet:
     cdef readonly tuple intervals
     cdef readonly int n_intervals
 
+cdef class BaseIntervalSetIterator:
+    cdef unsigned int index
+
 
 
 cdef class ObjectInterval(BaseInterval):
@@ -31,7 +34,12 @@ cdef class ObjectInterval(BaseInterval):
 
 cpdef tuple ObjectInterval_preprocess_intervals(tuple intervals)
 
+cdef class ObjectIntervalSetIterator(BaseIntervalSetIterator):
+    cdef readonly ObjectIntervalSet interval_set
+
 cdef class ObjectIntervalSet(BaseIntervalSet):
+    cpdef bool lower_bounded(ObjectIntervalSet self)
+    cpdef bool upper_bounded(ObjectIntervalSet self)
     cpdef tuple init_args(ObjectIntervalSet self)
     cpdef bool contains(ObjectIntervalSet self, object item)
     cpdef bool empty(ObjectIntervalSet self)
@@ -61,7 +69,12 @@ cdef class DateInterval(BaseInterval):
 
 cpdef tuple DateInterval_preprocess_intervals(tuple intervals)
 
+cdef class DateIntervalSetIterator(BaseIntervalSetIterator):
+    cdef readonly DateIntervalSet interval_set
+
 cdef class DateIntervalSet(BaseIntervalSet):
+    cpdef bool lower_bounded(DateIntervalSet self)
+    cpdef bool upper_bounded(DateIntervalSet self)
     cpdef tuple init_args(DateIntervalSet self)
     cpdef bool contains(DateIntervalSet self, date item)
     cpdef bool empty(DateIntervalSet self)
@@ -91,7 +104,12 @@ cdef class IntInterval(BaseInterval):
 
 cpdef tuple IntInterval_preprocess_intervals(tuple intervals)
 
+cdef class IntIntervalSetIterator(BaseIntervalSetIterator):
+    cdef readonly IntIntervalSet interval_set
+
 cdef class IntIntervalSet(BaseIntervalSet):
+    cpdef bool lower_bounded(IntIntervalSet self)
+    cpdef bool upper_bounded(IntIntervalSet self)
     cpdef tuple init_args(IntIntervalSet self)
     cpdef bool contains(IntIntervalSet self, int item)
     cpdef bool empty(IntIntervalSet self)
@@ -121,7 +139,12 @@ cdef class FloatInterval(BaseInterval):
 
 cpdef tuple FloatInterval_preprocess_intervals(tuple intervals)
 
+cdef class FloatIntervalSetIterator(BaseIntervalSetIterator):
+    cdef readonly FloatIntervalSet interval_set
+
 cdef class FloatIntervalSet(BaseIntervalSet):
+    cpdef bool lower_bounded(FloatIntervalSet self)
+    cpdef bool upper_bounded(FloatIntervalSet self)
     cpdef tuple init_args(FloatIntervalSet self)
     cpdef bool contains(FloatIntervalSet self, double item)
     cpdef bool empty(FloatIntervalSet self)

@@ -95,6 +95,9 @@ cdef class BaseIntervalSet:
     def __hash__(BaseIntervalSet self):
         return hash(self.__reduce__())
     
+cdef class BaseIntervalSetIterator:
+    pass
+
 cdef timedelta day = timedelta(days=1)
 
 
@@ -350,6 +353,20 @@ cpdef tuple ObjectInterval_preprocess_intervals(tuple intervals):
     tmp2.append(interval)
     return tuple(tmp2)
 
+cdef class ObjectIntervalSetIterator(BaseIntervalSetIterator):
+    def __init__(ObjectIntervalSetIterator self, ObjectIntervalSet interval_set):
+        self.index = 0
+        self.interval_set = interval_set
+    
+    def __iter__(ObjectIntervalSetIterator self):
+        return self
+    
+    def __next__(ObjectIntervalSetIterator self):
+        self.index += 1
+        if self.index <= self.interval_set.n_intervals:
+            return self.interval_set.intervals[self.index-1]
+        raise StopIteration
+
 cdef class ObjectIntervalSet(BaseIntervalSet):
     def __init__(ObjectIntervalSet self, tuple intervals):
         '''
@@ -357,7 +374,26 @@ cdef class ObjectIntervalSet(BaseIntervalSet):
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
+    def __iter__(ObjectIntervalSet self):
+        return ObjectIntervalSetIterator(self)
+    
+    cpdef bool lower_bounded(ObjectIntervalSet self):
+        cdef ObjectInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bounded
+        else:
+            return True
+    
+    cpdef bool upper_bounded(ObjectIntervalSet self):
+        cdef ObjectInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bounded
+        else:
+            return True
+    
     cpdef tuple init_args(ObjectIntervalSet self):
         return (self.intervals,)
     
@@ -816,6 +852,20 @@ cpdef tuple DateInterval_preprocess_intervals(tuple intervals):
     tmp2.append(interval)
     return tuple(tmp2)
 
+cdef class DateIntervalSetIterator(BaseIntervalSetIterator):
+    def __init__(DateIntervalSetIterator self, DateIntervalSet interval_set):
+        self.index = 0
+        self.interval_set = interval_set
+    
+    def __iter__(DateIntervalSetIterator self):
+        return self
+    
+    def __next__(DateIntervalSetIterator self):
+        self.index += 1
+        if self.index <= self.interval_set.n_intervals:
+            return self.interval_set.intervals[self.index-1]
+        raise StopIteration
+
 cdef class DateIntervalSet(BaseIntervalSet):
     def __init__(DateIntervalSet self, tuple intervals):
         '''
@@ -823,7 +873,26 @@ cdef class DateIntervalSet(BaseIntervalSet):
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
+    def __iter__(DateIntervalSet self):
+        return DateIntervalSetIterator(self)
+    
+    cpdef bool lower_bounded(DateIntervalSet self):
+        cdef DateInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bounded
+        else:
+            return True
+    
+    cpdef bool upper_bounded(DateIntervalSet self):
+        cdef DateInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bounded
+        else:
+            return True
+    
     cpdef tuple init_args(DateIntervalSet self):
         return (self.intervals,)
     
@@ -1282,6 +1351,20 @@ cpdef tuple IntInterval_preprocess_intervals(tuple intervals):
     tmp2.append(interval)
     return tuple(tmp2)
 
+cdef class IntIntervalSetIterator(BaseIntervalSetIterator):
+    def __init__(IntIntervalSetIterator self, IntIntervalSet interval_set):
+        self.index = 0
+        self.interval_set = interval_set
+    
+    def __iter__(IntIntervalSetIterator self):
+        return self
+    
+    def __next__(IntIntervalSetIterator self):
+        self.index += 1
+        if self.index <= self.interval_set.n_intervals:
+            return self.interval_set.intervals[self.index-1]
+        raise StopIteration
+
 cdef class IntIntervalSet(BaseIntervalSet):
     def __init__(IntIntervalSet self, tuple intervals):
         '''
@@ -1289,7 +1372,26 @@ cdef class IntIntervalSet(BaseIntervalSet):
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
+    def __iter__(IntIntervalSet self):
+        return IntIntervalSetIterator(self)
+    
+    cpdef bool lower_bounded(IntIntervalSet self):
+        cdef IntInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bounded
+        else:
+            return True
+    
+    cpdef bool upper_bounded(IntIntervalSet self):
+        cdef IntInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bounded
+        else:
+            return True
+    
     cpdef tuple init_args(IntIntervalSet self):
         return (self.intervals,)
     
@@ -1748,6 +1850,20 @@ cpdef tuple FloatInterval_preprocess_intervals(tuple intervals):
     tmp2.append(interval)
     return tuple(tmp2)
 
+cdef class FloatIntervalSetIterator(BaseIntervalSetIterator):
+    def __init__(FloatIntervalSetIterator self, FloatIntervalSet interval_set):
+        self.index = 0
+        self.interval_set = interval_set
+    
+    def __iter__(FloatIntervalSetIterator self):
+        return self
+    
+    def __next__(FloatIntervalSetIterator self):
+        self.index += 1
+        if self.index <= self.interval_set.n_intervals:
+            return self.interval_set.intervals[self.index-1]
+        raise StopIteration
+
 cdef class FloatIntervalSet(BaseIntervalSet):
     def __init__(FloatIntervalSet self, tuple intervals):
         '''
@@ -1755,7 +1871,26 @@ cdef class FloatIntervalSet(BaseIntervalSet):
         '''
         self.intervals = intervals
         self.n_intervals = len(intervals)
-        
+    
+    def __iter__(FloatIntervalSet self):
+        return FloatIntervalSetIterator(self)
+    
+    cpdef bool lower_bounded(FloatIntervalSet self):
+        cdef FloatInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bounded
+        else:
+            return True
+    
+    cpdef bool upper_bounded(FloatIntervalSet self):
+        cdef FloatInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bounded
+        else:
+            return True
+    
     cpdef tuple init_args(FloatIntervalSet self):
         return (self.intervals,)
     

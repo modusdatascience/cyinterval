@@ -11,6 +11,9 @@ cdef class BaseIntervalSet:
     cdef readonly tuple intervals
     cdef readonly int n_intervals
 
+cdef class BaseIntervalSetIterator:
+    cdef unsigned int index
+
 <%!
 type_tups = [('ObjectInterval', 'object', None, 'None', False, 'ObjectIntervalSet'), 
               ('DateInterval', 'date', 'date', 'None', True, 'DateIntervalSet'),
@@ -38,7 +41,12 @@ cdef class ${IntervalType}(BaseInterval):
 
 cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals)
 
+cdef class ${IntervalSetType}Iterator(BaseIntervalSetIterator):
+    cdef readonly ${IntervalSetType} interval_set
+
 cdef class ${IntervalSetType}(BaseIntervalSet):
+    cpdef bool lower_bounded(${IntervalSetType} self)
+    cpdef bool upper_bounded(${IntervalSetType} self)
     cpdef tuple init_args(${IntervalSetType} self)
     cpdef bool contains(${IntervalSetType} self, ${c_type} item)
     cpdef bool empty(${IntervalSetType} self)
