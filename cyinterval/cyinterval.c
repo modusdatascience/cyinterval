@@ -1964,7 +1964,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_25ObjectIntervalSetIterator_
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_25ObjectIntervalSetIterator_12interval_set___get__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSetIterator *__pyx_v_self); /* proto */
 static int __pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet___init__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, PyObject *__pyx_v_intervals); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_2__iter__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, int __pyx_v_index); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, PyObject *__pyx_v_index); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_6lower_bounded(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_8upper_bounded(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_10init_args(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self); /* proto */
@@ -1999,7 +1999,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_23DateIntervalSetIterator_4_
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_23DateIntervalSetIterator_12interval_set___get__(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSetIterator *__pyx_v_self); /* proto */
 static int __pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet___init__(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, PyObject *__pyx_v_intervals); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_2__iter__(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, int __pyx_v_index); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, PyObject *__pyx_v_index); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_6lower_bounded(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_8upper_bounded(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_10init_args(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self); /* proto */
@@ -2034,7 +2034,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_22IntIntervalSetIterator_4__
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_22IntIntervalSetIterator_12interval_set___get__(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSetIterator *__pyx_v_self); /* proto */
 static int __pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet___init__(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, PyObject *__pyx_v_intervals); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_2__iter__(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, int __pyx_v_index); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, PyObject *__pyx_v_index); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_6lower_bounded(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_8upper_bounded(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_10init_args(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self); /* proto */
@@ -2069,7 +2069,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_24FloatIntervalSetIterator_4
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_24FloatIntervalSetIterator_12interval_set___get__(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSetIterator *__pyx_v_self); /* proto */
 static int __pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet___init__(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, PyObject *__pyx_v_intervals); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_2__iter__(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, int __pyx_v_index); /* proto */
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, PyObject *__pyx_v_index); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_6lower_bounded(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_8upper_bounded(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_10init_args(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self); /* proto */
@@ -10271,7 +10271,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_2__iter_
  *     def __iter__(ObjectIntervalSet self):
  *         return ObjectIntervalSetIterator(self)             # <<<<<<<<<<<<<<
  * 
- *     def __getitem__(ObjectIntervalSet self, int index):
+ *     def __getitem__(ObjectIntervalSet self, index):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 379, __pyx_L1_error)
@@ -10309,35 +10309,25 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_2__iter_
 /* "cyinterval/cyinterval.pyx":381
  *         return ObjectIntervalSetIterator(self)
  * 
- *     def __getitem__(ObjectIntervalSet self, int index):             # <<<<<<<<<<<<<<
+ *     def __getitem__(ObjectIntervalSet self, index):             # <<<<<<<<<<<<<<
  *         return self.intervals[index]
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_10cyinterval_10cyinterval_17ObjectIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_arg_index); /*proto*/
-static PyObject *__pyx_pw_10cyinterval_10cyinterval_17ObjectIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_arg_index) {
-  int __pyx_v_index;
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_17ObjectIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_index); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_17ObjectIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_index) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
-  assert(__pyx_arg_index); {
-    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 381, __pyx_L3_error)
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("cyinterval.cyinterval.ObjectIntervalSet.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_4__getitem__(((struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *)__pyx_v_self), ((int)__pyx_v_index));
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_4__getitem__(((struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *)__pyx_v_self), ((PyObject *)__pyx_v_index));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, int __pyx_v_index) {
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_ObjectIntervalSet *__pyx_v_self, PyObject *__pyx_v_index) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10345,7 +10335,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_4__getit
 
   /* "cyinterval/cyinterval.pyx":382
  * 
- *     def __getitem__(ObjectIntervalSet self, int index):
+ *     def __getitem__(ObjectIntervalSet self, index):
  *         return self.intervals[index]             # <<<<<<<<<<<<<<
  * 
  *     cpdef bool lower_bounded(ObjectIntervalSet self):
@@ -10355,7 +10345,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_4__getit
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(0, 382, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_self->__pyx_base.intervals, __pyx_v_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 382, __pyx_L1_error)
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_self->__pyx_base.intervals, __pyx_v_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 382, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10364,7 +10354,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_17ObjectIntervalSet_4__getit
   /* "cyinterval/cyinterval.pyx":381
  *         return ObjectIntervalSetIterator(self)
  * 
- *     def __getitem__(ObjectIntervalSet self, int index):             # <<<<<<<<<<<<<<
+ *     def __getitem__(ObjectIntervalSet self, index):             # <<<<<<<<<<<<<<
  *         return self.intervals[index]
  * 
  */
@@ -19828,7 +19818,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_2__iter__(
  *     def __iter__(DateIntervalSet self):
  *         return DateIntervalSetIterator(self)             # <<<<<<<<<<<<<<
  * 
- *     def __getitem__(DateIntervalSet self, int index):
+ *     def __getitem__(DateIntervalSet self, index):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 881, __pyx_L1_error)
@@ -19866,35 +19856,25 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_2__iter__(
 /* "cyinterval/cyinterval.pyx":883
  *         return DateIntervalSetIterator(self)
  * 
- *     def __getitem__(DateIntervalSet self, int index):             # <<<<<<<<<<<<<<
+ *     def __getitem__(DateIntervalSet self, index):             # <<<<<<<<<<<<<<
  *         return self.intervals[index]
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_10cyinterval_10cyinterval_15DateIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_arg_index); /*proto*/
-static PyObject *__pyx_pw_10cyinterval_10cyinterval_15DateIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_arg_index) {
-  int __pyx_v_index;
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_15DateIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_index); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_15DateIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_index) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
-  assert(__pyx_arg_index); {
-    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 883, __pyx_L3_error)
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("cyinterval.cyinterval.DateIntervalSet.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_4__getitem__(((struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *)__pyx_v_self), ((int)__pyx_v_index));
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_4__getitem__(((struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *)__pyx_v_self), ((PyObject *)__pyx_v_index));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, int __pyx_v_index) {
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_DateIntervalSet *__pyx_v_self, PyObject *__pyx_v_index) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19902,7 +19882,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_4__getitem
 
   /* "cyinterval/cyinterval.pyx":884
  * 
- *     def __getitem__(DateIntervalSet self, int index):
+ *     def __getitem__(DateIntervalSet self, index):
  *         return self.intervals[index]             # <<<<<<<<<<<<<<
  * 
  *     cpdef bool lower_bounded(DateIntervalSet self):
@@ -19912,7 +19892,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_4__getitem
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(0, 884, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_self->__pyx_base.intervals, __pyx_v_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_self->__pyx_base.intervals, __pyx_v_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19921,7 +19901,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_15DateIntervalSet_4__getitem
   /* "cyinterval/cyinterval.pyx":883
  *         return DateIntervalSetIterator(self)
  * 
- *     def __getitem__(DateIntervalSet self, int index):             # <<<<<<<<<<<<<<
+ *     def __getitem__(DateIntervalSet self, index):             # <<<<<<<<<<<<<<
  *         return self.intervals[index]
  * 
  */
@@ -29378,7 +29358,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_2__iter__(s
  *     def __iter__(IntIntervalSet self):
  *         return IntIntervalSetIterator(self)             # <<<<<<<<<<<<<<
  * 
- *     def __getitem__(IntIntervalSet self, int index):
+ *     def __getitem__(IntIntervalSet self, index):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1383, __pyx_L1_error)
@@ -29416,35 +29396,25 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_2__iter__(s
 /* "cyinterval/cyinterval.pyx":1385
  *         return IntIntervalSetIterator(self)
  * 
- *     def __getitem__(IntIntervalSet self, int index):             # <<<<<<<<<<<<<<
+ *     def __getitem__(IntIntervalSet self, index):             # <<<<<<<<<<<<<<
  *         return self.intervals[index]
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_10cyinterval_10cyinterval_14IntIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_arg_index); /*proto*/
-static PyObject *__pyx_pw_10cyinterval_10cyinterval_14IntIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_arg_index) {
-  int __pyx_v_index;
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_14IntIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_index); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_14IntIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_index) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
-  assert(__pyx_arg_index); {
-    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1385, __pyx_L3_error)
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("cyinterval.cyinterval.IntIntervalSet.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_4__getitem__(((struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *)__pyx_v_self), ((int)__pyx_v_index));
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_4__getitem__(((struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *)__pyx_v_self), ((PyObject *)__pyx_v_index));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, int __pyx_v_index) {
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_IntIntervalSet *__pyx_v_self, PyObject *__pyx_v_index) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -29452,7 +29422,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_4__getitem_
 
   /* "cyinterval/cyinterval.pyx":1386
  * 
- *     def __getitem__(IntIntervalSet self, int index):
+ *     def __getitem__(IntIntervalSet self, index):
  *         return self.intervals[index]             # <<<<<<<<<<<<<<
  * 
  *     cpdef bool lower_bounded(IntIntervalSet self):
@@ -29462,7 +29432,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_4__getitem_
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(0, 1386, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_self->__pyx_base.intervals, __pyx_v_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1386, __pyx_L1_error)
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_self->__pyx_base.intervals, __pyx_v_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1386, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -29471,7 +29441,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_14IntIntervalSet_4__getitem_
   /* "cyinterval/cyinterval.pyx":1385
  *         return IntIntervalSetIterator(self)
  * 
- *     def __getitem__(IntIntervalSet self, int index):             # <<<<<<<<<<<<<<
+ *     def __getitem__(IntIntervalSet self, index):             # <<<<<<<<<<<<<<
  *         return self.intervals[index]
  * 
  */
@@ -38951,7 +38921,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_2__iter__
  *     def __iter__(FloatIntervalSet self):
  *         return FloatIntervalSetIterator(self)             # <<<<<<<<<<<<<<
  * 
- *     def __getitem__(FloatIntervalSet self, int index):
+ *     def __getitem__(FloatIntervalSet self, index):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1885, __pyx_L1_error)
@@ -38989,35 +38959,25 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_2__iter__
 /* "cyinterval/cyinterval.pyx":1887
  *         return FloatIntervalSetIterator(self)
  * 
- *     def __getitem__(FloatIntervalSet self, int index):             # <<<<<<<<<<<<<<
+ *     def __getitem__(FloatIntervalSet self, index):             # <<<<<<<<<<<<<<
  *         return self.intervals[index]
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_10cyinterval_10cyinterval_16FloatIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_arg_index); /*proto*/
-static PyObject *__pyx_pw_10cyinterval_10cyinterval_16FloatIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_arg_index) {
-  int __pyx_v_index;
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_16FloatIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_index); /*proto*/
+static PyObject *__pyx_pw_10cyinterval_10cyinterval_16FloatIntervalSet_5__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_index) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
-  assert(__pyx_arg_index); {
-    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1887, __pyx_L3_error)
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("cyinterval.cyinterval.FloatIntervalSet.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_4__getitem__(((struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *)__pyx_v_self), ((int)__pyx_v_index));
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_4__getitem__(((struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *)__pyx_v_self), ((PyObject *)__pyx_v_index));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, int __pyx_v_index) {
+static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_4__getitem__(struct __pyx_obj_10cyinterval_10cyinterval_FloatIntervalSet *__pyx_v_self, PyObject *__pyx_v_index) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -39025,7 +38985,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_4__getite
 
   /* "cyinterval/cyinterval.pyx":1888
  * 
- *     def __getitem__(FloatIntervalSet self, int index):
+ *     def __getitem__(FloatIntervalSet self, index):
  *         return self.intervals[index]             # <<<<<<<<<<<<<<
  * 
  *     cpdef bool lower_bounded(FloatIntervalSet self):
@@ -39035,7 +38995,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_4__getite
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(0, 1888, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_self->__pyx_base.intervals, __pyx_v_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1888, __pyx_L1_error)
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_self->__pyx_base.intervals, __pyx_v_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1888, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -39044,7 +39004,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_16FloatIntervalSet_4__getite
   /* "cyinterval/cyinterval.pyx":1887
  *         return FloatIntervalSetIterator(self)
  * 
- *     def __getitem__(FloatIntervalSet self, int index):             # <<<<<<<<<<<<<<
+ *     def __getitem__(FloatIntervalSet self, index):             # <<<<<<<<<<<<<<
  *         return self.intervals[index]
  * 
  */
