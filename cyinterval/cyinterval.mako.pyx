@@ -390,7 +390,7 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
     def __iter__(${IntervalSetType} self):
         return ${IntervalSetType}Iterator(self)
     
-    def __getitem__(${IntervalSetType} self, int index):
+    def __getitem__(${IntervalSetType} self, index):
         return self.intervals[index]
     
     cpdef bool lower_bounded(${IntervalSetType} self):
