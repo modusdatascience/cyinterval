@@ -326,11 +326,16 @@ cdef class ObjectInterval(BaseInterval):
 cpdef tuple ObjectInterval_preprocess_intervals(tuple intervals):
     # Remove any empty intervals
     cdef ObjectInterval interval
+    
     cdef list tmp = []
     for interval in intervals:
         if not interval.empty():
             tmp.append(interval)
-            
+    
+    # If there are no nonempty intervals, return
+    if not tmp:
+        return tuple()
+    
     # Sort
     tmp.sort()
     
@@ -828,11 +833,16 @@ cdef class DateInterval(BaseInterval):
 cpdef tuple DateInterval_preprocess_intervals(tuple intervals):
     # Remove any empty intervals
     cdef DateInterval interval
+    
     cdef list tmp = []
     for interval in intervals:
         if not interval.empty():
             tmp.append(interval)
-            
+    
+    # If there are no nonempty intervals, return
+    if not tmp:
+        return tuple()
+    
     # Sort
     tmp.sort()
     
@@ -1330,11 +1340,16 @@ cdef class IntInterval(BaseInterval):
 cpdef tuple IntInterval_preprocess_intervals(tuple intervals):
     # Remove any empty intervals
     cdef IntInterval interval
+    
     cdef list tmp = []
     for interval in intervals:
         if not interval.empty():
             tmp.append(interval)
-            
+    
+    # If there are no nonempty intervals, return
+    if not tmp:
+        return tuple()
+    
     # Sort
     tmp.sort()
     
@@ -1832,11 +1847,16 @@ cdef class FloatInterval(BaseInterval):
 cpdef tuple FloatInterval_preprocess_intervals(tuple intervals):
     # Remove any empty intervals
     cdef FloatInterval interval
+    
     cdef list tmp = []
     for interval in intervals:
         if not interval.empty():
             tmp.append(interval)
-            
+    
+    # If there are no nonempty intervals, return
+    if not tmp:
+        return tuple()
+    
     # Sort
     tmp.sort()
     

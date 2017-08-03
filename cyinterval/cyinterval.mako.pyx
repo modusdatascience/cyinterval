@@ -338,11 +338,16 @@ cdef class ${IntervalType}(BaseInterval):
 cpdef tuple ${IntervalType}_preprocess_intervals(tuple intervals):
     # Remove any empty intervals
     cdef ${IntervalType} interval
+    
     cdef list tmp = []
     for interval in intervals:
         if not interval.empty():
             tmp.append(interval)
-            
+    
+    # If there are no nonempty intervals, return
+    if not tmp:
+        return tuple()
+    
     # Sort
     tmp.sort()
     
