@@ -2,12 +2,12 @@ from setuptools import setup, find_packages, Extension
 import versioneer
 import sys
 import os
-from mako.lookup import TemplateLookup
 
 mako_templates=[(os.path.join('cyinterval', 'cyinterval.mako.pyx'), os.path.join('cyinterval', 'cyinterval.pyx')),
                       (os.path.join('cyinterval', 'cyinterval.mako.pxd'), os.path.join('cyinterval', 'cyinterval.pxd'))]
 
 if '--makoize' in sys.argv:
+    from mako.lookup import TemplateLookup
     del sys.argv[sys.argv.index('--makoize')]
     lookup = TemplateLookup(directories = ['.'])
     for template_file, target_file in mako_templates:
