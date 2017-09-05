@@ -414,6 +414,22 @@ cdef class ${IntervalSetType}(BaseIntervalSet):
         else:
             return True
     
+    cpdef ${c_type} lower_bound(${IntervalSetType} self):
+        cdef ${IntervalType} interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bound
+        else:
+            return ${default_value}
+    
+    cpdef ${c_type} upper_bound(${IntervalSetType} self):
+        cdef ${IntervalType} interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bound
+        else:
+            return ${default_value}
+    
     cpdef tuple init_args(${IntervalSetType} self):
         return (self.intervals,)
     

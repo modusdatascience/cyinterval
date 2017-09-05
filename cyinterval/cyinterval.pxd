@@ -40,6 +40,8 @@ cdef class ObjectIntervalSetIterator(BaseIntervalSetIterator):
 cdef class ObjectIntervalSet(BaseIntervalSet):
     cpdef bool lower_bounded(ObjectIntervalSet self)
     cpdef bool upper_bounded(ObjectIntervalSet self)
+    cpdef object lower_bound(ObjectIntervalSet self)
+    cpdef object upper_bound(ObjectIntervalSet self)
     cpdef tuple init_args(ObjectIntervalSet self)
     cpdef bool contains(ObjectIntervalSet self, object item)
     cpdef bool empty(ObjectIntervalSet self)
@@ -75,6 +77,8 @@ cdef class DateIntervalSetIterator(BaseIntervalSetIterator):
 cdef class DateIntervalSet(BaseIntervalSet):
     cpdef bool lower_bounded(DateIntervalSet self)
     cpdef bool upper_bounded(DateIntervalSet self)
+    cpdef date lower_bound(DateIntervalSet self)
+    cpdef date upper_bound(DateIntervalSet self)
     cpdef tuple init_args(DateIntervalSet self)
     cpdef bool contains(DateIntervalSet self, date item)
     cpdef bool empty(DateIntervalSet self)
@@ -110,6 +114,8 @@ cdef class IntIntervalSetIterator(BaseIntervalSetIterator):
 cdef class IntIntervalSet(BaseIntervalSet):
     cpdef bool lower_bounded(IntIntervalSet self)
     cpdef bool upper_bounded(IntIntervalSet self)
+    cpdef int lower_bound(IntIntervalSet self)
+    cpdef int upper_bound(IntIntervalSet self)
     cpdef tuple init_args(IntIntervalSet self)
     cpdef bool contains(IntIntervalSet self, int item)
     cpdef bool empty(IntIntervalSet self)
@@ -145,6 +151,8 @@ cdef class FloatIntervalSetIterator(BaseIntervalSetIterator):
 cdef class FloatIntervalSet(BaseIntervalSet):
     cpdef bool lower_bounded(FloatIntervalSet self)
     cpdef bool upper_bounded(FloatIntervalSet self)
+    cpdef double lower_bound(FloatIntervalSet self)
+    cpdef double upper_bound(FloatIntervalSet self)
     cpdef tuple init_args(FloatIntervalSet self)
     cpdef bool contains(FloatIntervalSet self, double item)
     cpdef bool empty(FloatIntervalSet self)

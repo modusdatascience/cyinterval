@@ -47,6 +47,8 @@ cdef class ${IntervalSetType}Iterator(BaseIntervalSetIterator):
 cdef class ${IntervalSetType}(BaseIntervalSet):
     cpdef bool lower_bounded(${IntervalSetType} self)
     cpdef bool upper_bounded(${IntervalSetType} self)
+    cpdef ${c_type} lower_bound(${IntervalSetType} self)
+    cpdef ${c_type} upper_bound(${IntervalSetType} self)
     cpdef tuple init_args(${IntervalSetType} self)
     cpdef bool contains(${IntervalSetType} self, ${c_type} item)
     cpdef bool empty(${IntervalSetType} self)

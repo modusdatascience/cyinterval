@@ -402,6 +402,22 @@ cdef class ObjectIntervalSet(BaseIntervalSet):
         else:
             return True
     
+    cpdef object lower_bound(ObjectIntervalSet self):
+        cdef ObjectInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bound
+        else:
+            return None
+    
+    cpdef object upper_bound(ObjectIntervalSet self):
+        cdef ObjectInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bound
+        else:
+            return None
+    
     cpdef tuple init_args(ObjectIntervalSet self):
         return (self.intervals,)
     
@@ -908,6 +924,22 @@ cdef class DateIntervalSet(BaseIntervalSet):
             return interval.upper_bounded
         else:
             return True
+    
+    cpdef date lower_bound(DateIntervalSet self):
+        cdef DateInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bound
+        else:
+            return None
+    
+    cpdef date upper_bound(DateIntervalSet self):
+        cdef DateInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bound
+        else:
+            return None
     
     cpdef tuple init_args(DateIntervalSet self):
         return (self.intervals,)
@@ -1416,6 +1448,22 @@ cdef class IntIntervalSet(BaseIntervalSet):
         else:
             return True
     
+    cpdef int lower_bound(IntIntervalSet self):
+        cdef IntInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bound
+        else:
+            return 0
+    
+    cpdef int upper_bound(IntIntervalSet self):
+        cdef IntInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bound
+        else:
+            return 0
+    
     cpdef tuple init_args(IntIntervalSet self):
         return (self.intervals,)
     
@@ -1922,6 +1970,22 @@ cdef class FloatIntervalSet(BaseIntervalSet):
             return interval.upper_bounded
         else:
             return True
+    
+    cpdef double lower_bound(FloatIntervalSet self):
+        cdef FloatInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[0]
+            return interval.lower_bound
+        else:
+            return 0.
+    
+    cpdef double upper_bound(FloatIntervalSet self):
+        cdef FloatInterval interval
+        if self.n_intervals > 0:
+            interval = self.intervals[self.n_intervals - 1]
+            return interval.upper_bound
+        else:
+            return 0.
     
     cpdef tuple init_args(FloatIntervalSet self):
         return (self.intervals,)
