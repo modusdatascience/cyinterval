@@ -2077,7 +2077,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_14__rand__
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_16__sub__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self, PyObject *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_18__rsub__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self, PyObject *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_20__invert__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self); /* proto */
-static int __pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_22__bool__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self); /* proto */
+static int __pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_22__nonzero__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_24__reduce__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self); /* proto */
 static Py_hash_t __pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_26__hash__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_9intervals___get__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self); /* proto */
@@ -4869,7 +4869,7 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_20__invert
  *     def __invert__(BaseIntervalSet self):
  *         return self.complement()             # <<<<<<<<<<<<<<
  * 
- *     def __bool__(BaseIntervalSet self):
+ *     def __nonzero__(BaseIntervalSet self):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_complement); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
@@ -4920,36 +4920,36 @@ static PyObject *__pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_20__invert
 /* "cyinterval/cyinterval.pyx":89
  *         return self.complement()
  * 
- *     def __bool__(BaseIntervalSet self):             # <<<<<<<<<<<<<<
+ *     def __nonzero__(BaseIntervalSet self):             # <<<<<<<<<<<<<<
  *         return not self.empty()
  * 
  */
 
 /* Python wrapper */
-static int __pyx_pw_10cyinterval_10cyinterval_15BaseIntervalSet_23__bool__(PyObject *__pyx_v_self); /*proto*/
-static int __pyx_pw_10cyinterval_10cyinterval_15BaseIntervalSet_23__bool__(PyObject *__pyx_v_self) {
+static int __pyx_pw_10cyinterval_10cyinterval_15BaseIntervalSet_23__nonzero__(PyObject *__pyx_v_self); /*proto*/
+static int __pyx_pw_10cyinterval_10cyinterval_15BaseIntervalSet_23__nonzero__(PyObject *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__bool__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_22__bool__(((struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("__nonzero__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_22__nonzero__(((struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_22__bool__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self) {
+static int __pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_22__nonzero__(struct __pyx_obj_10cyinterval_10cyinterval_BaseIntervalSet *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   int __pyx_t_4;
-  __Pyx_RefNannySetupContext("__bool__", 0);
+  __Pyx_RefNannySetupContext("__nonzero__", 0);
 
   /* "cyinterval/cyinterval.pyx":90
  * 
- *     def __bool__(BaseIntervalSet self):
+ *     def __nonzero__(BaseIntervalSet self):
  *         return not self.empty()             # <<<<<<<<<<<<<<
  * 
  *     def __reduce__(BaseIntervalSet self):
@@ -4982,7 +4982,7 @@ static int __pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_22__bool__(struc
   /* "cyinterval/cyinterval.pyx":89
  *         return self.complement()
  * 
- *     def __bool__(BaseIntervalSet self):             # <<<<<<<<<<<<<<
+ *     def __nonzero__(BaseIntervalSet self):             # <<<<<<<<<<<<<<
  *         return not self.empty()
  * 
  */
@@ -4992,7 +4992,7 @@ static int __pyx_pf_10cyinterval_10cyinterval_15BaseIntervalSet_22__bool__(struc
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cyinterval.cyinterval.BaseIntervalSet.__bool__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cyinterval.cyinterval.BaseIntervalSet.__nonzero__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -51394,7 +51394,7 @@ static PyNumberMethods __pyx_tp_as_number_BaseIntervalSet = {
   0, /*nb_negative*/
   0, /*nb_positive*/
   0, /*nb_absolute*/
-  __pyx_pw_10cyinterval_10cyinterval_15BaseIntervalSet_23__bool__, /*nb_nonzero*/
+  __pyx_pw_10cyinterval_10cyinterval_15BaseIntervalSet_23__nonzero__, /*nb_nonzero*/
   __pyx_pw_10cyinterval_10cyinterval_15BaseIntervalSet_21__invert__, /*nb_invert*/
   0, /*nb_lshift*/
   0, /*nb_rshift*/

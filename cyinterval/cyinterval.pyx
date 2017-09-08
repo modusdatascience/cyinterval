@@ -86,7 +86,7 @@ cdef class BaseIntervalSet:
     def __invert__(BaseIntervalSet self):
         return self.complement()
     
-    def __bool__(BaseIntervalSet self):
+    def __nonzero__(BaseIntervalSet self):
         return not self.empty()
     
     def __reduce__(BaseIntervalSet self):
