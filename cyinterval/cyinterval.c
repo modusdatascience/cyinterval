@@ -3,12 +3,12 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [], 
-        "name": "cyinterval.cyinterval", 
+        "depends": [],
+        "name": "cyinterval.cyinterval",
         "sources": [
             "cyinterval/cyinterval.pyx"
         ]
-    }, 
+    },
     "module_name": "cyinterval.cyinterval"
 }
 END: Cython Metadata */

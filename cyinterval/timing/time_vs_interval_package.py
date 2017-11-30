@@ -11,15 +11,15 @@ def compare_intersection():
     for _ in range(n):
         cyinterval_set1.intersection(cyinterval_set2)
     t1 = time.time()
-    print 'cyinterval took %f seconds for %d iterations' % (t1-t0, n)
+    print('cyinterval took %f seconds for %d iterations' % (t1-t0, n))
     d_cy = t1-t0
     t0 = time.time()
     for _ in range(n):
         orinterval_set1.intersection(orinterval_set2)
     t1 = time.time()
     d_orig = t1 - t0
-    print 'interval took %f seconds for %d iterations' % (t1-t0, n)
-    print 'cyinterval was %f times as fast as interval' % (d_orig / d_cy)
+    print('interval took %f seconds for %d iterations' % (t1-t0, n))
+    print('cyinterval was %f times as fast as interval' % (d_orig / d_cy))
     
     
 if __name__ == '__main__':
